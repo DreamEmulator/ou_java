@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="croho">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/croho.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
