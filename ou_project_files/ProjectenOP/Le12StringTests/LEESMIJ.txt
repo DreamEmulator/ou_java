@@ -1,0 +1,4 @@
+On te kunnen compileren en runnen moeten verkiezingen.jar en tegels.jar als external archive worden toegevoegd aan dit project:
+- Rechtsklik op projectnaam
+- Kies Build Path en vervolgens Add External Archives
+- Browse naar verkiezingen.jar en tegels.jar en selecteer deze.

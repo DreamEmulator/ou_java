@@ -1,0 +1,4 @@
+On te kunnen compileren en runnen moet verkiezingen.jar als external archive worden toegevoegd aan dit project:
+- Rechtsklik op projectnaam
+- Kies Build Path en vervolgens Add External Archives
+- Browse naar verkiezingen.jar en selecteer deze.

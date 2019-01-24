@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tegels">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/tegels.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
