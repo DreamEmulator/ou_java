@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="verkiezingen">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/verkiezingen.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
