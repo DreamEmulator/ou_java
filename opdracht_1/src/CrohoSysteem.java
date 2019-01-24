@@ -3,13 +3,14 @@ import croho.Instelling;
 import croho.Instellingssoort;
 import croho.Plaats;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CrohoSysteem {
     public static void main(String[] args) {
         Croho croho = new Croho();
         croho.init();
+
+// Opdracht A:
         croho.voegtoeInstelling("Rijksuniversiteit Groningen", Instellingssoort.WO, "Groningen", 7654);
 
         int wo = 0;
