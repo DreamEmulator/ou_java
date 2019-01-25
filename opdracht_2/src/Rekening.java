@@ -20,9 +20,8 @@ public class Rekening {
     protected void setSaldo (double bedrag) {
         if (saldo + bedrag > 0 ){
             saldo += bedrag;
-            System.out.println("Overschrijven is gelukt het nieuwe saldo is: " + saldo);
         } else {
-            System.out.println("Overschrijven is NIET gelukt: onvoldoende saldo");
+            System.out.println("Onvoldoende saldo");
         }
     }
 
