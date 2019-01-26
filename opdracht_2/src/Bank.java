@@ -11,13 +11,15 @@ public class Bank {
     public Rekening getRekening (int rekeningNr) {
 
         Rekening rekening = null;
-
         for (Rekening i : rekeningen){
             if (rekeningNr == i.getRekeningNr()){
                 rekening = i;
+            } else {
+                throw new ArrayIndexOutOfBoundsException("Rekening niet gevonden");
             }
         }
         return rekening;
+
     }
 
     public void maakOver (int debitRekeningNr, int creditRekeningNr, double bedrag) {
