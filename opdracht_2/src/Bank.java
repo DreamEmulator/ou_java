@@ -22,11 +22,16 @@ public class Bank {
 
     public void maakOver (int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
-        Rekening debitRekening = getRekening(debitRekeningNr);
-        Rekening creditRekening = getRekening(creditRekeningNr);
+        if (bedrag > 0){
+            Rekening debitRekening = getRekening(debitRekeningNr);
+            Rekening creditRekening = getRekening(creditRekeningNr);
 
-        debitRekening.setSaldo(-bedrag);
-        creditRekening.setSaldo(bedrag);
+            debitRekening.setSaldo(-bedrag);
+            creditRekening.setSaldo(bedrag);
+        } else {
+            System.out.println("Negatieve bedragen niet toegestaan");
+        }
+
     }
 
 }
