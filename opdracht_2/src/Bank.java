@@ -3,9 +3,12 @@ import java.util.ArrayList;
 public class Bank {
 
     private ArrayList<Rekening> rekeningen;
+    private BankGui bankGui;
 
-    public Bank (ArrayList<Rekening> rekeningen) {
+    public Bank (ArrayList<Rekening> rekeningen, BankGui bankGui) {
+
         this.rekeningen = rekeningen;
+        this.bankGui = bankGui;
     }
 
     public Rekening getRekening (int rekeningNr) {
@@ -43,6 +46,16 @@ public class Bank {
         } else {
             System.out.println("Transactie niet gelukt controleer rekeningnummers");
         }
+    }
+
+    public void updateGuiValues (int debitRekeningNr, int creditRekeningNr){
+        String debitNaam = getRekening(debitRekeningNr).getNaam();
+        double debitSaldo = getRekening(debitRekeningNr).getSaldo();
+
+        String creditNaam = getRekening(creditRekeningNr).getNaam();
+        double creditSaldo = getRekening(creditRekeningNr).getSaldo();
+
+        bankGui.updateGuiView(debitRekeningNr,debitNaam,debitSaldo,creditRekeningNr,creditNaam,creditSaldo);
     }
 
 }

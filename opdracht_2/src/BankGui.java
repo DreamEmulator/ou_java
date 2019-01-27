@@ -9,7 +9,7 @@ public class BankGui {
     private JPanel creditRekening;
     private JTextField debitRekeningNummerInput;
     private JTextField debitBedragInput;
-    private JTextField creditRekeningNummerImput;
+    private JTextField creditRekeningNummerInput;
     private JTextField creditBedragInput;
     private JLabel Rekeningnummer;
     private JLabel Bedrag;
@@ -20,16 +20,43 @@ public class BankGui {
     private JButton creditStortButton;
     private JButton creditNeemOpButton;
     private JButton maakOver;
-    private JLabel debitNaam;
-    private JLabel creditNaam;
-    private JLabel debitSaldo;
-    private JLabel creditSaldo;
+    private JLabel debitNaamLabel;
+    private JLabel creditNaamLabel;
+    private JLabel debitSaldoLabel;
+    private JLabel creditSaldoLabel;
     private JLabel debitNaamOutput;
     private JLabel debitSaldoOutput;
     private JLabel creditNaamOutput;
     private JLabel creditSaldoOutput;
 
+    private Bank bank;
+
     public BankGui() {
+        this.bank = bank;
+        bindEvents();
+        System.out.println("Bank GUI Initiated!");
+
+        JFrame frame = new JFrame("BankGui");
+        frame.setContentPane(bankOverzicht);
+        frame.setBounds(700,300, 700, 300);
+        frame.setVisible(true);
+    }
+
+
+    public void updateGuiView (int debitRekeningNr, String debitNaam, double debitSaldo, int creditRekeningNr, String creditNaam, double creditSaldo){
+
+
+        debitRekeningNummerInput.setText(""+debitRekeningNr);
+        debitNaamOutput.setText(debitNaam);
+        debitSaldoOutput.setText(""+debitSaldo);
+
+        creditRekeningNummerInput.setText(""+creditRekeningNr);
+        creditNaamOutput.setText(creditNaam);
+        creditSaldoOutput.setText(""+creditSaldo);
+
+    }
+
+    private void bindEvents (){
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,4 +64,5 @@ public class BankGui {
             }
         });
     }
+
 }
