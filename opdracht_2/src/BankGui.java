@@ -33,34 +33,41 @@ public class BankGui {
 
     public BankGui() {
         this.bank = bank;
-        bindEvents();
         System.out.println("Bank GUI Initiated!");
 
         JFrame frame = new JFrame("BankGui");
         frame.setContentPane(bankOverzicht);
-        frame.setBounds(700,300, 700, 300);
+        frame.setBounds(700, 200, 700, 200);
         frame.setVisible(true);
     }
 
 
-    public void updateGuiView (int debitRekeningNr, String debitNaam, double debitSaldo, int creditRekeningNr, String creditNaam, double creditSaldo){
+    public void updateGui(int debitRekeningNr, String debitNaam, double debitSaldo, int creditRekeningNr, String creditNaam, double creditSaldo) {
 
-
-        debitRekeningNummerInput.setText(""+debitRekeningNr);
+        debitRekeningNummerInput.setText("" + debitRekeningNr);
         debitNaamOutput.setText(debitNaam);
-        debitSaldoOutput.setText(""+debitSaldo);
+        debitSaldoOutput.setText("" + debitSaldo);
 
-        creditRekeningNummerInput.setText(""+creditRekeningNr);
+        creditRekeningNummerInput.setText("" + creditRekeningNr);
         creditNaamOutput.setText(creditNaam);
-        creditSaldoOutput.setText(""+creditSaldo);
+        creditSaldoOutput.setText("" + creditSaldo);
 
+        bindEvents(debitRekeningNr, creditRekeningNr);
     }
 
-    private void bindEvents (){
+    private void bindEvents(int debitRekeningNr, int creditRekeningNr) {
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                System.out.println(debitRekeningNr);
+                Rekening debitRekening = bank.getRekening(debitRekeningNr);
+                double debitStortBedrag = Double.parseDouble(debitBedragInput.getText());
+                if (debitStortBedrag > 0) {
+                    double huidigSaldo = debitRekening.getSaldo();
+                    double nieuwSaldo = huidigSaldo += debitStortBedrag;
+                    debitRekening.setSaldo(nieuwSaldo);
+                    bank.updateGuiValues(debitRekeningNr,creditRekeningNr);
+                }
             }
         });
     }

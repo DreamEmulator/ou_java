@@ -55,7 +55,7 @@ public class Bank {
         String creditNaam = getRekening(creditRekeningNr).getNaam();
         double creditSaldo = getRekening(creditRekeningNr).getSaldo();
 
-        bankGui.updateGuiView(debitRekeningNr,debitNaam,debitSaldo,creditRekeningNr,creditNaam,creditSaldo);
+        bankGui.updateGui(debitRekeningNr,debitNaam,debitSaldo,creditRekeningNr,creditNaam,creditSaldo);
     }
 
 }
