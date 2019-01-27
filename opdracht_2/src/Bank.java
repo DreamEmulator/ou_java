@@ -24,14 +24,20 @@ public class Bank {
 
     public void maakOver (int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
-        if (bedrag > 0){
-            Rekening debitRekening = getRekening(debitRekeningNr);
-            Rekening creditRekening = getRekening(creditRekeningNr);
+        Rekening debitRekening = getRekening(debitRekeningNr);
+        Rekening creditRekening = getRekening(creditRekeningNr);
 
-            debitRekening.setSaldo(-bedrag);
-            creditRekening.setSaldo(bedrag);
+        //Controleer of rekeningen bestaan
+        if (debitRekening != null && creditRekening != null){
+
+            //Controleer of bedrag is toegestaan
+            if(bedrag > 0 &&  debitRekening.getSaldo()-bedrag > 0) {
+                debitRekening.setSaldo(-bedrag);
+                creditRekening.setSaldo(bedrag);
+            }
+
         } else {
-            System.out.println("Negatieve bedragen niet toegestaan");
+            System.out.println("Transactie nie gelukt controleer rekeningnummers");
         }
 
     }
