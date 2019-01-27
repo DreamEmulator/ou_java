@@ -11,15 +11,17 @@ public class Bank {
     public Rekening getRekening (int rekeningNr) {
 
         Rekening rekening = null;
+        int n = 0;
         for (Rekening i : rekeningen){
+            n++;
             if (rekeningNr == i.getRekeningNr()){
                 rekening = i;
-            } else {
-                throw new ArrayIndexOutOfBoundsException("Rekening niet gevonden");
+            }
+            if (n == rekeningen.size() && rekening == null){
+                System.out.println("Geen rekening gevonden.");
             }
         }
         return rekening;
-
     }
 
     public void maakOver (int debitRekeningNr, int creditRekeningNr, double bedrag) {
@@ -34,12 +36,13 @@ public class Bank {
             if(bedrag > 0 &&  debitRekening.getSaldo()-bedrag > 0) {
                 debitRekening.setSaldo(-bedrag);
                 creditRekening.setSaldo(bedrag);
+            } else {
+                System.out.println("Transactie niet gelukt controleer het bedrag");
             }
 
         } else {
-            System.out.println("Transactie nie gelukt controleer rekeningnummers");
+            System.out.println("Transactie niet gelukt controleer rekeningnummers");
         }
-
     }
 
 }
