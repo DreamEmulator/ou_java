@@ -18,6 +18,6 @@ public class Opdracht02 {
 // Run tests
         new BankTest(bank);
         new RekeningTest(rekeningen.get(0));
-
+        new BankGui();
     }
 }
