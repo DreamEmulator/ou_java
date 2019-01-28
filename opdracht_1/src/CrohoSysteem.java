@@ -12,12 +12,13 @@ public class CrohoSysteem {
 
 // Opdracht A:
         croho.voegtoeInstelling("Rijksuniversiteit Groningen", Instellingssoort.WO, "Groningen", 7654);
-
-        int wo = 0;
-        int hbo = 0;
+        System.out.println("\n Output Opdracht A:\nRijksuniversiteit Groningen toegevoegd");
 
 // Opdracht B:  Print instellingen
         System.out.println("\n Output Opdracht B:");
+
+        int wo = 0;
+        int hbo = 0;
 
         for (Instelling i : croho.getInstellingen()) {
 
