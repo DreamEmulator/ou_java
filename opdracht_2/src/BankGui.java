@@ -42,87 +42,74 @@ public class BankGui {
 
         updateGui();
         bindEvents();
-
     }
 
 
     public void updateGui() {
-
-        String debitNaam = bank.getRekening(bank.getDebitRekeningNr()).getNaam();
-        double debitSaldo = bank.getRekening(bank.getDebitRekeningNr()).getSaldo();
-
-        String creditNaam = bank.getRekening(bank.getCreditRekeningNr()).getNaam();
-        double creditSaldo = bank.getRekening(bank.getCreditRekeningNr()).getSaldo();
-
-
         debitRekeningNummerInput.setText("" + bank.getDebitRekeningNr());
-        debitNaamOutput.setText(debitNaam);
-        debitSaldoOutput.setText("" + debitSaldo);
+        debitNaamOutput.setText(bank.getRekening(bank.getDebitRekeningNr()).getNaam());
+        debitSaldoOutput.setText("" + bank.getRekening(bank.getDebitRekeningNr()).getSaldo());
 
         creditRekeningNummerInput.setText("" + bank.getCreditRekeningNr());
-        creditNaamOutput.setText(creditNaam);
-        creditSaldoOutput.setText("" + creditSaldo);
+        creditNaamOutput.setText(bank.getRekening(bank.getCreditRekeningNr()).getNaam());
+        creditSaldoOutput.setText("" + bank.getRekening(bank.getCreditRekeningNr()).getSaldo());
     }
 
     private void bindEvents() {
-
 // Debit events
+        // Zoek
         debitZoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int debitRekeningNr = Integer.parseInt(debitRekeningNummerInput.getText());
-                bank.setDebitRekeningNr(debitRekeningNr);
+                bank.setDebitRekeningNr(Integer.parseInt(debitRekeningNummerInput.getText()));
                 updateGui();
             }
         });
-
+        // Stort
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int debitRekeningNr = bank.getDebitRekeningNr();
-                double debitStortBedrag = Double.parseDouble(debitBedragInput.getText());
-                bank.stortBedrag(debitRekeningNr, debitStortBedrag);
+                bank.getRekening(bank.getDebitRekeningNr()).stortBedrag(Double.parseDouble(debitBedragInput.getText()));
                 updateGui();
             }
         });
-
+        // Neem op
         debitNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int debitRekeningNr = bank.getDebitRekeningNr();
-                double debitOpneemBedrag = Double.parseDouble(debitBedragInput.getText());
-                bank.neemBedragOp(debitRekeningNr, debitOpneemBedrag);
+                bank.getRekening(bank.getDebitRekeningNr()).neemBedragOp(Double.parseDouble(creditBedragInput.getText()));
                 updateGui();
             }
         });
 
 // Credit events
+        // Zoek
         creditZoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int creditRekeningNr = Integer.parseInt(creditRekeningNummerInput.getText());
-                bank.setCreditRekeningNr(creditRekeningNr);
+                bank.setCreditRekeningNr(Integer.parseInt(creditRekeningNummerInput.getText()));
                 updateGui();
             }
         });
-
+        // Stort
         creditStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.stortBedrag(bank.getCreditRekeningNr(), Double.parseDouble(creditBedragInput.getText()));
+                bank.getRekening(bank.getCreditRekeningNr()).stortBedrag(Double.parseDouble(creditBedragInput.getText()));
                 updateGui();
             }
         });
-
+        // Neem op
         creditNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.neemBedragOp(bank.getCreditRekeningNr(), Double.parseDouble(creditBedragInput.getText()));
+                bank.getRekening(bank.getCreditRekeningNr()).neemBedragOp(Double.parseDouble(creditBedragInput.getText()));
                 updateGui();
             }
         });
 
 // Debit -> Credit events
+        //Maak over
         maakOver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,5 +118,6 @@ public class BankGui {
             }
         });
     }
-
 }
+
+//TODO: Vraag of je niet bete variabelen aan kan maken puur voor duidelijkheid?
