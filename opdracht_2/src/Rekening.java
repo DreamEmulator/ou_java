@@ -19,7 +19,7 @@ public class Rekening {
 
     protected void setSaldo (double bedrag) {
         if (saldo + bedrag > 0 ){
-            saldo += bedrag;
+            saldo = bedrag;
         } else {
             System.out.println("Onvoldoende saldo");
         }

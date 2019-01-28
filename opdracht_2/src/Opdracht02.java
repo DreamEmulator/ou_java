@@ -21,7 +21,7 @@ public class Opdracht02 {
         BankGui bankGui = new BankGui(bank);
 
 // Run tests
-        new BankTest(bank);
-        new RekeningTest(rekeningen.get(0));
+//        new BankTest(bank);
+//        new RekeningTest(rekeningen.get(0));
     }
 }

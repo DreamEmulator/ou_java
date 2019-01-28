@@ -69,15 +69,21 @@ public class BankGui {
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(bank.debitRekeningNr);
-                System.out.println(bank);
 
                 Rekening debitRekening = bank.getRekening(debitRekeningNr);
                 double debitStortBedrag = Double.parseDouble(debitBedragInput.getText());
+
                 if (debitStortBedrag > 0) {
                     double huidigSaldo = debitRekening.getSaldo();
-                    double nieuwSaldo = huidigSaldo += debitStortBedrag;
+                    double nieuwSaldo = huidigSaldo + debitStortBedrag;
+
+                    System.out.println("Huidig saldo " + huidigSaldo);
+                    System.out.println("Debit stort bedrag " + debitStortBedrag);
+
                     debitRekening.setSaldo(nieuwSaldo);
+
+                    System.out.println("Nieuw saldo " + nieuwSaldo);
+
                     updateGui();
                 }
             }
