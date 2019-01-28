@@ -2,11 +2,14 @@ import java.util.ArrayList;
 
 public class Bank {
 
+    // Actieve rekeningen
+    int debitRekeningNr = 1111;
+    int creditRekeningNr = 1234;
+
     private ArrayList<Rekening> rekeningen;
     private BankGui bankGui;
 
-    public Bank (ArrayList<Rekening> rekeningen, BankGui bankGui) {
-
+    public Bank (ArrayList<Rekening> rekeningen) {
         this.rekeningen = rekeningen;
         this.bankGui = bankGui;
     }
@@ -46,16 +49,6 @@ public class Bank {
         } else {
             System.out.println("Transactie niet gelukt controleer rekeningnummers");
         }
-    }
-
-    public void updateGuiValues (int debitRekeningNr, int creditRekeningNr){
-        String debitNaam = getRekening(debitRekeningNr).getNaam();
-        double debitSaldo = getRekening(debitRekeningNr).getSaldo();
-
-        String creditNaam = getRekening(creditRekeningNr).getNaam();
-        double creditSaldo = getRekening(creditRekeningNr).getSaldo();
-
-        bankGui.updateGui(debitRekeningNr,debitNaam,debitSaldo,creditRekeningNr,creditNaam,creditSaldo);
     }
 
 }

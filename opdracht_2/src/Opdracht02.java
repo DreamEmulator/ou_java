@@ -13,9 +13,8 @@ public class Opdracht02 {
         rekeningen.add(new Rekening(3333,"Beatrix", 10209.67));
 
 // Create Bank
-        BankGui bankGui = new BankGui();
-        Bank bank = new Bank(rekeningen,bankGui);
-        bank.updateGuiValues(1111,1234);
+        Bank bank = new Bank(rekeningen);
+        BankGui bankGui = new BankGui(bank);
 
 // Run tests
         new BankTest(bank);

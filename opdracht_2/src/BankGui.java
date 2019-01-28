@@ -30,8 +30,9 @@ public class BankGui {
     private JLabel creditSaldoOutput;
 
     private Bank bank;
+    private Opdracht02 opdracht02;
 
-    public BankGui() {
+    public BankGui(Bank bank) {
         this.bank = bank;
         System.out.println("Bank GUI Initiated!");
 
@@ -39,34 +40,45 @@ public class BankGui {
         frame.setContentPane(bankOverzicht);
         frame.setBounds(700, 200, 700, 200);
         frame.setVisible(true);
+
+        updateGui();
     }
 
 
-    public void updateGui(int debitRekeningNr, String debitNaam, double debitSaldo, int creditRekeningNr, String creditNaam, double creditSaldo) {
+    public void updateGui() {
 
-        debitRekeningNummerInput.setText("" + debitRekeningNr);
+        String debitNaam = bank.getRekening(bank.debitRekeningNr).getNaam();
+        double debitSaldo = bank.getRekening(bank.debitRekeningNr).getSaldo();
+
+        String creditNaam = bank.getRekening(bank.creditRekeningNr).getNaam();
+        double creditSaldo = bank.getRekening(bank.creditRekeningNr).getSaldo();
+
+
+        debitRekeningNummerInput.setText("" + bank.debitRekeningNr);
         debitNaamOutput.setText(debitNaam);
         debitSaldoOutput.setText("" + debitSaldo);
 
-        creditRekeningNummerInput.setText("" + creditRekeningNr);
+        creditRekeningNummerInput.setText("" + bank.creditRekeningNr);
         creditNaamOutput.setText(creditNaam);
         creditSaldoOutput.setText("" + creditSaldo);
 
-        bindEvents(debitRekeningNr, creditRekeningNr);
+        bindEvents(bank.debitRekeningNr, bank.creditRekeningNr);
     }
 
     private void bindEvents(int debitRekeningNr, int creditRekeningNr) {
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(debitRekeningNr);
+                System.out.println(bank.debitRekeningNr);
+                System.out.println(bank);
+
                 Rekening debitRekening = bank.getRekening(debitRekeningNr);
                 double debitStortBedrag = Double.parseDouble(debitBedragInput.getText());
                 if (debitStortBedrag > 0) {
                     double huidigSaldo = debitRekening.getSaldo();
                     double nieuwSaldo = huidigSaldo += debitStortBedrag;
                     debitRekening.setSaldo(nieuwSaldo);
-                    bank.updateGuiValues(debitRekeningNr,creditRekeningNr);
+                    updateGui();
                 }
             }
         });
