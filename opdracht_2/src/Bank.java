@@ -4,8 +4,8 @@ public class Bank {
 
     private ArrayList<Rekening> rekeningen;
     private BankGui bankGui;
-    protected int debitRekeningNr;
-    protected int creditRekeningNr;
+    private int debitRekeningNr;
+    private int creditRekeningNr;
 
     public Bank (ArrayList<Rekening> rekeningen, int debitRekeningNr, int creditRekeningNr) {
         this.rekeningen = rekeningen;
@@ -50,5 +50,13 @@ public class Bank {
         }
     }
 
-//    TODO: Make getters and setters for the active accounts
+    public int getDebitRekeningNr() {
+        return debitRekeningNr;
+    }
+
+    public int getCreditRekeningNr() {
+        return creditRekeningNr;
+    }
+
+    //    TODO: Make getters and setters for the active accounts
 }

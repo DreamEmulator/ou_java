@@ -49,7 +49,7 @@
             </constraints>
             <properties>
               <background color="-67073"/>
-              <enabled value="false"/>
+              <enabled value="true"/>
               <font swing-font="ToolTip.font"/>
               <foreground color="-13026502"/>
               <text value="Neem op"/>
