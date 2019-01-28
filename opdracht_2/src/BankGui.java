@@ -42,6 +42,7 @@ public class BankGui {
         frame.setVisible(true);
 
         updateGui();
+        bindEvents(bank.debitRekeningNr, bank.creditRekeningNr);
     }
 
 
@@ -61,8 +62,6 @@ public class BankGui {
         creditRekeningNummerInput.setText("" + bank.creditRekeningNr);
         creditNaamOutput.setText(creditNaam);
         creditSaldoOutput.setText("" + creditSaldo);
-
-        bindEvents(bank.debitRekeningNr, bank.creditRekeningNr);
     }
 
     private void bindEvents(int debitRekeningNr, int creditRekeningNr) {

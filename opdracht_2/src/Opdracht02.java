@@ -24,6 +24,5 @@ public class Opdracht02 {
 //        new BankTest(bank);
 //        new RekeningTest(rekeningen.get(0));
 
-//    TODO: Find out why the setSaldo() rises exponentially
     }
 }
