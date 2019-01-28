@@ -35,6 +35,13 @@ public class Bank {
         return creditRekeningNr;
     }
 
+    public void setDebitRekeningNr(int rekeningNr) {
+        this.debitRekeningNr = rekeningNr;
+    }
+    public void setCreditRekeningNr(int rekeningNr) {
+        this.creditRekeningNr = rekeningNr;
+    }
+
     public void maakOver (int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
         Rekening debitRekening = getRekening(debitRekeningNr);
@@ -45,8 +52,8 @@ public class Bank {
 
             //Controleer of bedrag is toegestaan
             if(bedrag > 0 &&  debitRekening.getSaldo()-bedrag > 0) {
-                debitRekening.setSaldo(-bedrag);
-                creditRekening.setSaldo(bedrag);
+                debitRekening.setSaldo(debitRekening.getSaldo() - bedrag);
+                creditRekening.setSaldo(creditRekening.getSaldo() + bedrag);
             } else {
                 System.out.println("Transactie niet gelukt controleer het bedrag");
             }
