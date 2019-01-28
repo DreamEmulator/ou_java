@@ -41,7 +41,7 @@ public class BankGui {
         frame.setVisible(true);
 
         updateGui();
-        bindEvents(bank.getDebitRekeningNr(), bank.getCreditRekeningNr());
+        bindEvents();
 
     }
 
@@ -64,29 +64,26 @@ public class BankGui {
         creditSaldoOutput.setText("" + creditSaldo);
     }
 
-    private void bindEvents(int debitRekeningNr, int creditRekeningNr) {
+    private void bindEvents() {
 
 // Debit events
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Rekening debitRekening = bank.getRekening(debitRekeningNr);
+                int debitRekeningNr = bank.getDebitRekeningNr();
                 double debitStortBedrag = Double.parseDouble(debitBedragInput.getText());
+                bank.stortBedrag(debitRekeningNr, debitStortBedrag);
+                updateGui();
+            }
+        });
 
-                if (debitStortBedrag > 0) {
-                    double huidigSaldo = debitRekening.getSaldo();
-                    double nieuwSaldo = huidigSaldo + debitStortBedrag;
-
-                    System.out.println("Huidig saldo " + huidigSaldo);
-                    System.out.println("Debit stort bedrag " + debitStortBedrag);
-
-                    debitRekening.setSaldo(nieuwSaldo);
-
-                    System.out.println("Nieuw debit saldo " + nieuwSaldo);
-
-                    updateGui();
-                }
+        debitNeemOpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int debitRekeningNr = bank.getDebitRekeningNr();
+                double debitOpneemBedrag = Double.parseDouble(debitBedragInput.getText());
+                bank.neemBedragOp(debitRekeningNr, debitOpneemBedrag);
+                updateGui();
             }
         });
 
@@ -94,22 +91,20 @@ public class BankGui {
         creditStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Rekening creditRekening = bank.getRekening(creditRekeningNr);
+                int creditRekeningNr = bank.getCreditRekeningNr();
                 double creditStortBedrag = Double.parseDouble(creditBedragInput.getText());
+                bank.stortBedrag(creditRekeningNr, creditStortBedrag);
+                updateGui();
+            }
+        });
 
-                if (creditStortBedrag > 0) {
-                    double huidigSaldo = creditRekening.getSaldo();
-                    double nieuwSaldo = huidigSaldo + creditStortBedrag;
-
-                    System.out.println("Huidig saldo " + huidigSaldo);
-                    System.out.println("Credit stort bedrag " + creditStortBedrag);
-
-                    creditRekening.setSaldo(nieuwSaldo);
-
-                    System.out.println("Nieuw credit saldo " + nieuwSaldo);
-
-                    updateGui();
-                }
+        creditNeemOpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int creditRekeningNr = bank.getCreditRekeningNr();
+                double creditOpneemBedrag = Double.parseDouble(creditBedragInput.getText());
+                bank.neemBedragOp(creditRekeningNr, creditOpneemBedrag);
+                updateGui();
             }
         });
     }

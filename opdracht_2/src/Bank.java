@@ -28,6 +28,12 @@ public class Bank {
         }
         return rekening;
     }
+    public int getDebitRekeningNr() {
+        return debitRekeningNr;
+    }
+    public int getCreditRekeningNr() {
+        return creditRekeningNr;
+    }
 
     public void maakOver (int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
@@ -49,14 +55,28 @@ public class Bank {
             System.out.println("Transactie niet gelukt controleer rekeningnummers");
         }
     }
+    public void stortBedrag (int rekeningNr, double stortBedrag) {
+        Rekening rekening = getRekening(rekeningNr);
+        if (rekening.getSaldo() + stortBedrag > 0) {
+            double huidigSaldo = rekening.getSaldo();
+            double nieuwSaldo = huidigSaldo + stortBedrag;
 
-    public int getDebitRekeningNr() {
-        return debitRekeningNr;
+            rekening.setSaldo(nieuwSaldo);
+        } else {
+            System.out.println("Onvoldoende saldo voor deze transactie");
+        }
+    }
+    public void neemBedragOp (int rekeningNr, double opneemBedrag) {
+        Rekening rekening = getRekening(rekeningNr);
+        if (rekening.getSaldo() - opneemBedrag > 0) {
+            double huidigSaldo = rekening.getSaldo();
+            double nieuwSaldo = huidigSaldo - opneemBedrag;
+
+            rekening.setSaldo(nieuwSaldo);
+        } else {
+            System.out.println("Onvoldoende saldo voor deze transactie");
+        }
     }
 
-    public int getCreditRekeningNr() {
-        return creditRekeningNr;
-    }
-
-    //    TODO: Make getters and setters for the active accounts
+    //    TODO: Think about where the stort and opneem methods should be, in Bank or in Rekening
 }
