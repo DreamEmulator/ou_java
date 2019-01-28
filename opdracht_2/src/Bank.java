@@ -2,16 +2,15 @@ import java.util.ArrayList;
 
 public class Bank {
 
-    // Actieve rekeningen
-    int debitRekeningNr = 1111;
-    int creditRekeningNr = 1234;
-
     private ArrayList<Rekening> rekeningen;
     private BankGui bankGui;
+    protected int debitRekeningNr;
+    protected int creditRekeningNr;
 
-    public Bank (ArrayList<Rekening> rekeningen) {
+    public Bank (ArrayList<Rekening> rekeningen, int debitRekeningNr, int creditRekeningNr) {
         this.rekeningen = rekeningen;
-        this.bankGui = bankGui;
+        this.debitRekeningNr = debitRekeningNr;
+        this.creditRekeningNr = creditRekeningNr;
     }
 
     public Rekening getRekening (int rekeningNr) {
@@ -51,4 +50,5 @@ public class Bank {
         }
     }
 
+//    TODO: Make getters and setters for the active accounts
 }
