@@ -18,7 +18,7 @@ public class Opdracht02 {
 
 // Create Bank
         Bank bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
-        BankGui bankGui = new BankGui(bank);
+        BankFrame bankFrame = new BankFrame(bank);
 
 // Run tests
 //        new BankTest(bank);

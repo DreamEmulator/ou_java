@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BankGui {
+public class BankFrame {
     private JPanel bankOverzicht;
     private JPanel knoppenbalk;
     private JPanel debitRekening;
@@ -31,7 +31,7 @@ public class BankGui {
 
     private Bank bank;
 
-    public BankGui(Bank bank) {
+    public BankFrame(Bank bank) {
         this.bank = bank;
         System.out.println("Bank GUI Initiated!");
 

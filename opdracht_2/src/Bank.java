@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Bank {
 
     private ArrayList<Rekening> rekeningen;
-    private BankGui bankGui;
+    private BankFrame bankFrame;
     private int debitRekeningNr;
     private int creditRekeningNr;
 
@@ -66,6 +66,4 @@ public class Bank {
         }
     }
 
-
-    //    TODO: Think about where the stort and opneem methods should be, in Bank or in Rekening
 }
