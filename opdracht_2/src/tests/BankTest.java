@@ -1,7 +1,11 @@
+package tests;
+
+import bank.Bank;
+
 public class BankTest {
     public BankTest(Bank bank) {
 
-        System.out.println("\n---Bank-Test---");
+        System.out.println("\n---bank.Bank-Test---");
 
         //Test: getRekening
         System.out.println(">>> getRekening: <<<\n" + bank.getRekening(2345).getNaam() + " heeft een rekening met het saldo: " + bank.getRekening(2345).getSaldo());

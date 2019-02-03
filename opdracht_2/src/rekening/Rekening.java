@@ -1,3 +1,5 @@
+package rekening;
+
 public class Rekening {
 
     String naam;
@@ -10,19 +12,19 @@ public class Rekening {
         this.saldo = saldo;
     }
 
-    protected String getNaam() {
+    public String getNaam() {
         return this.naam;
     }
 
-    protected double getSaldo() {
+    public double getSaldo() {
         return this.saldo;
     }
 
-    protected int getRekeningNr() {
+    public int getRekeningNr() {
         return this.rekeningNr;
     }
 
-    protected void setSaldo(double bedrag) {
+    public void setSaldo(double bedrag) {
         if (saldo + bedrag > 0) {
             saldo = bedrag;
         } else {

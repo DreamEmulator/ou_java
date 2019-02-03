@@ -1,3 +1,7 @@
+package bankFrame;
+
+import bank.Bank;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,9 +37,9 @@ public class BankFrame {
 
     public BankFrame(Bank bank) {
         this.bank = bank;
-        System.out.println("Bank GUI Initiated!");
+        System.out.println("bank.Bank GUI Initiated!");
 
-        JFrame frame = new JFrame("Hols Bank");
+        JFrame frame = new JFrame("Hols bank.Bank");
         frame.setContentPane(bankOverzicht);
         frame.setBounds(700, 200, 700, 200);
         frame.setVisible(true);

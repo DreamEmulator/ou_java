@@ -1,10 +1,14 @@
+package tests;
+
+import bank.Bank;
+import bankFrame.BankFrame;
+import rekening.Rekening;
+
 import java.util.ArrayList;
 
-public class Opdracht02 {
-
+public class Opdracht02Test {
     public static void main(String[] args) {
-
-// Dataset
+        // Dataset
         ArrayList<Rekening> rekeningen = new ArrayList();
         rekeningen.add(new Rekening(1111, "Fabian", 14.56));
         rekeningen.add(new Rekening(1234, "Fenia", 24.63));
@@ -16,13 +20,11 @@ public class Opdracht02 {
         int debitRekeningNr = 1111;
         int creditRekeningNr = 1234;
 
-// Create Bank
+// Create bank.Bank
         Bank bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
         BankFrame bankFrame = new BankFrame(bank);
-
 // Run tests
-//        new BankTest(bank);
-//        new RekeningTest(rekeningen.get(0));
-
+        new tests.BankTest(bank);
+        new tests.RekeningTest(rekeningen.get(0));
     }
 }

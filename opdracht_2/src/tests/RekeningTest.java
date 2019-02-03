@@ -1,3 +1,7 @@
+package tests;
+
+import rekening.Rekening;
+
 public class RekeningTest {
     public RekeningTest(Rekening rekening) {
 

@@ -1,3 +1,7 @@
+package bank;
+
+import bankFrame.BankFrame;
+import rekening.Rekening;
 import java.util.ArrayList;
 
 public class Bank {
