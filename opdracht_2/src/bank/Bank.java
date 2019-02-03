@@ -59,8 +59,8 @@ public class Bank {
 
             //Controleer of bedrag is toegestaan
             if (bedrag > 0 && debitRekening.getSaldo() - bedrag > 0) {
-                debitRekening.setSaldo(debitRekening.getSaldo() - bedrag);
-                creditRekening.setSaldo(creditRekening.getSaldo() + bedrag);
+                debitRekening.neemBedragOp(bedrag);
+                creditRekening.stortBedrag(bedrag);
             } else {
                 System.out.println("Transactie niet gelukt controleer het bedrag");
             }

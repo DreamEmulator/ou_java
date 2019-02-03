@@ -24,20 +24,13 @@ public class Rekening {
         return this.rekeningNr;
     }
 
-    public void setSaldo(double bedrag) {
-        if (saldo + bedrag > 0) {
-            saldo = bedrag;
-        } else {
-            System.out.println("Onvoldoende saldo");
-        }
-    }
 
     public void stortBedrag(double stortBedrag) {
         if (getSaldo() + stortBedrag > 0) {
             double huidigSaldo = getSaldo();
             double nieuwSaldo = huidigSaldo + stortBedrag;
 
-            setSaldo(nieuwSaldo);
+            saldo = nieuwSaldo;
         } else {
             System.out.println("Onvoldoende saldo voor deze transactie");
         }
@@ -48,7 +41,7 @@ public class Rekening {
             double huidigSaldo = getSaldo();
             double nieuwSaldo = huidigSaldo - opneemBedrag;
 
-            setSaldo(nieuwSaldo);
+            saldo = nieuwSaldo;
         } else {
             System.out.println("Onvoldoende saldo voor deze transactie");
         }
