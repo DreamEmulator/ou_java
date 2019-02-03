@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Opdracht02Test {
     public static void main(String[] args) {
-        // Dataset
+// Dataset
         ArrayList<Rekening> rekeningen = new ArrayList();
         rekeningen.add(new Rekening(2345, "Sebas", 5.67));
         rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));
