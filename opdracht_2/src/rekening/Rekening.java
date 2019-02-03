@@ -24,7 +24,6 @@ public class Rekening {
         return this.rekeningNr;
     }
 
-
     public void stortBedrag(double stortBedrag) {
         if (getSaldo() + stortBedrag > 0) {
             double huidigSaldo = getSaldo();
