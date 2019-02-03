@@ -24,6 +24,5 @@ public class Opdracht02 {
 // Create bank.Bank
         Bank bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
         BankFrame bankFrame = new BankFrame(bank);
-
     }
 }

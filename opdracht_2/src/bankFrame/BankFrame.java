@@ -148,5 +148,3 @@ public class BankFrame {
         });
     }
 }
-
-//TODO: Vraag of je niet bete variabelen aan kan maken puur voor duidelijkheid?
