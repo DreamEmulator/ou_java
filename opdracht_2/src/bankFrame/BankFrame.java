@@ -52,11 +52,11 @@ public class BankFrame {
     public void updateGui() {
         debitRekeningNummerInput.setText("" + bank.getDebitRekeningNr());
         debitNaamOutput.setText(bank.getRekening(bank.getDebitRekeningNr()).getNaam());
-        debitSaldoOutput.setText("" + bank.getRekening(bank.getDebitRekeningNr()).getSaldo());
+        debitSaldoOutput.setText(String.format("%.2f", bank.getRekening(bank.getDebitRekeningNr()).getSaldo()));
 
         creditRekeningNummerInput.setText("" + bank.getCreditRekeningNr());
         creditNaamOutput.setText(bank.getRekening(bank.getCreditRekeningNr()).getNaam());
-        creditSaldoOutput.setText("" + bank.getRekening(bank.getCreditRekeningNr()).getSaldo());
+        creditSaldoOutput.setText(String.format("%.2f", bank.getRekening(bank.getCreditRekeningNr()).getSaldo()));
     }
 
     private void bindEvents() {
@@ -73,16 +73,26 @@ public class BankFrame {
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.getRekening(bank.getDebitRekeningNr()).stortBedrag(Double.parseDouble(debitBedragInput.getText()));
-                updateGui();
+                double bedrag = Double.parseDouble(debitBedragInput.getText());
+                if(bedrag > 0 ) {
+                    bank.getRekening(bank.getDebitRekeningNr()).stortBedrag(bedrag);
+                    updateGui();
+                } else {
+                    debitBedragInput.setText("Geen negatieve bedragen...");
+                }
             }
         });
         // Neem op
         debitNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.getRekening(bank.getDebitRekeningNr()).neemBedragOp(Double.parseDouble(creditBedragInput.getText()));
-                updateGui();
+                double bedrag = Double.parseDouble(debitBedragInput.getText());
+                if(bedrag > 0 ) {
+                    bank.getRekening(bank.getDebitRekeningNr()).neemBedragOp(bedrag);
+                    updateGui();
+                } else {
+                    debitBedragInput.setText("Geen negatieve bedragen...");
+                }
             }
         });
 
@@ -99,16 +109,26 @@ public class BankFrame {
         creditStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.getRekening(bank.getCreditRekeningNr()).stortBedrag(Double.parseDouble(creditBedragInput.getText()));
-                updateGui();
+                double bedrag = Double.parseDouble(creditBedragInput.getText());
+                if(bedrag > 0 ) {
+                    bank.getRekening(bank.getCreditRekeningNr()).stortBedrag(bedrag);
+                    updateGui();
+                } else {
+                    creditBedragInput.setText("Geen negatieve bedragen...");
+                }
             }
         });
         // Neem op
         creditNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.getRekening(bank.getCreditRekeningNr()).neemBedragOp(Double.parseDouble(creditBedragInput.getText()));
-                updateGui();
+                double bedrag = Double.parseDouble(creditBedragInput.getText());
+                if(bedrag > 0 ) {
+                    bank.getRekening(bank.getCreditRekeningNr()).neemBedragOp(bedrag);
+                    updateGui();
+                } else {
+                    creditBedragInput.setText("Geen negatieve bedragen...");
+                }
             }
         });
 
@@ -117,8 +137,13 @@ public class BankFrame {
         maakOver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.maakOver(bank.getDebitRekeningNr(),bank.getCreditRekeningNr(), Double.parseDouble(debitBedragInput.getText()));
-                updateGui();
+                double bedrag = Double.parseDouble(debitBedragInput.getText());
+                if (bedrag > 0) {
+                    bank.maakOver(bank.getDebitRekeningNr(), bank.getCreditRekeningNr(), bedrag);
+                    updateGui();
+                } else {
+                    debitBedragInput.setText("Geen negatieve bedragen...");
+                }
             }
         });
     }
