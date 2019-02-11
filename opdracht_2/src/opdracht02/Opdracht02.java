@@ -17,11 +17,11 @@ public class Opdracht02 {
         rekeningen.add(new Rekening(2345, "Sebas", 5.67));
         rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));
 
-// Actieve rekeningen
+// Set intial accounts rekeningen
         int debitRekeningNr = 1111;
         int creditRekeningNr = 1234;
 
-// Create bank.Bank
+// Create Bank domainlayer and GUI
         Bank bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
         BankFrame bankFrame = new BankFrame(bank);
     }

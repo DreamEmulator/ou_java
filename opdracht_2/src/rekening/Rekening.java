@@ -2,9 +2,9 @@ package rekening;
 
 public class Rekening {
 
-    String naam;
-    int rekeningNr;
-    double saldo;
+    private String naam;
+    private int rekeningNr;
+    private double saldo;
 
     public Rekening(int rekeningNr, String naam, double saldo) {
         this.rekeningNr = rekeningNr;

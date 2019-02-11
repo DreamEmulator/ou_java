@@ -7,7 +7,7 @@ import rekening.Rekening;
 import java.util.ArrayList;
 
 public class Opdracht02Test {
-    public static void main(String[] args) {
+    public void Opdracht02Test() {
 // Dataset
         ArrayList<Rekening> rekeningen = new ArrayList();
         rekeningen.add(new Rekening(1111, "Fabian", 14.56));

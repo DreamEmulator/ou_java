@@ -37,18 +37,17 @@ public class BankFrame {
 
     public BankFrame(Bank bank) {
         this.bank = bank;
-        System.out.println("bank.Bank GUI Initiated!");
-
-        JFrame frame = new JFrame("Hols bank.Bank");
+        System.out.println("Bank GUI Initiated!");
+        JFrame frame = new JFrame("Hols bank");
         frame.setContentPane(bankOverzicht);
         frame.setBounds(700, 200, 700, 200);
         frame.setVisible(true);
-
         updateGui();
         bindEvents();
     }
 
-
+//  This method gets the values from the bank and sets them in the GUI.
+//  This method should be implemented as a callback on any event-handlers that require the GUI to be updated.
     public void updateGui() {
         debitRekeningNummerInput.setText("" + bank.getDebitRekeningNr());
         debitNaamOutput.setText(bank.getRekening(bank.getDebitRekeningNr()).getNaam());
@@ -59,6 +58,8 @@ public class BankFrame {
         creditSaldoOutput.setText(String.format("%.2f", bank.getRekening(bank.getCreditRekeningNr()).getSaldo()));
     }
 
+//   This method binds the event handlers to the GUI.
+//   This should only happen during inititation.
     private void bindEvents() {
 // Debit events
         // Zoek

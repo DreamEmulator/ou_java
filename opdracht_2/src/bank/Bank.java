@@ -1,13 +1,12 @@
 package bank;
 
-import bankFrame.BankFrame;
 import rekening.Rekening;
 import java.util.ArrayList;
 
 public class Bank {
 
     private ArrayList<Rekening> rekeningen;
-    private BankFrame bankFrame;
+//    private BankFrame bankFrame;
     private int debitRekeningNr;
     private int creditRekeningNr;
 
