@@ -31,7 +31,7 @@ public class Rekening {
 
             saldo = nieuwSaldo;
         } else {
-            System.out.println("Onvoldoende saldo voor deze transactie");
+            System.out.println("Het is niet toegestaan negatieve bedragen te storten!");
         }
     }
 
