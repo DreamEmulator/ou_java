@@ -73,10 +73,10 @@ public class Bank {
     }
 
     /** requestMutatie is een public method om een mutatie in een rekening aan te vragen, dit kan zowel storten als opnemen zijn.
-     * Tijdens het uitvoeren van de mutatie worden voorafgaand de volgende tests uitgevoerd:
-     * 1: Bedragen moet groter dan nul zijn
-     * 2: De accounttype die bij de request wordt getest om te zien of de Bank dezelfde hanteert als de GUI
-     * 3: De mutatietype bepaald de aard van de mutatie, storten dan wel opnemen
+     * Tijdens het uitvoeren van de mutatie worden voorafgaand de volgende tests uitgevoerd:<br>
+     * 1: Bedragen moet groter dan nul zijn<br>
+     * 2: De accounttype die bij de request wordt getest om te zien of de Bank dezelfde hanteert als de GUI<br>
+     * 3: De mutatietype bepaald de aard van de mutatie, storten dan wel opnemen<br>
      * @param mutatieType met mutatietype wordt de type mutattie bepaald: storten = 0 en opnemen = 1
      * @param accountType met accountType wordt de type rekening gecontroleerd, dit is om eventuele wijzigingen in de GUI af te vangen, 0 = debit en 1 = credit
      * @param rekeningNummer het nummer van de waarop de mutatie moet worden uitgevoerd
