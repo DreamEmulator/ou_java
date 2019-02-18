@@ -1,12 +1,12 @@
 package bank;
 
 import rekening.Rekening;
+
 import java.util.ArrayList;
 
 public class Bank {
 
     private ArrayList<Rekening> rekeningen;
-//    private BankFrame bankFrame;
     private int debitRekeningNr;
     private int creditRekeningNr;
 
@@ -16,7 +16,7 @@ public class Bank {
         this.creditRekeningNr = creditRekeningNr;
     }
 
-    public Rekening getRekening(int rekeningNr) {
+    private Rekening getRekening(int rekeningNr) {
 
         Rekening rekening = null;
         int n = 0;
@@ -40,33 +40,98 @@ public class Bank {
         return creditRekeningNr;
     }
 
-    public void setDebitRekeningNr(int rekeningNr) {
-        this.debitRekeningNr = rekeningNr;
+    public String getDebitRekeningNaam() {
+        return getRekening(debitRekeningNr).getNaam();
     }
 
-    public void setCreditRekeningNr(int rekeningNr) {
-        this.creditRekeningNr = rekeningNr;
+    public String getCreditRekeningNaam() {
+        return getRekening(creditRekeningNr).getNaam();
     }
 
-    public void maakOver(int debitRekeningNr, int creditRekeningNr, double bedrag) {
+    public String getDebitRekeningSaldo() {
+        return String.format("%.2f", getRekening(debitRekeningNr).getSaldo());
+    }
 
-        Rekening debitRekening = getRekening(debitRekeningNr);
-        Rekening creditRekening = getRekening(creditRekeningNr);
+    public String getCreditRekeningSaldo() {
+        return String.format("%.2f", getRekening(creditRekeningNr).getSaldo());
+    }
 
-        //Controleer of rekeningen bestaan
-        if (debitRekening != null && creditRekening != null) {
+    public String setDebitRekeningNr(int rekeningNr) {
+        if (getRekening(rekeningNr) != null) {
+            this.debitRekeningNr = rekeningNr;
+            return "Rekening gevonden";
+        }
+        return "De rekening " + rekeningNr + " bestaat niet";
+    }
 
+    public String setCreditRekeningNr(int rekeningNr) {
+        if (getRekening(rekeningNr) != null) {
+            this.creditRekeningNr = rekeningNr;
+            return "Rekening gevonden";
+        }
+        return "De rekening " + rekeningNr + " bestaat niet";
+    }
+
+    public String requestMutatie(int mutatieType, int accountType, int rekeningNummer, double bedrag) {
+// Hier volgt een serie tests:
+        // 1: Bedragen moet groter dan nul zijn
+        // 2: De accounttype die bij de request wordt getest om te zien of de Bank dezelfde hanteert als de GUI
+        // 3: De mutatietype bepaald de aard van de mutatie, storten dan wel opnemen
+
+        if (bedrag > 0) {
+            if (getRekening(rekeningNummer).getSaldo() - bedrag > 0) {
+                if (accountType == 0 && rekeningNummer == debitRekeningNr) {
+                    switch (mutatieType) {
+                        //Storten = 0
+                        case 0:
+                            getRekening(getDebitRekeningNr()).stortBedrag(bedrag);
+                            return "De transactie is met succes uitgevoerd.";
+
+                        //Opnemen = 1
+                        case 1:
+                            getRekening(getDebitRekeningNr()).neemBedragOp(bedrag);
+                            return "De transactie is met succes uitgevoerd.";
+                    }
+                } else if (accountType == 1 && rekeningNummer == creditRekeningNr) {
+                    switch (mutatieType) {
+                        //Storten = 0
+                        case 0:
+                            getRekening(getCreditRekeningNr()).stortBedrag(bedrag);
+                            return "De transactie is met succes uitgevoerd.";
+
+                        //Opnemen = 1
+                        case 1:
+                            getRekening(getCreditRekeningNr()).neemBedragOp(bedrag);
+                            return "De transactie is met succes uitgevoerd.";
+                    }
+                } else {
+                    return "Error: Je hebt de rekening input gewijzigd na de zoekopdracht, zoek opnieuw de rekening...";
+                }
+            } else {
+                return "Let op: Onvoldoende saldo";
+            }
+        } else {
+            return "Error: Negatieve bedragen zijn niet toegestaan";
+        }
+        return "Unknown error";
+    }
+
+    // Deze overloaded methode implementeert alsnog de switch case om te zorgen dat diegene die de GUI implementeert bewust is van de transactietype die aangeroepen wordt
+    public String requestTransactie(int debitRekeningNr, int creditRekeningNr, double bedrag) {
+
+        if (debitRekeningNr == getDebitRekeningNr() && creditRekeningNr == getCreditRekeningNr()) {
+            Rekening debitRekening = getRekening(debitRekeningNr);
+            Rekening creditRekening = getRekening(creditRekeningNr);
             //Controleer of bedrag is toegestaan
             if (bedrag > 0 && debitRekening.getSaldo() - bedrag > 0) {
                 debitRekening.neemBedragOp(bedrag);
                 creditRekening.stortBedrag(bedrag);
+                return "De transactie is succesvol uitgevoerd";
             } else {
-                System.out.println("Transactie niet gelukt controleer het bedrag");
+                return "Transactie niet gelukt controleer het bedrag";
             }
-
-        } else {
-            System.out.println("Transactie niet gelukt controleer rekeningnummers");
         }
+        return "Transactie niet gelukt controleer rekeningnummers";
     }
 
 }

@@ -32,8 +32,10 @@ public class BankFrame {
     private JLabel debitSaldoOutput;
     private JLabel creditNaamOutput;
     private JLabel creditSaldoOutput;
+    private JLabel infoDialogueOutput;
 
     private Bank bank;
+    private String infoDialogueMessage;
 
     public BankFrame(Bank bank) {
         this.bank = bank;
@@ -46,89 +48,114 @@ public class BankFrame {
         bindEvents();
     }
 
-//  This method gets the values from the bank and sets them in the GUI.
+//  Er zijn 3 transactietypes:
+//  0: storten
+//  1: opnemen
+//  3: overmaken
+//  Het is niet mogelijk de transacties direct te manipuleren dus bij iedere transactie moet het type meegegeven worden aan de bank
+
+//  Er zijn twee rekeningtypes:
+//  0: debit
+//  1: credit
+//  Als de desbetreffende rekeningtype die meegegeven wordt in de request, niet succesvol aangevraagd is met de "set[rekening type]RekeningNr" methode bij Bank wordt de transactie op voorhand afgewezen
+
+//  De type moet meegegeven te worden bij alle requests aan bank
+
+    //  This method gets the values from the bank and sets them in the GUI.
 //  This method should be implemented as a callback on any event-handlers that require the GUI to be updated.
     public void updateGui() {
-        debitRekeningNummerInput.setText("" + bank.getDebitRekeningNr());
-        debitNaamOutput.setText(bank.getRekening(bank.getDebitRekeningNr()).getNaam());
-        debitSaldoOutput.setText(String.format("%.2f", bank.getRekening(bank.getDebitRekeningNr()).getSaldo()));
+        debitRekeningNummerInput.setText(String.valueOf(bank.getDebitRekeningNr()));
+        debitNaamOutput.setText(bank.getDebitRekeningNaam());
+        debitSaldoOutput.setText(bank.getDebitRekeningSaldo());
 
-        creditRekeningNummerInput.setText("" + bank.getCreditRekeningNr());
-        creditNaamOutput.setText(bank.getRekening(bank.getCreditRekeningNr()).getNaam());
-        creditSaldoOutput.setText(String.format("%.2f", bank.getRekening(bank.getCreditRekeningNr()).getSaldo()));
+        creditRekeningNummerInput.setText(String.valueOf(bank.getCreditRekeningNr()));
+        creditNaamOutput.setText(bank.getCreditRekeningNaam());
+        creditSaldoOutput.setText(bank.getCreditRekeningSaldo());
+        infoDialogueOutput.setText(infoDialogueMessage);
     }
 
-//   This method binds the event handlers to the GUI.
+    //   This method binds the event handlers to the GUI.
 //   This should only happen during inititation.
     private void bindEvents() {
-// Debit events
+
+// Debit = 0
+
         // Zoek
         debitZoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.setDebitRekeningNr(Integer.parseInt(debitRekeningNummerInput.getText()));
+                infoDialogueMessage = bank.setDebitRekeningNr(Integer.parseInt(debitRekeningNummerInput.getText()));
                 updateGui();
             }
         });
-        // Stort
+
+        // Stort = 0
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double bedrag = Double.parseDouble(debitBedragInput.getText());
-                if(bedrag > 0 ) {
-                    bank.getRekening(bank.getDebitRekeningNr()).stortBedrag(bedrag);
+                try {
+                    double bedrag = Double.parseDouble(debitBedragInput.getText());
+                    int accountNumber = Integer.parseInt(debitRekeningNummerInput.getText());
+                    infoDialogueMessage = bank.requestMutatie(0, 0, accountNumber, bedrag);
                     updateGui();
-                } else {
-                    debitBedragInput.setText("Geen negatieve bedragen...");
+                } catch (NumberFormatException e1) {
+                    infoDialogueMessage = "Error: voer alleen getallen in";
+                    updateGui();
                 }
             }
         });
-        // Neem op
+        // Neem op = 1
         debitNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double bedrag = Double.parseDouble(debitBedragInput.getText());
-                if(bedrag > 0 ) {
-                    bank.getRekening(bank.getDebitRekeningNr()).neemBedragOp(bedrag);
+                try {
+                    double bedrag = Double.parseDouble(debitBedragInput.getText());
+                    int accountNumber = Integer.parseInt(debitRekeningNummerInput.getText());
+                    infoDialogueMessage = bank.requestMutatie(1, 0, accountNumber, bedrag);
                     updateGui();
-                } else {
-                    debitBedragInput.setText("Geen negatieve bedragen...");
+                } catch (NumberFormatException e1) {
+                    infoDialogueMessage = "Error: voer alleen getallen in";
+                    updateGui();
                 }
             }
         });
 
-// Credit events
+// Credit = 1
         // Zoek
         creditZoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.setCreditRekeningNr(Integer.parseInt(creditRekeningNummerInput.getText()));
+                infoDialogueMessage = bank.setCreditRekeningNr(Integer.parseInt(creditRekeningNummerInput.getText()));
                 updateGui();
             }
         });
-        // Stort
+        // Stort = 0
         creditStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double bedrag = Double.parseDouble(creditBedragInput.getText());
-                if(bedrag > 0 ) {
-                    bank.getRekening(bank.getCreditRekeningNr()).stortBedrag(bedrag);
+                try {
+                    double bedrag = Double.parseDouble(creditBedragInput.getText());
+                    int accountNumber = Integer.parseInt(creditRekeningNummerInput.getText());
+                    infoDialogueMessage = bank.requestMutatie(0, 1, accountNumber, bedrag);
                     updateGui();
-                } else {
-                    creditBedragInput.setText("Geen negatieve bedragen...");
+                } catch (NumberFormatException e1) {
+                    infoDialogueMessage = "Error: voer alleen getallen in";
+                    updateGui();
                 }
             }
         });
-        // Neem op
+        // Neem op = 1
         creditNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double bedrag = Double.parseDouble(creditBedragInput.getText());
-                if(bedrag > 0 ) {
-                    bank.getRekening(bank.getCreditRekeningNr()).neemBedragOp(bedrag);
+                try {
+                    double bedrag = Double.parseDouble(creditBedragInput.getText());
+                    int accountNumber = Integer.parseInt(creditRekeningNummerInput.getText());
+                    infoDialogueMessage = bank.requestMutatie(1, 1, accountNumber, bedrag);
                     updateGui();
-                } else {
-                    creditBedragInput.setText("Geen negatieve bedragen...");
+                } catch (NumberFormatException e1) {
+                    infoDialogueMessage = "Error: voer alleen getallen in";
+                    updateGui();
                 }
             }
         });
@@ -138,12 +165,13 @@ public class BankFrame {
         maakOver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double bedrag = Double.parseDouble(debitBedragInput.getText());
-                if (bedrag > 0) {
-                    bank.maakOver(bank.getDebitRekeningNr(), bank.getCreditRekeningNr(), bedrag);
+                try {
+                    double bedrag = Double.parseDouble(debitBedragInput.getText());
+                    infoDialogueMessage = bank.requestTransactie(Integer.parseInt(debitRekeningNummerInput.getText()), Integer.parseInt(creditRekeningNummerInput.getText()), bedrag);
                     updateGui();
-                } else {
-                    debitBedragInput.setText("Geen negatieve bedragen...");
+                } catch (NumberFormatException e1) {
+                    infoDialogueMessage = "Error: voer alleen getallen in";
+                    updateGui();
                 }
             }
         });
