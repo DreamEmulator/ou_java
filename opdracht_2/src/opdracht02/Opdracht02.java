@@ -5,6 +5,9 @@ import bankFrame.BankFrame;
 import rekening.Rekening;
 import java.util.ArrayList;
 
+/**
+* De Opdracht02 klasse fungeert als de data-laag voor de bank, alsmede de plek waar de intitiele waarden geïnitialiseerd worden
+*/
 public class Opdracht02 {
 
     public static void main(String[] args) {
