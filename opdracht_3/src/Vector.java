@@ -1,18 +1,29 @@
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 public class Vector {
     /**
      * Hierbij de main-method van de Opdracht.
      * @param args wordt wellicht gebruikt om parameters mee te kunnen geven vanaf de commandline
      */
-    static void main(String[] args) {
+    public static void main(String[] args) {
         System.out.println("Opdracht 03 is aan!");
     }
 
+    int x;
+    int y;
+
+    public Vector(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     /**
-     * Stub: om de lengte van deze vector te berekenen.
+     * Geeft de lengte van de vector.
      * @return
      */
     double getLength (){
-        return 0.00;
+        return sqrt(pow(x,2)+pow(y,2));
     }
 
     /**
@@ -20,11 +31,11 @@ public class Vector {
      * @return
      */
     double getAfstand(Vector v) {
-        return 0.00;
+        return sqrt(pow((x-x*2),2)+pow((y-y*2),2)) - sqrt(pow((v.x-v.x*2),2)+pow((v.y-v.y*2),2));
     }
 
     /**
-     * Stub: om de afstand tussen deze vector en v te bepalen.
+     * Stub: om een nieuwe vector op te leveren die de som is van deze vector en v.
      * @return
      */
     Vector plus(Vector v){
@@ -44,8 +55,7 @@ public class Vector {
      * @return
      */
     Vector maal(double d){
-        Vector v = new Vector();
-        return v;
+        return this;
     }
 
     /**
