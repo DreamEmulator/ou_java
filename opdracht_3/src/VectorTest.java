@@ -5,20 +5,23 @@ public class VectorTest {
     Vector v1;
     Vector v2;
 
+    private static final double DELTA = 0.01;
+
     @org.junit.Before
     public void setUp() throws Exception {
-        v1 = new Vector(3,4);
-        v2 = new Vector(5,2);
+        v1 = new Vector(2,2);
+        v2 = new Vector(6,5);
     }
 
     @org.junit.Test
     public void getLength() {
-        assertEquals(5,5);
+        assertEquals(2.82,v1.getLength(), DELTA);
     }
 
+//    @SuppressWarnings("deprecation")
     @org.junit.Test
     public void getAfstand() {
-        assertEquals(5,5);
+        assertEquals(5,v1.getAfstand(v2), DELTA);
     }
 
     @org.junit.Test
