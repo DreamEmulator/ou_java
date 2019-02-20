@@ -18,7 +18,6 @@ public class VectorTest {
         assertEquals(2.82,v1.getLength(), DELTA);
     }
 
-//    @SuppressWarnings("deprecation")
     @org.junit.Test
     public void getAfstand() {
         assertEquals(5,v1.getAfstand(v2), DELTA);
@@ -26,6 +25,9 @@ public class VectorTest {
 
     @org.junit.Test
     public void plus() {
+        Vector v3 = v1.plus(v2);
+        assertEquals(8, v3.x, DELTA);
+        assertEquals(7, v3.y, DELTA);
     }
 
     @org.junit.Test

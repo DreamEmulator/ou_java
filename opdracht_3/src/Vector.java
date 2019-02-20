@@ -39,7 +39,7 @@ public class Vector {
      * @return
      */
     Vector plus(Vector v){
-        return v;
+        return new Vector(this.x + v.x, this.y + v.y);
     }
 
     /**
