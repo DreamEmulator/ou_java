@@ -1,5 +1,4 @@
-import static java.lang.Math.pow;
-import static java.lang.Math.sqrt;
+import static java.lang.Math.*;
 
 public class Vector {
     /**
@@ -10,10 +9,12 @@ public class Vector {
         System.out.println("Opdracht 03 is aan!");
     }
 
-    int x;
-    int y;
+    static final double EPSILON = 1e-16;
 
-    public Vector(int x, int y) {
+    double x;
+    double y;
+
+    public Vector(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -27,7 +28,7 @@ public class Vector {
     }
 
     /**
-     * Stub: om de afstand tussen deze vector en v te bepalen.
+     * Geeft de afstand tussen deze vector en v te bepalen.
      * @return
      */
     double getAfstand(Vector v) {
@@ -35,50 +36,58 @@ public class Vector {
     }
 
     /**
-     * Stub: om een nieuwe vector op te leveren die de som is van deze vector en v.
-     * @return
+     * Geeft een nieuwe vector die die dezelfde x- en y-waarde heeft als deze vector.
+     */
+    Vector copy (){
+        return new Vector(x,y);
+    }
+    /**
+     * Geeft een nieuwe vector die de som is van deze vector en v.
      */
     Vector plus(Vector v){
         return new Vector(this.x + v.x, this.y + v.y);
     }
 
     /**
-     * Stub: om te bepalen of deze vector gelijk is aan v.
-     * @return
+     * Geeft aan of deze vector gelijk is aan v.
      */
     boolean equals(Vector v){
+        if (abs(this.x - v.x) < EPSILON && abs(this.y - v.y) < EPSILON){
+            return true;
+        }
         return false;
     }
 
     /**
-     * Stub: om een nieuwe vector op te leveren verkregen door de x-waarde en de y-waarde van deze vector te vermenigvuldigen met d.
-     * @return
+     * Geeft een nieuwe vector door de x-waarde en de y-waarde van deze vector te vermenigvuldigen met d.
      */
     Vector maal(double d){
-        return this;
+        return new Vector(x * d, y * d);
     }
 
     /**
-     * Stub: om aan te geven of deze vector en v dezelfde richting hebben.
+     * Geeft aan of deze vector en v dezelfde richting hebben.
      * @return
      */
     boolean heeftZelfdeRichting(Vector v){
+        if (abs(this.x * v.y - v.x * this.y) < EPSILON){
+            return true;
+        }
         return false;
     }
 
     /**
-     * Stub: om het inwendig product van deze vector en v te bepalen.
-     * @return
+     * Geeft het inwendig product van deze vector en v.
      */
     double getInproduct(Vector v){
-        return 0.00;
+        return this.x * v.x + this.y * v.y;
     }
 
     /**
-     * Stub: om de hoek van deze vector met de x-as te bepalen.
+     * Geeft de hoek van deze vector met de x-as.
      * @return
      */
     double getHoek(){
-        return 0.00;
+        return atan(y/x);
     }
 }
