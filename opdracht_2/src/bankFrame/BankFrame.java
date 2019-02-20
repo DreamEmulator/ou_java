@@ -66,11 +66,11 @@ public class BankFrame {
     public void updateGui() {
         debitRekeningNummerInput.setText(String.valueOf(bank.getDebitRekeningNr()));
         debitNaamOutput.setText(bank.getDebitRekeningNaam());
-        debitSaldoOutput.setText(bank.getDebitRekeningSaldo());
+        debitSaldoOutput.setText(String.format("%.2f", bank.getDebitRekeningSaldo()));
 
         creditRekeningNummerInput.setText(String.valueOf(bank.getCreditRekeningNr()));
         creditNaamOutput.setText(bank.getCreditRekeningNaam());
-        creditSaldoOutput.setText(bank.getCreditRekeningSaldo());
+        creditSaldoOutput.setText(String.format("%.2f", bank.getCreditRekeningSaldo()));
         infoDialogueOutput.setText(infoDialogueMessage);
     }
 
@@ -89,14 +89,14 @@ public class BankFrame {
             }
         });
 
-        // Stort = 0
+        // Stort = 1
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     double bedrag = Double.parseDouble(debitBedragInput.getText());
                     int accountNumber = Integer.parseInt(debitRekeningNummerInput.getText());
-                    infoDialogueMessage = bank.requestMutatie(0, 0, accountNumber, bedrag);
+                    infoDialogueMessage = bank.requestMutatie(1, 0, accountNumber, bedrag);
                     updateGui();
                 } catch (NumberFormatException e1) {
                     infoDialogueMessage = "Error: voer alleen getallen in";
@@ -104,14 +104,14 @@ public class BankFrame {
                 }
             }
         });
-        // Neem op = 1
+        // Neem op = 0
         debitNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     double bedrag = Double.parseDouble(debitBedragInput.getText());
                     int accountNumber = Integer.parseInt(debitRekeningNummerInput.getText());
-                    infoDialogueMessage = bank.requestMutatie(1, 0, accountNumber, bedrag);
+                    infoDialogueMessage = bank.requestMutatie(0, 0, accountNumber, bedrag);
                     updateGui();
                 } catch (NumberFormatException e1) {
                     infoDialogueMessage = "Error: voer alleen getallen in";
@@ -129,14 +129,14 @@ public class BankFrame {
                 updateGui();
             }
         });
-        // Stort = 0
+        // Stort = 1
         creditStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     double bedrag = Double.parseDouble(creditBedragInput.getText());
                     int accountNumber = Integer.parseInt(creditRekeningNummerInput.getText());
-                    infoDialogueMessage = bank.requestMutatie(0, 1, accountNumber, bedrag);
+                    infoDialogueMessage = bank.requestMutatie(1, 1, accountNumber, bedrag);
                     updateGui();
                 } catch (NumberFormatException e1) {
                     infoDialogueMessage = "Error: voer alleen getallen in";
@@ -144,14 +144,14 @@ public class BankFrame {
                 }
             }
         });
-        // Neem op = 1
+        // Neem op = 0
         creditNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     double bedrag = Double.parseDouble(creditBedragInput.getText());
                     int accountNumber = Integer.parseInt(creditRekeningNummerInput.getText());
-                    infoDialogueMessage = bank.requestMutatie(1, 1, accountNumber, bedrag);
+                    infoDialogueMessage = bank.requestMutatie(0, 1, accountNumber, bedrag);
                     updateGui();
                 } catch (NumberFormatException e1) {
                     infoDialogueMessage = "Error: voer alleen getallen in";
