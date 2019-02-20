@@ -29,7 +29,7 @@ public class TestBank {
 // Create Bank domainlayer and GUI
          bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
     }
-
+// TODO: Tests opnieuw schrijven
     @Test
     public void getDebitRekeningNr() {
         assertEquals(bank.getDebitRekeningNr(),1111);
