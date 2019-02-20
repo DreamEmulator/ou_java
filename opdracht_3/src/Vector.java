@@ -1,10 +1,7 @@
 import static java.lang.Math.*;
 
 public class Vector {
-    /**
-     * Hierbij de main-method van de Opdracht.
-     * @param args wordt wellicht gebruikt om parameters mee te kunnen geven vanaf de commandline
-     */
+
     public static void main(String[] args) {
         System.out.println("Opdracht 03 is aan!");
     }
@@ -21,37 +18,43 @@ public class Vector {
 
     /**
      * Geeft de lengte van de vector.
-     * @return
+     * @return de lengte
      */
-    double getLength (){
+    public double getLength (){
         return sqrt(pow(x,2)+pow(y,2));
     }
 
     /**
      * Geeft de afstand tussen deze vector en v te bepalen.
-     * @return
+     * @param v de vector waarmee vergelekeen dient te worden
+     * @return de afstand tussen de twee
      */
-    double getAfstand(Vector v) {
+    public double getAfstand(Vector v) {
         return sqrt(pow((this.x-v.x),2)+pow((this.y-v.y),2));
     }
 
     /**
      * Geeft een nieuwe vector die die dezelfde x- en y-waarde heeft als deze vector.
+     * @return de clone van de vector
      */
-    Vector copy (){
+    public Vector copy (){
         return new Vector(x,y);
     }
     /**
      * Geeft een nieuwe vector die de som is van deze vector en v.
+     * @param v de vector die opgetelt moet worden bij de huidige
+     * @return de som vector
      */
-    Vector plus(Vector v){
+    public Vector plus(Vector v){
         return new Vector(this.x + v.x, this.y + v.y);
     }
 
     /**
      * Geeft aan of deze vector gelijk is aan v.
+     * @param v de vector die vergeleken dient te worden
+     * @return <code>true</code> als ze gelijk zijn, <code>false</code> als niet
      */
-    boolean equals(Vector v){
+    public boolean equals(Vector v){
         if (abs(this.x - v.x) < EPSILON && abs(this.y - v.y) < EPSILON){
             return true;
         }
@@ -60,16 +63,19 @@ public class Vector {
 
     /**
      * Geeft een nieuwe vector door de x-waarde en de y-waarde van deze vector te vermenigvuldigen met d.
+     * @param d de waarde die vermenigvuldigd moet worden bij de huidige
+     * @return de nieuwe vector
      */
-    Vector maal(double d){
+    public Vector maal(double d){
         return new Vector(x * d, y * d);
     }
 
     /**
      * Geeft aan of deze vector en v dezelfde richting hebben.
-     * @return
+     * @param v de vector die vergeleken dient te worden
+     * @return <code>true</code> als ze gelijk zijn, <code>false</code> als niet
      */
-    boolean heeftZelfdeRichting(Vector v){
+    public boolean heeftZelfdeRichting(Vector v){
         if (abs(this.x * v.y - v.x * this.y) < EPSILON){
             return true;
         }
@@ -78,16 +84,18 @@ public class Vector {
 
     /**
      * Geeft het inwendig product van deze vector en v.
+     * @param v de vector die gebruikt dient te worden voor de inproduct
+     * @return de inproduct
      */
-    double getInproduct(Vector v){
+    public double getInproduct(Vector v){
         return this.x * v.x + this.y * v.y;
     }
 
     /**
      * Geeft de hoek van deze vector met de x-as.
-     * @return
+     * @return de hoek met de x-as
      */
-    double getHoek(){
+    public double getHoek(){
         return atan(y/x);
     }
 }
