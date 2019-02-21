@@ -64,7 +64,9 @@ public class BankFrame {
     }
 
     private void bindEvents() {
-// Debit rekening events
+
+        // Debit rekening events
+
         // Zoeken
         debitZoekButton.addActionListener(new ActionListener() {
             @Override
@@ -109,7 +111,8 @@ public class BankFrame {
             }
         });
 
-// Credit rekening events
+        // Credit rekening events
+
         // Zoeken
         creditZoekButton.addActionListener(new ActionListener() {
             @Override
@@ -121,6 +124,7 @@ public class BankFrame {
                 }
             }
         });
+
         // Opnemen = 0
         creditNeemOpButton.addActionListener(new ActionListener() {
             @Override
@@ -136,6 +140,7 @@ public class BankFrame {
                 }
             }
         });
+
         // Storten = 1
         creditStortButton.addActionListener(new ActionListener() {
             @Override
@@ -152,7 +157,8 @@ public class BankFrame {
             }
         });
 
-// Debit naar Credit events
+        // Debit naar Credit events
+
         //Overmaken = 2
         maakOver.addActionListener(new ActionListener() {
             @Override
