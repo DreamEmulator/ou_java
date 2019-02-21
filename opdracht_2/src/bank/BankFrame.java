@@ -1,4 +1,4 @@
-package opdracht02;
+package bank;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -65,11 +65,11 @@ public class BankFrame {
         if (debitBedragInput.getText().length() == 0) debitBedragInput.setText("0.00");
         if (creditBedragInput.getText().length() == 0) creditBedragInput.setText("0.00");
 
-        debitRekeningNummerInput.setText(String.valueOf(bank.getDebitRekeningNr()));
+        debitRekeningNummerInput.setText(String.valueOf(bank.debitRekeningNr));
         debitNaamOutput.setText(bank.getDebitRekeningNaam());
         debitSaldoOutput.setText(String.format("%.2f", bank.getDebitRekeningSaldo()));
 
-        creditRekeningNummerInput.setText(String.valueOf(bank.getCreditRekeningNr()));
+        creditRekeningNummerInput.setText(String.valueOf(bank.creditRekeningNr));
         creditNaamOutput.setText(bank.getCreditRekeningNaam());
         creditSaldoOutput.setText(String.format("%.2f", bank.getCreditRekeningSaldo()));
 
@@ -111,7 +111,7 @@ public class BankFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.getDebitRekeningNr()) {
+                    if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.debitRekeningNr) {
                         execute(bank.requestTransactie(0, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
                     } else {
                         error("het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
@@ -127,7 +127,7 @@ public class BankFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.getDebitRekeningNr()) {
+                    if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.debitRekeningNr) {
                         execute(bank.requestTransactie(1, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
                     } else {
                         error("het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
@@ -155,7 +155,7 @@ public class BankFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.getCreditRekeningNr()) {
+                    if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.creditRekeningNr) {
                         execute(bank.requestTransactie(0, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
                     } else {
                         error("het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
@@ -170,7 +170,7 @@ public class BankFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.getCreditRekeningNr()) {
+                    if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.creditRekeningNr) {
                         execute(bank.requestTransactie(1, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
                     } else {
                         error("het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");

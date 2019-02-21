@@ -1,15 +1,12 @@
-package opdracht02;
-
-import opdracht02.Rekening;
+package bank;
 
 import java.util.ArrayList;
 
 public class Bank {
 
     private ArrayList<Rekening> rekeningen;
-    private int debitRekeningNr;
-    private int creditRekeningNr;
-
+    protected int debitRekeningNr;
+    protected int creditRekeningNr;
 
     /**
      * De contructor voor Bank maakt een bank object die de mogeklijkheden biedt om rekeningen te zoeken, geld op te nemen, te storten en over te maken.
@@ -43,14 +40,6 @@ public class Bank {
             }
         }
         return rekening;
-    }
-
-    public int getDebitRekeningNr() {
-        return debitRekeningNr;
-    }
-
-    public int getCreditRekeningNr() {
-        return creditRekeningNr;
     }
 
     public String getDebitRekeningNaam() {
@@ -141,7 +130,7 @@ public class Bank {
             return "Mutatie type is onjuist.";
         } else if (getRekening(debitRekeningNr).getSaldo() - bedrag < 0) {
             return "Er is onvoldoende saldo voor deze transactie";
-        } else if (debitRekeningNr != getDebitRekeningNr() || creditRekeningNr != getCreditRekeningNr()) {
+        } else if (debitRekeningNr != debitRekeningNr || creditRekeningNr != creditRekeningNr) {
             return "Transactie niet gelukt controleer rekeningnummers";
         } else {
             getRekening(debitRekeningNr).neemBedragOp(bedrag);

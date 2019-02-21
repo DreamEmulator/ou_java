@@ -1,4 +1,4 @@
-package opdracht02;
+package bank;
 
 public class Rekening {
 
@@ -12,19 +12,19 @@ public class Rekening {
         this.saldo = saldo;
     }
 
-    public String getNaam() {
+    protected String getNaam() {
         return this.naam;
     }
 
-    public double getSaldo() {
+    protected double getSaldo() {
         return this.saldo;
     }
 
-    public int getRekeningNr() {
+    protected int getRekeningNr() {
         return this.rekeningNr;
     }
 
-    public void stortBedrag(double stortBedrag) {
+    protected void stortBedrag(double stortBedrag) {
         if (getSaldo() + stortBedrag > 0) {
             double huidigSaldo = getSaldo();
             double nieuwSaldo = huidigSaldo + stortBedrag;
@@ -35,7 +35,7 @@ public class Rekening {
         }
     }
 
-    public void neemBedragOp(double opneemBedrag) {
+    protected void neemBedragOp(double opneemBedrag) {
         if (getSaldo() - opneemBedrag > 0) {
             double huidigSaldo = getSaldo();
             double nieuwSaldo = huidigSaldo - opneemBedrag;
