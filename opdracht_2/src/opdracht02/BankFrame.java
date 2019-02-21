@@ -41,7 +41,7 @@ public class BankFrame {
         frame.setContentPane(bankOverzicht);
         frame.setBounds(1000, 400, 1000, 400);
         frame.setVisible(true);
-        updateGui();
+        execute("Welkom");
         bindEvents();
     }
 
@@ -60,14 +60,11 @@ public class BankFrame {
      * Alle interactie met Bank moeten gebeuren inbinnen in execute
      */
 
-    private void updateGui() {
-        if (debitBedragInput.getText().length() == 0) {
-            debitBedragInput.setText("0.00");
-        }
+    private void execute(String message) {
 
-        if (creditBedragInput.getText().length() == 0) {
-            creditBedragInput.setText("0.00");
-        }
+        if (debitBedragInput.getText().length() == 0) debitBedragInput.setText("0.00");
+        if (creditBedragInput.getText().length() == 0) creditBedragInput.setText("0.00");
+
         debitRekeningNummerInput.setText(String.valueOf(bank.getDebitRekeningNr()));
         debitNaamOutput.setText(bank.getDebitRekeningNaam());
         debitSaldoOutput.setText(String.format("%.2f", bank.getDebitRekeningSaldo()));
@@ -75,11 +72,7 @@ public class BankFrame {
         creditRekeningNummerInput.setText(String.valueOf(bank.getCreditRekeningNr()));
         creditNaamOutput.setText(bank.getCreditRekeningNaam());
         creditSaldoOutput.setText(String.format("%.2f", bank.getCreditRekeningSaldo()));
-    }
 
-
-    private void execute(String message) {
-        updateGui();
         infoDialogueOutput.setText(message);
     }
 

@@ -36,9 +36,7 @@ public class Bank {
 
     private Rekening getRekening(int rekeningNr) {
         Rekening rekening = null;
-        int n = 0;
         for (Rekening i : rekeningen) {
-            n++;
             if (rekeningNr == i.getRekeningNr()) {
                 rekening = i;
                 break;
