@@ -21,11 +21,28 @@ public class TestBank {
     public void setUp() {
 // Dataset
         ArrayList<Rekening> rekeningen = new ArrayList();
+        rekeningen.add(new Rekening(1111, "Fabian", 14.56));
         rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));
         rekeningen.add(new Rekening(1234, "Fenia", 24.63));
 
 // Create Bank domainlayer and GUI
          bank = new Bank(rekeningen);
+    }
+
+    @Test
+    public void setDebitRekeningNr() {
+        bank.setDebitRekeningNr(1111);
+        assertEquals(1111, bank.getDebitRekeningNr());
+        bank.setDebitRekeningNr(8888);
+        assertNotEquals(8888, bank.getDebitRekeningNr());
+    }
+
+    @Test
+    public void setCreditRekeningNr() {
+        bank.setCreditRekeningNr(1111);
+        assertEquals(1111, bank.getCreditRekeningNr());
+        bank.setCreditRekeningNr(8888);
+        assertNotEquals(8888, bank.getCreditRekeningNr());
     }
 
     @Test
