@@ -1,4 +1,4 @@
-package rekening;
+package opdracht02;
 
 public class Rekening {
 

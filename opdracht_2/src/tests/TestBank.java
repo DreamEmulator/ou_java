@@ -1,9 +1,9 @@
 package tests;
 
-import bank.Bank;
+import opdracht02.Bank;
 import org.junit.Before;
 import org.junit.Test;
-import rekening.Rekening;
+import opdracht02.Rekening;
 
 import java.util.ArrayList;
 

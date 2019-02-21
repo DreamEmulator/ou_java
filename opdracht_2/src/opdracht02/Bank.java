@@ -1,6 +1,6 @@
-package bank;
+package opdracht02;
 
-import rekening.Rekening;
+import opdracht02.Rekening;
 
 import java.util.ArrayList;
 

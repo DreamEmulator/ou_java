@@ -1,8 +1,5 @@
 package opdracht02;
 
-import bank.Bank;
-import bankFrame.BankFrame;
-import rekening.Rekening;
 import java.util.ArrayList;
 
 /**

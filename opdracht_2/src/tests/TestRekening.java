@@ -2,7 +2,7 @@ package tests;
 
 import org.junit.Before;
 import org.junit.Test;
-import rekening.Rekening;
+import opdracht02.Rekening;
 
 import static org.junit.Assert.*;
 
