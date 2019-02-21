@@ -3,7 +3,6 @@ package tests;
 import bank_domain.Rekening;
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
 
 /**
@@ -12,11 +11,11 @@ import static org.junit.Assert.*;
 
 public class TestRekening {
 
-    Rekening rekening;
+    private Rekening rekening;
     private static final double DELTA = 0.01;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         rekening = new Rekening(1234,  "Sebas",  12.34) {
         };
     }

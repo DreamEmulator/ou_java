@@ -24,11 +24,11 @@ public class Rekening {
         return saldo;
     }
 
-    protected void stortBedrag(double stortBedrag) {
+    void stortBedrag(double stortBedrag) {
         saldo += stortBedrag;
     }
 
-    protected void neemBedragOp(double opneemBedrag) {
+    void neemBedragOp(double opneemBedrag) {
         saldo -= opneemBedrag;
     }
 }

@@ -4,9 +4,7 @@ import bank_domain.Bank;
 import org.junit.Before;
 import org.junit.Test;
 import bank_domain.Rekening;
-
 import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 /**
@@ -16,11 +14,11 @@ import static org.junit.Assert.*;
 
 public class TestBank {
 
-    Bank bank;
+    private Bank bank;
     private static final double DELTA = 0.01;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 // Dataset
         ArrayList<Rekening> rekeningen = new ArrayList();
         rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));

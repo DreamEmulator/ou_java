@@ -111,12 +111,12 @@ public class Bank {
         if (getRekening(debitRekeningNr) == null || getRekening(creditRekeningNr) == null) {
             return "Error: Een van de rekeningen bestaat niet";
         } else if (bedrag <= 0) {
-            return "Error: Er mogen geen negatieve bedragen gestort worden";
+            return "Error: Er mogen alleen positieve bedragen gestort worden";
         }else if (mutatieType != 2) {
             return "Mutatie type is onjuist.";
         } else if (getRekening(debitRekeningNr).getSaldo() - bedrag < 0) {
             return "Er is onvoldoende saldo voor deze transactie";
-        } else if (debitRekeningNr != debitRekeningNr || creditRekeningNr != creditRekeningNr) {
+        } else if (getDebitRekeningNr() != debitRekeningNr || getCreditRekeningNr() != creditRekeningNr) {
             return "Transactie niet gelukt controleer rekeningnummers";
         } else {
             getRekening(debitRekeningNr).neemBedragOp(bedrag);
