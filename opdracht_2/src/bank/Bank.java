@@ -88,50 +88,28 @@ public class Bank {
      * 3: De mutatietype bepaald de aard van de mutatie, storten dan wel opnemen<br>
      *
      * @param mutatieType    met mutatietype wordt de type mutattie bepaald: opnemen = 0 en storten = 1
-     * @param accountType    met accountType wordt de type rekening gecontroleerd, dit is om eventuele wijzigingen in de GUI af te vangen, 0 = debit en 1 = credit
      * @param rekeningNummer het nummer van de waarop de mutatie moet worden uitgevoerd
      * @param bedrag         het bedrag waarmee de mutatie moet worden uitgevoerd
      */
-    public String requestMutatie(int mutatieType, int accountType, int rekeningNummer, double bedrag) {
+    public String requestMutatie(int mutatieType, int rekeningNummer, double bedrag) {
 
         String text = "unknown error";
 
-        if (bedrag < 0) {
-            text = "Error: Negatieve bedragen zijn niet toegestaan";
+        if (bedrag <= 0) {
+            text = "Error: Alleen positieve bedragen zijn toegestaan";
         } else if (mutatieType == 0 && getRekening(rekeningNummer).getSaldo() - bedrag < 0) {
-            text = "Er is helaas onvoldoende saldo voor deze transactie";
-        } else if (accountType == 0 && rekeningNummer != getDebitRekeningNr() || accountType == 1 && rekeningNummer != getCreditRekeningNr()) {
-            text = "Error: Het juiste rekeningnummer staat niet in beeld, zoek opnieuw de rekening...";
+            text = "Er is helaas onvoldoende saldo voor deze mutatie";
         } else {
             switch (mutatieType) {
                 //Opnemen = 0
                 case 0:
-                    switch (accountType) {
-                        //Debit = 0
-                        case 0:
-                            getRekening(getDebitRekeningNr()).neemBedragOp(bedrag);
-                            text = "De transactie is met succes uitgevoerd.";
-                            break;
-                        //Credit = 1
-                        case 1:
-                            getRekening(getCreditRekeningNr()).neemBedragOp(bedrag);
-                            text = "De transactie is met succes uitgevoerd.";
-                            break;
-                    }
+                    getRekening(rekeningNummer).neemBedragOp(bedrag);
+                    text = "De transactie is met succes uitgevoerd.";
                     break;
+                //Storten = 1
                 case 1:
-                    switch (accountType) {
-                        //Debit = 0
-                        case 0:
-                            getRekening(getDebitRekeningNr()).stortBedrag(bedrag);
-                            text = "De transactie is met succes uitgevoerd.";
-                            break;
-                        //Credit = 1
-                        case 1:
-                            getRekening(getCreditRekeningNr()).stortBedrag(bedrag);
-                            text = "De transactie is met succes uitgevoerd.";
-                            break;
-                    }
+                    getRekening(rekeningNummer).stortBedrag(bedrag);
+                    text = "De transactie is met succes uitgevoerd.";
                     break;
             }
         }
@@ -140,19 +118,17 @@ public class Bank {
 
     public String requestTransactie(int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
-        if (debitRekeningNr == getDebitRekeningNr() && creditRekeningNr == getCreditRekeningNr()) {
-            Rekening debitRekening = getRekening(debitRekeningNr);
-            Rekening creditRekening = getRekening(creditRekeningNr);
-            //Controleer of bedrag is toegestaan
-            if (bedrag > 0 && debitRekening.getSaldo() - bedrag > 0) {
-                debitRekening.neemBedragOp(bedrag);
-                creditRekening.stortBedrag(bedrag);
-                return message("De transactie is succesvol uitgevoerd");
-            } else {
-                return message("Transactie niet gelukt controleer het bedrag");
-            }
+        String text = "unknown error";
+        if (debitRekeningNr == getDebitRekeningNr() && creditRekeningNr == getCreditRekeningNr() && bedrag > 0 && getRekening(debitRekeningNr).getSaldo() - bedrag > 0) {
+            getRekening(debitRekeningNr).neemBedragOp(bedrag);
+            getRekening(creditRekeningNr).stortBedrag(bedrag);
+            text = message("De transactie is succesvol uitgevoerd");
+        } else if (getRekening(debitRekeningNr).getSaldo() - bedrag < 0) {
+            text = "Er is onvoldoende saldo voor deze transactie";
+        } else if (debitRekeningNr != getDebitRekeningNr() || creditRekeningNr != getCreditRekeningNr()) {
+            text = "Transactie niet gelukt controleer rekeningnummers";
         }
-        return "Transactie niet gelukt controleer rekeningnummers";
+        return message(text);
     }
 
     public String message(String message) {

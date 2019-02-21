@@ -72,29 +72,55 @@ public class TestBank {
     @Test
     public void getDebitRekeningSaldo() {
         assertEquals(14.56, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestMutatie(0,0,1111,12.32);
+        bank.requestMutatie(0,1111,12.32);
         assertEquals(2.24,bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestMutatie(1,0,1111,12.32);
+        bank.requestMutatie(1,1111,12.32);
         assertEquals(14.56, bank.getDebitRekeningSaldo(), DELTA);
     }
 
     @Test
     public void getCreditRekeningSaldo() {
         assertEquals(24.63, bank.getCreditRekeningSaldo(), DELTA);
-        bank.requestMutatie(0,1,1234,12.32);
+        bank.requestMutatie(0,1234,12.32);
         assertEquals(12.31,bank.getCreditRekeningSaldo(), DELTA);
     }
 
     @Test
     public void setDebitRekeningNr() {
+        bank.setDebitRekeningNr(3333);
+        assertEquals(3333, bank.getDebitRekeningNr());
+        bank.setDebitRekeningNr(10000000);
+        assertNotEquals(10000000, bank.getDebitRekeningNr());
+        bank.setDebitRekeningNr(-1);
+        assertNotEquals(-1, bank.getDebitRekeningNr());
+        bank.setDebitRekeningNr(0);
+        assertNotEquals(0, bank.getDebitRekeningNr());
     }
 
     @Test
     public void setCreditRekeningNr() {
+        bank.setCreditRekeningNr(3333);
+        assertEquals(3333, bank.getCreditRekeningNr());
+        bank.setCreditRekeningNr(10000000);
+        assertNotEquals(10000000, bank.getCreditRekeningNr());
+        bank.setCreditRekeningNr(-1);
+        assertNotEquals(-1, bank.getCreditRekeningNr());
+        bank.setCreditRekeningNr(0);
+        assertNotEquals(0, bank.getCreditRekeningNr());
     }
 
     @Test
     public void requestMutatie() {
+        //Opnemen van debit
+        bank.setDebitRekeningNr(3333);
+        assertEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
+        bank.requestMutatie(0,3333, 9.67);
+        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
+        bank.requestMutatie(0,3333, -9.67);
+        assertNotEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
+        bank.setDebitRekeningNr(1111);
+        bank.requestMutatie(0,3333, -9.67);
+        assertNotEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
     }
 
     @Test
