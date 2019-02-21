@@ -85,7 +85,7 @@ public class BankFrame {
                     if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.getDebitRekeningNr()) {
                         execute(bank.requestTransactie(0, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
                     } else {
-                        infoDialogueOutput.setText(" Error: het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
+                        infoDialogueOutput.setText("Error: het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                     }
                 } catch (NumberFormatException e1) {
                     infoDialogueOutput.setText("Error: Geef een geldig bedrag om op te nemen van de debit rekening");
@@ -104,7 +104,7 @@ public class BankFrame {
                         infoDialogueOutput.setText("Error: het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                     }
                 } catch (NumberFormatException e1) {
-                    infoDialogueOutput.setText("Error: voer alleen getallen in!");
+                    infoDialogueOutput.setText("Error: Voer alleen correcte bedragen in");
                 }
             }
         });
@@ -117,7 +117,7 @@ public class BankFrame {
                 try {
                     execute(bank.setCreditRekeningNr(Integer.parseInt(creditRekeningNummerInput.getText())));
                 } catch (NumberFormatException e1) {
-                    infoDialogueOutput.setText("voer alleen getallen in!");
+                    infoDialogueOutput.setText("Error: Geef een geldig rekening nummer");
                 }
             }
         });
@@ -129,10 +129,10 @@ public class BankFrame {
                     if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.getCreditRekeningNr()) {
                         execute(bank.requestTransactie(0, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
                     } else {
-                        infoDialogueOutput.setText("het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
+                        infoDialogueOutput.setText("Error: het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                     }
                 } catch (NumberFormatException e1) {
-                    infoDialogueOutput.setText("voer alleen getallen in!");
+                    infoDialogueOutput.setText("Error: Voer alleen correcte bedragen in");
                 }
             }
         });
@@ -144,10 +144,10 @@ public class BankFrame {
                     if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.getCreditRekeningNr()) {
                         execute(bank.requestTransactie(1, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
                     } else {
-                        infoDialogueOutput.setText("het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
+                        infoDialogueOutput.setText("Error: het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                     }
                 } catch (NumberFormatException e1) {
-                    infoDialogueOutput.setText("voer alleen getallen in!");
+                    infoDialogueOutput.setText("Error: Voer alleen correcte bedragen in");
                 }
             }
         });
@@ -160,7 +160,7 @@ public class BankFrame {
                 try {
                     execute(bank.requestTransactie(2, Integer.parseInt(debitRekeningNummerInput.getText()), Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
                 } catch (NumberFormatException e1) {
-                    infoDialogueOutput.setText("voer alleen getallen in!");
+                    infoDialogueOutput.setText("Error: Voer alleen correcte getallen in");
                 }
             }
         });

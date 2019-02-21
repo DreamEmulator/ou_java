@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"bank","l":"Bank"},{"p":"bankFrame","l":"BankFrame"},{"p":"opdracht02","l":"Opdracht02"},{"p":"rekening","l":"Rekening"},{"p":"tests","l":"TestBank"},{"p":"tests","l":"TestRekening"}]
