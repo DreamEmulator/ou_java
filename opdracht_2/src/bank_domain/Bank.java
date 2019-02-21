@@ -1,34 +1,29 @@
-package bank;
+package bank_domain;
 
 import java.util.ArrayList;
 
 public class Bank {
 
     private ArrayList<Rekening> rekeningen;
-    protected int debitRekeningNr;
-    protected int creditRekeningNr;
+    private int debitRekeningNr;
+    private int creditRekeningNr;
 
     /**
      * De contructor voor Bank maakt een bank object die de mogeklijkheden biedt om rekeningen te zoeken, geld op te nemen, te storten en over te maken.
+     * Er zijn twee constructors: eentje met en eentje zonder default actieve rekeningen
      *
-     * @param rekeningen hier een ArrayList van rekening objecten
-     */
-    public Bank(ArrayList<Rekening> rekeningen) {
-        this.rekeningen = rekeningen;
-    }
-
-    /**
-     * De contructor voor Bank maakt een bank object die de mogeklijkheden biedt om rekeningen te zoeken, geld op te nemen, te storten en over te maken.
-     * Deze constructor heeft tevens defaults
-     *
-     * @param rekeningen       hier een ArrayList van rekening objecten
+     * @param rekeningen       hier de ArrayList van rekening objecten
      * @param debitRekeningNr  dit bepaald welke debitrekening standaard ingeladen is bij het opstarten
-     * @param creditRekeningNr dit bepaald welke debitrekening standaard ingeladen is bij het opstarten
+     * @param creditRekeningNr dit bepaald welke creditrekening standaard ingeladen is bij het opstarten
      */
     public Bank(ArrayList<Rekening> rekeningen, int debitRekeningNr, int creditRekeningNr) {
         this.rekeningen = rekeningen;
         this.debitRekeningNr = debitRekeningNr;
         this.creditRekeningNr = creditRekeningNr;
+    }
+
+    public Bank(ArrayList<Rekening> rekeningen) {
+        this.rekeningen = rekeningen;
     }
 
     private Rekening getRekening(int rekeningNr) {
@@ -42,12 +37,20 @@ public class Bank {
         return rekening;
     }
 
+    public int getDebitRekeningNr() {
+        return this.debitRekeningNr;
+    }
+
+    public int getCreditRekeningNr() {
+        return this.creditRekeningNr;
+    }
+
     public String getDebitRekeningNaam() {
-        return getRekening(debitRekeningNr).getNaam();
+        return getRekening(debitRekeningNr).getRekeningNaam();
     }
 
     public String getCreditRekeningNaam() {
-        return getRekening(creditRekeningNr).getNaam();
+        return getRekening(creditRekeningNr).getRekeningNaam();
     }
 
     public double getDebitRekeningSaldo() {
@@ -77,15 +80,10 @@ public class Bank {
     }
 
     /**
-     * om een transactie in een rekening aan te vragen, dit kan zowel storten als opnemen zijn.
-     * Tijdens het uitvoeren van de mutatie worden voorafgaand de volgende tests uitgevoerd:<br>
-     * 1: Bedragen moet groter dan nul zijn<br>
-     * 2: Het mutatietype moet kloppen<br>
-     *
-     * @param mutatieType    met mutatietype wordt de type mutattie bepaald: opnemen = 0 en storten = 1
-     * @param rekeningNummer het nummer van de waarop de mutatie moet worden uitgevoerd
-     * @param bedrag         het bedrag waarmee de mutatie moet worden uitgevoerd
+     * Dit is een overloaded method om transacties aan te kunnen vragen bij de bank.
+     * @param mutatieType met mutatietype wordt de type mutatie bepaald: opnemen = 0, storten = 1 en 2 = overmaken
      */
+
     public String requestTransactie(int mutatieType, int rekeningNummer, double bedrag) {
 
         if (getRekening(rekeningNummer) == null) {
@@ -96,11 +94,9 @@ public class Bank {
             return "Er is helaas onvoldoende saldo voor deze mutatie";
         } else {
             switch (mutatieType) {
-                //Opnemen = 0
                 case 0:
                     getRekening(rekeningNummer).neemBedragOp(bedrag);
                     return "De transactie is met succes uitgevoerd.";
-                //Storten = 1
                 case 1:
                     getRekening(rekeningNummer).stortBedrag(bedrag);
                     return "De transactie is met succes uitgevoerd.";
@@ -110,23 +106,13 @@ public class Bank {
         }
     }
 
-    /**
-     * dit is een overloaded method om over te kunnen maken
-     * Tijdens het uitvoeren van de mutatie worden voorafgaand de volgende tests uitgevoerd:<br>
-     * 1: Bedragen moet groter dan nul zijn<br>
-     * 2: Het mutatietype moet kloppen<br>
-     *
-     * @param mutatieType    met mutatietype wordt de type mutattie bepaald: opnemen = 0 en storten = 1
-     * @param debitRekeningNr het nummer van de waarop de mutatie moet worden uitgevoerd
-     * @param creditRekeningNr het nummer van de waarop de mutatie moet worden uitgevoerd
-     * @param bedrag         het bedrag waarmee de mutatie moet worden uitgevoerd
-     */
     public String requestTransactie(int mutatieType, int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
-        //Overmaken
         if (getRekening(debitRekeningNr) == null || getRekening(creditRekeningNr) == null) {
             return "Error: Een van de rekeningen bestaat niet";
-        } else if (mutatieType != 2) {
+        } else if (bedrag <= 0) {
+            return "Error: Er mogen geen negatieve bedragen gestort worden";
+        }else if (mutatieType != 2) {
             return "Mutatie type is onjuist.";
         } else if (getRekening(debitRekeningNr).getSaldo() - bedrag < 0) {
             return "Er is onvoldoende saldo voor deze transactie";
@@ -137,6 +123,5 @@ public class Bank {
             getRekening(creditRekeningNr).stortBedrag(bedrag);
             return "De transactie is succesvol uitgevoerd";
         }
-
     }
 }

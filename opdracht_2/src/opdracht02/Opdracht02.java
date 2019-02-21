@@ -1,8 +1,8 @@
 package opdracht02;
 
-import bank.Bank;
-import bank.BankFrame;
-import bank.Rekening;
+import bank_domain.Bank;
+import bank_gui.BankFrame;
+import bank_domain.Rekening;
 
 import java.util.ArrayList;
 
