@@ -81,13 +81,13 @@ public class BankFrame {
 
     private void checkInputs() {
         try {
-            if (debitBedragInput.getText().length() == 0) {
-                debitBedragInput.setText("0.00");
-            }
-
-            if (creditBedragInput.getText().length() == 0) {
-                creditBedragInput.setText("0.00");
-            }
+//            if (debitBedragInput.getText().length() == 0) {
+//                debitBedragInput.setText("0.00");
+//            }
+//
+//            if (creditBedragInput.getText().length() == 0) {
+//                creditBedragInput.setText("0.00");
+//            }
 
             Integer.parseInt(debitRekeningNummerInput.getText());
             Integer.parseInt(creditRekeningNummerInput.getText());
@@ -126,7 +126,7 @@ public class BankFrame {
     private void bindEvents() {
 
 // Debit rekening events
-        // Zoek
+        // Zoeken
         debitZoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,26 +135,26 @@ public class BankFrame {
             }
         });
 
-        // Neem op = 0
+        // Opnemen = 0
         debitNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checkInputs();
                 if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.getDebitRekeningNr()) {
-                    execute(bank.requestMutatie(0, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
+                    execute(bank.requestTransactie(0, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
                 } else {
                     error("het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                 }
             }
         });
 
-        // Stort = 1
+        // Storten = 1
         debitStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checkInputs();
                 if (Integer.parseInt(debitRekeningNummerInput.getText()) == bank.getDebitRekeningNr()) {
-                    execute(bank.requestMutatie(1, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
+                    execute(bank.requestTransactie(1, Integer.parseInt(debitRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
                 } else {
                     error("het debit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                 }
@@ -162,7 +162,7 @@ public class BankFrame {
         });
 
 // Credit rekening events
-        // Zoek
+        // Zoeken
         creditZoekButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -170,25 +170,25 @@ public class BankFrame {
                 execute(bank.setCreditRekeningNr(Integer.parseInt(creditRekeningNummerInput.getText())));
             }
         });
-        // Neem op = 0
+        // Opnemen = 0
         creditNeemOpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checkInputs();
                 if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.getCreditRekeningNr()) {
-                    execute(bank.requestMutatie(0, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
+                    execute(bank.requestTransactie(0, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
                 } else {
                     error("het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                 }
             }
         });
-        // Stort = 1
+        // Storten = 1
         creditStortButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checkInputs();
                 if (Integer.parseInt(creditRekeningNummerInput.getText()) == bank.getCreditRekeningNr()) {
-                    execute(bank.requestMutatie(1, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
+                    execute(bank.requestTransactie(1, Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(creditBedragInput.getText())));
                 } else {
                     error("het credit-rekeningnummer klopt niet, zoek de rekening opnieuw...");
                 }
@@ -196,12 +196,12 @@ public class BankFrame {
         });
 
 // Debit naar Credit events
-        //Maak over
+        //Overmaken = 2
         maakOver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checkInputs();
-                execute(bank.requestTransactie(Integer.parseInt(debitRekeningNummerInput.getText()), Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
+                execute(bank.requestTransactie(2, Integer.parseInt(debitRekeningNummerInput.getText()), Integer.parseInt(creditRekeningNummerInput.getText()), Double.parseDouble(debitBedragInput.getText())));
             }
         });
     }

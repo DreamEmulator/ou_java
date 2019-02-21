@@ -10,9 +10,18 @@ public class Bank {
     private int debitRekeningNr;
     private int creditRekeningNr;
 
+
     /**
      * De contructor voor Bank maakt een bank object die de mogeklijkheden biedt om rekeningen te zoeken, geld op te nemen, te storten en over te maken.
      *
+     * @param rekeningen       hier een ArrayList van rekening objecten
+     */
+    public Bank(ArrayList<Rekening> rekeningen) {
+        this.rekeningen = rekeningen;
+    }
+    /**
+     * De contructor voor Bank maakt een bank object die de mogeklijkheden biedt om rekeningen te zoeken, geld op te nemen, te storten en over te maken.
+     * Deze constructor heeft tevens defaults
      * @param rekeningen       hier een ArrayList van rekening objecten
      * @param debitRekeningNr  dit bepaald welke debitrekening standaard ingeladen is bij het opstarten
      * @param creditRekeningNr dit bepaald welke debitrekening standaard ingeladen is bij het opstarten
@@ -34,7 +43,7 @@ public class Bank {
                 break;
             }
             if (n == rekeningen.size() && rekening == null) {
-                System.out.println("Geen rekening gevonden.");
+                callbackMessage("Geen rekening gevonden.");
             }
         }
         return rekening;
@@ -65,23 +74,29 @@ public class Bank {
     }
 
     public String setDebitRekeningNr(int rekeningNr) {
+        String message = "unknown error";
         if (getRekening(rekeningNr) != null) {
             this.debitRekeningNr = rekeningNr;
-            return "Rekening gevonden";
+            callbackMessage("Rekening gevonden");
+        } else {
+            callbackMessage("De rekening " + rekeningNr + " bestaat niet");
         }
-        return "De rekening " + rekeningNr + " bestaat niet";
+        return message;
     }
 
     public String setCreditRekeningNr(int rekeningNr) {
+        String message = "unknown error";
         if (getRekening(rekeningNr) != null) {
             this.creditRekeningNr = rekeningNr;
-            return "Rekening gevonden";
+            callbackMessage("Rekening gevonden");
+        } else {
+            callbackMessage("De rekening " + rekeningNr + " bestaat niet");
         }
-        return "De rekening " + rekeningNr + " bestaat niet";
+        return message;
     }
 
     /**
-     * requestMutatie is een public method om een mutatie in een rekening aan te vragen, dit kan zowel storten als opnemen zijn.
+     * om een transactie in een rekening aan te vragen, dit kan zowel storten als opnemen zijn.
      * Tijdens het uitvoeren van de mutatie worden voorafgaand de volgende tests uitgevoerd:<br>
      * 1: Bedragen moet groter dan nul zijn<br>
      * 2: De accounttype die bij de request wordt getest om te zien of de Bank dezelfde hanteert als de GUI<br>
@@ -91,47 +106,61 @@ public class Bank {
      * @param rekeningNummer het nummer van de waarop de mutatie moet worden uitgevoerd
      * @param bedrag         het bedrag waarmee de mutatie moet worden uitgevoerd
      */
-    public String requestMutatie(int mutatieType, int rekeningNummer, double bedrag) {
+    public String requestTransactie(int mutatieType, int rekeningNummer, double bedrag) {
 
-        String text = "unknown error";
+        String message = "unknown error";
 
         if (bedrag <= 0) {
-            text = "Error: Alleen positieve bedragen zijn toegestaan";
+            callbackMessage("Error: Alleen positieve bedragen zijn toegestaan");
         } else if (mutatieType == 0 && getRekening(rekeningNummer).getSaldo() - bedrag < 0) {
-            text = "Er is helaas onvoldoende saldo voor deze mutatie";
+            callbackMessage("Er is helaas onvoldoende saldo voor deze mutatie");
         } else {
             switch (mutatieType) {
                 //Opnemen = 0
                 case 0:
                     getRekening(rekeningNummer).neemBedragOp(bedrag);
-                    text = "De transactie is met succes uitgevoerd.";
+                    message = callbackMessage("De transactie is met succes uitgevoerd.");
                     break;
                 //Storten = 1
                 case 1:
                     getRekening(rekeningNummer).stortBedrag(bedrag);
-                    text = "De transactie is met succes uitgevoerd.";
+                    message = callbackMessage("De transactie is met succes uitgevoerd.");
+                    break;
+                default:
+                    message = callbackMessage("De mutatietype is onjuist.");
                     break;
             }
         }
-        return message(text);
+        return message;
     }
 
-    public String requestTransactie(int debitRekeningNr, int creditRekeningNr, double bedrag) {
+    public String requestTransactie(int mutatieType, int debitRekeningNr, int creditRekeningNr, double bedrag) {
 
-        String text = "unknown error";
-        if (debitRekeningNr == getDebitRekeningNr() && creditRekeningNr == getCreditRekeningNr() && bedrag > 0 && getRekening(debitRekeningNr).getSaldo() - bedrag > 0) {
-            getRekening(debitRekeningNr).neemBedragOp(bedrag);
-            getRekening(creditRekeningNr).stortBedrag(bedrag);
-            text = message("De transactie is succesvol uitgevoerd");
-        } else if (getRekening(debitRekeningNr).getSaldo() - bedrag < 0) {
-            text = "Er is onvoldoende saldo voor deze transactie";
-        } else if (debitRekeningNr != getDebitRekeningNr() || creditRekeningNr != getCreditRekeningNr()) {
-            text = "Transactie niet gelukt controleer rekeningnummers";
+        String message = "unknown error";
+
+        switch (mutatieType) {
+            //Overmaken
+            case 2:
+                if (debitRekeningNr == getDebitRekeningNr() && creditRekeningNr == getCreditRekeningNr() && bedrag > 0 && getRekening(debitRekeningNr).getSaldo() - bedrag > 0) {
+                    getRekening(debitRekeningNr).neemBedragOp(bedrag);
+                    getRekening(creditRekeningNr).stortBedrag(bedrag);
+                    message = callbackMessage("De transactie is succesvol uitgevoerd");
+                } else if (mutatieType == 3) {
+                    message = callbackMessage("Mutatie type is onjuist.");
+                } else if (getRekening(debitRekeningNr).getSaldo() - bedrag < 0) {
+                    message = callbackMessage("Er is onvoldoende saldo voor deze transactie");
+                } else if (debitRekeningNr != getDebitRekeningNr() || creditRekeningNr != getCreditRekeningNr()) {
+                    message = callbackMessage("Transactie niet gelukt controleer rekeningnummers");
+                }
+                break;
+            default:
+                message = callbackMessage("De mutatietype is onjuist.");
+                break;
         }
-        return message(text);
+        return message;
     }
 
-    public String message(String message) {
+    public String callbackMessage(String message) {
         System.out.println(message);
         return message;
     }

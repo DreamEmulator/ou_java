@@ -13,6 +13,7 @@ public class TestBank {
 
     Bank bank;
     private static final double DELTA = 0.01;
+
     @Before
     public void setUp() throws Exception {
 // Dataset
@@ -23,16 +24,13 @@ public class TestBank {
         rekeningen.add(new Rekening(2345, "Sebas", 5.67));
         rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));
 
-// Set intial accounts rekeningen
-        int debitRekeningNr = 1111;
-        int creditRekeningNr = 1234;
-
 // Create Bank domainlayer and GUI
-         bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
+         bank = new Bank(rekeningen);
     }
 
     @Test
     public void getDebitRekeningNr() {
+        bank.setDebitRekeningNr(1111);
         assertEquals(1111,bank.getDebitRekeningNr());
         bank.setDebitRekeningNr(1234);
         assertEquals(1234,bank.getDebitRekeningNr());
@@ -42,6 +40,7 @@ public class TestBank {
 
     @Test
     public void getCreditRekeningNr() {
+        bank.setCreditRekeningNr(1234);
         assertEquals(1234,bank.getCreditRekeningNr());
         bank.setCreditRekeningNr(1234);
         assertEquals(1234,bank.getCreditRekeningNr());
@@ -51,6 +50,7 @@ public class TestBank {
 
     @Test
     public void getDebitRekeningNaam() {
+        bank.setDebitRekeningNr(1111);
         assertEquals("Fabian", bank.getDebitRekeningNaam());
         assertNotEquals("Fenia", bank.getDebitRekeningNaam());
         bank.setDebitRekeningNr(2345);
@@ -61,6 +61,7 @@ public class TestBank {
 
     @Test
     public void getCreditRekeningNaam() {
+        bank.setCreditRekeningNr(1234);
         assertEquals("Fenia", bank.getCreditRekeningNaam());
         assertNotEquals("Fabian", bank.getCreditRekeningNaam());
         bank.setCreditRekeningNr(2345);
@@ -71,17 +72,19 @@ public class TestBank {
 
     @Test
     public void getDebitRekeningSaldo() {
+        bank.setDebitRekeningNr(1111);
         assertEquals(14.56, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestMutatie(0,1111,12.32);
+        bank.requestTransactie(0,1111,12.32);
         assertEquals(2.24,bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestMutatie(1,1111,12.32);
+        bank.requestTransactie(1,1111,12.32);
         assertEquals(14.56, bank.getDebitRekeningSaldo(), DELTA);
     }
 
     @Test
     public void getCreditRekeningSaldo() {
+        bank.setCreditRekeningNr(1234);
         assertEquals(24.63, bank.getCreditRekeningSaldo(), DELTA);
-        bank.requestMutatie(0,1234,12.32);
+        bank.requestTransactie(0,1234,12.32);
         assertEquals(12.31,bank.getCreditRekeningSaldo(), DELTA);
     }
 
@@ -110,20 +113,24 @@ public class TestBank {
     }
 
     @Test
-    public void requestMutatie() {
-        //Opnemen van debit
-        bank.setDebitRekeningNr(3333);
-        assertEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestMutatie(0,3333, 9.67);
-        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestMutatie(0,3333, -9.67);
-        assertNotEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
-        bank.setDebitRekeningNr(1111);
-        bank.requestMutatie(0,3333, -9.67);
-        assertNotEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
-    }
-
-    @Test
     public void requestTransactie() {
+        bank.setDebitRekeningNr(3333);
+        bank.setCreditRekeningNr(1234);
+
+        assertEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
+        assertEquals(24.63, bank.getCreditRekeningSaldo(), DELTA);
+
+        //Opnemen
+        bank.requestTransactie(0,3333, 9.67);
+        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
+
+        //Storten
+        bank.requestTransactie(1,1234, 9.67);
+        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
+
+      //Overmaken
+        bank.requestTransactie(2,3333, 1234, 10200);
+        assertEquals(0, bank.getDebitRekeningSaldo(), DELTA);
+        assertEquals(0, bank.getCreditRekeningSaldo(), DELTA);
     }
 }
