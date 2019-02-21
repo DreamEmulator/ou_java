@@ -81,14 +81,6 @@ public class BankFrame {
 
     private void checkInputs() {
         try {
-//            if (debitBedragInput.getText().length() == 0) {
-//                debitBedragInput.setText("0.00");
-//            }
-//
-//            if (creditBedragInput.getText().length() == 0) {
-//                creditBedragInput.setText("0.00");
-//            }
-
             Integer.parseInt(debitRekeningNummerInput.getText());
             Integer.parseInt(creditRekeningNummerInput.getText());
             Double.parseDouble(creditBedragInput.getText());
@@ -96,11 +88,6 @@ public class BankFrame {
         } catch (NumberFormatException e1) {
             error("voer alleen getallen in!");
         }
-    }
-
-    private void execute() {
-        updateGui();
-        infoDialogueOutput.setText("");
     }
 
     private void execute(String message) {
