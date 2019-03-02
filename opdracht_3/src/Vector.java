@@ -1,8 +1,7 @@
 import static java.lang.Math.*;
 //TODO:
 //        - Some methods contain divisions, and they should cater for avoiding divisions by zero.
-//        - The definition of Delta in the tester class is not correct. It should be 1e-16.
-//        - The test cases should include zeros for the values of x and y.
+
 
 public class Vector {
 
@@ -100,6 +99,6 @@ public class Vector {
      * @return de hoek met de x-as
      */
     public double getHoek() {
-        return atan(y / x);
+        return y == 0 ? 0 : atan(y / x);
     }
 }
