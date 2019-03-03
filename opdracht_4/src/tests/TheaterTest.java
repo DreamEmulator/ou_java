@@ -30,6 +30,13 @@ public class TheaterTest {
     }
 
     @Test
+    public void getKlant() {
+        theater.nieuweKlant("Arend",06123456);
+        assertEquals("Arend",theater.getKlant("Arend").getNaam());
+    }
+
+    @Test
     public void getNaam() {
+        assertEquals("Theater De Glijert", theater.getNaam());
     }
 }

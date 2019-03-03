@@ -6,7 +6,7 @@
 
 // Ontwerp en implementeer methoden voor dit beheer van klanten :
 //
-// het maken van een nieuwe klant, het uitgeven van een nieuw klantnummer
+// DONE - het maken van een nieuwe klant, het uitgeven van een nieuw klantnummer
 //
 // het opzoeken van een klant op basis van naam en telefoonnummer.
 //
@@ -45,20 +45,39 @@ public class Theater {
         this.naam = naam;
     }
 
+    public String getNaam() {
+        return naam;
+    }
+
     public void nieuweKlant (String naam, int telefoon) {
         klanten.add(new Klant(naam, klanten.size() + 1, telefoon));
         hoogsteklantnummer = klanten.size();
     }
 
-    public ArrayList<Klant> getKlanten() {
-        return klanten;
+    public Klant getKlant (int telefoon){
+        Klant klant = null;
+        for (Klant k : klanten){
+            if (telefoon == k.getTelefoon()){
+                klant = k;
+                break;
+            }
+        }
+        return klant;
+    }
+
+    public Klant getKlant (String naam){
+        Klant klant = null;
+        for (Klant k : klanten){
+            if (naam.equals(k.getNaam())){
+                klant = k;
+                break;
+            }
+        }
+        return klant;
     }
 
     public int getHoogsteklantnummer() {
         return hoogsteklantnummer;
     }
 
-    public String getNaam() {
-        return naam;
-    }
 }
