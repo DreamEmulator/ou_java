@@ -1,3 +1,21 @@
+// OPDRACHT C:
+
+// Ontwerp en implementeer de klasse Plaats:
+// Voor de status van een Plaats gebruiken we een enumeratietype Status met mogelijke waarden VRIJ, GERESERVEERD en BEZET
+// (een plaats is gereserveerd als een klant bezig is met het bestellen van kaarten maar de bestelling nog niet is afgerond).
+//
+// Aanwijzingen:
+//
+//  Geef de klasse een constructor met als parameters rijnummer en stoelnummer; de beginstatus wordt VRIJ.
+//
+// Geef de klasse een methode toString die een stringrepresentatie van de plaats teruggeeft
+
+//-------------------------------------------------------------------------------------------------
+
+// CLASS =
+// TESTS =
+// DOCS =
+
 package theater;
 
 public class Plaats {
@@ -7,10 +25,14 @@ public class Plaats {
     private int rijnummer;
     private int stoelnummer;
 
-    public Plaats(Status status, int rijnummer, int stoelnummer) {
-        this.status = status;
+    public Plaats(int rijnummer, int stoelnummer) {
+        this.status = status.VRIJ;
         this.rijnummer = rijnummer;
         this.stoelnummer = stoelnummer;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Status getStatus() {

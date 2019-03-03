@@ -1,7 +1,16 @@
-package theater;// Opdracht A:
+// OPDRACHT A:
+
 // Implementeer de klasse theater.Klant.
 // Geef deze klasse een constructor waarmee alle attributen via parameters een waarde krijgen.
 // Geef de klasse verder alleen get-methoden voor de attributen, en een methode toString die de volledige klantinformatie als één string teruggeeft
+
+//-------------------------------------------------------------------------------------------------
+
+// CLASS = DONE
+// TESTS =
+// DOCS =
+
+package theater;
 
 public class Klant {
 
@@ -9,12 +18,21 @@ public class Klant {
     private int klantnummer;
     private int telefoon;
 
+    /**
+     * Constructor voor Klant klasse.
+     * @param klantnummer iedere klant moet een klantnummer hebben, deze tellen op vanaf 1.
+     * @param naam iedere klant heeft een naam, hierbij wordt voor en achternaam samengevoegd.
+     * @param telefoon iedere klantheeft een telefoonnummer
+     **/
     public Klant(String naam, int klantnummer, int telefoon) {
         this.naam = naam;
         this.klantnummer = klantnummer;
         this.telefoon = telefoon;
     }
 
+    /**
+     * Returns naam van de klant
+     */
     public String getNaam() {
         return naam;
     }
@@ -27,7 +45,11 @@ public class Klant {
         return klantnummer;
     }
 
-    public String klantToString(){
-        return naam + klantnummer + telefoon;
+    public String klantToString() {
+        return "Klant{" +
+                "naam='" + naam + '\'' +
+                ", klantnummer=" + klantnummer +
+                ", telefoon=" + telefoon +
+                '}';
     }
 }
