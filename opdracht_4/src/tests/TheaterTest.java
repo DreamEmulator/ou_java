@@ -11,11 +11,22 @@ public class TheaterTest {
     Theater theater;
     @Before
     public void setUp() throws Exception {
-        theater = new Theater(1000,"Theater De Glijert");
+        theater = new Theater("Theater De Glijert");
+    }
+
+    @Test
+    public void nieuweKlant() {
+        theater.nieuweKlant("Arend",06123456);
+        theater.nieuweKlant("Bill",06123456);
+        theater.nieuweKlant("Margiet",06123456);
     }
 
     @Test
     public void getHoogsteklantnummer() {
+        theater.nieuweKlant("Arend",06123456);
+        theater.nieuweKlant("Bill",06123456);
+        theater.nieuweKlant("Margiet",06123456);
+        System.out.println(theater.getHoogsteklantnummer());
     }
 
     @Test

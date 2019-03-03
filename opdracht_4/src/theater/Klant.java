@@ -8,7 +8,7 @@
 
 // CLASS = DONE
 // TESTS =
-// DOCS =
+// DOCS = DONE
 
 package theater;
 
@@ -37,14 +37,23 @@ public class Klant {
         return naam;
     }
 
+    /**
+     * Returns telefoonnummer van de klant
+     */
     public int getTelefoon() {
         return telefoon;
     }
 
+    /**
+     * Returns klantnummer van de klant
+     */
     public int getKlantnummer(){
         return klantnummer;
     }
 
+    /**
+     * Returns concatenated string van alle klant attributen
+     */
     public String klantToString() {
         return "Klant{" +
                 "naam='" + naam + '\'' +
