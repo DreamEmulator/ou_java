@@ -85,7 +85,6 @@ public class Voorstelling {
                 if (geplaatst != gereserveerd || Plaats.Status.GERESERVEERD == plaats.getStatus()) {
                     plaats.plaatsToekennen(klant.klantToString());
                     geplaatst++;
-                    System.out.println(geplaatst);
                 } else {
                     break;
                 }
@@ -100,6 +99,7 @@ public class Voorstelling {
             for (Plaats plaats : rij) {
                 if (gereset != gereserveerd || Plaats.Status.GERESERVEERD == plaats.getStatus()) {
                     plaats.setStatus(Plaats.Status.VRIJ);
+                    gereserveerd++;
                 } else {
                     break;
                 }
