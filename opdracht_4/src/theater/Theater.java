@@ -54,10 +54,6 @@ public class Theater {
         return naam;
     }
 
-    public Plaats getPlaats(int rij, int stoel){
-        return plaatsen.get(rij * AANTALPERRIJ + stoel);
-    }
-
     public void nieuweKlant (String naam, int telefoon){
         klanten.add(new Klant(naam, klanten.size() + 1, telefoon));
         hoogsteklantnummer = klanten.size();
@@ -124,7 +120,6 @@ public class Theater {
                         print += "X";
                         break;
                 }
-//                System.out.println(p);
                 if (p == AANTALPERRIJ -1){
                     System.out.println(print);
                     print = "";
