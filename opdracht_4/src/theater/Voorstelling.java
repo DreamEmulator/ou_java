@@ -23,22 +23,18 @@
 package theater;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 
 public class Voorstelling {
 
     private String naam;
     private String datum;
-    private ArrayList<Plaats> plaatsen = new ArrayList<>();
     private Plaats[][] voorstelling = new Plaats[Theater.AANTALTRIJEN][Theater.AANTALPERRIJ];
-    private Theater theater;
 
     public Voorstelling(String naam, String datum) {
         this.naam = naam;
         this.datum = datum;
-        for (int r = 0; r <= Theater.AANTALTRIJEN - 1; r++) {
-            for (int p = 0; p <= Theater.AANTALPERRIJ - 1; p++) {
-                plaatsen.add(new Plaats(r, p));
+        for (int r = 0; r < Theater.AANTALTRIJEN; r++) {
+            for (int p = 0; p < Theater.AANTALPERRIJ; p++) {
                 voorstelling[r][p] = new Plaats(r + 1, p + 1);
             }
         }
@@ -52,7 +48,7 @@ public class Voorstelling {
         return datum;
     }
 
-    protected void reserveer(int rij, int stoel) {
+    public void reserveer(int rij, int stoel) {
         Plaats plaats = voorstelling[rij-1][stoel-1];
         if (plaats.getStatus() == Plaats.Status.VRIJ) {
             plaats.setStatus(Plaats.Status.GERESERVEERD);
@@ -69,7 +65,7 @@ public class Voorstelling {
         }
     }
 
-    protected int getStatusPlaatsenAantal(Plaats.Status status) {
+    public int getStatusPlaatsenAantal(Plaats.Status status) {
         int aantal = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
@@ -81,7 +77,7 @@ public class Voorstelling {
         return aantal;
     }
 
-    protected void plaatsKlant(Klant klant) {
+    public void plaatsKlant(Klant klant) {
         int geplaatst = 0;
         if (geplaatst != getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD)) {
             for (Plaats[] rij : voorstelling) {
@@ -97,7 +93,7 @@ public class Voorstelling {
         }
     }
 
-    protected void resetAlleReserveringen() {
+    public void resetAlleReserveringen() {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
                 if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
