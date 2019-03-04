@@ -32,10 +32,17 @@ public class TheaterTest {
 
     @Test
     public void getStatusPlaatsenAantal(){
-        theater.reserveer(5,3);
-        theater.reserveer(2,3);
-        theater.reserveer(4,3);
-        assertEquals(3,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        theater.reserveer(1,1);
+        theater.reserveer(2,2);
+        theater.reserveer(3,3);
+        theater.reserveer(4,4);
+        theater.reserveer(5,5);
+        theater.reserveer(6,6);
+        theater.reserveer(7,7);
+        theater.reserveer(8,8);
+        theater.reserveer(9,9);
+        theater.reserveer(10,10);
+        assertEquals(10,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
         System.out.println("\nKlant gereserveerd: ");
         theater.printTheater();
     }
@@ -49,11 +56,18 @@ public class TheaterTest {
     @Test
     public void plaatsKlant(){
         theater.nieuweKlant("Arend",06123456);
-        theater.reserveer(5,3);
-        theater.reserveer(2,3);
-        theater.reserveer(4,3);
+        theater.reserveer(1,1);
+        theater.reserveer(2,2);
+        theater.reserveer(3,3);
+        theater.reserveer(4,4);
+        theater.reserveer(5,5);
+        theater.reserveer(6,6);
+        theater.reserveer(7,7);
+        theater.reserveer(8,8);
+        theater.reserveer(9,9);
+        theater.reserveer(10,10);
         theater.plaatsKlant("Arend",06123456);
-        assertEquals(3,theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
+        assertEquals(10,theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
         System.out.println("\nKlant geplaatst: ");
         theater.printTheater();
     }

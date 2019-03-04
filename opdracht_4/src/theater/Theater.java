@@ -75,7 +75,18 @@ public class Theater {
     }
 
     public void reserveer (int rij, int stoel){
-        plaatsen.get(rij * AANTALPERRIJ + stoel).setStatus(Plaats.Status.GERESERVEERD);
+        int plaats = ((rij -1) * AANTALPERRIJ + stoel)-1;
+        if (plaatsen.get(plaats).getStatus() != Plaats.Status.GERESERVEERD) {
+            plaatsen.get(plaats).setStatus(Plaats.Status.GERESERVEERD);
+        } else {
+            for (int p = plaats; p < (AANTALTRIJEN * AANTALPERRIJ); p++){
+                if (plaatsen.get(p).getStatus() == Plaats.Status.VRIJ){
+                    plaatsen.get((rij -1) * AANTALPERRIJ + stoel).setStatus(Plaats.Status.GERESERVEERD);
+                    break;
+                }
+            }
+            System.out.println("Helaas: Deze plaats is al gereserveerd, we hebben de eerste volgende vrije plaats gereserveerd");
+        }
     }
 
     public void plaatsKlant(String naam, int telefoon){
@@ -117,7 +128,7 @@ public class Theater {
                         print += "-";
                         break;
                     case BEZET:
-                        print += "X";
+                        print += "*";
                         break;
                 }
                 if (p == AANTALPERRIJ -1){
