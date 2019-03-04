@@ -32,6 +32,7 @@ public class TheaterTest {
 
     @Test
     public void getStatusPlaatsenAantal(){
+        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
@@ -42,10 +43,9 @@ public class TheaterTest {
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        theater.reserveer(10,10);
-        assertEquals(11,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        assertEquals(10, theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
         System.out.println("\nKlant gereserveerd: ");
-        theater.printTheater();
+        theater.printVoorstelling();
     }
 
     @Test
@@ -56,6 +56,7 @@ public class TheaterTest {
 
     @Test
     public void plaatsKlant(){
+        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Arend",06123456);
         theater.reserveer(1,1);
         theater.reserveer(2,2);
@@ -67,15 +68,15 @@ public class TheaterTest {
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        theater.reserveer(10,10);
         theater.plaatsKlant("Arend",06123456);
-        assertEquals(11,theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
+        assertEquals(10, theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
         System.out.println("\nKlant geplaatst: ");
-        theater.printTheater();
+        theater.printVoorstelling();
     }
 
     @Test
     public void resetAlleReserveringen(){
+        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Arend",06123456);
         theater.reserveer(1,1);
         theater.reserveer(2,2);
@@ -102,9 +103,4 @@ public class TheaterTest {
         assertEquals("Klant{naam='Arend', klantnummer=1, telefoon=1615662}",theater.getKlant("Arend", 06123456).klantToString());
     }
 
-    @Test
-    public void printTheater(){
-        System.out.println("\nLeeg theater: ");
-        theater.printTheater();
-    }
 }
