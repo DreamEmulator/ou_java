@@ -24,7 +24,7 @@ public class Plaats {
     private Status status;
     private int rijnummer;
     private int stoelnummer;
-    private String toegekendAanKlant;
+    private String besteldDoor;
 
     public Plaats(int rijnummer, int stoelnummer) {
         this.status = status.VRIJ;
@@ -50,7 +50,7 @@ public class Plaats {
 
     public void plaatsToekennen(String klant){
         this.setStatus(Status.BEZET);
-        this.toegekendAanKlant = klant;
+        this.besteldDoor = klant;
     }
 
     public String plaatsToString() {
@@ -58,6 +58,7 @@ public class Plaats {
                 "status=" + status +
                 ", rijnummer=" + rijnummer +
                 ", stoelnummer=" + stoelnummer +
+                ", besteldDoor='" + besteldDoor + '\'' +
                 '}';
     }
 }

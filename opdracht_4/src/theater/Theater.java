@@ -97,4 +97,8 @@ public class Theater {
     public void printVoorstelling(){
         voorstelling.printVoorstelling();
     }
+
+    public void printVerkochtePlaatsen(){
+        voorstelling.printVerkochtePlaatsen();
+    }
 }

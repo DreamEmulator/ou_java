@@ -10,7 +10,7 @@
 //
 // DONE – Geef de klasse een methode die een gegeven klant plaatst op alle plaatsen met status GERESERVEERD. Die plaatsen krijgen dan status BEZET en een link met de klant.
 //
-//– Geef de klasse een methode die alle plaatsen met status GERESERVEERD terugzet naar vrij (nodig voor het cancelen van een transactie).
+// DONE – Geef de klasse een methode die alle plaatsen met status GERESERVEERD terugzet naar vrij (nodig voor het cancelen van een transactie).
 //
 //– Breid de klasse Plaats uit met methoden om bovenstaande methoden van Voorstelling te ondersteunen.
 
@@ -115,6 +115,14 @@ public class Voorstelling {
                     System.out.println(print);
                     print = "";
                 }
+            }
+        }
+    }
+
+    protected void printVerkochtePlaatsen() {
+        for (Plaats p : plaatsen) {
+            if (Plaats.Status.BEZET == p.getStatus()) {
+                System.out.println(p.plaatsToString());
             }
         }
     }
