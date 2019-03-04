@@ -49,13 +49,13 @@ public class Voorstelling {
     }
 
     public void reserveer(int rij, int stoel) {
-        Plaats plaats = voorstelling[rij-1][stoel-1];
+        Plaats plaats = voorstelling[rij - 1][stoel - 1];
         if (plaats.getStatus() == Plaats.Status.VRIJ) {
             plaats.setStatus(Plaats.Status.GERESERVEERD);
         } else {
             for (int r = rij; r < Theater.AANTALTRIJEN; r++) {
                 for (int s = 0; s < Theater.AANTALPERRIJ; s++) {
-                    if (voorstelling[r][s].getStatus() == Plaats.Status.VRIJ){
+                    if (voorstelling[r][s].getStatus() == Plaats.Status.VRIJ) {
                         voorstelling[r][s].setStatus(Plaats.Status.GERESERVEERD);
                         System.out.println("Helaas, de gewenste plaats wa niet beschikbaar. We hebben vdeze plaats voor u gereserveerd: \n Rij: " + r + ", Plaats: " + s + "\n");
                         break;
@@ -78,26 +78,30 @@ public class Voorstelling {
     }
 
     public void plaatsKlant(Klant klant) {
+        int gereserveerd = getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD);
         int geplaatst = 0;
-        if (geplaatst != getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD)) {
-            for (Plaats[] rij : voorstelling) {
-                for (Plaats plaats : rij) {
-                    if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
-                       plaats.plaatsToekennen(klant.klantToString());
-                       geplaatst ++;
-                    }
+        for (Plaats[] rij : voorstelling) {
+            for (Plaats plaats : rij) {
+                if (geplaatst != gereserveerd || Plaats.Status.GERESERVEERD == plaats.getStatus()) {
+                    plaats.plaatsToekennen(klant.klantToString());
+                    geplaatst++;
+                    System.out.println(geplaatst);
+                } else {
+                    break;
                 }
             }
-        } else {
-            System.out.println("Er zijn momenteel geen plaatsen gereserveerd");
         }
     }
 
     public void resetAlleReserveringen() {
+        int gereserveerd = getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD);
+        int gereset = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
+                if (gereset != gereserveerd || Plaats.Status.GERESERVEERD == plaats.getStatus()) {
                     plaats.setStatus(Plaats.Status.VRIJ);
+                } else {
+                    break;
                 }
             }
         }
