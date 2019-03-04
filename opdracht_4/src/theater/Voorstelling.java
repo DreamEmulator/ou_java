@@ -12,11 +12,11 @@
 //
 // DONE – Geef de klasse een methode die alle plaatsen met status GERESERVEERD terugzet naar vrij (nodig voor het cancelen van een transactie).
 //
-//– Breid de klasse Plaats uit met methoden om bovenstaande methoden van Voorstelling te ondersteunen.
+// DONE – Breid de klasse Plaats uit met methoden om bovenstaande methoden van Voorstelling te ondersteunen.
 
 //-------------------------------------------------------------------------------------------------
 
-// CLASS =
+// CLASS = DONE
 // TESTS =
 // DOCS =
 

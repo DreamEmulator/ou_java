@@ -31,28 +31,32 @@ public class Klant {
     }
 
     /**
-     * Returns naam van de klant
+     * Getter.
+     * @return Returns naam van de klant
      */
     public String getNaam() {
         return naam;
     }
 
     /**
-     * Returns telefoonnummer van de klant
+     * Getter.
+     * @return Returns telefoonnummer van de klant
      */
     public int getTelefoon() {
         return telefoon;
     }
 
     /**
-     * Returns klantnummer van de klant
+     * Getter.
+     * @return Returns klantnummer van de klant
      */
     public int getKlantnummer(){
         return klantnummer;
     }
 
     /**
-     * Returns concatenated string van alle klant attributen
+     * Getter.
+     * @return Returns concatenated string van alle klant attributen
      */
     public String klantToString() {
         return "Klant{" +
