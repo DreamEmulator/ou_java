@@ -17,14 +17,14 @@ public class TheaterTest {
 
     @Test
     public void nieuweKlant(){
-        theater.nieuweKlant("Arend",06123456);
+        theater.nieuweKlant("Bartel-Jaap",06123456);
         theater.nieuweKlant("Bill",06123456);
         theater.nieuweKlant("Margiet",06123456);
     }
 
     @Test
     public void getHoogsteklantnummer(){
-        theater.nieuweKlant("Arend",06123456);
+        theater.nieuweKlant("Bartel-Jaap",06123456);
         theater.nieuweKlant("Bill",06123456);
         theater.nieuweKlant("Margiet",06123456);
         assertEquals(3,theater.getHoogsteklantnummer());
@@ -50,14 +50,14 @@ public class TheaterTest {
 
     @Test
     public void getKlant(){
-        theater.nieuweKlant("Arend",06123456);
-        assertEquals("Arend",theater.getKlant("Arend", 06123456).getNaam());
+        theater.nieuweKlant("Bartel-Jaap",06123456);
+        assertEquals("Bartel-Jaap",theater.getKlant("Bartel-Jaap", 06123456).getNaam());
     }
 
     @Test
     public void plaatsKlant(){
         theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
-        theater.nieuweKlant("Arend",06123456);
+        theater.nieuweKlant("Bartel-Jaap",06123456);
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
@@ -68,7 +68,7 @@ public class TheaterTest {
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        theater.plaatsKlant("Arend",06123456);
+        theater.plaatsKlant("Bartel-Jaap",06123456);
         assertEquals(10, theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
         System.out.println("\nKlant geplaatst: ");
         theater.printVoorstelling();
@@ -77,7 +77,7 @@ public class TheaterTest {
     @Test
     public void resetAlleReserveringen(){
         theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
-        theater.nieuweKlant("Arend",06123456);
+        theater.nieuweKlant("Bartel-Jaap",06123456);
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
@@ -90,6 +90,26 @@ public class TheaterTest {
         theater.reserveer(10,10);
         theater.resetAlleReserveringen();
         assertEquals(0,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        System.out.println("\nVoorstelling geleegd: ");
+        theater.printVoorstelling();
+
+        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
+        theater.nieuweKlant("Bartel-Jaap",06123456);
+        theater.reserveer(1,1);
+        theater.reserveer(2,2);
+        theater.reserveer(3,3);
+        theater.reserveer(4,4);
+        theater.reserveer(5,5);
+        theater.plaatsKlant("Bartel-Jaap",06123456);
+        theater.reserveer(6,6);
+        theater.reserveer(7,7);
+        theater.reserveer(8,8);
+        theater.reserveer(9,9);
+        theater.reserveer(10,10);
+        theater.resetAlleReserveringen();
+        assertEquals(0,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        System.out.println("\nVoorstelling deels geleegd: ");
+        theater.printVoorstelling();
     }
 
     @Test
@@ -99,8 +119,8 @@ public class TheaterTest {
 
     @Test
     public void klantToString(){
-        theater.nieuweKlant("Arend",06123456);
-        assertEquals("Klant{naam='Arend', klantnummer=1, telefoon=1615662}",theater.getKlant("Arend", 06123456).klantToString());
+        theater.nieuweKlant("Bartel-Jaap",06123456);
+        assertEquals("Klant{naam='Bartel-Jaap', klantnummer=1, telefoon=1615662}",theater.getKlant("Bartel-Jaap", 06123456).klantToString());
     }
 
 }

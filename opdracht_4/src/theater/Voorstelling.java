@@ -8,7 +8,7 @@
 //
 // DONE – Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd.
 //
-//– Geef de klasse een methode die een gegeven klant plaatst op alle plaatsen met status GERESERVEERD. Die plaatsen krijgen dan status BEZET en een link met de klant.
+// DONE – Geef de klasse een methode die een gegeven klant plaatst op alle plaatsen met status GERESERVEERD. Die plaatsen krijgen dan status BEZET en een link met de klant.
 //
 //– Geef de klasse een methode die alle plaatsen met status GERESERVEERD terugzet naar vrij (nodig voor het cancelen van een transactie).
 //
@@ -86,19 +86,21 @@ public class Voorstelling {
         }
     }
 
-    protected void resetAlleReserveringen(){
-        for(Plaats p: plaatsen){
-            p.setStatus(Plaats.Status.VRIJ);
+    protected void resetAlleReserveringen() {
+        for (Plaats p : plaatsen) {
+            if (Plaats.Status.GERESERVEERD == p.getStatus()) {
+                p.setStatus(Plaats.Status.VRIJ);
+            }
         }
     }
 
-    protected void printVoorstelling(){
+    protected void printVoorstelling() {
         System.out.println();
         String print = "";
-        for (int r = 0; r < theater.AANTALTRIJEN; r++){
-            print += "Rij " + (r+1) + ": ";
-            for (int p = 0; p < theater.AANTALPERRIJ; p++){
-                switch (plaatsen.get(r * theater.AANTALPERRIJ + p).getStatus()){
+        for (int r = 0; r < theater.AANTALTRIJEN; r++) {
+            print += "Rij " + (r + 1) + ": ";
+            for (int p = 0; p < theater.AANTALPERRIJ; p++) {
+                switch (plaatsen.get(r * theater.AANTALPERRIJ + p).getStatus()) {
                     case VRIJ:
                         print += "0";
                         break;
@@ -109,7 +111,7 @@ public class Voorstelling {
                         print += "*";
                         break;
                 }
-                if (p == theater.AANTALPERRIJ -1){
+                if (p == theater.AANTALPERRIJ - 1) {
                     System.out.println(print);
                     print = "";
                 }
