@@ -98,7 +98,4 @@ public class Theater {
         voorstelling.printVoorstelling();
     }
 
-    public void printVerkochtePlaatsen(){
-        voorstelling.printVerkochtePlaatsen();
-    }
 }

@@ -24,6 +24,6 @@ public class VoorstellingTest {
 
     @Test
     public void printVoorstelling(){
-        voorstelling.printVoorstelling();
+//        voorstelling.printVoorstelling();
     }
 }

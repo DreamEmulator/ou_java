@@ -22,6 +22,7 @@
 
 package theater;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Voorstelling {
@@ -45,7 +46,7 @@ public class Voorstelling {
         for (int r = 0; r <= Theater.AANTALTRIJEN - 1; r++) {
             for (int p = 0; p <= Theater.AANTALPERRIJ - 1; p++) {
                 plaatsen.add(new Plaats(r, p));
-                voorstelling[r][p] = new Plaats(r+1, p+1);
+                voorstelling[r][p] = new Plaats(r + 1, p + 1);
             }
         }
     }
@@ -58,28 +59,30 @@ public class Voorstelling {
         return datum;
     }
 
-    //REFACTOR
     protected void reserveer(int rij, int stoel) {
-        int plaats = ((rij - 1) * Theater.AANTALPERRIJ + stoel) - 1;
-        if (plaatsen.get(plaats).getStatus() != Plaats.Status.GERESERVEERD) {
-            plaatsen.get(plaats).setStatus(Plaats.Status.GERESERVEERD);
+        Plaats plaats = voorstelling[rij-1][stoel-1];
+        if (plaats.getStatus() == Plaats.Status.VRIJ) {
+            plaats.setStatus(Plaats.Status.GERESERVEERD);
         } else {
-            for (int p = plaats; p < (Theater.AANTALTRIJEN * Theater.AANTALPERRIJ); p++) {
-                if (plaatsen.get(p).getStatus() == Plaats.Status.VRIJ) {
-                    plaatsen.get((rij - 1) * Theater.AANTALPERRIJ + stoel).setStatus(Plaats.Status.GERESERVEERD);
-                    break;
+            for (int r = rij; r < Theater.AANTALTRIJEN; r++) {
+                for (int s = 0; s < Theater.AANTALPERRIJ; s++) {
+                    if (voorstelling[r][s].getStatus() == Plaats.Status.VRIJ){
+                        voorstelling[r][s].setStatus(Plaats.Status.GERESERVEERD);
+                        System.out.println("Helaas, de gewenste plaats wa niet beschikbaar. We hebben vdeze plaats voor u gereserveerd: \n Rij: " + r + ", Plaats: " + s + "\n");
+                        break;
+                    }
                 }
             }
-            System.out.println("Helaas: Deze plaats is al gereserveerd, we hebben de eerste volgende vrije plaats gereserveerd");
         }
     }
 
-    //REFACTOR
     protected int getStatusPlaatsenAantal(Plaats.Status status) {
         int aantal = 0;
-        for (Plaats p : plaatsen) {
-            if (status == p.getStatus()) {
-                aantal++;
+        for (Plaats[] rij : voorstelling) {
+            for (Plaats plaats : rij) {
+                if (status == plaats.getStatus()) {
+                    aantal++;
+                }
             }
         }
         return aantal;
@@ -98,31 +101,40 @@ public class Voorstelling {
         }
     }
 
-    //REFACTOR
     protected void resetAlleReserveringen() {
-        for (Plaats p : plaatsen) {
-            if (Plaats.Status.GERESERVEERD == p.getStatus()) {
-                p.setStatus(Plaats.Status.VRIJ);
+        for (Plaats[] rij : voorstelling) {
+            for (Plaats plaats : rij) {
+                if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
+                    plaats.setStatus(Plaats.Status.VRIJ);
+                }
             }
         }
     }
 
-    public void printVoorstelling(){
-        for (int r = 0; r < voorstelling.length; r++){
-            for (int p = 0; p < voorstelling[0].length; p++){
+    public void printVoorstelling() {
+        String print = "";
+        DecimalFormat df = new DecimalFormat("00");
+        for (int r = 0; r < Theater.AANTALTRIJEN; r++) {
+            print += "Rij " + df.format(r + 1) + ": ";
+            for (int p = 0; p < Theater.AANTALPERRIJ; p++) {
                 Plaats plaats = voorstelling[r][p];
-                System.out.println("Rij: " + plaats.getRijnummer() + ", Plaats: " + plaats.getStoelnummer() + ", Status: " + plaats.getStatus());
+                switch (plaats.getStatus()) {
+                    case VRIJ:
+                        print += "V";
+                        break;
+                    case GERESERVEERD:
+                        print += "R";
+                        break;
+                    case BEZET:
+                        print += "B";
+                        break;
+                }
+                if (p == voorstelling[0].length - 1) {
+                    System.out.println(print);
+                    print = "";
+                }
             }
         }
-
-
     }
 
-    protected void printVerkochtePlaatsen() {
-        for (Plaats p : plaatsen) {
-            if (Plaats.Status.BEZET == p.getStatus()) {
-                System.out.println(p.plaatsToString());
-            }
-        }
-    }
 }

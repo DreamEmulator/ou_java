@@ -72,7 +72,6 @@ public class TheaterTest {
         assertEquals(10, theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
         System.out.println("\nKlant geplaatst: ");
         theater.printVoorstelling();
-        theater.printVerkochtePlaatsen();
     }
 
     @Test
