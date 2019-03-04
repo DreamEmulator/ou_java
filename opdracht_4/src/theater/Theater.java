@@ -90,12 +90,15 @@ public class Theater {
     }
 
     public void plaatsKlant(String naam, int telefoon){
-        for(int p = 0; getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD) != 0 && p < plaatsen.size(); p++){
-            if (Plaats.Status.GERESERVEERD == plaatsen.get(p).getStatus()){
-                plaatsen.get(p).plaatsToekennen(getKlant(naam, telefoon).klantToString());
+        if (getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD) != 0) {
+            for (int p = 0; p < plaatsen.size(); p++) {
+                if (Plaats.Status.GERESERVEERD == plaatsen.get(p).getStatus()) {
+                    plaatsen.get(p).plaatsToekennen(getKlant(naam, telefoon).klantToString());
+                }
             }
+        } else {
+            System.out.println("Er zijn momenteel geen plaatsen gereserveerd");
         }
-
     }
 
     public void resetAlleReserveringen(){
