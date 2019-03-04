@@ -47,7 +47,7 @@ public class Theater {
     }
 
     public void nieuweVoorstellijng (String naam, String datum){
-        voorstelling = new Voorstelling(naam, datum, this);
+        voorstelling = new Voorstelling(naam, datum);
     }
 
     public String getNaam(){
