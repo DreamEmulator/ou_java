@@ -1,5 +1,6 @@
-package theater;
+//package theater;
 
+import theater.Theater;
 import theater.Plaats.Status;
 
 /**
@@ -12,8 +13,8 @@ public class TheaterApplicatie {
    * @param args niet gebruikt
    */
   public static void main(String[] args) {
-    
-    Theater theater = new Theater("Chassé Theater");
+
+    Theater theater = new Theater("Chass Theater");
     theater.nieuweVoorstelling("War Horse", "26-12-2014");
     printInfo(theater);
     // reserveer een aantal plaatsen
@@ -45,10 +46,10 @@ public class TheaterApplicatie {
     printInfo(theater);
   }
 
-  
+
   private static void printInfo(Theater theater) {
     System.out.println("VRIJ: " + theater.getAantalPlaatsen(Status.VRIJ) +
-        " / GERESERVEERD: " + theater.getAantalPlaatsen(Status.GERESERVEERD) +
-        " / BEZET: " + theater.getAantalPlaatsen(Status.BEZET));
+            " / GERESERVEERD: " + theater.getAantalPlaatsen(Status.GERESERVEERD) +
+            " / BEZET: " + theater.getAantalPlaatsen(Status.BEZET));
   }
 }

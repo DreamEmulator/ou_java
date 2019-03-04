@@ -8,7 +8,7 @@
 
 // CLASS = DONE
 // TESTS =
-// DOCS = DONE
+// DOCS =
 
 package theater;
 

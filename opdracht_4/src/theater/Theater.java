@@ -8,7 +8,7 @@
 //
 // DONE - het maken van een nieuwe klant, het uitgeven van een nieuw klantnummer
 //
-// het opzoeken van een klant op basis van naam en telefoonnummer.
+// DONE - het opzoeken van een klant op basis van naam en telefoonnummer.
 //
 // NOTE: We laten het verwijderen van klanten buiten beschouwing
 
@@ -38,26 +38,35 @@ public class Theater {
     private int hoogsteklantnummer;
     private String naam;
 
-    //TODO: Check if this is the intended way to store the klanten
     private ArrayList<Klant> klanten = new ArrayList<>();
+    private ArrayList<Plaats> plaatsen = new ArrayList<>();
 
-    public Theater(String naam) {
+    public Theater(String naam){
         this.naam = naam;
+        for (int r = 1; r <= AANTALTRIJEN; r++){
+            for (int p = 1; p <= AANTALPERRIJ; p++){
+                plaatsen.add(new Plaats(r,p));
+            }
+        }
     }
 
-    public String getNaam() {
+    public String getNaam(){
         return naam;
     }
 
-    public void nieuweKlant (String naam, int telefoon) {
+    public Plaats getPlaats(int rij, int stoel){
+        return plaatsen.get(rij * AANTALPERRIJ + stoel);
+    }
+
+    public void nieuweKlant (String naam, int telefoon){
         klanten.add(new Klant(naam, klanten.size() + 1, telefoon));
         hoogsteklantnummer = klanten.size();
     }
 
-    public Klant getKlant (int telefoon){
+    public Klant getKlant (String naam, int telefoon){
         Klant klant = null;
         for (Klant k : klanten){
-            if (telefoon == k.getTelefoon()){
+            if (telefoon == k.getTelefoon() && naam.equals(k.getNaam())){
                 klant = k;
                 break;
             }
@@ -65,19 +74,62 @@ public class Theater {
         return klant;
     }
 
-    public Klant getKlant (String naam){
-        Klant klant = null;
-        for (Klant k : klanten){
-            if (naam.equals(k.getNaam())){
-                klant = k;
-                break;
-            }
-        }
-        return klant;
-    }
-
-    public int getHoogsteklantnummer() {
+    public int getHoogsteklantnummer(){
         return hoogsteklantnummer;
     }
 
+    public void reserveer (int rij, int stoel){
+        plaatsen.get(rij * AANTALPERRIJ + stoel).setStatus(Plaats.Status.GERESERVEERD);
+    }
+
+    public void plaatsKlant(String naam, int telefoon){
+        for(int p = 0; getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD) != 0 && p < plaatsen.size(); p++){
+            if (Plaats.Status.GERESERVEERD == plaatsen.get(p).getStatus()){
+                plaatsen.get(p).plaatsToekennen(getKlant(naam, telefoon).klantToString());
+            }
+        }
+
+    }
+
+    public void resetAlleReserveringen(){
+        for(Plaats p: plaatsen){
+            p.setStatus(Plaats.Status.VRIJ);
+        }
+    }
+
+    public int getStatusPlaatsenAantal(Plaats.Status status){
+        int aantal = 0;
+        for(Plaats p: plaatsen){
+            if (status == p.getStatus()){
+                aantal++;
+            }
+        }
+        return aantal;
+    }
+
+    public void printTheater(){
+        System.out.println();
+        String print = "";
+        for (int r = 0; r < AANTALTRIJEN; r++){
+            print += "Rij " + (r+1) + ": ";
+            for (int p = 0; p < AANTALPERRIJ; p++){
+                switch (plaatsen.get(r * AANTALPERRIJ + p).getStatus()){
+                    case VRIJ:
+                        print += "0";
+                        break;
+                    case GERESERVEERD:
+                        print += "-";
+                        break;
+                    case BEZET:
+                        print += "X";
+                        break;
+                }
+//                System.out.println(p);
+                if (p == AANTALPERRIJ -1){
+                    System.out.println(print);
+                    print = "";
+                }
+            }
+        }
+    }
 }

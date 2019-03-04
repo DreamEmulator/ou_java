@@ -6,9 +6,9 @@
 //
 // Aanwijzingen:
 //
-//  Geef de klasse een constructor met als parameters rijnummer en stoelnummer; de beginstatus wordt VRIJ.
+// DONE - Geef de klasse een constructor met als parameters rijnummer en stoelnummer; de beginstatus wordt VRIJ.
 //
-// Geef de klasse een methode toString die een stringrepresentatie van de plaats teruggeeft
+// DONE - Geef de klasse een methode toString die een stringrepresentatie van de plaats teruggeeft
 
 //-------------------------------------------------------------------------------------------------
 
@@ -24,6 +24,7 @@ public class Plaats {
     private Status status;
     private int rijnummer;
     private int stoelnummer;
+    private String toegekendAanKlant;
 
     public Plaats(int rijnummer, int stoelnummer) {
         this.status = status.VRIJ;
@@ -45,5 +46,18 @@ public class Plaats {
 
     public int getStoelnummer() {
         return stoelnummer;
+    }
+
+    public void plaatsToekennen(String klant){
+        this.setStatus(Status.BEZET);
+        this.toegekendAanKlant = klant;
+    }
+
+    public String plaatsToString() {
+        return "Plaats{" +
+                "status=" + status +
+                ", rijnummer=" + rijnummer +
+                ", stoelnummer=" + stoelnummer +
+                '}';
     }
 }
