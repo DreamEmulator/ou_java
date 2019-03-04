@@ -22,8 +22,4 @@ public class VoorstellingTest {
     public void getDatum() {
     }
 
-    @Test
-    public void printVoorstelling(){
-//        voorstelling.printVoorstelling();
-    }
 }

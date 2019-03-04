@@ -88,12 +88,15 @@ public class Voorstelling {
         return aantal;
     }
 
-    //REFACTOR
     protected void plaatsKlant(Klant klant) {
-        if (getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD) != 0) {
-            for (int p = 0; p < plaatsen.size(); p++) {
-                if (Plaats.Status.GERESERVEERD == plaatsen.get(p).getStatus()) {
-                    plaatsen.get(p).plaatsToekennen(klant.klantToString());
+        int geplaatst = 0;
+        if (geplaatst != getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD)) {
+            for (Plaats[] rij : voorstelling) {
+                for (Plaats plaats : rij) {
+                    if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
+                       plaats.plaatsToekennen(klant.klantToString());
+                       geplaatst ++;
+                    }
                 }
             }
         } else {
