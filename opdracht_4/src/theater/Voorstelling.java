@@ -30,6 +30,11 @@ public class Voorstelling {
     private String datum;
     private Plaats[][] voorstelling = new Plaats[Theater.AANTALTRIJEN][Theater.AANTALPERRIJ];
 
+    /**
+     * Constructor voor de klasse, vraagt de naam en datum van de voorstelling.
+     * @param naam nama van de voorstelling
+     * @param datum datum van de voorstelling als string
+     */
     public Voorstelling(String naam, String datum) {
         this.naam = naam;
         this.datum = datum;

@@ -52,6 +52,7 @@ public class TheaterTest {
     public void getKlant(){
         theater.nieuweKlant("Bartel-Jaap",06123456);
         assertEquals("Bartel-Jaap",theater.getKlant("Bartel-Jaap", 06123456).getNaam());
+        assertEquals("Bartel-Jaap",theater.getKlant("bARTEL-jAAP", 06123456).getNaam());
     }
 
     @Test
@@ -115,12 +116,6 @@ public class TheaterTest {
     @Test
     public void getNaam(){
         assertEquals("Theater De Glijert", theater.getNaam());
-    }
-
-    @Test
-    public void klantToString(){
-        theater.nieuweKlant("Bartel-Jaap",06123456);
-        assertEquals("Klant{naam='Bartel-Jaap', klantnummer=1, telefoon=1615662}",theater.getKlant("Bartel-Jaap", 06123456).klantToString());
     }
 
 }
