@@ -78,30 +78,20 @@ public class Voorstelling {
     }
 
     public void plaatsKlant(Klant klant) {
-        int gereserveerd = getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD);
-        int geplaatst = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                if (geplaatst != gereserveerd || Plaats.Status.GERESERVEERD == plaats.getStatus()) {
+                if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
                     plaats.plaatsToekennen(klant.klantToString());
-                    geplaatst++;
-                } else {
-                    break;
                 }
             }
         }
     }
 
     public void resetAlleReserveringen() {
-        int gereserveerd = getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD);
-        int gereset = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                if (gereset != gereserveerd || Plaats.Status.GERESERVEERD == plaats.getStatus()) {
+                if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
                     plaats.setStatus(Plaats.Status.VRIJ);
-                    gereserveerd++;
-                } else {
-                    break;
                 }
             }
         }
