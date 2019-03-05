@@ -17,19 +17,21 @@ public class KlantTest {
 
     @Test
     public void getNaam() {
+        assertEquals("Bartel-Jaap",klant.getNaam());
     }
 
     @Test
     public void getTelefoon() {
+        assertEquals(06123456,klant.getTelefoon());
     }
 
     @Test
     public void getKlantnummer() {
+        assertEquals(1,klant.getKlantnummer());
     }
 
     @Test
     public void klantToString(){
-        theater.nieuweKlant("Bartel-Jaap",06123456);
-        assertEquals("Klant{naam='Bartel-Jaap', klantnummer=1, telefoon=1615662}",theater.getKlant("Bartel-Jaap", 06123456).klantToString());
+        assertEquals("Klant{naam='Bartel-Jaap', klantnummer=1, telefoon=1615662}",klant.klantToString());
     }
 }
