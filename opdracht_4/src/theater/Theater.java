@@ -81,7 +81,7 @@ public class Theater {
      * Geeft toegang tot een klant, hiervoor maken we gebruik van twee parameters naam en telefoon.
      * @param naam naam van de gezochte klant
      * @param telefoon telefoon van de gezochte klant
-     * @return
+     * @return de geselecteerde klant
      */
     public Klant getKlant (String naam, int telefoon){
         Klant klant = null;
@@ -96,7 +96,7 @@ public class Theater {
 
     /**
      * Geeft toegang tot de voorstelling die op dat moment draait in het theater
-     * @return
+     * @return de voorstelling
      */
     public Voorstelling getVoorstelling(){
         return voorstelling;
