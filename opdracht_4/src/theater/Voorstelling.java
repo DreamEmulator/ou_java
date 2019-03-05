@@ -18,7 +18,7 @@
 
 // CLASS = DONE
 // TESTS = DONE
-// DOCS =
+// DOCS = DONE
 
 package theater;
 
@@ -45,14 +45,27 @@ public class Voorstelling {
         }
     }
 
+    /**
+     * Getter geeft de naam van de voorstelling terug.
+     * @return String van de naam
+     */
     public String getNaam() {
         return naam;
     }
 
+    /**
+     * Getter datum geeft de datum terug als string.
+     * @return datum als String
+     */
     public String getDatum() {
         return datum;
     }
 
+    /**
+     * Reserveert een stoel voor de klant, als deze stoel niet beschikbaar is gaat deze opzoek naar de dichtsbijzijnde met hogere rij en stoel nummers.
+     * @param rij integernrij nummer
+     * @param stoel integer stoel
+     */
     public void reserveer(int rij, int stoel) {
         Plaats plaats = voorstelling[rij - 1][stoel - 1];
         if (plaats.getStatus() == Plaats.Status.VRIJ) {
@@ -70,6 +83,11 @@ public class Voorstelling {
         }
     }
 
+    /**
+     * Loopt alle plekken af en checkt ze tegen de gewenste status, telt deze op en geeft ze terug.
+     * @param status de gewenste status
+     * @return integer van het aantal plaatsen met de gezochte status
+     */
     public int getStatusPlaatsenAantal(Plaats.Status status) {
         int aantal = 0;
         for (Plaats[] rij : voorstelling) {
@@ -82,6 +100,10 @@ public class Voorstelling {
         return aantal;
     }
 
+    /**
+     * Plaatst de klant op de reeds gereserveerde plaatsen. Ik hen nagedacht om eerst de aantal gereserveerde op te zoeken en dan op te houden als dat bereikt is. Hier is alleen geen efficientie slag omdat je dan ook al een keer helemaal door de array bent gegaan.
+     * @param klant de klant die de olaatsen krijgt
+     */
     public void plaatsKlant(Klant klant) {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
@@ -92,6 +114,9 @@ public class Voorstelling {
         }
     }
 
+    /**
+     * Zet de status van alle plaatsen die gereserveerd zijn terug naar vrij
+     */
     public void resetAlleReserveringen() {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
@@ -102,6 +127,10 @@ public class Voorstelling {
         }
     }
 
+
+    /**
+     * Print de voorsteeling
+     */
     public void printVoorstelling() {
         String print = "";
         DecimalFormat df = new DecimalFormat("00");
@@ -127,5 +156,4 @@ public class Voorstelling {
             }
         }
     }
-
 }

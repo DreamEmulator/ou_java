@@ -14,7 +14,7 @@
 
 // CLASS = DONE
 // TESTS = DONE
-// DOCS =
+// DOCS = DONE
 
 package theater;
 
