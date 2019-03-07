@@ -1,7 +1,4 @@
 import static java.lang.Math.*;
-//TODO:
-//        - Some methods contain divisions, and they should cater for avoiding divisions by zero.
-
 
 public class Vector {
 

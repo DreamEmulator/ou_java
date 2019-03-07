@@ -28,6 +28,7 @@ public class VectorTest {
         assertEquals(4.031128874149275, v3.getLength(), DELTA);
         assertEquals(8.06225774829855, v4.getLength(), DELTA);
         assertEquals(6, v5.getLength(), DELTA);
+        assertEquals(0, v6.getLength(), DELTA);
     }
 
     @org.junit.Test
@@ -35,7 +36,9 @@ public class VectorTest {
         assertEquals(4.47213595499958, v1.getAfstand(v2), DELTA);
         assertEquals(8.73212459828649, v2.getAfstand(v3), DELTA);
         assertEquals(12.093386622447824, v3.getAfstand(v4), DELTA);
-        assertEquals(9.219544457292887, v4.getAfstand(v1), DELTA);
+        assertEquals(4.123105625617661, v4.getAfstand(v5), DELTA);
+        assertEquals(6, v5.getAfstand(v6), DELTA);
+        assertEquals(2.8284271247461903, v6.getAfstand(v1), DELTA);
     }
 
     @org.junit.Test
@@ -47,6 +50,10 @@ public class VectorTest {
         nieuweVector = v3.plus(v4);
         assertEquals(2, nieuweVector.x, DELTA);
         assertEquals(3.5, nieuweVector.y, DELTA);
+
+        nieuweVector = v5.plus(v6);
+        assertEquals(0, nieuweVector.x, DELTA);
+        assertEquals(6, nieuweVector.y, DELTA);
     }
 
     @org.junit.Test
@@ -89,6 +96,10 @@ public class VectorTest {
         nieuweVector = v5.copy();
         assertTrue(v5.equals(nieuweVector));
         assertFalse(v6.equals(nieuweVector));
+
+        nieuweVector = v6.copy();
+        assertTrue(v6.equals(nieuweVector));
+        assertFalse(v1.equals(nieuweVector));
     }
 
     @org.junit.Test
