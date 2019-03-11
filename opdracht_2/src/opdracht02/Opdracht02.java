@@ -1,8 +1,9 @@
 package opdracht02;
 
 import bank_domain.Bank;
-import bank_gui.BankFrame;
+//import bank_gui.BankFrame;
 import bank_domain.Rekening;
+import bank_gui.BankGUI;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class Opdracht02 {
 
 // Create Bank domainlayer and GUI
         Bank bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
-        BankFrame bankFrame = new BankFrame(bank);
+//        BankFrame bankFrame = new BankFrame(bank);
+        BankGUI bankGUI = new BankGUI(bank);
     }
 }

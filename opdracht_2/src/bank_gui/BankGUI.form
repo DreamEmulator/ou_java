@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="bank_gui.BankGUI">
+  <grid id="27dc6" binding="bankView" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="504" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="edd5d" binding="knoppenbalk" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <grid id="b7a4c" binding="debitTransacties" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="West"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="7342d" class="javax.swing.JButton" binding="debitOpnemen">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <text value="Opnemen"/>
+                </properties>
+              </component>
+              <component id="9e229" class="javax.swing.JButton" binding="debitStorten">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <text value="Button"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="356db" binding="maakOver" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="North"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="37388" class="javax.swing.JButton" binding="overmaken">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <text value="Maak over &gt;&gt;"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="810ed" binding="creditTransacties" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="c8834" class="javax.swing.JButton" binding="creditOpnemen">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <text value="Opnemen"/>
+                </properties>
+              </component>
+              <component id="11cef" class="javax.swing.JButton" binding="creditStorten">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <text value="Storten"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <grid id="c345e" binding="zoeken" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="Center"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="c0c09" class="javax.swing.JButton" binding="debitZoeken">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <text value="Zoeken"/>
+                </properties>
+              </component>
+              <component id="9d7fd" class="javax.swing.JButton" binding="creditZoeken">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <text value="Zoeken"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="4045f" binding="debit" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="West"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <grid id="79f2" binding="credit" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="East"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>
