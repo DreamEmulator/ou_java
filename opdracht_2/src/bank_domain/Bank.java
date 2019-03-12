@@ -1,18 +1,14 @@
 package bank_domain;
 
-import java.util.ArrayList;
-
 public class Bank {
 
-    private ArrayList<Rekening> rekeningen = new ArrayList();
-
-    public Bank() {
-        rekeningen.add(new Rekening(1111, "Fabian", 14.56));
-        rekeningen.add(new Rekening(1234, "Fenia", 24.63));
-        rekeningen.add(new Rekening(2222, "Hugo", 15.67));
-        rekeningen.add(new Rekening(2345, "Sebas", 5.67));
-        rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));
-    }
+    private Rekening[] rekeningen = {
+            new Rekening(1111, "Bart", 14.56),
+            new Rekening(1234, "Freek", 24.63),
+            new Rekening(2222, "Tina", 15.67),
+            new Rekening(2345, "Sebas", 5.67),
+            new Rekening(3333, "Beatrix", 10209.67)
+    };
 
     public Rekening zoekRekening(int rekeningNr) {
         Rekening rekening = null;

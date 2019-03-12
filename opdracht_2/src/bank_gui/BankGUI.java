@@ -60,7 +60,7 @@ public class BankGUI {
         this.bank = bank;
         JFrame frame = new JFrame("Bank");
         frame.setContentPane(bankView);
-        frame.setBounds(300, 200, 600, 280);
+        frame.setBounds(300, 200, 600, 320);
         frame.setVisible(true);
         bindEvents();
         debitRekeningNrInput.setText("1111");

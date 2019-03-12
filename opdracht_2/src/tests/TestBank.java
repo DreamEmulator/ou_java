@@ -1,6 +1,7 @@
 package tests;
 
 import bank_domain.Bank;
+import bank_domain.Rekening;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,6 +14,14 @@ public class TestBank {
     @Before
     public void setUp() {
          bank = new Bank();
+    }
+
+    @Test
+    public void zoekRekening(){
+        Rekening rekening = bank.zoekRekening(1111);
+        assertNotEquals(null,rekening);
+        rekening = bank.zoekRekening(0000);
+        assertEquals(null,rekening);
     }
 
     @Test
