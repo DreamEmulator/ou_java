@@ -59,7 +59,7 @@
                               <component id="73b25" class="javax.swing.JLabel" binding="creditBedragLabel">
                                 <constraints border-constraint="West"/>
                                 <properties>
-                                  <text value="Bedrag"/>
+                                  <text value="Bedrag:  "/>
                                 </properties>
                               </component>
                               <component id="e8d3e" class="javax.swing.JTextField" binding="creditBedragInput">

@@ -19,14 +19,7 @@ public class TestBank {
 
     @Before
     public void setUp() {
-// Dataset
-        ArrayList<Rekening> rekeningen = new ArrayList();
-        rekeningen.add(new Rekening(1111, "Fabian", 14.56));
-        rekeningen.add(new Rekening(3333, "Beatrix", 10209.67));
-        rekeningen.add(new Rekening(1234, "Fenia", 24.63));
-
-// Create Bank domainlayer and GUI
-         bank = new Bank(rekeningen);
+         bank = new Bank();
     }
 
     @Test

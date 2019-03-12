@@ -58,16 +58,13 @@ public class BankGUI {
 
     public BankGUI(Bank bank) {
         this.bank = bank;
-        JFrame frame = new JFrame("Hols bank");
+        JFrame frame = new JFrame("Bank");
         frame.setContentPane(bankView);
         frame.setBounds(300, 200, 600, 280);
         frame.setVisible(true);
-
         bindEvents();
-
         debitRekeningNrInput.setText("1111");
         debitZoeken.doClick();
-
         creditRekeningNrInput.setText("1234");
         creditZoeken.doClick();
     }
@@ -220,7 +217,7 @@ public class BankGUI {
         creditBedragPanel.setLayout(new BorderLayout(0, 0));
         creditSaldoPanel.add(creditBedragPanel, BorderLayout.SOUTH);
         creditBedragLabel = new JLabel();
-        creditBedragLabel.setText("Bedrag");
+        creditBedragLabel.setText("Bedrag:  ");
         creditBedragPanel.add(creditBedragLabel, BorderLayout.WEST);
         creditBedragInput = new JTextField();
         creditBedragInput.setText("0.00");
