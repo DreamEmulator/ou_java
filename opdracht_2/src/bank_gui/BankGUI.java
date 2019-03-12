@@ -1,6 +1,7 @@
 package bank_gui;
 
 import bank_domain.Bank;
+import bank_domain.Rekening;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,15 +65,17 @@ public class BankGUI {
         bindEvents();
     }
 
-
     private void bindEvents() {
 
         // Debit Zoeken
         debitZoeken.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                debitNaam.setText(bank.zoeken(Integer.parseInt(debitRekeningNrInput.getText())).getNaam());
-                debitSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                Rekening rekening = bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText()));
+                if (rekening != null) {
+                    debitNaam.setText(rekening.getNaam());
+                    debitSaldo.setText(String.format("%.2f", rekening.getSaldo()));
+                }
             }
         });
 
@@ -80,8 +83,11 @@ public class BankGUI {
         debitOpnemen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.opnemen(Integer.parseInt(debitRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
-                debitSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                Rekening rekening = bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText()));
+                if (rekening != null) {
+                    bank.opnemen(Integer.parseInt(debitRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
+                    debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                }
             }
         });
 
@@ -90,7 +96,7 @@ public class BankGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bank.storten(Integer.parseInt(debitRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
-                debitSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
             }
         });
 
@@ -99,8 +105,8 @@ public class BankGUI {
         creditZoeken.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                creditNaam.setText(bank.zoeken(Integer.parseInt(creditRekeningNrInput.getText())).getNaam());
-                creditSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                creditNaam.setText(bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getNaam());
+                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
             }
         });
 
@@ -109,7 +115,7 @@ public class BankGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bank.opnemen(Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(creditBedragInput.getText()));
-                creditSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
             }
         });
 
@@ -118,7 +124,7 @@ public class BankGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bank.storten(Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(creditBedragInput.getText()));
-                creditSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
             }
         });
 
@@ -127,8 +133,8 @@ public class BankGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 bank.overmaken(Integer.parseInt(debitRekeningNrInput.getText()), Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
-                debitSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
-                creditSaldo.setText(String.format("%.2f", bank.zoeken(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
             }
         });
     }

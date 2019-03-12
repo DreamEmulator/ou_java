@@ -24,7 +24,8 @@ public class Rekening {
         return saldo;
     }
 
-    protected  void stortBedrag(double stortBedrag) {
+//    Discussiepunt: door de volgende methodes op "protected" te zetten kan alleen de Bank de rekeningen manipuleren
+    protected void stortBedrag(double stortBedrag) {
         saldo += stortBedrag;
     }
 
