@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("Duplicates")
 public class BankGUI {
     private JPanel bankView;
     private JPanel knoppenbalk;
@@ -57,12 +58,18 @@ public class BankGUI {
 
     public BankGUI(Bank bank) {
         this.bank = bank;
-        System.out.println("Bank GUI Initiated!");
         JFrame frame = new JFrame("Hols bank");
         frame.setContentPane(bankView);
         frame.setBounds(300, 200, 600, 280);
         frame.setVisible(true);
+
         bindEvents();
+
+        debitRekeningNrInput.setText("1111");
+        debitZoeken.doClick();
+
+        creditRekeningNrInput.setText("1234");
+        creditZoeken.doClick();
     }
 
     private void bindEvents() {
@@ -71,10 +78,17 @@ public class BankGUI {
         debitZoeken.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Rekening rekening = bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText()));
-                if (rekening != null) {
-                    debitNaam.setText(rekening.getNaam());
-                    debitSaldo.setText(String.format("%.2f", rekening.getSaldo()));
+                try {
+                    Rekening rekening = bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText()));
+                    debitBedragInput.setText("0.00");
+                    if (rekening != null) {
+                        debitNaam.setText(rekening.getNaam());
+                        debitSaldo.setText(String.format("%.2f", rekening.getSaldo()));
+                    } else {
+                        debitNaam.setText("");
+                        debitSaldo.setText("");
+                    }
+                } catch (Exception error) {
                 }
             }
         });
@@ -83,10 +97,10 @@ public class BankGUI {
         debitOpnemen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Rekening rekening = bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText()));
-                if (rekening != null) {
+                try {
                     bank.opnemen(Integer.parseInt(debitRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
                     debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                } catch (Exception error) {
                 }
             }
         });
@@ -95,18 +109,30 @@ public class BankGUI {
         debitStorten.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.storten(Integer.parseInt(debitRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
-                debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                try {
+                    bank.storten(Integer.parseInt(debitRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
+                    debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                } catch (Exception error) {
+                }
             }
         });
-
 
         // Credit Zoeken
         creditZoeken.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                creditNaam.setText(bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getNaam());
-                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                try {
+                    Rekening rekening = bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText()));
+                    creditBedragInput.setText("0.00");
+                    if (rekening != null) {
+                        creditNaam.setText(rekening.getNaam());
+                        creditSaldo.setText(String.format("%.2f", rekening.getSaldo()));
+                    } else {
+                        creditNaam.setText("");
+                        creditSaldo.setText("");
+                    }
+                } catch (Exception error) {
+                }
             }
         });
 
@@ -114,8 +140,11 @@ public class BankGUI {
         creditOpnemen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.opnemen(Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(creditBedragInput.getText()));
-                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                try {
+                    bank.opnemen(Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(creditBedragInput.getText()));
+                    creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                } catch (Exception error) {
+                }
             }
         });
 
@@ -123,8 +152,11 @@ public class BankGUI {
         creditStorten.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.storten(Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(creditBedragInput.getText()));
-                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                try {
+                    bank.storten(Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(creditBedragInput.getText()));
+                    creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                } catch (Exception error) {
+                }
             }
         });
 
@@ -132,9 +164,12 @@ public class BankGUI {
         overmaken.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                bank.overmaken(Integer.parseInt(debitRekeningNrInput.getText()), Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
-                debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
-                creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                try {
+                    bank.overmaken(Integer.parseInt(debitRekeningNrInput.getText()), Integer.parseInt(creditRekeningNrInput.getText()), Double.parseDouble(debitBedragInput.getText()));
+                    debitSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(debitRekeningNrInput.getText())).getSaldo()));
+                    creditSaldo.setText(String.format("%.2f", bank.zoekRekening(Integer.parseInt(creditRekeningNrInput.getText())).getSaldo()));
+                } catch (Exception error) {
+                }
             }
         });
     }
@@ -189,25 +224,27 @@ public class BankGUI {
         creditBedragPanel.add(creditBedragLabel, BorderLayout.WEST);
         creditBedragInput = new JTextField();
         creditBedragInput.setText("0.00");
-        creditBedragPanel.add(creditBedragInput, BorderLayout.EAST);
+        creditBedragPanel.add(creditBedragInput, BorderLayout.CENTER);
         creditSaldoLabel = new JLabel();
-        creditSaldoLabel.setText("Saldo");
+        creditSaldoLabel.setText("Saldo:  ");
         creditSaldoPanel.add(creditSaldoLabel, BorderLayout.WEST);
         creditSaldo = new JLabel();
-        creditSaldo.setText("Geen");
-        creditSaldoPanel.add(creditSaldo, BorderLayout.EAST);
+        creditSaldo.setText("");
+        creditSaldoPanel.add(creditSaldo, BorderLayout.CENTER);
         creditNaamLabel = new JLabel();
-        creditNaamLabel.setText("Naam");
+        creditNaamLabel.setText("Naam:  ");
         creditNaamPanel.add(creditNaamLabel, BorderLayout.WEST);
         creditNaam = new JLabel();
-        creditNaam.setText("Geen");
-        creditNaamPanel.add(creditNaam, BorderLayout.EAST);
+        creditNaam.setText("");
+        creditNaamPanel.add(creditNaam, BorderLayout.CENTER);
         creditRekeningNrLabel = new JLabel();
-        creditRekeningNrLabel.setText("Rekening Nummer");
+        creditRekeningNrLabel.setText("Rekening Nummer:  ");
         creditRekeningNrPanel.add(creditRekeningNrLabel, BorderLayout.WEST);
         creditRekeningNrInput = new JTextField();
-        creditRekeningNrInput.setText("enter rekening nr");
-        creditRekeningNrPanel.add(creditRekeningNrInput, BorderLayout.EAST);
+        creditRekeningNrInput.setMinimumSize(new Dimension(100, 30));
+        creditRekeningNrInput.setPreferredSize(new Dimension(100, 30));
+        creditRekeningNrInput.setText("");
+        creditRekeningNrPanel.add(creditRekeningNrInput, BorderLayout.CENTER);
         debit = new JPanel();
         debit.setLayout(new BorderLayout(0, 0));
         panel1.add(debit, BorderLayout.WEST);
@@ -224,29 +261,31 @@ public class BankGUI {
         debitBedragPanel.setLayout(new BorderLayout(0, 0));
         debitSaldoPanel.add(debitBedragPanel, BorderLayout.SOUTH);
         debitBedragLabel = new JLabel();
-        debitBedragLabel.setText("Bedrag");
+        debitBedragLabel.setText("Bedrag:  ");
         debitBedragPanel.add(debitBedragLabel, BorderLayout.WEST);
         debitBedragInput = new JTextField();
         debitBedragInput.setText("0.00");
-        debitBedragPanel.add(debitBedragInput, BorderLayout.EAST);
+        debitBedragPanel.add(debitBedragInput, BorderLayout.CENTER);
         debitSaldoLabel = new JLabel();
-        debitSaldoLabel.setText("Saldo");
+        debitSaldoLabel.setText("Saldo:  ");
         debitSaldoPanel.add(debitSaldoLabel, BorderLayout.WEST);
         debitSaldo = new JLabel();
-        debitSaldo.setText("Geen");
-        debitSaldoPanel.add(debitSaldo, BorderLayout.EAST);
+        debitSaldo.setText("");
+        debitSaldoPanel.add(debitSaldo, BorderLayout.CENTER);
         debitNaamLabel = new JLabel();
-        debitNaamLabel.setText("Naam");
+        debitNaamLabel.setText("Naam:  ");
         debitNaamPanel.add(debitNaamLabel, BorderLayout.WEST);
         debitNaam = new JLabel();
-        debitNaam.setText("Geen");
-        debitNaamPanel.add(debitNaam, BorderLayout.EAST);
+        debitNaam.setText("");
+        debitNaamPanel.add(debitNaam, BorderLayout.CENTER);
         debitRekeningNrLabel = new JLabel();
-        debitRekeningNrLabel.setText("Rekening Nummer");
+        debitRekeningNrLabel.setText("Rekening Nummer:  ");
         debitRekeningNrPanel.add(debitRekeningNrLabel, BorderLayout.WEST);
         debitRekeningNrInput = new JTextField();
-        debitRekeningNrInput.setText("enter rekening nr");
-        debitRekeningNrPanel.add(debitRekeningNrInput, BorderLayout.EAST);
+        debitRekeningNrInput.setMinimumSize(new Dimension(100, 30));
+        debitRekeningNrInput.setPreferredSize(new Dimension(100, 30));
+        debitRekeningNrInput.setText("");
+        debitRekeningNrPanel.add(debitRekeningNrInput, BorderLayout.CENTER);
         knoppenbalk = new JPanel();
         knoppenbalk.setLayout(new BorderLayout(0, 0));
         panel1.add(knoppenbalk, BorderLayout.SOUTH);

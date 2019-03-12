@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="bank_gui.BankGUI">
   <grid id="27dc6" binding="bankView" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="698" height="400"/>
+      <xy x="20" y="20" width="884" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -63,7 +63,7 @@
                                 </properties>
                               </component>
                               <component id="e8d3e" class="javax.swing.JTextField" binding="creditBedragInput">
-                                <constraints border-constraint="East"/>
+                                <constraints border-constraint="Center"/>
                                 <properties>
                                   <text value="0.00"/>
                                 </properties>
@@ -73,13 +73,13 @@
                           <component id="8d99a" class="javax.swing.JLabel" binding="creditSaldoLabel">
                             <constraints border-constraint="West"/>
                             <properties>
-                              <text value="Saldo"/>
+                              <text value="Saldo:  "/>
                             </properties>
                           </component>
                           <component id="9cdad" class="javax.swing.JLabel" binding="creditSaldo">
-                            <constraints border-constraint="East"/>
+                            <constraints border-constraint="Center"/>
                             <properties>
-                              <text value="Geen"/>
+                              <text value=""/>
                             </properties>
                           </component>
                         </children>
@@ -87,13 +87,13 @@
                       <component id="c1f0" class="javax.swing.JLabel" binding="creditNaamLabel">
                         <constraints border-constraint="West"/>
                         <properties>
-                          <text value="Naam"/>
+                          <text value="Naam:  "/>
                         </properties>
                       </component>
                       <component id="c39cd" class="javax.swing.JLabel" binding="creditNaam">
-                        <constraints border-constraint="East"/>
+                        <constraints border-constraint="Center"/>
                         <properties>
-                          <text value="Geen"/>
+                          <text value=""/>
                         </properties>
                       </component>
                     </children>
@@ -101,13 +101,15 @@
                   <component id="567a5" class="javax.swing.JLabel" binding="creditRekeningNrLabel">
                     <constraints border-constraint="West"/>
                     <properties>
-                      <text value="Rekening Nummer"/>
+                      <text value="Rekening Nummer:  "/>
                     </properties>
                   </component>
                   <component id="108e8" class="javax.swing.JTextField" binding="creditRekeningNrInput">
-                    <constraints border-constraint="East"/>
+                    <constraints border-constraint="Center"/>
                     <properties>
-                      <text value="enter rekening nr"/>
+                      <minimumSize width="100" height="30"/>
+                      <preferredSize width="100" height="30"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>
@@ -142,11 +144,11 @@
                               <component id="a28ba" class="javax.swing.JLabel" binding="debitBedragLabel">
                                 <constraints border-constraint="West"/>
                                 <properties>
-                                  <text value="Bedrag"/>
+                                  <text value="Bedrag:  "/>
                                 </properties>
                               </component>
                               <component id="bbcd" class="javax.swing.JTextField" binding="debitBedragInput">
-                                <constraints border-constraint="East"/>
+                                <constraints border-constraint="Center"/>
                                 <properties>
                                   <text value="0.00"/>
                                 </properties>
@@ -156,13 +158,13 @@
                           <component id="d0d9" class="javax.swing.JLabel" binding="debitSaldoLabel">
                             <constraints border-constraint="West"/>
                             <properties>
-                              <text value="Saldo"/>
+                              <text value="Saldo:  "/>
                             </properties>
                           </component>
                           <component id="55a08" class="javax.swing.JLabel" binding="debitSaldo">
-                            <constraints border-constraint="East"/>
+                            <constraints border-constraint="Center"/>
                             <properties>
-                              <text value="Geen"/>
+                              <text value=""/>
                             </properties>
                           </component>
                         </children>
@@ -170,13 +172,13 @@
                       <component id="edf5e" class="javax.swing.JLabel" binding="debitNaamLabel">
                         <constraints border-constraint="West"/>
                         <properties>
-                          <text value="Naam"/>
+                          <text value="Naam:  "/>
                         </properties>
                       </component>
                       <component id="8bff3" class="javax.swing.JLabel" binding="debitNaam">
-                        <constraints border-constraint="East"/>
+                        <constraints border-constraint="Center"/>
                         <properties>
-                          <text value="Geen"/>
+                          <text value=""/>
                         </properties>
                       </component>
                     </children>
@@ -184,13 +186,15 @@
                   <component id="f8cdf" class="javax.swing.JLabel" binding="debitRekeningNrLabel">
                     <constraints border-constraint="West"/>
                     <properties>
-                      <text value="Rekening Nummer"/>
+                      <text value="Rekening Nummer:  "/>
                     </properties>
                   </component>
                   <component id="c4034" class="javax.swing.JTextField" binding="debitRekeningNrInput">
-                    <constraints border-constraint="East"/>
+                    <constraints border-constraint="Center"/>
                     <properties>
-                      <text value="enter rekening nr"/>
+                      <minimumSize width="100" height="30"/>
+                      <preferredSize width="100" height="30"/>
+                      <text value=""/>
                     </properties>
                   </component>
                 </children>
