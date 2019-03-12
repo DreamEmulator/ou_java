@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @SuppressWarnings("Duplicates")
-public class BankGUI {
+public class BankFrame {
     private JPanel bankView;
     private JPanel knoppenbalk;
     private JPanel debitTransacties;
@@ -56,7 +56,7 @@ public class BankGUI {
 
     private Bank bank;
 
-    public BankGUI(Bank bank) {
+    public BankFrame(Bank bank) {
         this.bank = bank;
         JFrame frame = new JFrame("Bank");
         frame.setContentPane(bankView);
@@ -133,7 +133,7 @@ public class BankGUI {
             }
         });
 
-        // Opnemen
+        // Credit Opnemen
         creditOpnemen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -145,7 +145,7 @@ public class BankGUI {
             }
         });
 
-        // Storten
+        // Credit Storten
         creditStorten.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
