@@ -3,14 +3,7 @@ package tests;
 import bank_domain.Bank;
 import org.junit.Before;
 import org.junit.Test;
-import bank_domain.Rekening;
-import java.util.ArrayList;
 import static org.junit.Assert.*;
-
-/**
- * De Bank is de baas daar worden alle storten, opnemen, overmaken tests uitgevoerd.
- * Rekening is alleen public toegankelijk voor het opvragen van info.
- */
 
 public class TestBank {
 
@@ -23,17 +16,33 @@ public class TestBank {
     }
 
     @Test
-    public void overmaken(){
-        bank.overmaken(1111,1234, 12.00);
-    }
-
-    @Test
     public void storten(){
         bank.storten(1111,12.00);
+        assertEquals(26.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+        bank.storten(1111,-12.00);
+        assertEquals(26.56,bank.zoekRekening(1111).getSaldo(),DELTA);
     }
 
     @Test
     public void opnemen(){
         bank.opnemen(1111,12.00);
+        assertEquals(2.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+        bank.opnemen(1111,3.00);
+        assertEquals(2.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+        bank.opnemen(1111,-5.00);
+        assertEquals(2.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+    }
+
+    @Test
+    public void overmaken(){
+        bank.overmaken(1111,1234, 12.00);
+        assertEquals(2.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+        assertEquals(36.62,bank.zoekRekening(1234).getSaldo(),DELTA);
+        bank.overmaken(1111,1234, 3);
+        assertEquals(2.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+        assertEquals(36.62,bank.zoekRekening(1234).getSaldo(),DELTA);
+        bank.overmaken(1111,1234, -5);
+        assertEquals(2.56,bank.zoekRekening(1111).getSaldo(),DELTA);
+        assertEquals(36.62,bank.zoekRekening(1234).getSaldo(),DELTA);
     }
 }
