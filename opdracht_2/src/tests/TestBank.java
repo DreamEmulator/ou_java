@@ -30,50 +30,17 @@ public class TestBank {
     }
 
     @Test
-    public void setDebitRekeningNr() {
-        bank.setDebitRekeningNr(1111);
-        assertEquals(1111, bank.getDebitRekeningNr());
-        bank.setDebitRekeningNr(8888);
-        assertNotEquals(8888, bank.getDebitRekeningNr());
+    public void overmaken(){
+        bank.overmaken(1111,1234, 12.00);
     }
 
     @Test
-    public void setCreditRekeningNr() {
-        bank.setCreditRekeningNr(1111);
-        assertEquals(1111, bank.getCreditRekeningNr());
-        bank.setCreditRekeningNr(8888);
-        assertNotEquals(8888, bank.getCreditRekeningNr());
+    public void storten(){
+        bank.storten(1111,12.00);
     }
 
     @Test
-    public void requestTransactie() {
-        bank.setDebitRekeningNr(3333);
-        bank.setCreditRekeningNr(1234);
-
-        //Saldo checken
-        assertEquals(10209.67, bank.getDebitRekeningSaldo(), DELTA);
-        assertEquals(24.63, bank.getCreditRekeningSaldo(), DELTA);
-
-        //Opnemen
-        bank.requestTransactie(0,3333, 9.67);
-        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestTransactie(0,3333, -5);
-        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestTransactie(0,3333, 10201);
-        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
-
-        //Storten
-        bank.requestTransactie(1,1234, 9.67);
-        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestTransactie(1,1234, -5);
-        assertEquals(10200, bank.getDebitRekeningSaldo(), DELTA);
-
-        //Overmaken
-        bank.requestTransactie(2,3333, 1234, 1020);
-        assertEquals(9180, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestTransactie(2,3333, 1234, 10201020);
-        assertEquals(9180, bank.getDebitRekeningSaldo(), DELTA);
-        bank.requestTransactie(2,3333, 1234, -10201020);
-        assertEquals(9180, bank.getDebitRekeningSaldo(), DELTA);
+    public void opnemen(){
+        bank.opnemen(1111,12.00);
     }
 }

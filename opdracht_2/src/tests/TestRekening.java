@@ -22,7 +22,7 @@ public class TestRekening {
 
     @Test
     public void getRekeningNaam() {
-        assertEquals("Sebas",rekening.getRekeningNaam());
+        assertEquals("Sebas",rekening.getNaam());
     }
 
     @Test

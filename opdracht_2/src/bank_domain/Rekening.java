@@ -12,7 +12,7 @@ public class Rekening {
         this.saldo = saldo;
     }
 
-    public String getRekeningNaam() {
+    public String getNaam() {
         return naam;
     }
 
@@ -24,11 +24,11 @@ public class Rekening {
         return saldo;
     }
 
-    void stortBedrag(double stortBedrag) {
+    protected  void stortBedrag(double stortBedrag) {
         saldo += stortBedrag;
     }
 
-    void neemBedragOp(double opneemBedrag) {
+    protected void neemBedragOp(double opneemBedrag) {
         saldo -= opneemBedrag;
     }
 }

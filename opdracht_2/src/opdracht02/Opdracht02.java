@@ -27,7 +27,7 @@ public class Opdracht02 {
         int creditRekeningNr = 1234;
 
 // Create Bank domainlayer and GUI
-        Bank bank = new Bank(rekeningen, debitRekeningNr, creditRekeningNr);
+        Bank bank = new Bank(rekeningen);
 //        BankFrame bankFrame = new BankFrame(bank);
         BankGUI bankGUI = new BankGUI(bank);
     }
