@@ -60,7 +60,7 @@ public class Voorstelling {
      * @param status de gewenste status
      * @return integer van het aantal plaatsen met de gezochte status
      */
-    public int getStatusPlaatsenAantal(Plaats.Status status) {
+    protected int getStatusPlaatsenAantal(Plaats.Status status) {
         int aantal = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
@@ -77,7 +77,7 @@ public class Voorstelling {
      *
      * @param klant de klant die de olaatsen krijgt
      */
-    public void plaatsKlant(Klant klant) {
+    protected void plaatsKlant(Klant klant) {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
                 plaats.plaatsToekennen(klant);
@@ -88,7 +88,7 @@ public class Voorstelling {
     /**
      * Zet de status van alle plaatsen die gereserveerd zijn terug naar vrij
      */
-    public void resetAlleReserveringen() {
+    protected void resetAlleReserveringen() {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
                 plaats.vrijmaken();
@@ -100,7 +100,7 @@ public class Voorstelling {
     /**
      * Print de voorsteeling
      */
-    public void printVoorstelling() {
+    protected void printVoorstelling() {
         String print = "";
         DecimalFormat df = new DecimalFormat("00");
         for (int r = 0; r < Theater.AANTALTRIJEN; r++) {

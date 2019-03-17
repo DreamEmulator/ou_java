@@ -14,6 +14,7 @@ public class TheaterApplicatie {
 
     Theater theater = new Theater("Chass Theater");
     theater.nieuweVoorstelling("War Horse", "26-12-2014");
+    // voeg klanten toe
     theater.nieuweKlant("Kok", "0678912345");
     theater.nieuweKlant("Pootjes", "0654321987");
     printInfo(theater);

@@ -17,8 +17,8 @@ package theater;
 import java.util.ArrayList;
 
 public class Theater {
-    public final static int AANTALTRIJEN = 15;
-    public final static int AANTALPERRIJ = 10;
+    final static int AANTALTRIJEN = 15;
+    final static int AANTALPERRIJ = 10;
     private int hoogsteklantnummer = 0;
     private String naam;
 
@@ -28,7 +28,7 @@ public class Theater {
     private Klant zoekKlant(String naam, String telefoon) {
         Klant klant = null;
         for (Klant k : klanten) {
-            if (telefoon == k.getTelefoon() && naam.trim().toLowerCase().equals(k.getNaam().trim().toLowerCase())) {
+            if (telefoon.equals(k.getTelefoon()) && naam.trim().toLowerCase().equals(k.getNaam().trim().toLowerCase())) {
                 klant = k;
                 break;
             }

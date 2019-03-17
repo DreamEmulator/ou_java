@@ -46,13 +46,13 @@ public class Plaats {
     /**
      * Set de status van de plaats op GERESERVEERD
      */
-    public void reserveren(){
+    protected void reserveren(){
         if (Plaats.Status.VRIJ == status) {
             status = Status.GERESERVEERD;
         }
     }
 
-    public void vrijmaken (){
+    protected void vrijmaken (){
         if (Plaats.Status.GERESERVEERD == status) {
             status = Status.VRIJ;
         }
@@ -62,7 +62,7 @@ public class Plaats {
      * Zet de status voor de plaats naar bezet en slaat de info van die klant op voor de plaats.
      * @param klant wordt aan de klant attribuut van plaats toegekend
      */
-    public void plaatsToekennen(Klant klant){
+    protected void plaatsToekennen(Klant klant){
         if (Plaats.Status.GERESERVEERD == status) {
             status = Status.BEZET;
             this.klant = klant;
