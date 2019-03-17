@@ -49,7 +49,7 @@ public class Voorstelling {
      * @param stoel integer stoel
      */
     public void reserveer(int rij, int stoel) {
-        voorstelling[rij - 1][stoel - 1].setStatus(Plaats.Status.GERESERVEERD);
+        voorstelling[rij - 1][stoel - 1].reserveren();
     }
 
     /**
@@ -78,9 +78,7 @@ public class Voorstelling {
     public void plaatsKlant(Klant klant) {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
-                    plaats.plaatsToekennen(klant);
-                }
+                plaats.plaatsToekennen(klant);
             }
         }
     }
@@ -91,9 +89,7 @@ public class Voorstelling {
     public void resetAlleReserveringen() {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                if (Plaats.Status.GERESERVEERD == plaats.getStatus()) {
-                    plaats.setStatus(Plaats.Status.VRIJ);
-                }
+                plaats.vrijmaken();
             }
         }
     }

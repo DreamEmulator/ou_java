@@ -5,8 +5,8 @@ X Hoewel het een leuk ontwerp is, is het hierdoor dus ook niet de bedoeling dat 
 X De functie getHoogsteKlantnummer is onnodig. Je slaat het hoogste klantnummer al op in een attribuut, deze kun je zo aanspreken.
 X Het afhandelen van Klant en Voortelling objecten is de verantwoordelijkheid van de Theater klasse. Maw, er is geen reden om publieke getters te maken die deze objecten teruggeven.
 X Dezelfde klant kan nu meerdere keren toegevoegd worden.
-- Plaats heeft volgens het klasse diagram een referentie naar Klant. De link is dus geen klantInfo attribuut, maar gewoon een Klant attribuut.
-- Het is de verantwoordelijkheid van Plaats om de status te wijzigen. Ik zou setStatus dus private maken en een publieke functie die de status naar gereserveerd en vrij zet (zoals nu ook voor plaatsToekennen). Op deze manier voorkom je ook het zetten op BEZET, zonder een klant.
+X Plaats heeft volgens het klasse diagram een referentie naar Klant. De link is dus geen klantInfo attribuut, maar gewoon een Klant attribuut.
+? Het is de verantwoordelijkheid van Plaats om de status te wijzigen. Ik zou setStatus dus private maken en een publieke functie die de status naar gereserveerd en vrij zet (zoals nu ook voor plaatsToekennen). Op deze manier voorkom je ook het zetten op BEZET, zonder een klant.
 - Ik heb met de corrector overlegd en het is alleen nodig om alle niet-triviale publieke methoden te testen (getters en setters die niks aanpassen kun je negeren).
 - Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel reserveren buiten de array, een klant zoeken die niet bestaat, etc.)
 */

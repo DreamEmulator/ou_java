@@ -15,7 +15,7 @@ public class TheaterApplicatie {
     Theater theater = new Theater("Chass Theater");
     theater.nieuweVoorstelling("War Horse", "26-12-2014");
     printInfo(theater);
-    // reserveer een aantal plaatsen
+    // reserveren een aantal plaatsen
     theater.reserveer(3, 3);
     theater.reserveer(3, 4);
     theater.reserveer(3, 5);
@@ -26,7 +26,7 @@ public class TheaterApplicatie {
     // plaats klant op gereserveerde plaatsen
     theater.plaatsKlant("Kok", "0678912345");
     printInfo(theater);
-    // reserveer een aantal plaatsen
+    // reserveren een aantal plaatsen
     theater.reserveer(3, 3); // is al bezet
     theater.reserveer(4, 3);
     theater.reserveer(4, 4);
@@ -34,7 +34,7 @@ public class TheaterApplicatie {
     // plaats klant op gereserveerde plaatsen
     theater.plaatsKlant("Pootjes", "0654321987");
     printInfo(theater);
-    // reserveer een aantal plaatsen
+    // reserveren een aantal plaatsen
     theater.reserveer(5, 1);
     theater.reserveer(5, 2);
     theater.reserveer(5, 3);
