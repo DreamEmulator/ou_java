@@ -5,10 +5,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- * Hier alleen (ietwat overbodige) get tests gezien alle transacties via bank_domain moeten.
- */
-
 public class TestRekening {
 
     private Rekening rekening;
@@ -22,7 +18,7 @@ public class TestRekening {
 
     @Test
     public void getRekeningNaam() {
-        assertEquals("Sebas",rekening.getRekeningNaam());
+        assertEquals("Sebas",rekening.getNaam());
     }
 
     @Test

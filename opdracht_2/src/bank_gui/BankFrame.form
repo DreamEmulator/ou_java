@@ -1,342 +1,292 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="bank_gui.BankFrame">
-  <grid id="27dc6" binding="bankOverzicht" layout-manager="GridLayoutManager" row-count="6" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="0" left="0" bottom="0" right="0"/>
+  <grid id="27dc6" binding="bankView" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="713" height="400"/>
+      <xy x="20" y="20" width="884" height="400"/>
     </constraints>
-    <properties>
-      <background color="-2072"/>
-    </properties>
+    <properties/>
     <border type="none"/>
     <children>
-      <grid id="2bf8a" binding="knoppenbalk" layout-manager="GridLayoutManager" row-count="1" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-2072"/>
-        </properties>
+      <grid id="d6a94" layout-manager="BorderLayout" hgap="30" vgap="30">
+        <constraints border-constraint="Center"/>
+        <properties/>
         <border type="none"/>
         <children>
-          <component id="3222f" class="javax.swing.JButton" binding="debitStortButton">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-              <foreground color="-13026502"/>
-              <text value="Stort"/>
-            </properties>
-          </component>
-          <component id="53fe9" class="javax.swing.JButton" binding="creditZoekButton">
-            <constraints>
-              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-              <foreground color="-13026502"/>
-              <hideActionText value="true"/>
-              <text value="Zoek"/>
-            </properties>
-          </component>
-          <component id="e4849" class="javax.swing.JButton" binding="debitNeemOpButton">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <enabled value="true"/>
-              <font swing-font="ToolTip.font"/>
-              <foreground color="-13026502"/>
-              <text value="Neem op"/>
-            </properties>
-          </component>
-          <component id="67d06" class="javax.swing.JButton" binding="debitZoekButton">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-              <foreground color="-13026502"/>
-              <text value="Zoek"/>
-            </properties>
-          </component>
-          <component id="3b5fe" class="javax.swing.JButton" binding="creditStortButton">
-            <constraints>
-              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-              <foreground color="-13026502"/>
-              <text value="Stort"/>
-            </properties>
-          </component>
-          <component id="d3fd7" class="javax.swing.JButton" binding="creditNeemOpButton">
-            <constraints>
-              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-              <foreground color="-13026502"/>
-              <text value="Neem op"/>
-            </properties>
-          </component>
-          <component id="304bc" class="javax.swing.JButton" binding="maakOver">
-            <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-              <text value="Maak over -&gt;"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="1b134" binding="debitRekening" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="270" height="312"/>
+          <grid id="dedb9" binding="titels" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="North"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b1715" class="javax.swing.JLabel" binding="debitTitel">
+                <constraints border-constraint="West"/>
+                <properties>
+                  <text value="Debit Rekening"/>
+                </properties>
+              </component>
+              <component id="7be0" class="javax.swing.JLabel" binding="creditTitel">
+                <constraints border-constraint="East"/>
+                <properties>
+                  <text value="Credit Rekening"/>
+                </properties>
+              </component>
+            </children>
           </grid>
-        </constraints>
-        <properties>
-          <background color="-2072"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="15370" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Rekeningnummer"/>
-            </properties>
-          </component>
-          <component id="36a68" class="javax.swing.JTextField" binding="debitBedragInput">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+          <grid id="79f2" binding="credit" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="East"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="1dd9" binding="creditRekeningNrPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="5cada" binding="creditNaamPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="South"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <grid id="5f876" binding="creditSaldoPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                        <constraints border-constraint="South"/>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <grid id="26b03" binding="creditBedragPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                            <constraints border-constraint="South"/>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="73b25" class="javax.swing.JLabel" binding="creditBedragLabel">
+                                <constraints border-constraint="West"/>
+                                <properties>
+                                  <text value="Bedrag:  "/>
+                                </properties>
+                              </component>
+                              <component id="e8d3e" class="javax.swing.JTextField" binding="creditBedragInput">
+                                <constraints border-constraint="Center"/>
+                                <properties>
+                                  <text value="0.00"/>
+                                </properties>
+                              </component>
+                            </children>
+                          </grid>
+                          <component id="8d99a" class="javax.swing.JLabel" binding="creditSaldoLabel">
+                            <constraints border-constraint="West"/>
+                            <properties>
+                              <text value="Saldo:  "/>
+                            </properties>
+                          </component>
+                          <component id="9cdad" class="javax.swing.JLabel" binding="creditSaldo">
+                            <constraints border-constraint="Center"/>
+                            <properties>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <component id="c1f0" class="javax.swing.JLabel" binding="creditNaamLabel">
+                        <constraints border-constraint="West"/>
+                        <properties>
+                          <text value="Naam:  "/>
+                        </properties>
+                      </component>
+                      <component id="c39cd" class="javax.swing.JLabel" binding="creditNaam">
+                        <constraints border-constraint="Center"/>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <component id="567a5" class="javax.swing.JLabel" binding="creditRekeningNrLabel">
+                    <constraints border-constraint="West"/>
+                    <properties>
+                      <text value="Rekening Nummer:  "/>
+                    </properties>
+                  </component>
+                  <component id="108e8" class="javax.swing.JTextField" binding="creditRekeningNrInput">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <minimumSize width="100" height="30"/>
+                      <preferredSize width="100" height="30"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
               </grid>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-            </properties>
-          </component>
-          <component id="dd28a" class="javax.swing.JTextField" binding="debitRekeningNummerInput">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-            </properties>
-          </component>
-          <component id="7e204" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Bedrag"/>
-            </properties>
-          </component>
-          <component id="abf0b" class="javax.swing.JLabel" binding="debitNaamLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Naam"/>
-            </properties>
-          </component>
-          <component id="f4611" class="javax.swing.JLabel" binding="debitSaldoLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Saldo"/>
-            </properties>
-          </component>
-          <component id="b0db6" class="javax.swing.JLabel" binding="debitNaamOutput">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Geen naam"/>
-            </properties>
-          </component>
-          <component id="5d46b" class="javax.swing.JLabel" binding="debitSaldoOutput">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Geen saldo"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="8d776" binding="creditRekening" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="270" height="312"/>
+            </children>
           </grid>
-        </constraints>
-        <properties>
-          <background color="-2072"/>
-          <doubleBuffered value="false"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="2ec92" class="javax.swing.JLabel" binding="Rekeningnummer">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Rekeningnummer"/>
-            </properties>
-          </component>
-          <component id="e730d" class="javax.swing.JLabel" binding="Bedrag">
-            <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Bedrag"/>
-            </properties>
-          </component>
-          <component id="517f9" class="javax.swing.JTextField" binding="creditRekeningNummerInput">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+          <grid id="4045f" binding="debit" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="West"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="faff1" binding="debitRekeningNrPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <grid id="f718" binding="debitNaamPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="South"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <grid id="d640a" binding="debitSaldoPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                        <constraints border-constraint="South"/>
+                        <properties/>
+                        <border type="none"/>
+                        <children>
+                          <grid id="4d6da" binding="debitBedragPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                            <constraints border-constraint="South"/>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <component id="a28ba" class="javax.swing.JLabel" binding="debitBedragLabel">
+                                <constraints border-constraint="West"/>
+                                <properties>
+                                  <text value="Bedrag:  "/>
+                                </properties>
+                              </component>
+                              <component id="bbcd" class="javax.swing.JTextField" binding="debitBedragInput">
+                                <constraints border-constraint="Center"/>
+                                <properties>
+                                  <text value="0.00"/>
+                                </properties>
+                              </component>
+                            </children>
+                          </grid>
+                          <component id="d0d9" class="javax.swing.JLabel" binding="debitSaldoLabel">
+                            <constraints border-constraint="West"/>
+                            <properties>
+                              <text value="Saldo:  "/>
+                            </properties>
+                          </component>
+                          <component id="55a08" class="javax.swing.JLabel" binding="debitSaldo">
+                            <constraints border-constraint="Center"/>
+                            <properties>
+                              <text value=""/>
+                            </properties>
+                          </component>
+                        </children>
+                      </grid>
+                      <component id="edf5e" class="javax.swing.JLabel" binding="debitNaamLabel">
+                        <constraints border-constraint="West"/>
+                        <properties>
+                          <text value="Naam:  "/>
+                        </properties>
+                      </component>
+                      <component id="8bff3" class="javax.swing.JLabel" binding="debitNaam">
+                        <constraints border-constraint="Center"/>
+                        <properties>
+                          <text value=""/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                  <component id="f8cdf" class="javax.swing.JLabel" binding="debitRekeningNrLabel">
+                    <constraints border-constraint="West"/>
+                    <properties>
+                      <text value="Rekening Nummer:  "/>
+                    </properties>
+                  </component>
+                  <component id="c4034" class="javax.swing.JTextField" binding="debitRekeningNrInput">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <minimumSize width="100" height="30"/>
+                      <preferredSize width="100" height="30"/>
+                      <text value=""/>
+                    </properties>
+                  </component>
+                </children>
               </grid>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-            </properties>
-          </component>
-          <component id="b2aa1" class="javax.swing.JTextField" binding="creditBedragInput">
-            <constraints>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
+            </children>
+          </grid>
+          <grid id="edd5d" binding="knoppenbalk" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <grid id="b7a4c" binding="debitTransacties" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="West"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="7342d" class="javax.swing.JButton" binding="debitOpnemen">
+                    <constraints border-constraint="West"/>
+                    <properties>
+                      <text value="Opnemen"/>
+                    </properties>
+                  </component>
+                  <component id="9e229" class="javax.swing.JButton" binding="debitStorten">
+                    <constraints border-constraint="East"/>
+                    <properties>
+                      <text value="Storten"/>
+                    </properties>
+                  </component>
+                  <grid id="7f03c" binding="debitZoekenPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="c0c09" class="javax.swing.JButton" binding="debitZoeken">
+                        <constraints border-constraint="Center"/>
+                        <properties>
+                          <text value="Zoeken"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
               </grid>
-            </constraints>
-            <properties>
-              <background color="-67073"/>
-              <font swing-font="ToolTip.font"/>
-            </properties>
-          </component>
-          <component id="6661f" class="javax.swing.JLabel" binding="creditNaamLabel">
-            <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Naam"/>
-            </properties>
-          </component>
-          <component id="d1d4" class="javax.swing.JLabel" binding="creditSaldoLabel">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Saldo"/>
-            </properties>
-          </component>
-          <component id="a32c7" class="javax.swing.JLabel" binding="creditNaamOutput">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Geen naam"/>
-            </properties>
-          </component>
-          <component id="e00aa" class="javax.swing.JLabel" binding="creditSaldoOutput">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font swing-font="ToolTip.font"/>
-              <text value="Geen saldo"/>
-            </properties>
-          </component>
+              <grid id="356db" binding="maakOver" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="North"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="37388" class="javax.swing.JButton" binding="overmaken">
+                    <constraints border-constraint="Center"/>
+                    <properties>
+                      <text value="Maak over &gt;&gt;"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
+              <grid id="810ed" binding="creditTransacties" layout-manager="BorderLayout" hgap="0" vgap="0">
+                <constraints border-constraint="East"/>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <component id="c8834" class="javax.swing.JButton" binding="creditOpnemen">
+                    <constraints border-constraint="West"/>
+                    <properties>
+                      <text value="Opnemen"/>
+                    </properties>
+                  </component>
+                  <component id="11cef" class="javax.swing.JButton" binding="creditStorten">
+                    <constraints border-constraint="East"/>
+                    <properties>
+                      <text value="Storten"/>
+                    </properties>
+                  </component>
+                  <grid id="5bf9a" binding="creditZoekenPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+                    <constraints border-constraint="North"/>
+                    <properties/>
+                    <border type="none"/>
+                    <children>
+                      <component id="9d7fd" class="javax.swing.JButton" binding="creditZoeken">
+                        <constraints border-constraint="Center"/>
+                        <properties>
+                          <text value="Zoeken"/>
+                        </properties>
+                      </component>
+                    </children>
+                  </grid>
+                </children>
+              </grid>
+            </children>
+          </grid>
         </children>
       </grid>
-      <component id="e392a" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font swing-font="ToolTip.font"/>
-          <text value="Debit rekening"/>
-        </properties>
-      </component>
-      <component id="6deb8" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <font swing-font="ToolTip.font"/>
-          <text value="Credit rekening"/>
-        </properties>
-      </component>
-      <hspacer id="8c81c">
-        <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
-      <hspacer id="39ac6">
-        <constraints>
-          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </hspacer>
-      <vspacer id="63e09">
-        <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <vspacer id="19c9">
-        <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <vspacer id="dcb72">
-        <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <vspacer id="762c1">
-        <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-      </vspacer>
-      <component id="1bd22" class="javax.swing.JLabel" binding="infoDialogueOutput">
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value=""/>
-        </properties>
-      </component>
     </children>
   </grid>
 </form>
