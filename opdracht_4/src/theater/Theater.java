@@ -1,32 +1,15 @@
-// OPDRACHT B:
-
-// Implementeer de klasse Theater.
-
-// DONE - Geef deze klasse een constructor met één parameter, namelijk de naam van het theater.
-
-// Ontwerp en implementeer methoden voor dit beheer van klanten :
-//
-// DONE - het maken van een nieuwe klant, het uitgeven van een nieuw klantnummer
-//
-// DONE - het opzoeken van een klant op basis van naam en telefoonnummer.
-//
-// NOTE: We laten het verwijderen van klanten buiten beschouwing
-
-//-------------------------------------------------------------------------------------------------
-
-// OPDRACHT E:
-
-// Breid de klasse Theater uit. Geef het theater een voorstelling.
-
-//De user interface zal in de uiteindelijke versie van dit programma een associatie met Theater bevatten.
-
-// Geef de klasse Theater daarom een aantal methoden zodat alle beschreven handelingen (reserveren, plaatsen, resetten) door middel van aanroepen op Theater kunnen worden uitgevoerd.
-
-//-------------------------------------------------------------------------------------------------
-
-// CLASS = DONE
-// TESTS = DONE
-// DOCS = DONE
+/*
+TODO:
+- Het is de bedoeling dat de bijgeleverde TheaterApplicatie.java je programma kan aansturen. Er zou dus, bijvoorbeeld, een nieuweVoorstelling en getAantalPlaatsen methoden in Theater moeten zijn.
+X Hoewel het een leuk ontwerp is, is het hierdoor dus ook niet de bedoeling dat de dichtsbijzijnste plaats gezocht wordt als een niet vrije plaats wordt gereserveerd
+X De functie getHoogsteKlantnummer is onnodig. Je slaat het hoogste klantnummer al op in een attribuut, deze kun je zo aanspreken.
+X Het afhandelen van Klant en Voortelling objecten is de verantwoordelijkheid van de Theater klasse. Maw, er is geen reden om publieke getters te maken die deze objecten teruggeven.
+X Dezelfde klant kan nu meerdere keren toegevoegd worden.
+- Plaats heeft volgens het klasse diagram een referentie naar Klant. De link is dus geen klantInfo attribuut, maar gewoon een Klant attribuut.
+- Het is de verantwoordelijkheid van Plaats om de status te wijzigen. Ik zou setStatus dus private maken en een publieke functie die de status naar gereserveerd en vrij zet (zoals nu ook voor plaatsToekennen). Op deze manier voorkom je ook het zetten op BEZET, zonder een klant.
+- Ik heb met de corrector overlegd en het is alleen nodig om alle niet-triviale publieke methoden te testen (getters en setters die niks aanpassen kun je negeren).
+- Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel reserveren buiten de array, een klant zoeken die niet bestaat, etc.)
+*/
 
 package theater;
 
@@ -40,6 +23,17 @@ public class Theater {
 
     private ArrayList<Klant> klanten = new ArrayList<>();
     private Voorstelling voorstelling;
+
+    private Klant zoekKlant(String naam, int telefoon){
+        Klant klant = null;
+        for (Klant k : klanten){
+            if (telefoon == k.getTelefoon() && naam.trim().toLowerCase().equals(k.getNaam().trim().toLowerCase())){
+                klant = k;
+                break;
+            }
+        }
+        return klant;
+    }
 
     /**
      * Constructor functie voor Theater.
@@ -73,41 +67,10 @@ public class Theater {
      * @param telefoon telefoonnummer van de klant
      */
     public void nieuweKlant (String naam, int telefoon){
-        klanten.add(new Klant(naam, getHoogsteklantnummer() + 1, telefoon));
-        hoogsteklantnummer++;
-    }
-
-    /**
-     * Geeft toegang tot een klant, hiervoor maken we gebruik van twee parameters naam en telefoon.
-     * @param naam naam van de gezochte klant
-     * @param telefoon telefoon van de gezochte klant
-     * @return de geselecteerde klant
-     */
-    public Klant getKlant (String naam, int telefoon){
-        Klant klant = null;
-        for (Klant k : klanten){
-            if (telefoon == k.getTelefoon() && naam.trim().toLowerCase().equals(k.getNaam().trim().toLowerCase())){
-                klant = k;
-                break;
-            }
+        if (zoekKlant(naam,telefoon) == null) {
+            klanten.add(new Klant(naam, hoogsteklantnummer + 1, telefoon));
+            hoogsteklantnummer++;
         }
-        return klant;
-    }
-
-    /**
-     * Geeft toegang tot de voorstelling die op dat moment draait in het theater
-     * @return de voorstelling
-     */
-    public Voorstelling getVoorstelling(){
-        return voorstelling;
-    }
-
-    /**
-     * Geeft het hoogste klantnummer terung.
-     * @return hoogste klantnummer
-     */
-    public int getHoogsteklantnummer(){
-        return hoogsteklantnummer;
     }
 
     /**
@@ -125,7 +88,7 @@ public class Theater {
      * @param telefoon telefoonnummer van de klant
      */
     public void plaatsKlant(String naam, int telefoon){
-        voorstelling.plaatsKlant(getKlant(naam, telefoon));
+        voorstelling.plaatsKlant(zoekKlant(naam, telefoon));
     }
 
     /**

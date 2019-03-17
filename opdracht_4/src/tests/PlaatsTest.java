@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.Before;
 import org.junit.Test;
+import theater.Klant;
 import theater.Plaats;
 
 import static org.junit.Assert.*;
@@ -38,7 +39,8 @@ public class PlaatsTest {
 
     @Test
     public void plaatsToekennen(){
-        plaats.plaatsToekennen("klant");
+        Klant klant = new Klant("Arend",1,12345678);
+        plaats.plaatsToekennen(klant);
         assertEquals(Plaats.Status.BEZET, plaats.getStatus());
     }
 

@@ -1,5 +1,3 @@
-//package theater;
-
 import theater.Theater;
 import theater.Plaats.Status;
 

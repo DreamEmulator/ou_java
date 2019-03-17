@@ -1,15 +1,3 @@
-// OPDRACHT A:
-
-// Implementeer de klasse theater.Klant.
-// Geef deze klasse een constructor waarmee alle attributen via parameters een waarde krijgen.
-// Geef de klasse verder alleen get-methoden voor de attributen, en een methode toString die de volledige klantinformatie als één string teruggeeft
-
-//-------------------------------------------------------------------------------------------------
-
-// CLASS = DONE
-// TESTS = DONE
-// DOCS = DONE
-
 package theater;
 
 public class Klant {
