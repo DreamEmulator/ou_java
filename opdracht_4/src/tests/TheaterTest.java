@@ -30,14 +30,14 @@ public class TheaterTest {
 
     @Test
     public void nieuweKlant(){
-        theater.nieuweKlant("Bartel-Jaap",06123456);
-        theater.nieuweKlant("Bill",06123456);
-        theater.nieuweKlant("Margiet",06123456);
+        theater.nieuweKlant("Bartel-Jaap","06123456");
+        theater.nieuweKlant("Bill","06123456");
+        theater.nieuweKlant("Margiet","06123456");
     }
 
     @Test
     public void getStatusPlaatsenAantal(){
-        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
+        theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
@@ -48,15 +48,15 @@ public class TheaterTest {
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        assertEquals(10, theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        assertEquals(10, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
         System.out.println("\nKlant gereserveerd: ");
         theater.printVoorstelling();
     }
 
     @Test
     public void plaatsKlant(){
-        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
-        theater.nieuweKlant("Bartel-Jaap",06123456);
+        theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
+        theater.nieuweKlant("Bartel-Jaap","06123456");
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
@@ -67,16 +67,16 @@ public class TheaterTest {
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        theater.plaatsKlant("Bartel-Jaap",06123456);
-        assertEquals(10, theater.getStatusPlaatsenAantal(Plaats.Status.BEZET));
+        theater.plaatsKlant("Bartel-Jaap","06123456");
+        assertEquals(10, theater.getAantalPlaatsen(Plaats.Status.BEZET));
         System.out.println("\nKlant geplaatst: ");
         theater.printVoorstelling();
     }
 
     @Test
     public void resetAlleReserveringen(){
-        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
-        theater.nieuweKlant("Bartel-Jaap",06123456);
+        theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
+        theater.nieuweKlant("Bartel-Jaap","06123456");
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
@@ -87,26 +87,26 @@ public class TheaterTest {
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        theater.resetAlleReserveringen();
-        assertEquals(0,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        theater.resetReservering();
+        assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
         System.out.println("\nVoorstelling geleegd: ");
         theater.printVoorstelling();
 
-        theater.nieuweVoorstellijng("Rundfunk de Musical", "13-09-2019");
-        theater.nieuweKlant("Bartel-Jaap",06123456);
+        theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
+        theater.nieuweKlant("Bartel-Jaap","06123456");
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
         theater.reserveer(4,4);
         theater.reserveer(5,5);
-        theater.plaatsKlant("Bartel-Jaap",06123456);
+        theater.plaatsKlant("Bartel-Jaap","06123456");
         theater.reserveer(6,6);
         theater.reserveer(7,7);
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
-        theater.resetAlleReserveringen();
-        assertEquals(0,theater.getStatusPlaatsenAantal(Plaats.Status.GERESERVEERD));
+        theater.resetReservering();
+        assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
         System.out.println("\nVoorstelling deels geleegd: ");
         theater.printVoorstelling();
     }

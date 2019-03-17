@@ -12,22 +12,7 @@ public class KlantTest {
 
     @Before
     public void setUp() throws Exception {
-        klant = new Klant("Bartel-Jaap",01,06123456);
-    }
-
-    @Test
-    public void getNaam() {
-        assertEquals("Bartel-Jaap",klant.getNaam());
-    }
-
-    @Test
-    public void getTelefoon() {
-        assertEquals(06123456,klant.getTelefoon());
-    }
-
-    @Test
-    public void getKlantnummer() {
-        assertEquals(1,klant.getKlantnummer());
+        klant = new Klant("Bartel-Jaap",01,"06123456");
     }
 
     @Test

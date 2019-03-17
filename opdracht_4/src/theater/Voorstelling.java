@@ -48,8 +48,10 @@ public class Voorstelling {
      * @param rij   integernrij nummer
      * @param stoel integer stoel
      */
-    public void reserveer(int rij, int stoel) {
-        voorstelling[rij - 1][stoel - 1].reserveren();
+    protected void reserveer(int rij, int stoel) {
+        if (rij > 0 && rij < Theater.AANTALTRIJEN && stoel > 0 && stoel < Theater.AANTALPERRIJ) {
+            voorstelling[rij - 1][stoel - 1].reserveren();
+        }
     }
 
     /**

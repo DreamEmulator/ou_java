@@ -4,7 +4,7 @@ public class Klant {
 
     private String naam;
     private int klantnummer;
-    private int telefoon;
+    private String telefoon;
 
     /**
      * Constructor voor Klant klasse.
@@ -12,7 +12,7 @@ public class Klant {
      * @param naam iedere klant heeft een naam, hierbij wordt voor en achternaam samengevoegd.
      * @param telefoon iedere klantheeft een telefoonnummer
      **/
-    public Klant(String naam, int klantnummer, int telefoon) {
+    public Klant(String naam, int klantnummer, String telefoon) {
         this.naam = naam;
         this.klantnummer = klantnummer;
         this.telefoon = telefoon;
@@ -30,7 +30,7 @@ public class Klant {
      * Getter.
      * @return Returns telefoonnummer van de klant
      */
-    public int getTelefoon() {
+    public String getTelefoon() {
         return telefoon;
     }
 

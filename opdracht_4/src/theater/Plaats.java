@@ -14,7 +14,7 @@ public class Plaats {
      * @param stoelnummer integer
      */
     public Plaats(int rijnummer, int stoelnummer) {
-        this.status = status.VRIJ;
+        this.status = Plaats.Status.VRIJ;
         this.rijnummer = rijnummer;
         this.stoelnummer = stoelnummer;
     }
