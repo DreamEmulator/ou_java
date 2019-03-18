@@ -60,7 +60,7 @@ public class Voorstelling {
      * @param status de gewenste status
      * @return integer van het aantal plaatsen met de gezochte status
      */
-    protected int getStatusPlaatsenAantal(Plaats.Status status) {
+    protected int getPlaatsenStatus(Plaats.Status status) {
         int aantal = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {

@@ -128,7 +128,7 @@ public class Theater {
     public int getAantalPlaatsen(Plaats.Status status) {
         int aantal = 0;
         if (voorstelling != null) {
-            aantal = voorstelling.getStatusPlaatsenAantal(status);
+            aantal = voorstelling.getPlaatsenStatus(status);
         } else {
             System.out.println("Geen voorstelling");
         }

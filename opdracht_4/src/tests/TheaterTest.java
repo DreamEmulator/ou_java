@@ -36,7 +36,7 @@ public class TheaterTest {
     }
 
     @Test
-    public void getAantalPlaatsen(){
+    public void reserveer(){
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
 
         theater.reserveer(1,1);
@@ -68,6 +68,17 @@ public class TheaterTest {
         theater.reserveer(4,4);
         theater.reserveer(5,5);
         theater.reserveer(6,6);
+
+        theater.plaatsKlant("Bartel-Jaap","06123456");
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));
+
+        theater.reserveer(0,1);
+        theater.reserveer(1,0);
+        theater.reserveer(1,-1);
+        theater.reserveer(-1,1);
+
+        theater.reserveer(100,-1);
+        theater.reserveer(-1,100);
 
         theater.plaatsKlant("Bartel-Jaap","06123456");
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));
@@ -104,9 +115,18 @@ public class TheaterTest {
         assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
     }
 
-    @Test
-    public void getNaam(){
-        assertEquals("Theater De Kaap", theater.getNaam());
+    @Test public void getAantalPlaatsen(){
+        theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
+        theater.nieuweKlant("Bartel-Jaap","06123456");
+
+        theater.reserveer(8,8);
+        theater.reserveer(9,9);
+        theater.reserveer(10,10);
+        assertEquals(147, theater.getAantalPlaatsen(Plaats.Status.VRIJ));
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.plaatsKlant("Bartel-Jaap","06123456");
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));
     }
 
 }
