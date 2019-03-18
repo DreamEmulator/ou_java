@@ -25,7 +25,7 @@ public class TheaterTest {
     Theater theater;
     @Before
     public void setUp() throws Exception{
-        theater = new Theater("Theater De Glijert");
+        theater = new Theater("Theater De Kaap");
     }
 
     @Test
@@ -36,84 +36,77 @@ public class TheaterTest {
     }
 
     @Test
-    public void getStatusPlaatsenAantal(){
+    public void getAantalPlaatsen(){
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
+
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
-        theater.reserveer(4,4);
-        theater.reserveer(5,5);
-        theater.reserveer(6,6);
-        theater.reserveer(7,7);
-        theater.reserveer(8,8);
-        theater.reserveer(9,9);
-        theater.reserveer(10,10);
-        assertEquals(10, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
-        System.out.println("\nKlant gereserveerd: ");
-        theater.printVoorstelling();
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.reserveer(1,21);
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.reserveer(21,1);
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.reserveer(-1,1);
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.reserveer(1,-1);
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.reserveer(0,0);
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
     }
 
     @Test
     public void plaatsKlant(){
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Bartel-Jaap","06123456");
-        theater.reserveer(1,1);
-        theater.reserveer(2,2);
-        theater.reserveer(3,3);
+
         theater.reserveer(4,4);
         theater.reserveer(5,5);
         theater.reserveer(6,6);
-        theater.reserveer(7,7);
-        theater.reserveer(8,8);
-        theater.reserveer(9,9);
-        theater.reserveer(10,10);
+
         theater.plaatsKlant("Bartel-Jaap","06123456");
-        assertEquals(10, theater.getAantalPlaatsen(Plaats.Status.BEZET));
-        System.out.println("\nKlant geplaatst: ");
-        theater.printVoorstelling();
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));
     }
 
     @Test
     public void resetAlleReserveringen(){
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Bartel-Jaap","06123456");
-        theater.reserveer(1,1);
-        theater.reserveer(2,2);
-        theater.reserveer(3,3);
-        theater.reserveer(4,4);
-        theater.reserveer(5,5);
-        theater.reserveer(6,6);
-        theater.reserveer(7,7);
+
         theater.reserveer(8,8);
         theater.reserveer(9,9);
         theater.reserveer(10,10);
+
         theater.resetReservering();
+
         assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
-        System.out.println("\nVoorstelling geleegd: ");
-        theater.printVoorstelling();
 
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Bartel-Jaap","06123456");
+
         theater.reserveer(1,1);
         theater.reserveer(2,2);
         theater.reserveer(3,3);
+
+        theater.plaatsKlant("Bartel-Jaap","06123456");
+
         theater.reserveer(4,4);
         theater.reserveer(5,5);
-        theater.plaatsKlant("Bartel-Jaap","06123456");
         theater.reserveer(6,6);
-        theater.reserveer(7,7);
-        theater.reserveer(8,8);
-        theater.reserveer(9,9);
-        theater.reserveer(10,10);
+
         theater.resetReservering();
+
         assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
-        System.out.println("\nVoorstelling deels geleegd: ");
-        theater.printVoorstelling();
     }
 
     @Test
     public void getNaam(){
-        assertEquals("Theater De Glijert", theater.getNaam());
+        assertEquals("Theater De Kaap", theater.getNaam());
     }
 
 }

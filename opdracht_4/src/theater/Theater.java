@@ -74,6 +74,8 @@ public class Theater {
         if (zoekKlant(naam, telefoon) == null) {
             klanten.add(new Klant(naam, hoogsteklantnummer + 1, telefoon));
             hoogsteklantnummer++;
+        } else {
+            System.out.println("Klant bestaat al");
         }
     }
 
@@ -86,6 +88,8 @@ public class Theater {
     public void reserveer(int rij, int stoel) {
         if (voorstelling != null) {
             voorstelling.reserveer(rij, stoel);
+        } else {
+            System.out.println("Geen voorstelling");
         }
     }
 
@@ -99,6 +103,8 @@ public class Theater {
         Klant klant = zoekKlant(naam, telefoon);
         if (voorstelling != null & klant != null) {
             voorstelling.plaatsKlant(klant);
+        } else {
+            System.out.println("Geen voorstelling of geen klant");
         }
     }
 
@@ -108,6 +114,8 @@ public class Theater {
     public void resetReservering() {
         if (voorstelling != null) {
             voorstelling.resetAlleReserveringen();
+        } else {
+            System.out.println("Geen voorstelling");
         }
     }
 
@@ -121,6 +129,8 @@ public class Theater {
         int aantal = 0;
         if (voorstelling != null) {
             aantal = voorstelling.getStatusPlaatsenAantal(status);
+        } else {
+            System.out.println("Geen voorstelling");
         }
         return aantal;
     }
@@ -134,6 +144,8 @@ public class Theater {
     public void printVoorstelling() {
         if (voorstelling != null) {
             voorstelling.printVoorstelling();
+        } else {
+            System.out.println("Geen voorstelling");
         }
     }
 

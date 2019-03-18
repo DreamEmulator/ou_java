@@ -49,7 +49,7 @@ public class Voorstelling {
      * @param stoel integer stoel
      */
     protected void reserveer(int rij, int stoel) {
-        if (rij > 0 && rij < Theater.AANTALTRIJEN && stoel > 0 && stoel < Theater.AANTALPERRIJ) {
+        if (rij > 0 && rij <= Theater.AANTALTRIJEN && stoel > 0 && stoel <= Theater.AANTALPERRIJ) {
             voorstelling[rij - 1][stoel - 1].reserveren();
         }
     }
