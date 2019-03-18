@@ -17,8 +17,8 @@ package theater;
 import java.util.ArrayList;
 
 public class Theater {
-    final static int AANTALTRIJEN = 15;
-    final static int AANTALPERRIJ = 10;
+    static int AANTALTRIJEN = 15;
+    static int AANTALPERRIJ = 10;
     private int hoogsteklantnummer = 0;
     private String naam;
 
@@ -104,7 +104,7 @@ public class Theater {
         if (voorstelling != null & klant != null) {
             voorstelling.plaatsKlant(klant);
         } else {
-            System.out.println("Geen voorstelling of geen klant");
+            System.out.println("Geen " + voorstelling == null ? "Voorstelling " : "Klant " + "aanwezig");
         }
     }
 
