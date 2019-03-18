@@ -14,7 +14,7 @@ public class Voorstelling {
      * @param naam  nama van de voorstelling
      * @param datum datum van de voorstelling als string
      */
-    public Voorstelling(String naam, String datum) {
+    protected Voorstelling(String naam, String datum) {
         this.naam = naam;
         this.datum = datum;
         for (int r = 0; r < Theater.AANTALTRIJEN; r++) {
@@ -29,7 +29,7 @@ public class Voorstelling {
      *
      * @return String van de naam
      */
-    public String getNaam() {
+    protected String getNaam() {
         return naam;
     }
 
@@ -38,7 +38,7 @@ public class Voorstelling {
      *
      * @return datum als String
      */
-    public String getDatum() {
+    protected String getDatum() {
         return datum;
     }
 

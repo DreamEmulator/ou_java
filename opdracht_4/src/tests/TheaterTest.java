@@ -9,6 +9,8 @@
 //        - Ik heb met de corrector overlegd en het is alleen nodig om alle niet-triviale publieke methoden te testen (getters en setters die niks aanpassen kun je negeren).
 //        - Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel reserveren buiten de array, een klant zoeken die niet bestaat, etc.)
 
+// Toelichting:
+// Ik heb de les gevolgd en alle methodes zo dicht mogelijk gezet. Hierdoor wordt alleen Theater publiekelijk beschikbaar en worden alle moethodes van Voorstelling, Plaats en Klant getest door theater.
 
 
         package tests;

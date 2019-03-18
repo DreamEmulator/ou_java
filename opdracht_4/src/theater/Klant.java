@@ -12,41 +12,25 @@ public class Klant {
      * @param naam iedere klant heeft een naam, hierbij wordt voor en achternaam samengevoegd.
      * @param telefoon iedere klantheeft een telefoonnummer
      **/
-    public Klant(String naam, int klantnummer, String telefoon) {
+    protected Klant(String naam, int klantnummer, String telefoon) {
         this.naam = naam;
         this.klantnummer = klantnummer;
         this.telefoon = telefoon;
     }
 
-    /**
-     * Getter.
-     * @return Returns naam van de klant
-     */
-    public String getNaam() {
+    protected String getNaam() {
         return naam;
     }
 
-    /**
-     * Getter.
-     * @return Returns telefoonnummer van de klant
-     */
-    public String getTelefoon() {
+    protected String getTelefoon() {
         return telefoon;
     }
 
-    /**
-     * Getter.
-     * @return Returns klantnummer van de klant
-     */
-    public int getKlantnummer(){
+    protected int getKlantnummer(){
         return klantnummer;
     }
 
-    /**
-     * Getter.
-     * @return Returns concatenated string van alle klant attributen
-     */
-    public String klantToString() {
+    protected String klantToString() {
         return "Klant{" +
                 "naam='" + naam + '\'' +
                 ", klantnummer=" + klantnummer +
