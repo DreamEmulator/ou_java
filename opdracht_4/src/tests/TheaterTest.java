@@ -1,5 +1,5 @@
 // Toelichting:
-// Ik heb de les gevolgd en alle methodes zo dicht mogelijk gezet. Hierdoor wordt alleen Theater publiekelijk beschikbaar en worden alle moethodes van Voorstelling, Plaats en Klant getest door theater.
+// Aan de hand van feedback in de les heb ik alle methodes zo dicht mogelijk gezet. Hierdoor wordt alleen Theater publiekelijk beschikbaar en worden alle moethodes van Voorstelling, Plaats en Klant getest via Theater. Ook zijn alle triviale getters en setters expres achterwege gelaten.
 
 package tests;
 
