@@ -1,3 +1,6 @@
+//Toelichting:
+//Ik heb in regel 20 en 21 nieuwe klanten toegevoegd, wellicht hadden deze standaard in het theater geplaatst moeten worden maar dat voelde een beetje vreemd om te doen
+
 import theater.Theater;
 import theater.Plaats.Status;
 
@@ -14,7 +17,6 @@ public class TheaterApplicatie {
 
     Theater theater = new Theater("Chass Theater");
     theater.nieuweVoorstelling("War Horse", "26-12-2014");
-    // voeg klanten toe
     theater.nieuweKlant("Kok", "0678912345");
     theater.nieuweKlant("Pootjes", "0654321987");
     printInfo(theater);

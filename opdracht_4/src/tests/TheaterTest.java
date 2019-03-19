@@ -1,5 +1,6 @@
 // Toelichting:
 // Ik heb de les gevolgd en alle methodes zo dicht mogelijk gezet. Hierdoor wordt alleen Theater publiekelijk beschikbaar en worden alle moethodes van Voorstelling, Plaats en Klant getest door theater.
+
 package tests;
 
 import org.junit.Before;
@@ -26,10 +27,7 @@ public class TheaterTest {
         theater.reserveren(3,3);
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
-        theater.reserveren(1,Theater.AANTALPERRIJ + 10);
-        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
-
-        theater.reserveren(Theater.AANTALTRIJEN + 10,1);
+        theater.reserveren(Theater.AANTALTRIJEN + 10,Theater.AANTALPERRIJ + 10);
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
         theater.reserveren(-1,1);

@@ -2,7 +2,7 @@
 // Voorstelling heeft geen publieke methoden omdat alle toegang via Theater moet gaan
 // Ik heb alle ongebruikte methodes weggehaald, zodoende zijn er geen getters voor de naam en datum
 // Punt 2 van opdracht D was: "Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd."
-// Ik heb hier twee methodes van gemaakt :reserveren en maakVrij, zodat ik niet weer een methode meerdere mogelijke handelingen uit laat voeren. Het is wat duidelijker zo wat ze precies doen.
+// Ik heb hier twee methodes van gemaakt: reserveer en maakVrij, zodat ik niet weer een methode meerdere mogelijke handelingen uit laat voeren. Het is wat duidelijker zo wat ze precies doen.
 
 package theater;
 
@@ -31,7 +31,7 @@ public class Voorstelling {
 
     /**
      * Reserveert een stoel voor de klant.
-     * De voorstelling checked alleen of de plaats bestaat is, het is de verantoordelijkheid van de plaats zelf om de status te wijzigen
+     * De voorstelling checked alleen of de plaats bestaat is, het is de verantoordelijkheid van de plaats zelf om de status te wijzigen.
      *
      * @param rij   integer rij
      * @param stoel integer stoel
@@ -44,7 +44,7 @@ public class Voorstelling {
 
     /**
      * Maakt een stoel weer vrij.
-     * De voorstelling checked alleen of de plaats bestaat is, het is de verantoordelijkheid van de plaats zelf om de status te wijzigen
+     * De voorstelling checked alleen of de plaats bestaat is, het is de verantoordelijkheid van de plaats zelf om de status te wijzigen.
      *
      * @param rij   integer rij
      * @param stoel integer stoel
@@ -58,8 +58,8 @@ public class Voorstelling {
     /**
      * Vraagt de status van iedere plaats op, checkt ze tegen de gewenste status, telt deze op en geeft de totale hoeveelheid terug.
      *
-     * @param status de gewenste status
-     * @return totale aantal plaatsen met de gezochte status
+     * @param status de gevraagde status
+     * @return totale aantal plaatsen met de gevraagde status
      */
     protected int getPlaatsenStatus(Plaats.Status status) {
         int aantal = 0;
@@ -74,7 +74,7 @@ public class Voorstelling {
     }
 
     /**
-     * Plaatst de klant op de reeds gereserveerde plaatsen. Ik hen nagedacht om eerst de aantal gereserveerde op te zoeken en dan op te houden als dat bereikt is. Hier is alleen geen efficientie slag omdat je dan ook al een keer helemaal door de array bent gegaan.
+     * Plaatst de klant op de reeds gereserveerde plaatsen.
      *
      * @param klant de klant die de plaatsen krijgt
      */

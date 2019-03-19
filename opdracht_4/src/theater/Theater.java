@@ -9,7 +9,7 @@ public class Theater {
     public final static int AANTALTRIJEN = 15;
     public final static int AANTALPERRIJ = 10;
 
-    private int hoogsteklantnummer = 0;
+    private int hoogsteKlantnummer = 0;
     private String naam;
 
     private ArrayList<Klant> klanten = new ArrayList<>();
@@ -37,7 +37,8 @@ public class Theater {
     }
 
     /**
-     * Maakt een nieuwe voorstelling aan, nu is er nog maar ruimte voor 1 voorstelling.
+     * Maakt een nieuwe voorstelling aan.
+     * Nu is er nog maar ruimte voor 1 voorstelling.
      *
      * @param naam  naam van de voorstelling
      * @param datum datum dat deze plaatsvindt
@@ -47,21 +48,21 @@ public class Theater {
     }
 
     /**
-     * Voegt een nieuwe klant toe aan de ArrayList van het theater.
-     * Omdat er geen klanten verwijderd kunnen worden kunnen we de size van de ArrayList gebruiker als klantennummer
+     * Voegt een nieuwe klant toe aan de ArrayList van klanten van het theater, mits deze nog niet is toegevoegd.
      *
      * @param naam     naam van de klant
      * @param telefoon telefoonnummer van de klant
      */
     public void nieuweKlant(String naam, String telefoon) {
         if (zoekKlant(naam, telefoon) == null) {
-            klanten.add(new Klant(naam, hoogsteklantnummer + 1, telefoon));
-            hoogsteklantnummer++;
+            klanten.add(new Klant(naam, hoogsteKlantnummer + 1, telefoon));
+            hoogsteKlantnummer++;
         }
     }
 
     /**
      * Reserveert een plaats voor een klant.
+     * Een gereserveerde plaats kan weer vrijgemaakt worden.
      *
      * @param rij   nummer van de rij
      * @param stoel nummer van de stoel
@@ -73,7 +74,8 @@ public class Theater {
     }
 
     /**
-     * Als een klant bevestigd is wordt de klant geplaatst, deze is dan bezet.
+     * Als een klant plaatsen heeft gereserveerd kan deze worden geplaatst, waarna ze op bezet komen te staan.
+     * Dit kan niet meer gewijzigd worden.
      *
      * @param naam     naam van de klant
      * @param telefoon telefoonnummer van de klant
@@ -86,7 +88,7 @@ public class Theater {
     }
 
     /**
-     * Als de klant uiteindelijk niet plaatst, moeten de reserveringen reset worden.
+     * Als de klant uiteindelijk niet geplaatst wordt, moeten alle reserveringen weer reset worden.
      */
     public void resetten() {
         if (voorstelling != null) {
