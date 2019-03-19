@@ -11,6 +11,7 @@ public class Plaats {
 
     /**
      * Constructor voor de Plaats, deze accepteert de rij en stoel als integers voor de locatie in de zaal.
+     *
      * @param rijnummer   integer
      * @param stoelnummer integer
      */
@@ -20,13 +21,15 @@ public class Plaats {
         this.stoelnummer = stoelnummer;
     }
 
-    public Status getStatus() { return status; }
+    public Status getStatus() {
+        return status;
+    }
 
     /**
      * Set de status van de plaats op GERESERVEERD.
      */
     protected void reserveren() {
-        if (Plaats.Status.VRIJ == status) {
+        if (Status.VRIJ == status) {
             status = Status.GERESERVEERD;
         }
     }
@@ -35,17 +38,18 @@ public class Plaats {
      * Set de status van de plaats op VRIJ.
      */
     protected void vrijmaken() {
-        if (Plaats.Status.GERESERVEERD == status) {
+        if (Status.GERESERVEERD == status) {
             status = Status.VRIJ;
         }
     }
 
     /**
      * Zet de status voor de plaats naar bezet en slaat de info van die klant op voor de plaats.
+     *
      * @param klant wordt aan de klant attribuut van plaats toegekend
      */
     protected void plaatsToekennen(Klant klant) {
-        if (Plaats.Status.GERESERVEERD == status) {
+        if (Status.GERESERVEERD == status) {
             status = Status.BEZET;
             this.klant = klant;
         }
@@ -53,6 +57,7 @@ public class Plaats {
 
     /**
      * Geeft de plaats terug als string.
+     *
      * @return plaats als string
      */
     public String plaatsToString() {

@@ -1,5 +1,7 @@
 // Toelichting:
 // Ik heb alle ongebruikte methodes weggehaald, zodoende zijn er geen getters voor de naam en datum
+// Volgens de opdracht moezst ik: "Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd."
+// Ik heb hier twee methodes van gemaakt :reserveer en maakVrij. Dit vind ik wat duidelijker dan een reserveer methode die ook het omgekeerde kan doen.
 
 package theater;
 
@@ -26,7 +28,7 @@ public class Voorstelling {
     }
 
     /**
-     * Reserveert een stoel voor de klant, als deze stoel niet beschikbaar is gaat deze opzoek naar de dichtsbijzijnde met hogere rij en stoel nummers.
+     * Reserveert een stoel voor de klant.
      *
      * @param rij   integernrij nummer
      * @param stoel integer stoel
@@ -34,6 +36,18 @@ public class Voorstelling {
     protected void reserveer(int rij, int stoel) {
         if (rij > 0 && rij <= Theater.AANTALTRIJEN && stoel > 0 && stoel <= Theater.AANTALPERRIJ) {
             voorstelling[rij - 1][stoel - 1].reserveren();
+        }
+    }
+
+    /**
+     * Maak een stoel weer vrij.
+     *
+     * @param rij   integernrij nummer
+     * @param stoel integer stoel
+     */
+    protected void maakVrij(int rij, int stoel) {
+        if (rij > 0 && rij <= Theater.AANTALTRIJEN && stoel > 0 && stoel <= Theater.AANTALPERRIJ) {
+            voorstelling[rij - 1][stoel - 1].vrijmaken();
         }
     }
 

@@ -11,6 +11,8 @@ X Ik heb met de corrector overlegd en het is alleen nodig om alle niet-triviale 
 - Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel reserveren buiten de array, een klant zoeken die niet bestaat, etc.)
 - Zorg dat alle methodes zo dicht mogelijk staan
 */
+// Toelichting:
+// Ik heb heb checks gemaakt voor nullPointers. Als deze falen schrijf ik wat uit naar, omdat anders de fout volledig verborgen blijft
 
 package theater;
 
@@ -76,8 +78,6 @@ public class Theater {
         if (zoekKlant(naam, telefoon) == null) {
             klanten.add(new Klant(naam, hoogsteklantnummer + 1, telefoon));
             hoogsteklantnummer++;
-        } else {
-            System.out.println("Klant bestaat al");
         }
     }
 
@@ -90,8 +90,6 @@ public class Theater {
     public void reserveer(int rij, int stoel) {
         if (voorstelling != null) {
             voorstelling.reserveer(rij, stoel);
-        } else {
-            System.out.println("Geen voorstelling aanwezig");
         }
     }
 
@@ -105,13 +103,6 @@ public class Theater {
         Klant klant = zoekKlant(naam, telefoon);
         if (voorstelling != null && klant != null) {
             voorstelling.plaatsKlant(klant);
-        } else {
-            if (voorstelling == null) {
-                System.out.println("Geen voorstelling aanwezig");
-            }
-            if (klant == null) {
-                System.out.println("Geen klant gevonden");
-            }
         }
     }
 
@@ -121,8 +112,6 @@ public class Theater {
     public void resetReservering() {
         if (voorstelling != null) {
             voorstelling.resetAlleReserveringen();
-        } else {
-            System.out.println("Geen voorstelling aanwezig");
         }
     }
 
@@ -136,8 +125,6 @@ public class Theater {
         int aantal = 0;
         if (voorstelling != null) {
             aantal = voorstelling.getPlaatsenStatus(status);
-        } else {
-            System.out.println("Geen voorstelling aanwezig");
         }
         return aantal;
     }
