@@ -1,7 +1,7 @@
 // Toelichting:
 // Ik heb alle ongebruikte methodes weggehaald, zodoende zijn er geen getters voor de naam en datum
 // Volgens de opdracht moezst ik: "Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd."
-// Ik heb hier twee methodes van gemaakt :reserveer en maakVrij. Dit vind ik wat duidelijker dan een reserveer methode die ook het omgekeerde kan doen.
+// Ik heb hier twee methodes van gemaakt :reserveren en maakVrij. Dit vind ik wat duidelijker dan een reserveren methode die ook het omgekeerde kan doen.
 
 package theater;
 
@@ -35,7 +35,7 @@ public class Voorstelling {
      */
     protected void reserveer(int rij, int stoel) {
         if (rij > 0 && rij <= Theater.AANTALTRIJEN && stoel > 0 && stoel <= Theater.AANTALPERRIJ) {
-            voorstelling[rij - 1][stoel - 1].reserveren();
+            voorstelling[rij - 1][stoel - 1].plaatsReserveren();
         }
     }
 
@@ -47,7 +47,7 @@ public class Voorstelling {
      */
     protected void maakVrij(int rij, int stoel) {
         if (rij > 0 && rij <= Theater.AANTALTRIJEN && stoel > 0 && stoel <= Theater.AANTALPERRIJ) {
-            voorstelling[rij - 1][stoel - 1].vrijmaken();
+            voorstelling[rij - 1][stoel - 1].plaatVrijmaken();
         }
     }
 
@@ -77,7 +77,7 @@ public class Voorstelling {
     protected void plaatsKlant(Klant klant) {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                plaats.plaatsToekennen(klant);
+                plaats.plaatsBezetten(klant);
             }
         }
     }
@@ -88,7 +88,7 @@ public class Voorstelling {
     protected void resetAlleReserveringen() {
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
-                plaats.vrijmaken();
+                plaats.plaatVrijmaken();
             }
         }
     }

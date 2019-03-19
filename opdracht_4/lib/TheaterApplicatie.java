@@ -18,32 +18,32 @@ public class TheaterApplicatie {
     theater.nieuweKlant("Kok", "0678912345");
     theater.nieuweKlant("Pootjes", "0654321987");
     printInfo(theater);
-    // reserveren een aantal plaatsen
-    theater.reserveer(3, 3);
-    theater.reserveer(3, 4);
-    theater.reserveer(3, 5);
-    theater.reserveer(3, 6);
-    theater.reserveer(-1, 1); //  buiten grenzen
-    theater.reserveer(100, 200); // buiten grenzen
+    // plaatsReserveren een aantal plaatsen
+    theater.reserveren(3, 3);
+    theater.reserveren(3, 4);
+    theater.reserveren(3, 5);
+    theater.reserveren(3, 6);
+    theater.reserveren(-1, 1); //  buiten grenzen
+    theater.reserveren(100, 200); // buiten grenzen
     printInfo(theater);
     // plaats klant op gereserveerde plaatsen
-    theater.plaatsKlant("Kok", "0678912345");
+    theater.plaatsen("Kok", "0678912345");
     printInfo(theater);
-    // reserveren een aantal plaatsen
-    theater.reserveer(3, 3); // is al bezet
-    theater.reserveer(4, 3);
-    theater.reserveer(4, 4);
+    // plaatsReserveren een aantal plaatsen
+    theater.reserveren(3, 3); // is al bezet
+    theater.reserveren(4, 3);
+    theater.reserveren(4, 4);
     printInfo(theater);
     // plaats klant op gereserveerde plaatsen
-    theater.plaatsKlant("Pootjes", "0654321987");
+    theater.plaatsen("Pootjes", "0654321987");
     printInfo(theater);
-    // reserveren een aantal plaatsen
-    theater.reserveer(5, 1);
-    theater.reserveer(5, 2);
-    theater.reserveer(5, 3);
+    // plaatsReserveren een aantal plaatsen
+    theater.reserveren(5, 1);
+    theater.reserveren(5, 2);
+    theater.reserveren(5, 3);
     printInfo(theater);
     // cancel reserveringen
-    theater.resetReservering();
+    theater.resetten();
     printInfo(theater);
   }
 

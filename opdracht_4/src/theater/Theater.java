@@ -6,9 +6,9 @@ X De functie getHoogsteKlantnummer is onnodig. Je slaat het hoogste klantnummer 
 X Het afhandelen van Klant en Voortelling objecten is de verantwoordelijkheid van de Theater klasse. Maw, er is geen reden om publieke getters te maken die deze objecten teruggeven.
 X Dezelfde klant kan nu meerdere keren toegevoegd worden.
 X Plaats heeft volgens het klasse diagram een referentie naar Klant. De link is dus geen klantInfo attribuut, maar gewoon een Klant attribuut.
-? Het is de verantwoordelijkheid van Plaats om de status te wijzigen. Ik zou setStatus dus private maken en een publieke functie die de status naar gereserveerd en vrij zet (zoals nu ook voor plaatsToekennen). Op deze manier voorkom je ook het zetten op BEZET, zonder een klant.
+? Het is de verantwoordelijkheid van Plaats om de status te wijzigen. Ik zou setStatus dus private maken en een publieke functie die de status naar gereserveerd en vrij zet (zoals nu ook voor plaatsBezetten). Op deze manier voorkom je ook het zetten op BEZET, zonder een klant.
 X Ik heb met de corrector overlegd en het is alleen nodig om alle niet-triviale publieke methoden te testen (getters en setters die niks aanpassen kun je negeren).
-- Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel reserveren buiten de array, een klant zoeken die niet bestaat, etc.)
+- Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel plaatsReserveren buiten de array, een klant zoeken die niet bestaat, etc.)
 - Zorg dat alle methodes zo dicht mogelijk staan
 */
 // Toelichting:
@@ -49,14 +49,6 @@ public class Theater {
         this.naam = naam;
     }
 
-    public String getNaam() {
-        return naam;
-    }
-
-    public int getHoogsteklantnummer() {
-        return hoogsteklantnummer;
-    }
-
     /**
      * Maakt een nieuwe voorstelling aan, nu is er nog maar ruimte voor 1 voorstelling.
      *
@@ -87,7 +79,7 @@ public class Theater {
      * @param rij   nummer van de rij
      * @param stoel nummer van de stoel
      */
-    public void reserveer(int rij, int stoel) {
+    public void reserveren(int rij, int stoel) {
         if (voorstelling != null) {
             voorstelling.reserveer(rij, stoel);
         }
@@ -99,7 +91,7 @@ public class Theater {
      * @param naam     naam van de klant
      * @param telefoon telefoonnummer van de klant
      */
-    public void plaatsKlant(String naam, String telefoon) {
+    public void plaatsen(String naam, String telefoon) {
         Klant klant = zoekKlant(naam, telefoon);
         if (voorstelling != null && klant != null) {
             voorstelling.plaatsKlant(klant);
@@ -109,7 +101,7 @@ public class Theater {
     /**
      * Als de klant uiteindelijk niet plaatst, moeten de reserveringen reset worden.
      */
-    public void resetReservering() {
+    public void resetten() {
         if (voorstelling != null) {
             voorstelling.resetAlleReserveringen();
         }

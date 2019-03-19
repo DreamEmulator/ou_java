@@ -28,7 +28,7 @@ public class Plaats {
     /**
      * Set de status van de plaats op GERESERVEERD.
      */
-    protected void reserveren() {
+    protected void plaatsReserveren() {
         if (Status.VRIJ == status) {
             status = Status.GERESERVEERD;
         }
@@ -37,7 +37,7 @@ public class Plaats {
     /**
      * Set de status van de plaats op VRIJ.
      */
-    protected void vrijmaken() {
+    protected void plaatVrijmaken() {
         if (Status.GERESERVEERD == status) {
             status = Status.VRIJ;
         }
@@ -48,7 +48,7 @@ public class Plaats {
      *
      * @param klant wordt aan de klant attribuut van plaats toegekend
      */
-    protected void plaatsToekennen(Klant klant) {
+    protected void plaatsBezetten(Klant klant) {
         if (Status.GERESERVEERD == status) {
             status = Status.BEZET;
             this.klant = klant;
