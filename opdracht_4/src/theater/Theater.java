@@ -1,16 +1,3 @@
-/*
-TODO:
-- Het is de bedoeling dat de bijgeleverde TheaterApplicatie.java je programma kan aansturen. Er zou dus, bijvoorbeeld, een nieuweVoorstelling en getAantalPlaatsen methoden in Theater moeten zijn.
-X Hoewel het een leuk ontwerp is, is het hierdoor dus ook niet de bedoeling dat de dichtsbijzijnste plaats gezocht wordt als een niet vrije plaats wordt gereserveerd
-X De functie getHoogsteKlantnummer is onnodig. Je slaat het hoogste klantnummer al op in een attribuut, deze kun je zo aanspreken.
-X Het afhandelen van Klant en Voortelling objecten is de verantwoordelijkheid van de Theater klasse. Maw, er is geen reden om publieke getters te maken die deze objecten teruggeven.
-X Dezelfde klant kan nu meerdere keren toegevoegd worden.
-X Plaats heeft volgens het klasse diagram een referentie naar Klant. De link is dus geen klantInfo attribuut, maar gewoon een Klant attribuut.
-? Het is de verantwoordelijkheid van Plaats om de status te wijzigen. Ik zou setStatus dus private maken en een publieke functie die de status naar gereserveerd en vrij zet (zoals nu ook voor plaatsBezetten). Op deze manier voorkom je ook het zetten op BEZET, zonder een klant.
-X Ik heb met de corrector overlegd en het is alleen nodig om alle niet-triviale publieke methoden te testen (getters en setters die niks aanpassen kun je negeren).
-- Breidt je testen uit. Test ook voor zaken die fout kunnen gaan (een stoel plaatsReserveren buiten de array, een klant zoeken die niet bestaat, etc.)
-- Zorg dat alle methodes zo dicht mogelijk staan
-*/
 // Toelichting:
 // Ik heb heb checks gemaakt voor nullPointers. Als deze falen schrijf ik wat uit naar, omdat anders de fout volledig verborgen blijft
 
