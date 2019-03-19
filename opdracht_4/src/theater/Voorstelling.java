@@ -1,6 +1,8 @@
 // Toelichting:
 // Voorstelling heeft geen publieke methoden omdat alle toegang via Theater moet gaan
+
 // Ik heb alle ongebruikte methodes weggehaald, zodoende zijn er geen getters voor de naam en datum
+
 // Punt 2 van opdracht D was: "Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd."
 // Ik heb hier twee methodes van gemaakt: reserveer en maakVrij, zodat ik niet weer een methode meerdere mogelijke handelingen uit laat voeren. Het is wat duidelijker zo wat ze precies doen.
 
