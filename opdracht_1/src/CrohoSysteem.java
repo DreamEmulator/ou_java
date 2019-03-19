@@ -46,11 +46,7 @@ public class CrohoSysteem {
         }
 
         for (Instelling i : croho.getInstellingen()) {
-            String plaatsnaam = i.getPlaats().getNaam();
-            int huidigAantaal = plaatsTotalen.get(plaatsnaam);
-            int nieuwAantal = i.getAantalStudenten();
-
-            plaatsTotalen.put(plaatsnaam, (huidigAantaal + nieuwAantal));
+            plaatsTotalen.put(i.getPlaats().getNaam(), (plaatsTotalen.get(i.getPlaats().getNaam()) + i.getAantalStudenten()));
         }
 
         for (String i: plaatsTotalen.keySet()) {

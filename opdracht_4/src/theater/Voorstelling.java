@@ -1,6 +1,7 @@
-package theater;
+// Toelichting:
+// Ik heb alle ongebruikte methodes weggehaald, zodoende zijn er geen getters voor de naam en datum
 
-import java.text.DecimalFormat;
+package theater;
 
 public class Voorstelling {
 
@@ -25,24 +26,6 @@ public class Voorstelling {
     }
 
     /**
-     * Getter geeft de naam van de voorstelling terug.
-     *
-     * @return String van de naam
-     */
-    protected String getNaam() {
-        return naam;
-    }
-
-    /**
-     * Getter datum geeft de datum terug als string.
-     *
-     * @return datum als String
-     */
-    protected String getDatum() {
-        return datum;
-    }
-
-    /**
      * Reserveert een stoel voor de klant, als deze stoel niet beschikbaar is gaat deze opzoek naar de dichtsbijzijnde met hogere rij en stoel nummers.
      *
      * @param rij   integernrij nummer
@@ -60,7 +43,7 @@ public class Voorstelling {
      * @param status de gewenste status
      * @return integer van het aantal plaatsen met de gezochte status
      */
-    protected int getPlaatsenStatus(Plaats.Status status) {
+    public int getPlaatsenStatus(Plaats.Status status) {
         int aantal = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
@@ -96,33 +79,4 @@ public class Voorstelling {
         }
     }
 
-
-    /**
-     * Print de voorsteeling
-     */
-    protected void printVoorstelling() {
-        String print = "";
-        DecimalFormat df = new DecimalFormat("00");
-        for (int r = 0; r < Theater.AANTALTRIJEN; r++) {
-            print += "Rij " + df.format(r + 1) + ": ";
-            for (int p = 0; p < Theater.AANTALPERRIJ; p++) {
-                Plaats plaats = voorstelling[r][p];
-                switch (plaats.getStatus()) {
-                    case VRIJ:
-                        print += "V";
-                        break;
-                    case GERESERVEERD:
-                        print += "R";
-                        break;
-                    case BEZET:
-                        print += "B";
-                        break;
-                }
-                if (p == voorstelling[0].length - 1) {
-                    System.out.println(print);
-                    print = "";
-                }
-            }
-        }
-    }
 }

@@ -11,9 +11,7 @@
 
 // Toelichting:
 // Ik heb de les gevolgd en alle methodes zo dicht mogelijk gezet. Hierdoor wordt alleen Theater publiekelijk beschikbaar en worden alle moethodes van Voorstelling, Plaats en Klant getest door theater.
-
-
-        package tests;
+package tests;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,13 +26,6 @@ public class TheaterTest {
     @Before
     public void setUp() throws Exception{
         theater = new Theater("Theater De Kaap");
-    }
-
-    @Test
-    public void nieuweKlant(){
-        theater.nieuweKlant("Bartel-Jaap","06123456");
-        theater.nieuweKlant("Bill","06123456");
-        theater.nieuweKlant("Margiet","06123456");
     }
 
     @Test
@@ -87,7 +78,7 @@ public class TheaterTest {
     }
 
     @Test
-    public void resetAlleReserveringen(){
+    public void resetReservering(){
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Bartel-Jaap","06123456");
 
@@ -100,7 +91,6 @@ public class TheaterTest {
         assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
-        theater.nieuweKlant("Bartel-Jaap","06123456");
 
         theater.reserveer(1,1);
         theater.reserveer(2,2);
@@ -117,7 +107,8 @@ public class TheaterTest {
         assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
     }
 
-    @Test public void getAantalPlaatsen(){
+    @Test
+    public void getAantalPlaatsen(){
         theater.nieuweVoorstelling("Rundfunk de Musical", "13-09-2019");
         theater.nieuweKlant("Bartel-Jaap","06123456");
 

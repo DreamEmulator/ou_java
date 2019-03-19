@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class Theater {
     static int AANTALTRIJEN = 15;
     static int AANTALPERRIJ = 10;
+
     private int hoogsteklantnummer = 0;
     private String naam;
 
     private ArrayList<Klant> klanten = new ArrayList<>();
+
     private Voorstelling voorstelling;
 
     private Klant zoekKlant(String naam, String telefoon) {
@@ -45,12 +47,12 @@ public class Theater {
         this.naam = naam;
     }
 
-    /**
-     * Verleend toegang to de naam van het theater.
-     *
-     * @return naam van theater
-     */
-    public String getNaam() { return naam;
+    public String getNaam() {
+        return naam;
+    }
+
+    public int getHoogsteklantnummer() {
+        return hoogsteklantnummer;
     }
 
     /**
@@ -89,7 +91,7 @@ public class Theater {
         if (voorstelling != null) {
             voorstelling.reserveer(rij, stoel);
         } else {
-            System.out.println("Geen voorstelling");
+            System.out.println("Geen voorstelling aanwezig");
         }
     }
 
@@ -101,10 +103,15 @@ public class Theater {
      */
     public void plaatsKlant(String naam, String telefoon) {
         Klant klant = zoekKlant(naam, telefoon);
-        if (voorstelling != null & klant != null) {
+        if (voorstelling != null && klant != null) {
             voorstelling.plaatsKlant(klant);
         } else {
-            System.out.println("Geen " + voorstelling == null ? "Voorstelling " : "Klant " + "aanwezig");
+            if (voorstelling == null) {
+                System.out.println("Geen voorstelling aanwezig");
+            }
+            if (klant == null) {
+                System.out.println("Geen klant gevonden");
+            }
         }
     }
 
@@ -115,7 +122,7 @@ public class Theater {
         if (voorstelling != null) {
             voorstelling.resetAlleReserveringen();
         } else {
-            System.out.println("Geen voorstelling");
+            System.out.println("Geen voorstelling aanwezig");
         }
     }
 
@@ -130,23 +137,9 @@ public class Theater {
         if (voorstelling != null) {
             aantal = voorstelling.getPlaatsenStatus(status);
         } else {
-            System.out.println("Geen voorstelling");
+            System.out.println("Geen voorstelling aanwezig");
         }
         return aantal;
-    }
-
-    /**
-     * Print de voorstelling als diagram.
-     * V = Vrij
-     * R = Gereserveerd
-     * B = Bezet
-     */
-    public void printVoorstelling() {
-        if (voorstelling != null) {
-            voorstelling.printVoorstelling();
-        } else {
-            System.out.println("Geen voorstelling");
-        }
     }
 
 }

@@ -4,7 +4,6 @@ public class Plaats {
 
     public enum Status {VRIJ, BEZET, GERESERVEERD}
 
-    ;
     private Status status;
     private int rijnummer;
     private int stoelnummer;
@@ -21,15 +20,7 @@ public class Plaats {
         this.stoelnummer = stoelnummer;
     }
 
-    protected Status getStatus() { return status; }
-
-    protected int getRijnummer() {
-        return rijnummer;
-    }
-
-    protected int getStoelnummer() {
-        return stoelnummer;
-    }
+    public Status getStatus() { return status; }
 
     /**
      * Set de status van de plaats op GERESERVEERD.
@@ -64,7 +55,7 @@ public class Plaats {
      * Geeft de plaats terug als string.
      * @return plaats als string
      */
-    protected String plaatsToString() {
+    public String plaatsToString() {
         return "Plaats{" +
                 "status=" + status +
                 ", rijnummer=" + rijnummer +
