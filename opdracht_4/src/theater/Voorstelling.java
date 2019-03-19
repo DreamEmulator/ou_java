@@ -1,7 +1,8 @@
 // Toelichting:
+// Voorstelling heeft geen publieke methoden omdat alle toegang via Theater moet gaan
 // Ik heb alle ongebruikte methodes weggehaald, zodoende zijn er geen getters voor de naam en datum
-// Volgens de opdracht moezst ik: "Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd."
-// Ik heb hier twee methodes van gemaakt :reserveren en maakVrij. Dit vind ik wat duidelijker dan een reserveren methode die ook het omgekeerde kan doen.
+// Punt 2 van opdracht D was: "Geef de klasse een methode die de reserveringsstatus van een bepaalde plaats (rijnummer, stoelnummer) kan wijzigen van VRIJ naar GERESERVEERD of omgekeerd."
+// Ik heb hier twee methodes van gemaakt :reserveren en maakVrij, zodat ik niet weer een methode meerdere mogelijke handelingen uit laat voeren. Het is wat duidelijker zo wat ze precies doen.
 
 package theater;
 
@@ -13,9 +14,10 @@ public class Voorstelling {
 
     /**
      * Constructor voor de klasse, vraagt de naam en datum van de voorstelling.
+     * Maak gebruik van constanten: Theater.AANTALTRIJEN en Theater.AANTALPERRIJ om een twee-dimensionale array op te bouwen van het theater
      *
-     * @param naam  nama van de voorstelling
-     * @param datum datum van de voorstelling als string
+     * @param naam  naam van de voorstelling
+     * @param datum datum van de voorstelling
      */
     protected Voorstelling(String naam, String datum) {
         this.naam = naam;
@@ -29,8 +31,9 @@ public class Voorstelling {
 
     /**
      * Reserveert een stoel voor de klant.
+     * De voorstelling checked alleen of de plaats bestaat is, het is de verantoordelijkheid van de plaats zelf om de status te wijzigen
      *
-     * @param rij   integernrij nummer
+     * @param rij   integer rij
      * @param stoel integer stoel
      */
     protected void reserveer(int rij, int stoel) {
@@ -40,9 +43,10 @@ public class Voorstelling {
     }
 
     /**
-     * Maak een stoel weer vrij.
+     * Maakt een stoel weer vrij.
+     * De voorstelling checked alleen of de plaats bestaat is, het is de verantoordelijkheid van de plaats zelf om de status te wijzigen
      *
-     * @param rij   integernrij nummer
+     * @param rij   integer rij
      * @param stoel integer stoel
      */
     protected void maakVrij(int rij, int stoel) {
@@ -52,12 +56,12 @@ public class Voorstelling {
     }
 
     /**
-     * Loopt alle plekken af en checkt ze tegen de gewenste status, telt deze op en geeft ze terug.
+     * Vraagt de status van iedere plaats op, checkt ze tegen de gewenste status, telt deze op en geeft de totale hoeveelheid terug.
      *
      * @param status de gewenste status
-     * @return integer van het aantal plaatsen met de gezochte status
+     * @return totale aantal plaatsen met de gezochte status
      */
-    public int getPlaatsenStatus(Plaats.Status status) {
+    protected int getPlaatsenStatus(Plaats.Status status) {
         int aantal = 0;
         for (Plaats[] rij : voorstelling) {
             for (Plaats plaats : rij) {
@@ -72,7 +76,7 @@ public class Voorstelling {
     /**
      * Plaatst de klant op de reeds gereserveerde plaatsen. Ik hen nagedacht om eerst de aantal gereserveerde op te zoeken en dan op te houden als dat bereikt is. Hier is alleen geen efficientie slag omdat je dan ook al een keer helemaal door de array bent gegaan.
      *
-     * @param klant de klant die de olaatsen krijgt
+     * @param klant de klant die de plaatsen krijgt
      */
     protected void plaatsKlant(Klant klant) {
         for (Plaats[] rij : voorstelling) {
@@ -84,6 +88,7 @@ public class Voorstelling {
 
     /**
      * Zet de status van alle plaatsen die gereserveerd zijn terug naar vrij
+     * Het is de verantoordelijkheid van de plaats zelf om de status te wijzigen
      */
     protected void resetAlleReserveringen() {
         for (Plaats[] rij : voorstelling) {

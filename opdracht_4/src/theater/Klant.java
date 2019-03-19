@@ -1,3 +1,6 @@
+// Toelichting:
+// Klant heeft geen publieke methoden omdat alle toegang via Theater moet gaan
+
 package theater;
 
 public class Klant {

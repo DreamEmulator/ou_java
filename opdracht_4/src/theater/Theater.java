@@ -1,13 +1,13 @@
 // Toelichting:
-// Ik heb heb checks gemaakt voor nullPointers. Als deze falen schrijf ik wat uit naar, omdat anders de fout volledig verborgen blijft
+// Het aantal plaatsen en aantal rijen is public static want ik wil die attributen in de tests gebruiken. Ik ga ervan uit dat de aantallen vast blijven, maar mocht ze dan toch gewijzigd worden in de toekomst dan kloppen de tests nog.
 
 package theater;
 
 import java.util.ArrayList;
 
 public class Theater {
-    static int AANTALTRIJEN = 15;
-    static int AANTALPERRIJ = 10;
+    public final static int AANTALTRIJEN = 15;
+    public final static int AANTALPERRIJ = 10;
 
     private int hoogsteklantnummer = 0;
     private String naam;
@@ -61,7 +61,7 @@ public class Theater {
     }
 
     /**
-     * Behoudt een plaats voor een klant.
+     * Reserveert een plaats voor een klant.
      *
      * @param rij   nummer van de rij
      * @param stoel nummer van de stoel

@@ -26,10 +26,10 @@ public class TheaterTest {
         theater.reserveren(3,3);
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
-        theater.reserveren(1,21);
+        theater.reserveren(1,Theater.AANTALPERRIJ + 10);
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
-        theater.reserveren(21,1);
+        theater.reserveren(Theater.AANTALTRIJEN + 10,1);
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
         theater.reserveren(-1,1);
@@ -58,9 +58,7 @@ public class TheaterTest {
         theater.reserveren(1,0);
         theater.reserveren(1,-1);
         theater.reserveren(-1,1);
-
-        theater.reserveren(100,-1);
-        theater.reserveren(-1,100);
+        theater.reserveren(Theater.AANTALTRIJEN + 10,Theater.AANTALPERRIJ + 10);
 
         theater.plaatsen("Bartel-Jaap","06123456");
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));
@@ -84,15 +82,18 @@ public class TheaterTest {
         theater.reserveren(1,1);
         theater.reserveren(2,2);
         theater.reserveren(3,3);
+        theater.reserveren(Theater.AANTALTRIJEN + 10,Theater.AANTALPERRIJ + 10);
 
         theater.plaatsen("Bartel-Jaap","06123456");
 
         theater.reserveren(4,4);
         theater.reserveren(5,5);
         theater.reserveren(6,6);
+        theater.reserveren(Theater.AANTALTRIJEN + 10,Theater.AANTALPERRIJ + 10);
 
         theater.resetten();
 
+        assertEquals(3,theater.getAantalPlaatsen(Plaats.Status.BEZET));
         assertEquals(0,theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
     }
 
@@ -106,6 +107,14 @@ public class TheaterTest {
         theater.reserveren(10,10);
         assertEquals(147, theater.getAantalPlaatsen(Plaats.Status.VRIJ));
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
+
+        theater.plaatsen("Bartel-Jaap","06123456");
+        assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));
+
+        theater.reserveren(-1,1);
+        theater.reserveren(0,0);
+        theater.reserveren(Theater.AANTALTRIJEN + 10,Theater.AANTALPERRIJ + 10);
+        assertEquals(0, theater.getAantalPlaatsen(Plaats.Status.GERESERVEERD));
 
         theater.plaatsen("Bartel-Jaap","06123456");
         assertEquals(3, theater.getAantalPlaatsen(Plaats.Status.BEZET));

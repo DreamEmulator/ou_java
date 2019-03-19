@@ -1,3 +1,6 @@
+// Toelichting:
+// Plaats heeft geen publieke methoden omdat alle toegang via Theater moet gaan
+
 package theater;
 
 public class Plaats {
@@ -21,7 +24,7 @@ public class Plaats {
         this.stoelnummer = stoelnummer;
     }
 
-    public Status getStatus() {
+    protected Status getStatus() {
         return status;
     }
 
@@ -60,7 +63,7 @@ public class Plaats {
      *
      * @return plaats als string
      */
-    public String plaatsToString() {
+    protected String plaatsToString() {
         return "Plaats{" +
                 "status=" + status +
                 ", rijnummer=" + rijnummer +
