@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Theater {
     public final static int AANTALTRIJEN = 15;
     public final static int AANTALPERRIJ = 10;
-
     private int hoogsteKlantnummer = 0;
     private String naam;
     private ArrayList<Klant> klanten = new ArrayList<>();
