@@ -1,7 +1,6 @@
 package bank_domain;
 
 public class Bank {
-
     private Rekening[] rekeningen = {
             new Rekening(1111, "Bart", 14.56),
             new Rekening(1234, "Freek", 24.63),
