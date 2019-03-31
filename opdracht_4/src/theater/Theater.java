@@ -14,6 +14,15 @@ public class Theater {
     private ArrayList<Klant> klanten = new ArrayList<>();
     private Voorstelling voorstelling;
 
+    /**
+     * Constructor functie voor Theater.
+     *
+     * @param naam neemt alleen een naam als parameter
+     */
+    public Theater(String naam) {
+        this.naam = naam;
+    }
+
     private Klant zoekKlant(String naam, String telefoon) {
         Klant klant = null;
         for (Klant k : klanten) {
@@ -23,15 +32,6 @@ public class Theater {
             }
         }
         return klant;
-    }
-
-    /**
-     * Constructor functie voor Theater.
-     *
-     * @param naam neemt alleen een naam als parameter
-     */
-    public Theater(String naam) {
-        this.naam = naam;
     }
 
     /**
