@@ -8,13 +8,19 @@ import java.util.ArrayList;
 public class Theater {
     public final static int AANTALTRIJEN = 15;
     public final static int AANTALPERRIJ = 10;
-
     private int hoogsteKlantnummer = 0;
     private String naam;
-
     private ArrayList<Klant> klanten = new ArrayList<>();
-
     private Voorstelling voorstelling;
+
+    /**
+     * Constructor functie voor Theater.
+     *
+     * @param naam neemt alleen een naam als parameter
+     */
+    public Theater(String naam) {
+        this.naam = naam;
+    }
 
     private Klant zoekKlant(String naam, String telefoon) {
         Klant klant = null;
@@ -25,15 +31,6 @@ public class Theater {
             }
         }
         return klant;
-    }
-
-    /**
-     * Constructor functie voor Theater.
-     *
-     * @param naam neemt alleen een naam als parameter
-     */
-    public Theater(String naam) {
-        this.naam = naam;
     }
 
     /**
