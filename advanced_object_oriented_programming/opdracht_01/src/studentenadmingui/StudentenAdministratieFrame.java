@@ -1,5 +1,7 @@
 package studentenadmingui;
 
+import studentenadmin.StudentenAdministratie;
+
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JComboBox;
@@ -42,11 +44,14 @@ public class StudentenAdministratieFrame extends JFrame {
   private JTextField scholerTextField = null;
   private JButton scholerButton = null;
 
+
+  private StudentenAdministratie studentenAdministratie;
   /**
    * This is the default constructor
    */
-  public StudentenAdministratieFrame() {
+  public StudentenAdministratieFrame(StudentenAdministratie studentenAdministratie) {
     super();
+    this.studentenAdministratie = studentenAdministratie;
     initialize();
   }
 
@@ -60,6 +65,7 @@ public class StudentenAdministratieFrame extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setContentPane(getJContentPane());
     this.setTitle("StudentAdministratie");
+    this.setVisible(true);
   }
 
   /**
@@ -360,11 +366,6 @@ public class StudentenAdministratieFrame extends JFrame {
       scholerButton.setText("Voeg scholer toe");
     }
     return scholerButton;
-  }
-
-  public static void main(String[] args) {
-    StudentenAdministratieFrame fr = new StudentenAdministratieFrame();
-    fr.setVisible(true);
   }
 
 } // @jve:decl-index=0:visual-constraint="10,10"
