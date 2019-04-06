@@ -23,7 +23,7 @@ public class ReguliereStudent extends Student {
 
     //  Setters
     public void setBehaaldePunten(double behaaldePunten) {
-        this.behaaldePunten = behaaldePunten;
+        this.behaaldePunten += behaaldePunten;
     }
 
     public void setOpleiding(Opleiding opleiding) {

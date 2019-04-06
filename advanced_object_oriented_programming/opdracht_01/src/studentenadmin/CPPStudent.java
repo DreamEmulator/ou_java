@@ -4,26 +4,26 @@ public class CPPStudent extends Student {
 
     //  Attributes
     private CPP cpp;
-    private double behaaldePunten = 0;
+    private int modules = 0;
 
     //  Constructur
     public CPPStudent(String naam, CPP cpp) {
         super(naam);
-        this.opleiding = opleiding;
+        this.cpp = cpp;
     }
 
     //  Getters
-    public double getBehaaldePunten() {
-        return behaaldePunten;
+    public int getBehaaldeModules() {
+        return modules;
     }
 
-    public Opleiding getOpleiding() {
-        return opleiding;
+    public CPP getCpp() {
+        return cpp;
     }
 
     //  Setters
-    public void setBehaaldePunten(double behaaldePunten) {
-        this.behaaldePunten = behaaldePunten;
+    public void puntBehaald(){
+        modules++;
     }
 
     public void setOpleiding(Opleiding opleiding) {

@@ -11,4 +11,17 @@ public class Student {
     public Student(String naam) {
         this.naam = naam;
     }
+
+    //  Getters
+    public String getNaam() {
+        return naam;
+    }
+
+    public Opleiding getOpleiding() {
+        return opleiding;
+    }
+
+    public boolean isGeslaagd() {
+        return geslaagd;
+    }
 }

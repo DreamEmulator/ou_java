@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class StudentenAdministratie {
 
-    public ArrayList<Student> studenten = new ArrayList<Student>();
+    private ArrayList<Student> studenten = new ArrayList<Student>();
 
+    //  Attributes
     Opleiding[] opleidingen = {
             new Opleiding("Informatica", 160),
             new Opleiding("Wiskunde", 200)
@@ -17,6 +18,7 @@ public class StudentenAdministratie {
             new CPP("Systeemontwikkelaar", 3)
     };
 
+    //  Getters
     private Opleiding getOpleiding(String naam) {
         Opleiding opleiding = null;
         for (Opleiding o : opleidingen) {
@@ -35,12 +37,41 @@ public class StudentenAdministratie {
         return cpp;
     }
 
+    public ArrayList<Student> getStudenten() {
+        return studenten;
+    }
+
+    public Opleiding[] getOpleidingen() {
+        return opleidingen;
+    }
+
+    public CPP[] getCpps() {
+        return cpps;
+    }
+
+    // Methods
     public void nieuweCPPStudent(String naam, String cpp) {
         studenten.add(new CPPStudent(naam, getCPP(cpp)));
     }
 
     public void nieuweReguliereStudent(String naam, String opleiding) {
         studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
+    }
+
+    public Student zoekStudent(String naam) {
+        Student student = null;
+        for (Student s : studenten) {
+            if (s.getNaam().equals(naam)) student = s;
+            break;
+        }
+        System.out.println(student.getClass());
+        return student;
+
+//        switch (student.getClass()) {
+//            case ReguliereStudent:
+//                return  (ReguliereStudent) student;
+//
+//        }
     }
 
 }
