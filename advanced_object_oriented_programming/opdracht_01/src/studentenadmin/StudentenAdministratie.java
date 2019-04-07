@@ -27,7 +27,6 @@ public class StudentenAdministratie {
         }
         return opleiding;
     }
-
     private CPP getCPP(String naam) {
         CPP cpp = null;
         for (CPP c : cpps) {
@@ -36,15 +35,12 @@ public class StudentenAdministratie {
         }
         return cpp;
     }
-
     public ArrayList<Student> getStudenten() {
         return studenten;
     }
-
     public Opleiding[] getOpleidingen() {
         return opleidingen;
     }
-
     public CPP[] getCpps() {
         return cpps;
     }
@@ -61,17 +57,12 @@ public class StudentenAdministratie {
     public Student zoekStudent(String naam) {
         Student student = null;
         for (Student s : studenten) {
-            if (s.getNaam().equals(naam)) student = s;
-            break;
+            if (s.getNaam().equals(naam)) {
+                student = s;
+                break;
+            }
         }
-        System.out.println(student.getClass());
         return student;
-
-//        switch (student.getClass()) {
-//            case ReguliereStudent:
-//                return  (ReguliereStudent) student;
-//
-//        }
     }
 
 }

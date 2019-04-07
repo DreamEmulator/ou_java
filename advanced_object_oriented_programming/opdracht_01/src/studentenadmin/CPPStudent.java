@@ -22,11 +22,8 @@ public class CPPStudent extends Student {
     }
 
     //  Setters
-    public void puntBehaald(){
+    public void moduleBehaald(){
         modules++;
     }
 
-    public void setOpleiding(Opleiding opleiding) {
-        this.opleiding = opleiding;
-    }
 }

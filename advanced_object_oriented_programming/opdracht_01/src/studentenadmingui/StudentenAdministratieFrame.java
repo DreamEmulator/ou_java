@@ -39,6 +39,8 @@ public class StudentenAdministratieFrame extends JFrame {
     private JButton scholerButton = null;
 
     private StudentenAdministratie studentenAdministratie;
+    private final String REGULIERESTUDENT = "studentenadmin.ReguliereStudent";
+    private final String CPPSTUDENT = "studentenadmin.CPPStudent";
 
     /**
      * This is the default constructor
@@ -366,16 +368,28 @@ public class StudentenAdministratieFrame extends JFrame {
 
     //  Bind events
     private void bindEvents() {
-        bindStudentButton();
-        bindEnter();
+
+        //  Nieuwe student-tab
+        populateStudentCombobox();
+        bindVoegStudentToeButton();
+        //  Nieuwe scholer-tab
+        populateScholerCombobox();
+        bindVoegScholerToeButton();
+        //  Studentinfo-tab
+        bindNaamEnter();
         bindPuntenEnter();
+        bindModuleEnter();
+        //  Alle studenten-tab
+        bindToonAlleKnop();
     }
 
-    //  Studentpanel events
-    private void bindStudentButton() {
+    //  Nieuwe student-tab events
+    private void populateStudentCombobox() {
         for (Opleiding o : studentenAdministratie.getOpleidingen()) {
             opleidingComboBox.addItem(o.getNaam());
         }
+    }
+    private void bindVoegStudentToeButton() {
         studentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String student = studentTextField.getText();
@@ -385,51 +399,87 @@ public class StudentenAdministratieFrame extends JFrame {
         });
     }
 
-    //  Studentinfo events
-
-    private void updateStudentInfo() {
-        Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
-        switch (s.getClass().getName()) {
-            case "studentenadmin.ReguliereStudent":
-                ReguliereStudent student = (ReguliereStudent) s;
-                String studentNaam = student.getNaam();
-                String opleiding = student.getOpleiding().getNaam();
-                double punten = student.getBehaaldePunten();
-                studentInfoVeld.setText(studentNaam + ", " + opleiding + ", " + punten);
-                break;
-            case "studentenadmin.CPPStudent":
-                CPPStudent cppStudent = (CPPStudent) s;
-                String naam = cppStudent.getNaam();
-                String cpp = cppStudent.getOpleiding().getNaam();
-                int modules = cppStudent.getBehaaldeModules();
-                studentInfoVeld.setText(naam + ", " + cpp + ", " + modules);
-                break;
-            default:
-                System.out.println("Student nieuw type");
+    //  Nieuwe scholer-tab events
+    private void populateScholerCombobox() {
+        for (CPP c : studentenAdministratie.getCpps()) {
+            scholingComboBox.addItem(c.getNaam());
         }
     }
-
-    private void bindEnter() {
-        bestaandeNaamVeld.addActionListener(new ActionListener() {
+    private void bindVoegScholerToeButton() {
+        scholerButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                updateStudentInfo();
+                String cppStudent = scholerTextField.getText();
+                String cpp = scholingComboBox.getSelectedItem().toString();
+                studentenAdministratie.nieuweCPPStudent(cppStudent, cpp);
             }
         });
     }
 
+    //  Studentinfo events
+    private String printStudentInfo(Student s) {
+        switch (s.getClass().getName()) {
+            case REGULIERESTUDENT:
+                ReguliereStudent student = (ReguliereStudent) s;
+                String studentNaam = student.getNaam();
+                String opleiding = student.getOpleiding();
+                double punten = student.getBehaaldePunten();
+                return studentNaam + ", " + opleiding + ", " + punten;
+            case CPPSTUDENT:
+                CPPStudent cppStudent = (CPPStudent) s;
+                String naam = cppStudent.getNaam();
+                String cpp = cppStudent.getCpp().getNaam();
+                int modules = cppStudent.getBehaaldeModules();
+                return naam + ", " + cpp + ", " + modules;
+            default:
+                return "Student niet aanwezig";
+        }
+    }
+    private void bindNaamEnter() {
+        bestaandeNaamVeld.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
+                studentInfoVeld.setText(printStudentInfo(s));
+            }
+        });
+    }
     private void bindPuntenEnter() {
         puntenVeld.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
                 if (s instanceof studentenadmin.ReguliereStudent) {
-                    System.out.println("HOLO");
                     ((ReguliereStudent) s).setBehaaldePunten(Double.parseDouble(puntenVeld.getText()));
-                    updateStudentInfo();
+                    studentInfoVeld.setText(printStudentInfo(s));
+                }
+            }
+        });
+    }
+    private void bindModuleEnter() {
+        moduleKnop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
+                if (s instanceof studentenadmin.CPPStudent) {
+                    ((CPPStudent) s).moduleBehaald();
+                    studentInfoVeld.setText(printStudentInfo(s));
                 }
             }
         });
     }
 
+    //  Alle studenten-tab
+    private void bindToonAlleKnop() {
+        toonAlleKnop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String t = "";
+                for(Student s : studentenAdministratie.getStudenten()){
+                    t += printStudentInfo(s) + "\n";
+                }
+                uitvoerGebied.setText(t);
+            }
+        });
+    }
 
 } // @jve:decl-index=0:visual-constraint="10,10"

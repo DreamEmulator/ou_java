@@ -17,8 +17,8 @@ public class ReguliereStudent extends Student {
         return behaaldePunten;
     }
 
-    public Opleiding getOpleiding() {
-        return opleiding;
+    public String getOpleiding() {
+        return opleiding.getNaam();
     }
 
     //  Setters
@@ -26,7 +26,4 @@ public class ReguliereStudent extends Student {
         this.behaaldePunten += behaaldePunten;
     }
 
-    public void setOpleiding(Opleiding opleiding) {
-        this.opleiding = opleiding;
-    }
 }

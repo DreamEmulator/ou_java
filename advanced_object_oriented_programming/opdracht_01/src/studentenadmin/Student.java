@@ -3,8 +3,8 @@ package studentenadmin;
 public class Student {
 
     //  Attributes
-    String naam;
-    Opleiding opleiding;
+    private String naam;
+    private String opleiding;
     boolean geslaagd;
 
     //  Contstructor
@@ -17,7 +17,7 @@ public class Student {
         return naam;
     }
 
-    public Opleiding getOpleiding() {
+    public String getOpleiding() {
         return opleiding;
     }
 
