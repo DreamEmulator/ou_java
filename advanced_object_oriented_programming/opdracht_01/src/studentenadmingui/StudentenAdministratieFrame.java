@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 
 public class StudentenAdministratieFrame extends JFrame {
 
+    private StudentenAdministratie studentenAdministratie;
+    private final String REGULIERESTUDENT = "studentenadmin.ReguliereStudent";
+    private final String CPPSTUDENT = "studentenadmin.CPPStudent";
+
     private static final long serialVersionUID = 1L;
     private JPanel jContentPane = null;
     private JScrollPane jScrollPane = null;
@@ -37,10 +41,6 @@ public class StudentenAdministratieFrame extends JFrame {
     private JLabel scholerLabel = null;
     private JTextField scholerTextField = null;
     private JButton scholerButton = null;
-
-    private StudentenAdministratie studentenAdministratie;
-    private final String REGULIERESTUDENT = "studentenadmin.ReguliereStudent";
-    private final String CPPSTUDENT = "studentenadmin.CPPStudent";
 
     /**
      * This is the default constructor
@@ -474,7 +474,7 @@ public class StudentenAdministratieFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String t = "";
-                for(Student s : studentenAdministratie.getStudenten()){
+                for (Student s : studentenAdministratie.getStudenten()) {
                     t += printStudentInfo(s) + "\n";
                 }
                 uitvoerGebied.setText(t);

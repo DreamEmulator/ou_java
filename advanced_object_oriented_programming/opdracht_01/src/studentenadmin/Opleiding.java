@@ -16,7 +16,6 @@ public class Opleiding {
     public String getNaam() {
         return naam;
     }
-
     public double getPunten() {
         return punten;
     }

@@ -16,7 +16,6 @@ public class ReguliereStudent extends Student {
     public double getBehaaldePunten() {
         return behaaldePunten;
     }
-
     public String getOpleiding() {
         return opleiding.getNaam();
     }
@@ -25,5 +24,4 @@ public class ReguliereStudent extends Student {
     public void setBehaaldePunten(double behaaldePunten) {
         this.behaaldePunten += behaaldePunten;
     }
-
 }

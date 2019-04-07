@@ -16,11 +16,9 @@ public class Student {
     public String getNaam() {
         return naam;
     }
-
     public String getOpleiding() {
         return opleiding;
     }
-
     public boolean isGeslaagd() {
         return geslaagd;
     }

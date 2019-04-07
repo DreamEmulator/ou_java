@@ -16,14 +16,12 @@ public class CPPStudent extends Student {
     public int getBehaaldeModules() {
         return modules;
     }
-
     public CPP getCpp() {
         return cpp;
     }
 
     //  Setters
-    public void moduleBehaald(){
+    public void moduleBehaald() {
         modules++;
     }
-
 }

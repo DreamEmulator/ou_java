@@ -4,14 +4,12 @@ import java.util.ArrayList;
 
 public class StudentenAdministratie {
 
-    private ArrayList<Student> studenten = new ArrayList<Student>();
-
     //  Attributes
+    private ArrayList<Student> studenten = new ArrayList<Student>();
     Opleiding[] opleidingen = {
             new Opleiding("Informatica", 160),
             new Opleiding("Wiskunde", 200)
     };
-
     CPP[] cpps = {
             new CPP("Java", 6),
             new CPP("Softwarearchitect", 4),
@@ -49,11 +47,9 @@ public class StudentenAdministratie {
     public void nieuweCPPStudent(String naam, String cpp) {
         studenten.add(new CPPStudent(naam, getCPP(cpp)));
     }
-
     public void nieuweReguliereStudent(String naam, String opleiding) {
         studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
     }
-
     public Student zoekStudent(String naam) {
         Student student = null;
         for (Student s : studenten) {
@@ -64,5 +60,4 @@ public class StudentenAdministratie {
         }
         return student;
     }
-
 }
