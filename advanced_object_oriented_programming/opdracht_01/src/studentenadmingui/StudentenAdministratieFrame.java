@@ -9,9 +9,7 @@ import java.awt.event.ActionListener;
 
 public class StudentenAdministratieFrame extends JFrame {
 
-    private StudentenAdministratie studentenAdministratie;
-    private final String REGULIERESTUDENT = "studentenadmin.ReguliereStudent";
-    private final String CPPSTUDENT = "studentenadmin.CPPStudent";
+    private final StudentenAdministratie studentenAdministratie;
 
     private static final long serialVersionUID = 1L;
     private JPanel jContentPane = null;
@@ -23,22 +21,14 @@ public class StudentenAdministratieFrame extends JFrame {
     private JPanel voegScholertoePanel = null;
     private JPanel studentPanel = null;
     private JPanel alleStudentenPanel = null;
-    private JLabel bestaandenaamLabel = null;
     private JTextField bestaandeNaamVeld = null;
-    private JLabel infoLabel = null;
     private JTextField studentInfoVeld = null;
-    private JLabel nieuwepuntenLabel = null;
     private JTextField puntenVeld = null;
-    private JLabel uitlegLabel = null;
     private JButton moduleKnop = null;
-    private JLabel opleidingLabel = null;
-    private JLabel nstudentLabel = null;
     private JComboBox opleidingComboBox = null;
-    private JLabel studentLabel = null;
     private JTextField studentTextField = null;
     private JButton studentButton = null;
     private JComboBox scholingComboBox = null;
-    private JLabel scholerLabel = null;
     private JTextField scholerTextField = null;
     private JButton scholerButton = null;
 
@@ -72,7 +62,7 @@ public class StudentenAdministratieFrame extends JFrame {
      */
     private JPanel getJContentPane() {
         if (jContentPane == null) {
-            infoLabel = new JLabel();
+            JLabel infoLabel = new JLabel();
             infoLabel.setBounds(new Rectangle(14, 278, 700, 350));
             infoLabel.setText("");
             jContentPane = new JPanel();
@@ -151,10 +141,10 @@ public class StudentenAdministratieFrame extends JFrame {
      */
     private JPanel getVoegStudenttoePanel() {
         if (voegStudenttoePanel == null) {
-            studentLabel = new JLabel();
+            JLabel studentLabel = new JLabel();
             studentLabel.setBounds(new Rectangle(15, 55, 91, 24));
             studentLabel.setText("Naam student");
-            nstudentLabel = new JLabel();
+            JLabel nstudentLabel = new JLabel();
             nstudentLabel.setBounds(new Rectangle(16, 16, 146, 24));
             nstudentLabel.setText("Selecteer een opleiding");
             voegStudenttoePanel = new JPanel();
@@ -170,10 +160,10 @@ public class StudentenAdministratieFrame extends JFrame {
 
     private JPanel getVoegScholertoePanel() {
         if (voegScholertoePanel == null) {
-            scholerLabel = new JLabel();
+            JLabel scholerLabel = new JLabel();
             scholerLabel.setBounds(new Rectangle(16, 54, 116, 25));
             scholerLabel.setText("Naam scholer");
-            opleidingLabel = new JLabel();
+            JLabel opleidingLabel = new JLabel();
             opleidingLabel.setBounds(new Rectangle(16, 16, 173, 25));
             opleidingLabel.setText("Selecteer een CPP-Opleiding");
             voegScholertoePanel = new JPanel();
@@ -194,13 +184,13 @@ public class StudentenAdministratieFrame extends JFrame {
      */
     private JPanel getStudentPanel() {
         if (studentPanel == null) {
-            uitlegLabel = new JLabel();
+            JLabel uitlegLabel = new JLabel();
             uitlegLabel.setBounds(new Rectangle(16, 8, 334, 19));
             uitlegLabel.setText("Geef enter om invoer te bevestigen");
-            nieuwepuntenLabel = new JLabel();
+            JLabel nieuwepuntenLabel = new JLabel();
             nieuwepuntenLabel.setBounds(new Rectangle(14, 63, 256, 20));
             nieuwepuntenLabel.setText("Punten behaald (alleen reguliere opleiding) ");
-            bestaandenaamLabel = new JLabel();
+            JLabel bestaandenaamLabel = new JLabel();
             bestaandenaamLabel.setBounds(new Rectangle(14, 35, 86, 20));
             bestaandenaamLabel.setText("Studentnaam");
             studentPanel = new JPanel();
@@ -418,6 +408,8 @@ public class StudentenAdministratieFrame extends JFrame {
 
     //  Studentinfo events
     private String printStudentInfo(Student s) {
+        String CPPSTUDENT = "studentenadmin.CPPStudent";
+        String REGULIERESTUDENT = "studentenadmin.ReguliereStudent";
         switch (s.getClass().getName()) {
             case REGULIERESTUDENT:
                 ReguliereStudent student = (ReguliereStudent) s;
@@ -473,11 +465,11 @@ public class StudentenAdministratieFrame extends JFrame {
         toonAlleKnop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String t = "";
+                StringBuilder t = new StringBuilder();
                 for (Student s : studentenAdministratie.getStudenten()) {
-                    t += printStudentInfo(s) + "\n";
+                    t.append(printStudentInfo(s)).append("\n");
                 }
-                uitvoerGebied.setText(t);
+                uitvoerGebied.setText(t.toString());
             }
         });
     }

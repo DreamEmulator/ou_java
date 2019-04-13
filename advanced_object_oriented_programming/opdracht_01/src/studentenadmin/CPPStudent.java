@@ -3,7 +3,7 @@ package studentenadmin;
 public class CPPStudent extends Student {
 
     //  Attributes
-    private CPP cpp;
+    private final CPP cpp;
     private int modules = 0;
 
     //  Constructur

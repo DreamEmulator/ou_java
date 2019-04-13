@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class StudentenAdministratie {
 
     //  Attributes
-    private ArrayList<Student> studenten = new ArrayList<Student>();
-    Opleiding[] opleidingen = {
+    private final ArrayList<Student> studenten = new ArrayList<Student>();
+    private final Opleiding[] opleidingen = {
             new Opleiding("Informatica", 160),
             new Opleiding("Wiskunde", 200)
     };
-    CPP[] cpps = {
+    private final CPP[] cpps = {
             new CPP("Java", 6),
             new CPP("Softwarearchitect", 4),
             new CPP("Systeemontwikkelaar", 3)

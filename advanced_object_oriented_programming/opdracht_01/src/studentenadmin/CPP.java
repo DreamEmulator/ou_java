@@ -3,8 +3,8 @@ package studentenadmin;
 public class CPP {
 
     //  Attrubutes
-    private int modules;
-    private String naam;
+    private final int modules;
+    private final String naam;
 
     //  Constructor
     public CPP(String naam, int modules) {

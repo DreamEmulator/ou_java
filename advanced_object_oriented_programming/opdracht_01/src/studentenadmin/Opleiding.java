@@ -3,8 +3,8 @@ package studentenadmin;
 public class Opleiding {
 
     //  Attributes
-    private String naam;
-    private double punten;
+    private final String naam;
+    private final double punten;
 
     //  Constructor
     public Opleiding(String naam, double punten) {

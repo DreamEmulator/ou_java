@@ -3,7 +3,7 @@ package studentenadmin;
 public class ReguliereStudent extends Student {
 
     //  Attributes
-    private Opleiding opleiding;
+    private final Opleiding opleiding;
     private double behaaldePunten = 0;
 
     //  Constructur

@@ -3,12 +3,12 @@ package studentenadmin;
 public class Student {
 
     //  Attributes
-    private String naam;
+    private final String naam;
     private String opleiding;
-    boolean geslaagd;
+    private boolean geslaagd;
 
     //  Contstructor
-    public Student(String naam) {
+    Student(String naam) {
         this.naam = naam;
     }
 
