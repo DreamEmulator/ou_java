@@ -408,16 +408,14 @@ public class StudentenAdministratieFrame extends JFrame {
 
     //  Studentinfo events
     private String printStudentInfo(Student s) {
-        String CPPSTUDENT = "studentenadmin.CPPStudent";
-        String REGULIERESTUDENT = "studentenadmin.ReguliereStudent";
         switch (s.getClass().getName()) {
-            case REGULIERESTUDENT:
+            case "studentenadmin.ReguliereStudent":
                 ReguliereStudent student = (ReguliereStudent) s;
                 String studentNaam = student.getNaam();
                 String opleiding = student.getOpleiding();
                 double punten = student.getBehaaldePunten();
                 return studentNaam + ", " + opleiding + ", " + punten;
-            case CPPSTUDENT:
+            case "studentenadmin.CPPStudent":
                 CPPStudent cppStudent = (CPPStudent) s;
                 String naam = cppStudent.getNaam();
                 String cpp = cppStudent.getCpp().getNaam();
