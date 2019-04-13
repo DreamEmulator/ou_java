@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class StudentenAdministratieFrame extends JFrame {
 
@@ -383,7 +384,7 @@ public class StudentenAdministratieFrame extends JFrame {
         studentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String student = studentTextField.getText();
-                String opleiding = opleidingComboBox.getSelectedItem().toString();
+                String opleiding = Objects.requireNonNull(opleidingComboBox.getSelectedItem()).toString();
                 studentenAdministratie.nieuweReguliereStudent(student, opleiding);
             }
         });
@@ -400,7 +401,7 @@ public class StudentenAdministratieFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String cppStudent = scholerTextField.getText();
-                String cpp = scholingComboBox.getSelectedItem().toString();
+                String cpp = Objects.requireNonNull(scholingComboBox.getSelectedItem()).toString();
                 studentenAdministratie.nieuweCPPStudent(cppStudent, cpp);
             }
         });
