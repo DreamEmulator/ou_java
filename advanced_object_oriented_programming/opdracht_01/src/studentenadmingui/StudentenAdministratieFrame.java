@@ -1,6 +1,11 @@
 package studentenadmingui;
 
 import studentenadmin.*;
+import studentenadmin.onderwijs.CPP;
+import studentenadmin.onderwijs.Opleiding;
+import studentenadmin.studenten.CPPStudent;
+import studentenadmin.studenten.ReguliereStudent;
+import studentenadmin.studenten.Student;
 
 import javax.swing.*;
 import java.awt.Rectangle;
@@ -410,13 +415,13 @@ public class StudentenAdministratieFrame extends JFrame {
     //  Studentinfo events
     private String printStudentInfo(Student s) {
         switch (s.getClass().getName()) {
-            case "studentenadmin.ReguliereStudent":
+            case "studentenadmin.studenten.ReguliereStudent":
                 ReguliereStudent student = (ReguliereStudent) s;
                 String studentNaam = student.getNaam();
                 String opleiding = student.getOpleiding();
                 double punten = student.getBehaaldePunten();
                 return studentNaam + ", " + opleiding + ", " + punten;
-            case "studentenadmin.CPPStudent":
+            case "studentenadmin.studenten.CPPStudent":
                 CPPStudent cppStudent = (CPPStudent) s;
                 String naam = cppStudent.getNaam();
                 String cpp = cppStudent.getCpp().getNaam();
@@ -439,7 +444,7 @@ public class StudentenAdministratieFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
-                if (s instanceof studentenadmin.ReguliereStudent) {
+                if (s instanceof ReguliereStudent) {
                     ((ReguliereStudent) s).setBehaaldePunten(Double.parseDouble(puntenVeld.getText()));
                     studentInfoVeld.setText(printStudentInfo(s));
                 }
@@ -451,7 +456,7 @@ public class StudentenAdministratieFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
-                if (s instanceof studentenadmin.CPPStudent) {
+                if (s instanceof CPPStudent) {
                     ((CPPStudent) s).moduleBehaald();
                     studentInfoVeld.setText(printStudentInfo(s));
                 }

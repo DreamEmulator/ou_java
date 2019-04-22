@@ -1,4 +1,6 @@
-package studentenadmin;
+package studentenadmin.studenten;
+
+import studentenadmin.onderwijs.Opleiding;
 
 public class ReguliereStudent extends Student {
 

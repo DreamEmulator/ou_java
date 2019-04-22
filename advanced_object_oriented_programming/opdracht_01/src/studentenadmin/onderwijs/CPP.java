@@ -1,4 +1,4 @@
-package studentenadmin;
+package studentenadmin.onderwijs;
 
 public class CPP {
 

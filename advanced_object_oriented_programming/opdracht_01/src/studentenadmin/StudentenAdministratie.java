@@ -1,5 +1,11 @@
 package studentenadmin;
 
+import studentenadmin.onderwijs.CPP;
+import studentenadmin.onderwijs.Opleiding;
+import studentenadmin.studenten.CPPStudent;
+import studentenadmin.studenten.ReguliereStudent;
+import studentenadmin.studenten.Student;
+
 import java.util.ArrayList;
 
 public class StudentenAdministratie {

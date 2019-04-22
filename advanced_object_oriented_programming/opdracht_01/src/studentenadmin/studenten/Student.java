@@ -1,4 +1,4 @@
-package studentenadmin;
+package studentenadmin.studenten;
 
 public class Student {
 

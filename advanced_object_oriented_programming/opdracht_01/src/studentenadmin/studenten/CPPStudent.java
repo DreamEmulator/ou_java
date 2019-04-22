@@ -1,4 +1,6 @@
-package studentenadmin;
+package studentenadmin.studenten;
+
+import studentenadmin.onderwijs.CPP;
 
 public class CPPStudent extends Student {
 
