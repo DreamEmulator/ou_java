@@ -1,6 +1,6 @@
 package studentenadmin.studenten;
 
-public class Student {
+public abstract class Student {
 
     //  Attributes
     private final String naam;
