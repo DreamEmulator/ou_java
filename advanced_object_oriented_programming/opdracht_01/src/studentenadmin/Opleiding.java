@@ -1,18 +1,18 @@
-package studentenadmin.onderwijs;
+package studentenadmin;
 
-public class Opleiding extends Onderwijs {
+class Opleiding extends Onderwijs {
 
     //  Attributes
     private final double punten;
 
     //  Constructor
-    public Opleiding(String naam, double punten) {
+    Opleiding(String naam, double punten) {
         super(naam);
         this.punten = punten;
     }
 
     //  Getters
-    public double getPunten() {
+    double getTotaalPunten() {
         return punten;
     }
 }

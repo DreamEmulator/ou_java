@@ -1,11 +1,6 @@
 package studentenadmingui;
 
 import studentenadmin.*;
-import studentenadmin.onderwijs.CPP;
-import studentenadmin.onderwijs.Opleiding;
-import studentenadmin.studenten.CPPStudent;
-import studentenadmin.studenten.ReguliereStudent;
-import studentenadmin.studenten.Student;
 
 import javax.swing.*;
 import java.awt.Rectangle;
@@ -53,7 +48,7 @@ public class StudentenAdministratieFrame extends JFrame {
      * @return void
      */
     private void initialize() {
-        this.setSize(850, 330);
+        this.setSize(850, 460);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(getJContentPane());
         this.setTitle("StudentAdministratie");
@@ -87,7 +82,7 @@ public class StudentenAdministratieFrame extends JFrame {
     private JScrollPane getJScrollPane() {
         if (jScrollPane == null) {
             jScrollPane = new JScrollPane();
-            jScrollPane.setBounds(new Rectangle(6, 65, 382, 121));
+            jScrollPane.setBounds(new Rectangle(6, 65, 682, 180));
             jScrollPane.setViewportView(getUitvoerGebied());
         }
         return jScrollPane;
@@ -128,7 +123,7 @@ public class StudentenAdministratieFrame extends JFrame {
     private JTabbedPane getMijnTabbladenPanel() {
         if (mijnTabbladenPanel == null) {
             mijnTabbladenPanel = new JTabbedPane();
-            mijnTabbladenPanel.setBounds(new Rectangle(13, 19, 800, 224));
+            mijnTabbladenPanel.setBounds(new Rectangle(13, 19, 800, 400));
             mijnTabbladenPanel.addTab("nieuwe student", null,
                     getVoegStudenttoePanel(), null);
             mijnTabbladenPanel.addTab("nieuwe scholer", null,
@@ -194,7 +189,7 @@ public class StudentenAdministratieFrame extends JFrame {
             uitlegLabel.setBounds(new Rectangle(16, 8, 334, 19));
             uitlegLabel.setText("Geef enter om invoer te bevestigen");
             JLabel nieuwepuntenLabel = new JLabel();
-            nieuwepuntenLabel.setBounds(new Rectangle(14, 63, 256, 20));
+            nieuwepuntenLabel.setBounds(new Rectangle(14, 63, 296, 20));
             nieuwepuntenLabel.setText("Punten behaald (alleen reguliere opleiding) ");
             JLabel bestaandenaamLabel = new JLabel();
             bestaandenaamLabel.setBounds(new Rectangle(14, 35, 86, 20));
@@ -248,7 +243,7 @@ public class StudentenAdministratieFrame extends JFrame {
     private JTextField getStudentInfoVeld() {
         if (studentInfoVeld == null) {
             studentInfoVeld = new JTextField();
-            studentInfoVeld.setBounds(new Rectangle(10, 152, 392, 27));
+            studentInfoVeld.setBounds(new Rectangle(10, 152, 592, 27));
             studentInfoVeld.setEditable(false);
         }
         return studentInfoVeld;
@@ -368,39 +363,47 @@ public class StudentenAdministratieFrame extends JFrame {
         //  Nieuwe student-tab
         populateStudentCombobox();
         bindVoegStudentToeButton();
+
         //  Nieuwe scholer-tab
         populateScholerCombobox();
         bindVoegScholerToeButton();
+
         //  Studentinfo-tab
         bindNaamEnter();
         bindPuntenEnter();
         bindModuleEnter();
+
         //  Alle studenten-tab
         bindToonAlleKnop();
     }
 
     //  Nieuwe student-tab events
     private void populateStudentCombobox() {
-        for (Opleiding o : studentenAdministratie.getOpleidingen()) {
-            opleidingComboBox.addItem(o.getNaam());
+        for (String opleiding : studentenAdministratie.getOpleidingenList()) {
+            opleidingComboBox.addItem(opleiding);
         }
     }
+
     private void bindVoegStudentToeButton() {
         studentButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String student = studentTextField.getText();
                 String opleiding = Objects.requireNonNull(opleidingComboBox.getSelectedItem()).toString();
                 studentenAdministratie.nieuweReguliereStudent(student, opleiding);
+
+                studentTextField.setText("");
+                opleidingComboBox.setSelectedIndex(0);
             }
         });
     }
 
     //  Nieuwe scholer-tab events
     private void populateScholerCombobox() {
-        for (CPP c : studentenAdministratie.getCpps()) {
-            scholingComboBox.addItem(c.getNaam());
+        for (String cpp : studentenAdministratie.getCppList()) {
+            scholingComboBox.addItem(cpp);
         }
     }
+
     private void bindVoegScholerToeButton() {
         scholerButton.addActionListener(new ActionListener() {
             @Override
@@ -408,58 +411,40 @@ public class StudentenAdministratieFrame extends JFrame {
                 String cppStudent = scholerTextField.getText();
                 String cpp = Objects.requireNonNull(scholingComboBox.getSelectedItem()).toString();
                 studentenAdministratie.nieuweCPPStudent(cppStudent, cpp);
+
+                scholerTextField.setText("");
+                scholingComboBox.setSelectedIndex(0);
             }
         });
     }
 
-    //  Studentinfo events
-    private String printStudentInfo(Student s) {
-        switch (s.getClass().getName()) {
-            case "studentenadmin.studenten.ReguliereStudent":
-                ReguliereStudent student = (ReguliereStudent) s;
-                String studentNaam = student.getNaam();
-                String opleiding = student.getOpleiding();
-                double punten = student.getBehaaldePunten();
-                return studentNaam + ", " + opleiding + ", " + punten;
-            case "studentenadmin.studenten.CPPStudent":
-                CPPStudent cppStudent = (CPPStudent) s;
-                String naam = cppStudent.getNaam();
-                String cpp = cppStudent.getCpp().getNaam();
-                int modules = cppStudent.getBehaaldeModules();
-                return naam + ", " + cpp + ", " + modules;
-            default:
-                return "Student niet aanwezig";
-        }
-    }
+    // Toon student info
     private void bindNaamEnter() {
         bestaandeNaamVeld.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
-                studentInfoVeld.setText(printStudentInfo(s));
+                studentInfoVeld.setText(studentenAdministratie.toonStudent(bestaandeNaamVeld.getText()));
             }
         });
     }
+
+    //  Reguliere student
     private void bindPuntenEnter() {
         puntenVeld.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
-                if (s instanceof ReguliereStudent) {
-                    ((ReguliereStudent) s).setBehaaldePunten(Double.parseDouble(puntenVeld.getText()));
-                    studentInfoVeld.setText(printStudentInfo(s));
-                }
+                studentenAdministratie.verhoogPunten(bestaandeNaamVeld.getText(),Double.parseDouble(puntenVeld.getText()));
+                studentInfoVeld.setText(studentenAdministratie.toonStudent(bestaandeNaamVeld.getText()));
             }
         });
     }
+
+    //  CPP-student
     private void bindModuleEnter() {
         moduleKnop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Student s = studentenAdministratie.zoekStudent(bestaandeNaamVeld.getText());
-                if (s instanceof CPPStudent) {
-                    ((CPPStudent) s).moduleBehaald();
-                    studentInfoVeld.setText(printStudentInfo(s));
-                }
+                studentenAdministratie.verhoogBehaaldeModules(bestaandeNaamVeld.getText());
+                studentInfoVeld.setText(studentenAdministratie.toonStudent(bestaandeNaamVeld.getText()));
             }
         });
     }
@@ -469,11 +454,7 @@ public class StudentenAdministratieFrame extends JFrame {
         toonAlleKnop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                StringBuilder t = new StringBuilder();
-                for (Student s : studentenAdministratie.getStudenten()) {
-                    t.append(printStudentInfo(s)).append("\n");
-                }
-                uitvoerGebied.setText(t.toString());
+                uitvoerGebied.setText(studentenAdministratie.toonAlleStudenten());
             }
         });
     }

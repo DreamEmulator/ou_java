@@ -1,11 +1,5 @@
 package studentenadmin;
 
-import studentenadmin.onderwijs.CPP;
-import studentenadmin.onderwijs.Opleiding;
-import studentenadmin.studenten.CPPStudent;
-import studentenadmin.studenten.ReguliereStudent;
-import studentenadmin.studenten.Student;
-
 import java.util.ArrayList;
 
 public class StudentenAdministratie {
@@ -34,6 +28,14 @@ public class StudentenAdministratie {
         return opleiding;
     }
 
+    public String[] getOpleidingenList() {
+        String[] opleidingenList = new String[opleidingen.length];
+        for (int i = 0; i < opleidingen.length; i++) {
+            opleidingenList[i] = opleidingen[i].getNaam();
+        }
+        return opleidingenList;
+    }
+
     private CPP getCPP(String naam) {
         CPP cpp = null;
         for (CPP c : cpps) {
@@ -45,16 +47,12 @@ public class StudentenAdministratie {
         return cpp;
     }
 
-    public ArrayList<Student> getStudenten() {
-        return studenten;
-    }
-
-    public Opleiding[] getOpleidingen() {
-        return opleidingen;
-    }
-
-    public CPP[] getCpps() {
-        return cpps;
+    public String[] getCppList() {
+        String[] CppList = new String[cpps.length];
+        for (int i = 0; i < cpps.length; i++) {
+            CppList[i] = cpps[i].getNaam();
+        }
+        return CppList;
     }
 
     // Methods
@@ -66,7 +64,8 @@ public class StudentenAdministratie {
         studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
     }
 
-    public Student zoekStudent(String naam) {
+    private Student zoekStudent(String naam) {
+
         Student student = null;
         for (Student s : studenten) {
             if (s.getNaam().equals(naam)) {
@@ -75,5 +74,31 @@ public class StudentenAdministratie {
             }
         }
         return student;
+    }
+
+    public String toonStudent(String naam) {
+        return zoekStudent(naam) != null ? zoekStudent(naam).toonInfo() : "Student niet gevonden";
+    }
+
+    public String toonAlleStudenten() {
+        StringBuilder info = new StringBuilder();
+        for (Student s : studenten) {
+            info.append(s.toonInfo()).append("\n");
+        }
+        return info.toString();
+    }
+
+    public void verhoogPunten(String naam, double punten) {
+        if (zoekStudent(naam) instanceof ReguliereStudent) {
+            ReguliereStudent student = (ReguliereStudent) zoekStudent(naam);
+            student.verhoogBehaaldePunten(punten);
+        }
+    }
+
+    public void verhoogBehaaldeModules(String naam) {
+        if (zoekStudent(naam) instanceof CPPStudent) {
+            CPPStudent scholer = (CPPStudent) zoekStudent(naam);
+            scholer.verhoogBehaaldeModules();
+        }
     }
 }

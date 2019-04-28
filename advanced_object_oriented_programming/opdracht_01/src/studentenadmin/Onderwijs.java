@@ -1,4 +1,4 @@
-package studentenadmin.onderwijs;
+package studentenadmin;
 
 abstract class Onderwijs {
     //  Attrubutes
@@ -9,7 +9,7 @@ abstract class Onderwijs {
         this.naam = naam;
     }
 
-    public String getNaam() {
+    String getNaam() {
         return naam;
     }
 }
