@@ -410,7 +410,7 @@ public class StudentenAdministratieFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String cppStudent = scholerTextField.getText();
                 String cpp = Objects.requireNonNull(scholingComboBox.getSelectedItem()).toString();
-                studentenAdministratie.nieuweCPPStudent(cppStudent, cpp);
+                studentenAdministratie.nieuweCPPScholer(cppStudent, cpp);
 
                 scholerTextField.setText("");
                 scholingComboBox.setSelectedIndex(0);

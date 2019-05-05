@@ -2,6 +2,7 @@ package studentenadmin;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class StudentenAdministratie {
 
     //  Attributes
@@ -28,6 +29,10 @@ public class StudentenAdministratie {
         return opleiding;
     }
 
+    /**
+     * Methode om alle opleidingen terug te geven als een array van type String
+     * @return array of String
+     */
     public String[] getOpleidingenList() {
         String[] opleidingenList = new String[opleidingen.length];
         for (int i = 0; i < opleidingen.length; i++) {
@@ -47,6 +52,10 @@ public class StudentenAdministratie {
         return cpp;
     }
 
+    /**
+     * Methode om alle CPP's terug te geven als een array van type String
+     * @return array of String
+     */
     public String[] getCppList() {
         String[] CppList = new String[cpps.length];
         for (int i = 0; i < cpps.length; i++) {
@@ -55,11 +64,20 @@ public class StudentenAdministratie {
         return CppList;
     }
 
-    // Methods
-    public void nieuweCPPStudent(String naam, String cpp) {
+    /**
+     * Met deze methode kan je een nieuwe CPP scholer aanmaken. Er wordt niet gecheckt of deze reeds bestaat.
+     * @param naam Achternaam van de CPP scholer
+     * @param cpp Naam van de CPP
+     */
+    public void nieuweCPPScholer(String naam, String cpp) {
         studenten.add(new CPPStudent(naam, getCPP(cpp)));
     }
 
+    /**
+     * Met deze methode kan je een nieuwe Reguliere Student aanmaken. Er wordt niet gecheckt of deze reeds bestaat.
+     * @param naam Achternaam van de Reguliere Student
+     * @param opleiding
+     */
     public void nieuweReguliereStudent(String naam, String opleiding) {
         studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
     }
@@ -76,10 +94,19 @@ public class StudentenAdministratie {
         return student;
     }
 
+    /**
+     * Toont alle informatie van een student of een scholer
+     * @param naam Achternaam van de student of scholer
+     * @return String met informatie van de scholer of student
+     */
     public String toonStudent(String naam) {
         return zoekStudent(naam) != null ? zoekStudent(naam).toonInfo() : "Student niet gevonden";
     }
 
+    /**
+     * Toont een String met alle informatie van alle studenten en scholers
+     * @return String met alle informatie
+     */
     public String toonAlleStudenten() {
         StringBuilder info = new StringBuilder();
         for (Student s : studenten) {
@@ -88,6 +115,11 @@ public class StudentenAdministratie {
         return info.toString();
     }
 
+    /**
+     * Verhoogt het aantal punten van een student
+     * @param naam Achternaam van de student
+     * @param punten Het aantal punten de student moet ontvangen
+     */
     public void verhoogPunten(String naam, double punten) {
         if (zoekStudent(naam) instanceof ReguliereStudent) {
             ReguliereStudent student = (ReguliereStudent) zoekStudent(naam);
@@ -95,6 +127,10 @@ public class StudentenAdministratie {
         }
     }
 
+    /**
+     * Verhoogt de behaalde modules van scholer met 1 module
+     * @param naam Achternaam van de scholer
+     */
     public void verhoogBehaaldeModules(String naam) {
         if (zoekStudent(naam) instanceof CPPStudent) {
             CPPStudent scholer = (CPPStudent) zoekStudent(naam);
