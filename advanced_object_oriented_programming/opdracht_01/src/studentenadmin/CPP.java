@@ -1,8 +1,10 @@
 package studentenadmin;
-
+/**
+ * Een subklasse van Onderwijs. Een CPP is het onderwijs van de scholers.
+ */
 class CPP extends Onderwijs {
 
-    //  Attrubutes
+    //  Attributes
     private final int modules;
 
     //  Constructor
@@ -11,7 +13,7 @@ class CPP extends Onderwijs {
         this.modules = modules;
     }
 
-    //  Getters
+    //  Methods
     int getTotaalModules() {
         return modules;
     }

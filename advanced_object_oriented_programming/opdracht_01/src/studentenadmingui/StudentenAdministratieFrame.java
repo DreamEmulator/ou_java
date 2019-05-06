@@ -356,7 +356,6 @@ public class StudentenAdministratieFrame extends JFrame {
         return scholerButton;
     }
 
-
     //  Bind events
     private void bindEvents() {
 

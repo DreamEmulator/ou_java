@@ -2,7 +2,9 @@ package studentenadmin;
 
 import java.util.ArrayList;
 
-@SuppressWarnings("ALL")
+/**
+ * Dit is de kapstokklasse van de domeinlaag.
+ */
 public class StudentenAdministratie {
 
     //  Attributes
@@ -17,8 +19,29 @@ public class StudentenAdministratie {
             new CPP("Systeemontwikkelaar", 3)
     };
 
-    //  Getters
+    //  Methods
+    /**
+     * Private methode om een Student object op te zoeken aan de hand van de naam
+     * @return Student
+     */
+    private Student zoekStudent(String naam) {
+
+        Student student = null;
+        for (Student s : studenten) {
+            if (s.getNaam().equals(naam)) {
+                student = s;
+                break;
+            }
+        }
+        return student;
+    }
+
+    /**
+     * Private methode om een Opleiding object op te zoeken aan de hand van de naam
+     * @return Opleiding
+     */
     private Opleiding getOpleiding(String naam) {
+
         Opleiding opleiding = null;
         for (Opleiding o : opleidingen) {
             if (o.getNaam().equals(naam)) {
@@ -27,6 +50,22 @@ public class StudentenAdministratie {
             }
         }
         return opleiding;
+    }
+
+    /**
+     * Private methode om een CPP object op te zoeken aan de hand van de naam
+     * @return CPP
+     */
+    private CPP getCPP(String naam) {
+
+        CPP cpp = null;
+        for (CPP c : cpps) {
+            if (c.getNaam().equals(naam)) {
+                cpp = c;
+                break;
+            }
+        }
+        return cpp;
     }
 
     /**
@@ -39,17 +78,6 @@ public class StudentenAdministratie {
             opleidingenList[i] = opleidingen[i].getNaam();
         }
         return opleidingenList;
-    }
-
-    private CPP getCPP(String naam) {
-        CPP cpp = null;
-        for (CPP c : cpps) {
-            if (c.getNaam().equals(naam)) {
-                cpp = c;
-                break;
-            }
-        }
-        return cpp;
     }
 
     /**
@@ -76,22 +104,10 @@ public class StudentenAdministratie {
     /**
      * Met deze methode kan je een nieuwe Reguliere Student aanmaken. Er wordt niet gecheckt of deze reeds bestaat.
      * @param naam Achternaam van de Reguliere Student
-     * @param opleiding
+     * @param opleiding Naam van de opleiding
      */
     public void nieuweReguliereStudent(String naam, String opleiding) {
         studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
-    }
-
-    private Student zoekStudent(String naam) {
-
-        Student student = null;
-        for (Student s : studenten) {
-            if (s.getNaam().equals(naam)) {
-                student = s;
-                break;
-            }
-        }
-        return student;
     }
 
     /**

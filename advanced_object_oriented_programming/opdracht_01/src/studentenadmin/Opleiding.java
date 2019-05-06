@@ -1,5 +1,8 @@
 package studentenadmin;
 
+/**
+ * Een subklasse van Onderwijs. Opleiding is het onderwijs van de reguliere studenten.
+ */
 class Opleiding extends Onderwijs {
 
     //  Attributes
@@ -11,7 +14,7 @@ class Opleiding extends Onderwijs {
         this.punten = punten;
     }
 
-    //  Getters
+    //  Methods
     double getTotaalPunten() {
         return punten;
     }

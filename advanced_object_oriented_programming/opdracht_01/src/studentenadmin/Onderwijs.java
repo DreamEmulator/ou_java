@@ -1,7 +1,11 @@
 package studentenadmin;
 
+/**
+ * Onderwijs is de superklasse van zowel Opleiding als CPP.
+ */
 abstract class Onderwijs {
-    //  Attrubutes
+
+    //  Attributes
     private final String naam;
 
     //  Constructor
@@ -9,6 +13,7 @@ abstract class Onderwijs {
         this.naam = naam;
     }
 
+    //  Methods
     String getNaam() {
         return naam;
     }
