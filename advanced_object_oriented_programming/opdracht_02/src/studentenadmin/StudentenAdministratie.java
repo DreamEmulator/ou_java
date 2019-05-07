@@ -45,16 +45,13 @@ public class StudentenAdministratie {
      *
      * @return Opleiding
      */
-    private Opleiding getOpleiding(String naam) {
-
-        Opleiding opleiding = null;
+    private Opleiding getOpleiding(String naam) throws StudentAdminException {
         for (Opleiding o : opleidingen) {
             if (o.getNaam().equals(naam)) {
-                opleiding = o;
-                break;
+                return o;
             }
         }
-        return opleiding;
+        throw new StudentAdminException("Let op: De opleiding " + naam + " bestaat niet.");
     }
 
     /**
@@ -62,16 +59,13 @@ public class StudentenAdministratie {
      *
      * @return CPP
      */
-    private CPP getCPP(String naam) {
-
-        CPP cpp = null;
+    private CPP getCPP(String naam) throws StudentAdminException {
         for (CPP c : cpps) {
             if (c.getNaam().equals(naam)) {
-                cpp = c;
-                break;
+                return c;
             }
         }
-        return cpp;
+        throw new StudentAdminException("Let op: De CPP " + naam + " bestaat niet");
     }
 
     /**
@@ -110,7 +104,7 @@ public class StudentenAdministratie {
         if (naam.length() < 3) {
             throw new StudentAdminException("Let op: Een naam moet uit meer dan twee karakters bestaan");
         } else if (zoekStudent(naam) != null) {
-            throw new StudentAdminException("Let op: Student bestaat al");
+            throw new StudentAdminException("Let op: " + naam + " staat al ingeschreven");
         } else {
             studenten.add(new CPPStudent(naam, getCPP(cpp)));
         }
@@ -126,7 +120,7 @@ public class StudentenAdministratie {
         if (naam.length() < 3) {
             throw new StudentAdminException("Let op: Een naam moet uit meer dan twee karakters bestaan");
         } else if (zoekStudent(naam) != null) {
-            throw new StudentAdminException("Let op: Student bestaat al");
+            throw new StudentAdminException("Let op: " + naam + " staat al ingeschreven");
         } else {
             studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
         }
@@ -142,7 +136,7 @@ public class StudentenAdministratie {
         if (naam.length() < 3) {
             throw new StudentAdminException("Let op: Naam moet uit meer dan twee karakters bestaan");
         } else if (zoekStudent(naam) == null) {
-            throw new StudentAdminException("Let op: Student bestaat niet");
+            throw new StudentAdminException("Let op: " + naam + " bestaat niet");
         } else {
             return zoekStudent(naam).toonInfo();
         }

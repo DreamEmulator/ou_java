@@ -10,7 +10,6 @@ public class StudentAdminException extends Exception {
     public StudentAdminException(String message) {
         super(message);
         this.message = message;
-        System.out.println(message);
     }
 
     public StudentAdminException(String message, Throwable err) {
