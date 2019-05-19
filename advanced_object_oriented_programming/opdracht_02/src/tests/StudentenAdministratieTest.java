@@ -26,7 +26,7 @@ public class StudentenAdministratieTest {
     @org.junit.Test
     public void nieuweReguliereStudent() {
         try {
-            s.nieuweReguliereStudent("Jan", "Cobol");
+            s.nieuweReguliereStudent("Bartel-Jaap", "Dieren Telepathie");
         } catch (StudentAdminException err) {
             System.out.println(err.message);
         }
