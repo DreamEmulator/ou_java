@@ -457,6 +457,8 @@ public class StudentenAdministratieFrame extends JFrame {
                     studentenAdministratie.verhoogPunten(bestaandeNaamVeld.getText(),Double.parseDouble(puntenVeld.getText()));
                 } catch (StudentAdminException err){
                     infoLabel.setText(err.message);
+                } catch (NumberFormatException err){
+                    infoLabel.setText("Let op: voer alleen cijfers in als punten");
                 }
 
                 try {
