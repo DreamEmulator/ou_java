@@ -14,21 +14,13 @@ public class StudentenAdministratieTest {
         s = new StudentenAdministratie();
     }
 
-    @org.junit.Test
-    public void nieuweCPPScholer() {
-        try {
+    @org.junit.Test (expected=StudentAdminException.class)
+    public void nieuweCPPScholer() throws StudentAdminException {
             s.nieuweCPPScholer("Jan", "Cobol");
-        } catch (StudentAdminException err) {
-            System.out.println(err.message);
-        }
     }
 
-    @org.junit.Test
-    public void nieuweReguliereStudent() {
-        try {
-            s.nieuweReguliereStudent("Bartel-Jaap", "Dieren Telepathie");
-        } catch (StudentAdminException err) {
-            System.out.println(err.message);
-        }
+    @org.junit.Test (expected=StudentAdminException.class)
+    public void nieuweReguliereStudent() throws StudentAdminException {
+        s.nieuweReguliereStudent("Bartel-Jaap", "Dieren Telepathie");
     }
 }

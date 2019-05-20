@@ -99,7 +99,7 @@ public class StudentenAdministratie {
      * @param cpp  Naam van de CPP
      */
     public void nieuweCPPScholer(String naam, String cpp) throws StudentAdminException {
-        if (naam.length() < 3) {
+        if (naam.length() < 2) {
             throw new StudentAdminException("Let op: Een naam moet uit meer dan twee karakters bestaan");
         } else if (zoekStudent(naam) != null) {
             throw new StudentAdminException("Let op: " + naam + " staat al ingeschreven");
@@ -115,7 +115,7 @@ public class StudentenAdministratie {
      * @param opleiding Naam van de opleiding
      */
     public void nieuweReguliereStudent(String naam, String opleiding) throws StudentAdminException {
-        if (naam.length() < 3) {
+        if (naam.length() < 2) {
             throw new StudentAdminException("Let op: Een naam moet uit meer dan twee karakters bestaan");
         } else if (zoekStudent(naam) != null) {
             throw new StudentAdminException("Let op: " + naam + " staat al ingeschreven");

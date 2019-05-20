@@ -1,24 +1,22 @@
 CPP Java/app programmeur - Geavanceerd objectgeori�nteerd programmeren - Opdracht 2 (concept)
 Naam: Sebastiaan Hols
 
-DONE - Goed een exceptie klasse toegevoegd voor foutrapportage en afhandeling. Deze
-mag je overigens in de package met de domeinklassen plaatsen.
+DONE - Goed een exceptie klasse toegevoegd voor foutrapportage en afhandeling. Deze mag je overigens in de package met de domeinklassen plaatsen.
 
 
 - Denk goed na welke fouten je waar afhandelt qua verantwoordelijkheden:
 
-1: in de GUI of in het domein? En welke klasse en methode is dan het meest passend (wie is "information expert")? Voorbeeld: de klasse Student beheert de naam van de
-student.
+1: in de GUI of in het domein? En welke klasse en methode is dan het meest passend (wie is "information expert")? Voorbeeld: de klasse Student beheert de naam van de student.
+
 2: Die klasse is dus ook het meest geschikt (verantwoordelijkheden) om de foutcontrole op de studentnaam te doen; deze klasse is information expert, in tegenstelling tot de algemene beheerklasse StudentAdmin.
 
 
-- Een studentnaam moest uit minimaal twee karakters bestaan ipv meer dan twee.
+DONE - Een studentnaam moest uit minimaal twee karakters bestaan ipv meer dan twee.
 
 
-- Test in je JUnit tests in ieder geval zaken die niet via de GUI getest kunnen
-worden (zie ook opdrachtbeschrijving).
+- Test in je JUnit tests in ieder geval zaken die niet via de GUI getest kunnen worden (zie ook opdrachtbeschrijving).
 1: De huidige testcases doen feitelijk niets: er staan geen asserts in (of fail() stmt oid), alle huidige tests zullen altijd slagen.
-2: Print verder ook geen foutboodschappen naar System.out in de unit tests, JUnit toont een eigen testrapport.
+DONE 2: Print verder ook geen foutboodschappen naar System.out in de unit tests, JUnit toont een eigen testrapport.
 
 
 - Geef een foutmelding bij negatieve studiepunten ipv "negeren".
