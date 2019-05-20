@@ -1,6 +1,6 @@
 package tests;
 
-import exceptions.StudentAdminException;
+import studentenadmin.StudentAdminException;
 
 import org.junit.Before;
 import studentenadmin.StudentenAdministratie;

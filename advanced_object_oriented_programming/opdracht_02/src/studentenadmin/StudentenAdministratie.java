@@ -1,7 +1,5 @@
 package studentenadmin;
 
-import exceptions.StudentAdminException;
-
 import java.util.ArrayList;
 
 /**

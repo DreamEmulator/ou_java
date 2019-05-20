@@ -1,4 +1,4 @@
-package exceptions;
+package studentenadmin;
 
 public class StudentAdminException extends Exception {
 

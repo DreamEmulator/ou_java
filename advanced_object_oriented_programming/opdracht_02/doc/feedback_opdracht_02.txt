@@ -1,32 +1,31 @@
-CPP Java/app programmeur - Geavanceerd objectgeoriënteerd programmeren - Opdracht 2 (concept)
+CPP Java/app programmeur - Geavanceerd objectgeoriï¿½nteerd programmeren - Opdracht 2 (concept)
 Naam: Sebastiaan Hols
 
-- Goed een exceptie klasse toegevoegd voor foutrapportage en afhandeling. Deze
+DONE - Goed een exceptie klasse toegevoegd voor foutrapportage en afhandeling. Deze
 mag je overigens in de package met de domeinklassen plaatsen.
 
 
-- Denk goed na welke fouten je waar afhandelt qua verantwoordelijkheden: in de
-GUI of in het domein? En welke klasse en methode is dan het meest passend (wie
-is "information expert")? Voorbeeld: de klasse Student beheert de naam van de
-student. Die klasse is dus ook het meest geschikt (verantwoordelijkheden) om de
-foutcontrole op de studentnaam te doen; deze klasse is information expert, in
-tegenstelling tot de algemene beheerklasse StudentAdmin.
+- Denk goed na welke fouten je waar afhandelt qua verantwoordelijkheden:
+
+1: in de GUI of in het domein? En welke klasse en methode is dan het meest passend (wie is "information expert")? Voorbeeld: de klasse Student beheert de naam van de
+student.
+2: Die klasse is dus ook het meest geschikt (verantwoordelijkheden) om de foutcontrole op de studentnaam te doen; deze klasse is information expert, in tegenstelling tot de algemene beheerklasse StudentAdmin.
 
 
 - Een studentnaam moest uit minimaal twee karakters bestaan ipv meer dan twee.
 
 
 - Test in je JUnit tests in ieder geval zaken die niet via de GUI getest kunnen
-worden (zie ook opdrachtbeschrijving). De huidige testcases doen feitelijk
-niets: er staan geen asserts in (of fail() stmt oid), alle huidige tests zullen
-altijd slagen. Print verder ook geen foutboodschappen naar System.out in de
-unit tests, JUnit toont een eigen testrapport.
+worden (zie ook opdrachtbeschrijving).
+1: De huidige testcases doen feitelijk niets: er staan geen asserts in (of fail() stmt oid), alle huidige tests zullen altijd slagen.
+2: Print verder ook geen foutboodschappen naar System.out in de unit tests, JUnit toont een eigen testrapport.
 
 
 - Geef een foutmelding bij negatieve studiepunten ipv "negeren".
 
 
-- Zorg dat fouten die kunnen optreden niet leiden tot een crash van de
-applicatie, maar geef een goed foutbericht. Nu crasht de applicatie als we een
-er een tekststring ipv numerieke waarde als studiepunten wordt ingevuld.
-Ga zelf goed na of er nog meer fouten zijn die leiden tot crashes.
+- Zorg dat fouten die kunnen optreden niet leiden tot een crash van de applicatie, maar geef een goed foutbericht.
+
+1: Nu crasht de applicatie als we een er een tekststring ipv numerieke waarde als studiepunten wordt ingevuld.
+
+2: Ga zelf goed na of er nog meer fouten zijn die leiden tot crashes.

@@ -1,6 +1,6 @@
 package studentenadmingui;
 
-import exceptions.StudentAdminException;
+import studentenadmin.StudentAdminException;
 import studentenadmin.*;
 
 import javax.swing.*;
