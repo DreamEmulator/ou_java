@@ -8,7 +8,7 @@ DONE - Goed een exceptie klasse toegevoegd voor foutrapportage en afhandeling. D
 
 1: in de GUI of in het domein? En welke klasse en methode is dan het meest passend (wie is "information expert")? Voorbeeld: de klasse Student beheert de naam van de student.
 
-2: Die klasse is dus ook het meest geschikt (verantwoordelijkheden) om de foutcontrole op de studentnaam te doen; deze klasse is information expert, in tegenstelling tot de algemene beheerklasse StudentAdmin.
+DONE 2: Die klasse is dus ook het meest geschikt (verantwoordelijkheden) om de foutcontrole op de studentnaam te doen; deze klasse is information expert, in tegenstelling tot de algemene beheerklasse StudentAdmin.
 
 
 DONE - Een studentnaam moest uit minimaal twee karakters bestaan ipv meer dan twee.

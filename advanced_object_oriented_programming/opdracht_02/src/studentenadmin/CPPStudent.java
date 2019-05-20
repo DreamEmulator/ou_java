@@ -7,7 +7,7 @@ class CPPStudent extends Student {
     private int behaaldeModules = 0;
 
     //Constructor
-    CPPStudent(String naam, CPP cpp) {
+    CPPStudent(String naam, CPP cpp) throws StudentAdminException {
         super(naam);
         this.cpp = cpp;
     }

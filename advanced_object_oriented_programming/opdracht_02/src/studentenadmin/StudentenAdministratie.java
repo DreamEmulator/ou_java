@@ -99,9 +99,7 @@ public class StudentenAdministratie {
      * @param cpp  Naam van de CPP
      */
     public void nieuweCPPScholer(String naam, String cpp) throws StudentAdminException {
-        if (naam.length() < 2) {
-            throw new StudentAdminException("Let op: Een naam moet uit meer dan twee karakters bestaan");
-        } else if (zoekStudent(naam) != null) {
+        if (zoekStudent(naam) != null) {
             throw new StudentAdminException("Let op: " + naam + " staat al ingeschreven");
         } else {
             studenten.add(new CPPStudent(naam, getCPP(cpp)));
@@ -115,9 +113,7 @@ public class StudentenAdministratie {
      * @param opleiding Naam van de opleiding
      */
     public void nieuweReguliereStudent(String naam, String opleiding) throws StudentAdminException {
-        if (naam.length() < 2) {
-            throw new StudentAdminException("Let op: Een naam moet uit meer dan twee karakters bestaan");
-        } else if (zoekStudent(naam) != null) {
+        if (zoekStudent(naam) != null) {
             throw new StudentAdminException("Let op: " + naam + " staat al ingeschreven");
         } else {
             studenten.add(new ReguliereStudent(naam, getOpleiding(opleiding)));
@@ -131,9 +127,7 @@ public class StudentenAdministratie {
      * @return String met informatie van de scholer of student
      */
     public String toonStudent(String naam) throws StudentAdminException {
-        if (naam.length() < 3) {
-            throw new StudentAdminException("Let op: Naam moet uit meer dan twee karakters bestaan");
-        } else if (zoekStudent(naam) == null) {
+        if (zoekStudent(naam) == null) {
             throw new StudentAdminException("Let op: " + naam + " bestaat niet");
         } else {
             return zoekStudent(naam).toonInfo();

@@ -7,7 +7,7 @@ class ReguliereStudent extends Student {
     private double behaaldePunten = 0;
 
     //  Constructor
-    ReguliereStudent(String naam, Opleiding opleiding) {
+    ReguliereStudent(String naam, Opleiding opleiding) throws StudentAdminException {
         super(naam);
         this.opleiding = opleiding;
     }

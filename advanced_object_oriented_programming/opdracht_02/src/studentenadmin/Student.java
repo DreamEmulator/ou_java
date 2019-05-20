@@ -6,8 +6,13 @@ abstract class Student {
     final String naam;
 
     //  Contstructor
-    Student(String naam) {
-        this.naam = naam;
+    Student(String naam) throws StudentAdminException  {
+
+        if (naam.length() > 2) {
+            this.naam = naam;
+        } else {
+            throw new StudentAdminException("Let op: " + naam + " is te kort");
+        }
     }
 
     //  Methods
