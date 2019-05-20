@@ -1,5 +1,8 @@
 package studentenadmin;
 
+/**
+ * Met deze klass kan je een Reguliere student creëren
+ */
 class ReguliereStudent extends Student {
 
     //  Attributes
@@ -25,9 +28,11 @@ class ReguliereStudent extends Student {
      * Verhoogde de behaalde punten met een double waarde die groter is dan 0.
      * @param behaaldePunten
      */
-    void verhoogBehaaldePunten(double behaaldePunten) {
+    void verhoogBehaaldePunten(double behaaldePunten) throws StudentAdminException {
         if (behaaldePunten > 0) {
             this.behaaldePunten += behaaldePunten;
+        } else {
+            throw new StudentAdminException("Let op: Punten mogen alleen opgeteld worden");
         }
     }
 

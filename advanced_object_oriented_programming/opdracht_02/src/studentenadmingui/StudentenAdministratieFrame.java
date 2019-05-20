@@ -27,10 +27,10 @@ public class StudentenAdministratieFrame extends JFrame {
     private JTextField studentInfoVeld = null;
     private JTextField puntenVeld = null;
     private JButton moduleKnop = null;
-    private JComboBox opleidingComboBox = null;
+    private JComboBox<String> opleidingComboBox = null;
     private JTextField studentTextField = null;
     private JButton studentButton = null;
-    private JComboBox scholingComboBox = null;
+    private JComboBox<String> scholingComboBox = null;
     private JTextField scholerTextField = null;
     private JButton scholerButton = null;
     private JLabel infoLabel = null;
@@ -283,9 +283,9 @@ public class StudentenAdministratieFrame extends JFrame {
      *
      * @return javax.swing.JComboBox
      */
-    private JComboBox getOpleidingComboBox() {
+    private JComboBox<String> getOpleidingComboBox() {
         if (opleidingComboBox == null) {
-            opleidingComboBox = new JComboBox();
+            opleidingComboBox = new JComboBox<String>();
             opleidingComboBox.setBounds(new Rectangle(195, 16, 200, 24));
         }
         return opleidingComboBox;
@@ -323,9 +323,9 @@ public class StudentenAdministratieFrame extends JFrame {
      *
      * @return javax.swing.JComboBox
      */
-    private JComboBox getScholingComboBox() {
+    private JComboBox<String> getScholingComboBox() {
         if (scholingComboBox == null) {
-            scholingComboBox = new JComboBox();
+            scholingComboBox = new JComboBox<>();
             scholingComboBox.setBounds(new Rectangle(210, 16, 167, 25));
         }
         return scholingComboBox;
