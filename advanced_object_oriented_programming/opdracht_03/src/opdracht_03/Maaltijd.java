@@ -1,13 +1,17 @@
 package opdracht_03;
 
-public class Maaltijd {
+class Maaltijd {
 
-    private String naam;
-    private int tafelNr;
+    private final String naam;
+    private final int tafelNr;
 
     public Maaltijd(String naam, int tafelNr) {
         this.naam = naam;
         this.tafelNr = tafelNr;
+    }
+
+    public int getTafelNr() {
+        return tafelNr;
     }
 
     @Override
