@@ -23,7 +23,7 @@ DONE - 2: Print verder ook geen foutboodschappen naar System.out in de unit test
 DONE - Geef een foutmelding bij negatieve studiepunten ipv "negeren".
 
 
-- Zorg dat fouten die kunnen optreden niet leiden tot een crash van de applicatie, maar geef een goed foutbericht.
+DONE - Zorg dat fouten die kunnen optreden niet leiden tot een crash van de applicatie, maar geef een goed foutbericht.
 
 DONE - 1: Nu crasht de applicatie als we een er een tekststring ipv numerieke waarde als studiepunten wordt ingevuld.
 

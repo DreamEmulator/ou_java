@@ -27,7 +27,6 @@ public class StudentenAdministratie {
      * @return Student
      */
     private Student zoekStudent(String naam) {
-
         Student student = null;
         for (Student s : studenten) {
             if (s.getNaam().equals(naam)) {
