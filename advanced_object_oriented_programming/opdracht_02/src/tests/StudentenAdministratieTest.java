@@ -7,10 +7,10 @@ import studentenadmin.StudentenAdministratie;
 
 public class StudentenAdministratieTest {
 
-    StudentenAdministratie s;
+    private StudentenAdministratie s;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         s = new StudentenAdministratie();
     }
 
@@ -21,7 +21,7 @@ public class StudentenAdministratieTest {
 
     @org.junit.Test (expected=StudentAdminException.class)
     public void geenNieuweCPPScholer() throws StudentAdminException {
-            s.nieuweCPPScholer("Jan", "Cobol");
+        s.nieuweCPPScholer("Jan", "Cobol");
     }
 
     @org.junit.Test

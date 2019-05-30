@@ -26,7 +26,7 @@ class ReguliereStudent extends Student {
 
     /**
      * Verhoogde de behaalde punten met een double waarde die groter is dan 0.
-     * @param behaaldePunten
+     * @param behaaldePunten het aantal punten die een student in totaal heeft gehaald
      */
     void verhoogBehaaldePunten(double behaaldePunten) throws StudentAdminException {
         if (behaaldePunten > 0) {

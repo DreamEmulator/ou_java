@@ -1,0 +1,120 @@
+CPP Java/app programmeur - Geavanceerd objectgeoriënteerd programmeren - Opdracht 3 (concept)
+Naam: ...
+
+
+
+- Goed gezien dat ArrayList niet thread-safe is, en data inconsistenties of
+vreemd gedrag kan vertonen bij gelijktijdige benadering vanuit meerdere threads
+(zoals het geval kan zijn in de balie). Voor deze opdracht mag je echter de
+ArrayList niet vervangen door een ander type dat wel thread-safe is (!), zoals
+Vector: je moet zorgen dmv synchronisatie dat de balie zelf toch thread-safe
+is, ook al wordt binnen de balie een niet thread-safe ArrayList gebruikt.
+
+- Controleer nauwkeurig of je implementatie matcht met het klassendiagram uit
+de opdracht. Bijvoorbeeld: erven Kok en Ober van Thread in het diagram?
+
+- De boolean stoppen in Kok/Ober moet je vanuit de ene thread kunnen schrijven
+(bv de thread waarin het restaurant executeert), en in andere threads (koks / 
+obers) de laatst geschreven waarde kunnen lezen. Dan is er synchronisatie nodig
+Tip: om dit te realiseren, zie volatile/synchronized in het studiemateriaal.
+
+- De methode remove(i) verwijdert _en_ returnt het element van index i,
+een aparte aanroep van get(..) is dus niet nodig (Uitgiftebalie.pakMaaltijd).
+
+- Je kan ook bepalen of de simulatietijd is verstreken met een sleep(..) ipv
+de Timer.
+
+- Voor de definitieve versie: lever de toelichting met analyse en oplossing
+van synchronisatieproblemen aan in een apart bestand.
+
+- Op enkele plaatsen mist Javadoc.
+
+- Leuke menukaart!
+
+
+
+- In klasse restaurant heb je de balie statisch gemaakt. Daardoor delen alle
+restaurants dezelfde balie! Denk goed na of dat echt is wat je wilt.
+
+- Prefereer interfaces als List boven klassen als ArrayList als gedeclareerd
+type (zie UitgifteBalie). Dan heb je de flexibiliteit om later te kunnen
+switchen naar een andere implementatie.
+
+- Goed de boolean stoppen in koks en obers volatile gemaakt, zodat de laatste
+waarde van dit attribuut in alle threads zichtbaar is.
+
+- Goed gezorgd dmv synchronisatie dat twee threads niet tegelijkertijd een
+maaltijd verwijderen van de gedeelde balie (want ArrayList is niet thread-safe)
+
+- ArrayLists zijn niet thread-safe, dus gelijktijdige toegang door meerdere
+threads van dezelfde ArrayList moet je voorkomen (anders riskeer je data cor-
+ruptie en vreemd gedrag. Tip: ga na of dit echt op alle plaatsen wordt
+afgedwongen in de UitgifteBalie.
+
+- In de kok is methode kook() synchronized. Maar in ieder kok object is slechts
+1 thread actief. Is synchronized dan nog zinvol?
+
+- Constanten die in het klassendiagram onderstreept zijn, behoren static te
+zijn worden in de Java code.
+
+- Goed gezien dat de uitgiftebalie gedeeld en gebruikt wordt in meerdere threads, en daarop gesynchroniseerd moet worden!
+Denk goed na bij iedere lock of die lock echt nodig is. Beschouw bv onderstaand synchronized block in Kok.kook():
+    synchronized (uitgiftebalie) {
+        uitgiftebalie.plaatsMaaltijd(new Maaltijd(maaltijdNaam, tafelnummer));
+    }
+Het blok bevat maar 1 opdracht (dus wordt niet gebruikt om meerdere opdrachten uit te voeren zonder tussenliggende intereferentie),
+en die opdracht is een aanroep naar een synchronized methode die synchroniseert op de uitgiftebalie.
+Dus de lock van de gedeelde uitgiftebalie wordt ook aangevraagd (bij synchronized methode plaatsMaatijd) als je het synchronized block weg laat.
+
+
+- Maak members (methoden + attributen) zo veel mogelijk private (attributen private!!!)
+ 
+- Controleer nauwkeurig of je implementatie matcht met het ontwerpklassendiagram uit de opdracht.
+Bijvoorbeeld: tijdelijke zichtbaarheden met lokale variabelen (zoals Maaltijd in Kok, volgens de opdrachtbeschrijving) mogen geen permanente zichtbaarheden worden met attributen (dus geen attribuut van type Maaltijd in klasse Kok).
+
+- Goed nagedacht over synchronisatie
+
+- Denk over synchronisatie: waar moet gesynchroniseerd worden om interferentie te voorkomen tussen meerdere threads die gebruik maken van hetzelfde gedeelde object?
+Zoek naar klassen waarvan objecten in meerdere threads gebruikt worden (gedeeld worden door meerdere threads)
+Maak vervolgens de juiste methoden van de klassen van die objecten synchronized en beschrijf dit
+Tip: denk goed na of je check-then-act problemen hebt, en hoe je die met synchronisatie kunt vermijden (eerst checkt de ober of de balie leeg is (check), daarna pakt hij de maaltijd (act))
+
+- Je kan overwegen om de menukaart een singleton te maken, om af te dwingen dat alle koks uit het restaurant dezelfde menukaart gebruiken
+
+- Gebruik ook meerdere koks
+
+- Controleer nauwkeurig of je implementatie matcht met het ontwerpklassendiagram uit de opdracht.
+Bijvoorbeeld: Ober moet geen subklasse zijn van Thread
+
+- Kok erft van thread, dus erft ook de methode start() van thread. In methode startkok hoef je die dus slechts aan te roepen. Nog een apart thread object maken is onnodig
+
+- Vergeet niet Javadoc toe te voegen op alle benodigde plaatsen (zowel bij methoden als klassen)
+
+- Leuke gerechten! Overigens, als je kiesGerecht enkel als hulpmethode gebruikt, overweeg hem dan private te maken.
+In het algemeen: beperk toegang zoveel als mogelijk)
+ 
+ - Denk goed na waar synchronisatie nodig is (in principe overal waar je een object gebruikt dat door meerdere threads benadert wordt).
+ Ik zie dat je een eerste stap hebt gemaakt door 1 methode in de Uitgiftebalie synchronized te maken, maar denk goed na of dat voldoende is.
+
+- Je stopt koks en obers stoppen door een specifiek attribuut in een andere klasse te checken (Restaurant.SIMULATIETIJDVERSTREKEN).
+Daardoor heb je een koppeling van Koks/Obers naar Restaurant gecreerd (die niet in ontwerp voorkwam), en is er weinig controle over het stopmoment (wat als je een andere beheerklasse zou willen gebruiken?
+Of op een ander moment wil stoppen?). Overweeg een stopmethode bij die klassen te introduceren (mogelijk is dan het attribuut SIMULATIETIJDVERSTREKEN niet meer nodig).
+Tip: zie ook slides uit de bijeenkomst over stoppen van threads.
+
+- Maak constanten zoals Restaurant.AANTALTAFELS final
+
+- Maak constanten behalve final ook static (Ober)
+ 
+- Goed nagedacht over synchronisatie
+
+- Denk over synchronisatie: waar moet gesynchroniseerd worden? Tip: zoek naar klassen waarvan objecten in meerdere threads gebruikt worden (gedeeld worden door meerdere threads)
+Maak vervolgens de juiste methoden van de klassen van die objecten synchronized en beschrijf dit
+
+- Je moet in de Uitgiftebalie echt een ArrayList gebruiken om maaltijden bij te houden, geen Vector (zie ook opdrachtbeschrijving)
+
+- Start geen nieuwe thread in een constructor (Kok)
+   * 1. Dat is gevaarlijk: de kok kan nu gebruikt worden in een andere thread terwijl hij mogelijk nog niet klaar is met initialiseren. Dat kan excepties of onvoorspelbaar gedrag tot gevolg hebben (mogelijk geldt de klasse invariant nog niet)
+   * 2. Zo kan je de kok nooit meer herstarten, nadat hij gestopt is
+
+- Koks en obers moeten door ander object gestopt kunnen worden (bv restaurant). Het restaurant kan de lokale variabele stoppen in de run methoden niet zien (en dus ook niet aanpassen), dus een lokale variabele is niet geschikt, gebruik een attribuut.
+Zie ook slide 95 - 98 uit bijeenkomst 3
