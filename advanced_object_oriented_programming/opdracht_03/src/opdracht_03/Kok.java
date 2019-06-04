@@ -3,11 +3,11 @@ package opdracht_03;
 /**
  * De kok in de simulatie probeert zoveel mogelijk op de Uitgiftebalie, maar moet steeds wachten tot de bereidingstijd van de maaltijd verstrkeen is.
  */
-class Kok extends Thread {
+class Kok implements Runnable {
     private static final int BEREIDINGSTIJD = 4000;
     private final String naam;
     private final Uitgiftebalie uitgiftebalie;
-    private boolean stoppen = false;
+    volatile private boolean stoppen = false;
 
     Kok(String naam, Uitgiftebalie uitgiftebalie) {
         System.out.println("Starten: " + naam);

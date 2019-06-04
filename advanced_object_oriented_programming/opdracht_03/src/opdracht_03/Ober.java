@@ -3,13 +3,13 @@ package opdracht_03;
 /**
  * De ober klasse is verantwoordelijk voor het uitserveren van de maaltijden die de koks op de balie z
  */
-class Ober extends Thread {
+class Ober implements Runnable {
 
     private static final int LOOPTIJD = 500;
     private static final int WACHTIJD = 1000;
     private final String naam;
     private final Uitgiftebalie uitgiftebalie;
-    private boolean stoppen = false;
+    volatile private boolean stoppen = false;
 
     public Ober(String naam, Uitgiftebalie uitgiftebalie) {
         this.naam = naam;

@@ -1,69 +1,65 @@
-CPP Java/app programmeur - Geavanceerd objectgeoriënteerd programmeren - Opdracht 3 (concept)
+CPP Java/app programmeur - Geavanceerd objectgeoriÃ«nteerd programmeren - Opdracht 3 (concept)
 Naam: ...
 
+!CHECK! = Controleer nauwkeurig of je implementatie matcht met het klassendiagram uit
+de opdracht.
 
-
-- Goed gezien dat ArrayList niet thread-safe is, en data inconsistenties of
-vreemd gedrag kan vertonen bij gelijktijdige benadering vanuit meerdere threads
-(zoals het geval kan zijn in de balie). Voor deze opdracht mag je echter de
-ArrayList niet vervangen door een ander type dat wel thread-safe is (!), zoals
-Vector: je moet zorgen dmv synchronisatie dat de balie zelf toch thread-safe
-is, ook al wordt binnen de balie een niet thread-safe ArrayList gebruikt.
-
-- Controleer nauwkeurig of je implementatie matcht met het klassendiagram uit
-de opdracht. Bijvoorbeeld: erven Kok en Ober van Thread in het diagram?
-
-- De boolean stoppen in Kok/Ober moet je vanuit de ene thread kunnen schrijven
-(bv de thread waarin het restaurant executeert), en in andere threads (koks / 
-obers) de laatst geschreven waarde kunnen lezen. Dan is er synchronisatie nodig
-Tip: om dit te realiseren, zie volatile/synchronized in het studiemateriaal.
-
-- De methode remove(i) verwijdert _en_ returnt het element van index i,
-een aparte aanroep van get(..) is dus niet nodig (Uitgiftebalie.pakMaaltijd).
-
-- Je kan ook bepalen of de simulatietijd is verstreken met een sleep(..) ipv
-de Timer.
-
-- Voor de definitieve versie: lever de toelichting met analyse en oplossing
+!CHECK! = Voor de definitieve versie: lever de toelichting met analyse en oplossing
 van synchronisatieproblemen aan in een apart bestand.
 
-- Op enkele plaatsen mist Javadoc.
+!CHECK! = Op enkele plaatsen mist Javadoc.
 
-- Leuke menukaart!
-
-
-
-- In klasse restaurant heb je de balie statisch gemaakt. Daardoor delen alle
-restaurants dezelfde balie! Denk goed na of dat echt is wat je wilt.
-
-- Prefereer interfaces als List boven klassen als ArrayList als gedeclareerd
-type (zie UitgifteBalie). Dan heb je de flexibiliteit om later te kunnen
-switchen naar een andere implementatie.
-
-- Goed de boolean stoppen in koks en obers volatile gemaakt, zodat de laatste
-waarde van dit attribuut in alle threads zichtbaar is.
-
-- Goed gezorgd dmv synchronisatie dat twee threads niet tegelijkertijd een
-maaltijd verwijderen van de gedeelde balie (want ArrayList is niet thread-safe)
-
-- ArrayLists zijn niet thread-safe, dus gelijktijdige toegang door meerdere
-threads van dezelfde ArrayList moet je voorkomen (anders riskeer je data cor-
-ruptie en vreemd gedrag. Tip: ga na of dit echt op alle plaatsen wordt
+!CHECK! = ArrayLists zijn niet thread-safe, dus gelijktijdige toegang door meerdere threads van dezelfde ArrayList moet je voorkomen (anders riskeer je data corruptie en vreemd gedrag. Tip: ga na of dit echt op alle plaatsen wordt
 afgedwongen in de UitgifteBalie.
 
-- In de kok is methode kook() synchronized. Maar in ieder kok object is slechts
-1 thread actief. Is synchronized dan nog zinvol?
+----------------------------------------------------------------------------
 
-- Constanten die in het klassendiagram onderstreept zijn, behoren static te
-zijn worden in de Java code.
+? NOT TRUE ? =  In de kok is methode kook() synchronized. Maar in ieder kok object is slechts 1 thread actief. Is synchronized dan nog zinvol?
 
-- Goed gezien dat de uitgiftebalie gedeeld en gebruikt wordt in meerdere threads, en daarop gesynchroniseerd moet worden!
-Denk goed na bij iedere lock of die lock echt nodig is. Beschouw bv onderstaand synchronized block in Kok.kook():
+? NOT TRUE ? = In klasse restaurant heb je de balie statisch gemaakt. Daardoor delen alle
+restaurants dezelfde balie! Denk goed na of dat echt is wat je wilt.
+
+? NOT TRUE ? - Constanten die in het klassendiagram onderstreept zijn, behoren static te zijn worden in de Java code.
+
+? NOT TRUE ? = Goed gezien dat de uitgiftebalie gedeeld en gebruikt wordt in meerdere threads, en daarop gesynchroniseerd moet worden! Denk goed na bij iedere lock of die lock echt nodig is.
+Beschouw bv onderstaand synchronized block in Kok.kook():
     synchronized (uitgiftebalie) {
         uitgiftebalie.plaatsMaaltijd(new Maaltijd(maaltijdNaam, tafelnummer));
     }
+
+----------------------------------------------------------------------------
+
+DONE = Goed gezien dat ArrayList niet thread-safe is, en data inconsistenties of vreemd gedrag kan vertonen bij gelijktijdige benadering vanuit meerdere threads (zoals het geval kan zijn in de balie). Voor deze opdracht mag je echter de ArrayList niet vervangen door een ander type dat wel thread-safe is (!), zoals Vector: je moet zorgen dmv synchronisatie dat de balie zelf toch thread-safe is, ook al wordt binnen de balie een niet thread-safe ArrayList gebruikt.
+
+DONE = Erven Kok en Ober van Thread in het diagram?
+
+DONE = De boolean stoppen in Kok/Ober moet je vanuit de ene thread kunnen schrijven (bv de thread waarin het restaurant executeert), en in andere threads (koks/obers) de laatst geschreven waarde kunnen lezen. Dan is er synchronisatie nodig
+Tip: om dit te realiseren, zie volatile/synchronized in het studiemateriaal.
+
+DONE = De methode remove(i) verwijdert _en_ returnt het element van index i,
+een aparte aanroep van get(..) is dus niet nodig (Uitgiftebalie.pakMaaltijd).
+
+DONE = Je kan ook bepalen of de simulatietijd is verstreken met een sleep(..) ipv
+de Timer.
+
+DONE = Leuke menukaart!
+
+DONE = Prefereer interfaces als List boven klassen als ArrayList als gedeclareerd
+type (zie UitgifteBalie). Dan heb je de flexibiliteit om later te kunnen
+switchen naar een andere implementatie.
+
+DONE = Goed de boolean stoppen in koks en obers volatile gemaakt, zodat de laatste
+waarde van dit attribuut in alle threads zichtbaar is.
+
+DONE = Goed gezorgd dmv synchronisatie dat twee threads niet tegelijkertijd een
+maaltijd verwijderen van de gedeelde balie (want ArrayList is niet thread-safe)
+
+
+
+
 Het blok bevat maar 1 opdracht (dus wordt niet gebruikt om meerdere opdrachten uit te voeren zonder tussenliggende intereferentie),
 en die opdracht is een aanroep naar een synchronized methode die synchroniseert op de uitgiftebalie.
+
 Dus de lock van de gedeelde uitgiftebalie wordt ook aangevraagd (bij synchronized methode plaatsMaatijd) als je het synchronized block weg laat.
 
 

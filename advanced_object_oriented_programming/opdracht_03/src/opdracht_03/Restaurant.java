@@ -45,23 +45,22 @@ class Restaurant {
         threadOber01.start();
         threadOber02.start();
 
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                kok01.stopMetKoken();
-                kok02.stopMetKoken();
-                kok03.stopMetKoken();
+        try {
+            Thread.sleep(SIMULATIETIJD);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-                ober01.stopMetServeren();
-                ober02.stopMetServeren();
+        kok01.stopMetKoken();
+        kok02.stopMetKoken();
+        kok03.stopMetKoken();
 
-                System.out.println("De simulatietijd is verstreken");
-                System.exit(0);
-            }
-        };
+        ober01.stopMetServeren();
+        ober02.stopMetServeren();
 
-        timer.schedule(task, SIMULATIETIJD);
+        System.out.println("De simulatietijd is verstreken");
+        System.exit(0);
+
     }
 
 }
