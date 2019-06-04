@@ -13,7 +13,7 @@ import java.sql.SQLException;
  */
 public class Connectiebeheer {
 
-    private static Connection con;
+    static Connection con;
 
     /**
      * Maakt een connectie met de database en initialiseert
@@ -33,7 +33,7 @@ public class Connectiebeheer {
 
         try {
             con = DriverManager.getConnection(DBConst.URL, DBConst.GEBRUIKERSNAAM, DBConst.WACHTWOORD);
-            System.out.println(con);
+            System.out.println("Opening Connection");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -47,6 +47,7 @@ public class Connectiebeheer {
     public static void closeDB() {
         try {
             con.close();
+            System.out.println("Closing Connection");
         } catch (SQLException e) {
             e.printStackTrace();
         }

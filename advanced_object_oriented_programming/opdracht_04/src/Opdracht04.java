@@ -4,7 +4,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import static theaterdata.Connectiebeheer.closeDB;
-import static theaterdata.Connectiebeheer.openDB;
 
 public class Opdracht04 {
 
@@ -16,6 +15,5 @@ public class Opdracht04 {
             }
         });
         gui.setVisible(true);
-        openDB();
     }
 }
