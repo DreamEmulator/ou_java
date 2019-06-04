@@ -13,12 +13,16 @@ import java.sql.SQLException;
  */
 public class Connectiebeheer {
 
+    private static Connection con;
+
     /**
      * Maakt een connectie met de database en initialiseert
      * Klantbeheer en VoostellingBeheer.
      *
      * @throws 'TheaterException' als de initialisatie mislukt.
      */
+
+
     public static void openDB() {
 
         try {
@@ -26,10 +30,9 @@ public class Connectiebeheer {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        String url = DBConst.URL;
-        Connection con;
+
         try {
-            con = DriverManager.getConnection(url, DBConst.GEBRUIKERSNAAM, DBConst.WACHTWOORD);
+            con = DriverManager.getConnection(DBConst.URL, DBConst.GEBRUIKERSNAAM, DBConst.WACHTWOORD);
             System.out.println(con);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,6 +45,11 @@ public class Connectiebeheer {
      * Sluit de connectie met de database
      */
     public static void closeDB() {
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
