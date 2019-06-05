@@ -1,8 +1,5 @@
 package opdracht_03;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * De Restaurant klasse creëert lokaal objecten die een simulatie uitvoeren van een restaurant. Dit gaat over meerdere threads. Een per Kok of Ober object.
  */
