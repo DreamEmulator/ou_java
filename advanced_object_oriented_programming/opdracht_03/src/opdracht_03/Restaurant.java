@@ -5,10 +5,10 @@ package opdracht_03;
  */
 class Restaurant {
 
-    public static final int AANTALTAFELS = 10;
+    static final int AANTALTAFELS = 10;
     private static final int SIMULATIETIJD = 120000;
 
-    public static final String[] GERECHTEN = {
+    static final String[] GERECHTEN = {
             "Pasta",
             "Stoofpot",
             "Noodles",
@@ -17,6 +17,15 @@ class Restaurant {
             "Boterham"
     };
 
+    /**
+     * Lege constructor om aan opdracht te voldoen en overeen te komen met diagram, maar met de kennis dat zonder explicitiete constructor java een default constructor zou aanroepen op Restaurant
+     */
+    public Restaurant() {
+    }
+
+    /**
+     * Start en runt de simulatie tot dat de tijd verstreken is en de thread om te stoppen van Sleep gehaald wordt
+     */
     public static void main(String[] args) {
 
         Uitgiftebalie uitgiftebalie = new Uitgiftebalie();
