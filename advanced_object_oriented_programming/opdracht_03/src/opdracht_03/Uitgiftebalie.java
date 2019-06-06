@@ -19,9 +19,10 @@ class Uitgiftebalie {
 
     /**
      * Een synchronized methode waarbij de verschillende threads van obers 1 voor 1 een maaltijd van de balie kunnnen pakkenem
+     *
      * @return een maaltijd
      */
-     synchronized Maaltijd pakMaaltijd() {
+    synchronized Maaltijd pakMaaltijd() {
         Maaltijd m = null;
         if (wachtrij.size() > 0) {
             m = wachtrij.remove(0);
