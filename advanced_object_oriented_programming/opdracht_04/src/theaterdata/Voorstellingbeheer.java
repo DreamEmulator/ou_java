@@ -65,31 +65,7 @@ public class Voorstellingbeheer {
         String sql = "SELECT datum FROM voorstelling";
         PreparedStatement prepStmt = null;
         ResultSet res = null;
-
-        try {
-            prepStmt = Connectiebeheer.con.prepareStatement(sql);
-            res = prepStmt.executeQuery();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
-        while (true) {
-            try {
-                if (res.next()) {
-                    String[] arrOfStr = res.getString("datum").split("-");
-                    int Y = Integer.parseInt(arrOfStr[0]);
-                    int M = ParseDateHelper(Integer.parseInt(arrOfStr[0]));
-                    int D = Integer.parseInt(arrOfStr[2]);
-
-                    data.add(new GregorianCalendar(Y, M, D));
-                } else {
-                    break;
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-        }
         return data;
     }
 
@@ -105,32 +81,6 @@ public class Voorstellingbeheer {
         PreparedStatement prepStmt = null;
         String naam = "";
         ResultSet res = null;
-
-        int Y = datum.get(Calendar.YEAR);
-        int M = datum.get(Calendar.MONTH);      // 0 - 11
-        int D = datum.get(Calendar.DAY_OF_MONTH);
-
-        String d = "" + Y + "-" + M + "-" + D;
-
-        String sql = "SELECT * FROM voorstelling";
-
-        System.out.println(sql);
-
-        try {
-            prepStmt = Connectiebeheer.con.prepareStatement(sql);
-            res = prepStmt.executeQuery();
-            System.out.println(res);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            System.out.println("naam!!!");
-            naam = res.getString("datum");
-            System.out.println(naam);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         return new Voorstelling(naam, datum);
     }
