@@ -16,16 +16,12 @@ import theater.Voorstelling;
 public class Voorstellingbeheer {
 
 
-    public static void main(String[] args) throws TheaterException {
+    public static void main(String[] args) {
         init();
         System.out.println("Alle data worden uit de database ingelezen");
-        ArrayList data = geefVoorstellingsData();
-        for (Object datum : data){
-            if (datum instanceof GregorianCalendar){
-                System.out.println(((GregorianCalendar) datum).getTime());
-            } else {
-                throw new TheaterException("SQL to Gcal conversion failed");
-            }
+        ArrayList<GregorianCalendar> data = geefVoorstellingsData();
+        for (GregorianCalendar datum : data) {
+            System.out.println(datum.getTime());
         }
         System.out.println("Alle data zijn succesvol ingelezen");
     }
