@@ -78,22 +78,32 @@ public class Voorstellingbeheer {
      */
     public static Voorstelling geefVoorstelling(GregorianCalendar datum) {
         PreparedStatement prep = null;
-        ResultSet res = null;
-        Voorstelling voorstelling = null;
+        ResultSet resVoorstelling = null;
+        ResultSet resBezetting = null;
+        ResultSet resKlant = null;
         String sqlVoorstelling = "SELECT * FROM theater.voorstelling WHERE datum = ?";
         String sqlBezetting = "SELECT * FROM theater.bezetting WHERE voorstelling = ?";
+        String sqlKlant = "SELECT * FROM theater.klant WHERE klantnummer = ?";
         java.sql.Date sqlDatum = gToD(datum);
+
+        Voorstelling voorstelling = null;
+        String voorstellingNaam = null;
+
+        int stoel;
+        int rij;
+        int klant;
+        String klantNaam = null;
+        String klantTel = null;
 
         try {
 
             prep = Connectiebeheer.con.prepareStatement(sqlVoorstelling);
             prep.setString(1, sqlDatum.toString());
-            res = prep.executeQuery();
+            resVoorstelling = prep.executeQuery();
 
-            if(res.next()) {
-                voorstelling = new Voorstelling(res.getString("naam"), datum);
-            } else {
-                //TODO: throw theater exception
+            if(resVoorstelling.next()) {
+                voorstellingNaam = resVoorstelling.getString("naam");
+                voorstelling = new Voorstelling(voorstellingNaam, datum);
             }
 
         } catch (SQLException e) {
@@ -103,16 +113,24 @@ public class Voorstellingbeheer {
         try {
             prep = Connectiebeheer.con.prepareStatement(sqlBezetting);
             prep.setString(1, sqlDatum.toString());
-            res = prep.executeQuery();
+            resBezetting = prep.executeQuery();
 
-            while (res.next()) {
+            while (resBezetting.next()) {
 
-                int stoel = res.getInt("stoelnummer");
-                int rij = res.getInt("rijnummer");
-                int klant = res.getInt("klant");
+                stoel = resBezetting.getInt("stoelnummer");
+                rij = resBezetting.getInt("rijnummer");
+                klant = resBezetting.getInt("klant");
+
+                prep = Connectiebeheer.con.prepareStatement(sqlKlant);
+                prep.setInt(1, klant);
+                resKlant = prep.executeQuery();
+
+                resKlant.next();
+                klantNaam = resKlant.getString("naam");
+                klantTel = resKlant.getString("telefoon");
 
                 voorstelling.reserveer(rij,stoel);
-                voorstelling.plaatsKlant(res.getInt("rijnummer"),res.getInt("stoelnummer"), new Klant( klant,"Temp", "030123456"));
+                voorstelling.plaatsKlant(rij,stoel, new Klant( klant,klantNaam, klantTel));
             }
 
         } catch (SQLException e) {
