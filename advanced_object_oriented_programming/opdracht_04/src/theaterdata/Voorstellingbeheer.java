@@ -111,19 +111,15 @@ public class Voorstellingbeheer {
                 int rij = res.getInt("rijnummer");
                 int klant = res.getInt("klant");
 
-                voorstelling.plaatsKlant(res.getInt("rijnummer"),res.getInt("stoelnummer"), new Klant( klant,"Temp", "030123456"));
                 voorstelling.reserveer(rij,stoel);
+                voorstelling.plaatsKlant(res.getInt("rijnummer"),res.getInt("stoelnummer"), new Klant( klant,"Temp", "030123456"));
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        System.out.println("Deze G heet: ");
-        System.out.println(voorstelling.getNaam());
-
         return voorstelling;
-
     }
 
     /**
