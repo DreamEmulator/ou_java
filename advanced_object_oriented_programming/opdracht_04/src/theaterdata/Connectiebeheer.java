@@ -71,21 +71,4 @@ public class Connectiebeheer {
         }
     }
 
-
-    /**
-     * Helper method to convert gregorian to sql
-     */
-    public static java.sql.Date gToD (GregorianCalendar g){
-        return new java.sql.Date(g.getTimeInMillis());
-    }
-
-    /**
-     * Helper method to convert gregorian to sql
-     */
-    public static GregorianCalendar dToG (java.sql.Date d){
-        GregorianCalendar datum = new GregorianCalendar();
-        datum.setTimeInMillis(d.getTime());
-        return datum;
-    }
-
 }
