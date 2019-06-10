@@ -3,6 +3,7 @@ package theaterdata;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
 
 /**
  * Beheert de connectie met de database.
@@ -68,6 +69,23 @@ public class Connectiebeheer {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * Helper method to convert gregorian to sql
+     */
+    public static java.sql.Date gToD (GregorianCalendar g){
+        return new java.sql.Date(g.getTimeInMillis());
+    }
+
+    /**
+     * Helper method to convert gregorian to sql
+     */
+    public static GregorianCalendar dToG (java.sql.Date d){
+        GregorianCalendar datum = new GregorianCalendar();
+        datum.setTimeInMillis(d.getTime());
+        return datum;
     }
 
 }

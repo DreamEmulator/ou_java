@@ -24,6 +24,9 @@ public class Voorstellingbeheer {
             System.out.println(datum.getTime());
         }
         System.out.println("Alle data zijn succesvol ingelezen");
+
+        System.out.println("Geef voorstelling: ");
+        System.out.println(geefVoorstelling(data.get(0)).getNaam());
     }
 
     /**
@@ -61,11 +64,7 @@ public class Voorstellingbeheer {
         while (true) {
             try {
                 if (!res.next()) break;
-                java.sql.Date sqlDatum = res.getDate("datum");
-                GregorianCalendar datum = new GregorianCalendar();
-                datum.setTimeInMillis(sqlDatum.getTime());
-                data.add(datum);
-
+                data.add(Connectiebeheer.dToG(res.getDate("datum")));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -83,11 +82,40 @@ public class Voorstellingbeheer {
      */
     public static Voorstelling geefVoorstelling(GregorianCalendar datum) {
 
-        PreparedStatement prepStmt = null;
+        PreparedStatement prep = null;
         String naam = "";
         ResultSet res = null;
+        Voorstelling voorstelling = null;
+        java.sql.Date sqlDatum = Connectiebeheer.gToD(datum);
+        String sql = "SELECT * FROM theater.voorstelling WHERE datum = ?";
+        try {
+            prep = Connectiebeheer.con.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        return new Voorstelling(naam, datum);
+        try {
+            prep.setDate(1, sqlDatum);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            res = prep.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+// TODO: Add TheaterException
+            if (res.next()) {
+                voorstelling = new Voorstelling(res.getString("naam"), Connectiebeheer.dToG(res.getDate("datum")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return voorstelling;
     }
 
 
