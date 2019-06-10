@@ -13,6 +13,7 @@ import java.sql.SQLException;
  */
 public class Connectiebeheer {
 
+    //TODO: Check met Jeffrey of het goed is om de connectie hier te bewaren
     static Connection con;
 
     public static void main(String[] args) {

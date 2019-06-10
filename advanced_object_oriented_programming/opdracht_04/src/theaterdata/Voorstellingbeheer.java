@@ -4,10 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 import theater.Voorstelling;
 
@@ -18,6 +15,21 @@ import theater.Voorstelling;
  */
 public class Voorstellingbeheer {
 
+
+    public static void main(String[] args) throws TheaterException {
+        init();
+        System.out.println("Alle data worden uit de database ingelezen");
+        ArrayList data = geefVoorstellingsData();
+        for (Object datum : data){
+            if (datum instanceof GregorianCalendar){
+                System.out.println(((GregorianCalendar) datum).getTime());
+            } else {
+                throw new TheaterException("SQL to Gcal conversion failed");
+            }
+        }
+        System.out.println("Alle data zijn succesvol ingelezen");
+    }
+
     /**
      * Vult voorstellingbeheer met een aantal voorstellingen.
      */
@@ -25,34 +37,6 @@ public class Voorstellingbeheer {
         Connectiebeheer.openDB();
     }
 
-    public static int ParseDateHelper(int date) {
-        switch (date) {
-            case 0:
-                return Calendar.JANUARY;
-            case 1:
-                return Calendar.FEBRUARY;
-            case 2:
-                return Calendar.MARCH;
-            case 3:
-                return Calendar.APRIL;
-            case 4:
-                return Calendar.MAY;
-            case 5:
-                return Calendar.JUNE;
-            case 6:
-                return Calendar.JULY;
-            case 7:
-                return Calendar.AUGUST;
-            case 8:
-                return Calendar.SEPTEMBER;
-            case 9:
-                return Calendar.OCTOBER;
-            case 10:
-                return Calendar.NOVEMBER;
-            default:
-                return Calendar.DECEMBER;
-        }
-    }
 
     /**
      * Levert alle data op waarop voorstellingen zijn (voor zover die data in de
@@ -61,11 +45,36 @@ public class Voorstellingbeheer {
      * @return lijst met data van voorstellingen
      */
     public static ArrayList<GregorianCalendar> geefVoorstellingsData() {
-
         String sql = "SELECT datum FROM voorstelling";
-        PreparedStatement prepStmt = null;
+        PreparedStatement prep = null;
         ResultSet res = null;
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
+
+// TODO: check dat SQL exceptions als zodanig gegooid kunnnen worden, of dat ze Theater exceptions moeten worden
+        try {
+            prep = Connectiebeheer.con.prepareStatement(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        try {
+            res = prep.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        while (true) {
+            try {
+                if (!res.next()) break;
+                java.sql.Date sqlDatum = res.getDate("datum");
+                GregorianCalendar datum = new GregorianCalendar();
+                datum.setTimeInMillis(sqlDatum.getTime());
+                data.add(datum);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         return data;
     }
 
