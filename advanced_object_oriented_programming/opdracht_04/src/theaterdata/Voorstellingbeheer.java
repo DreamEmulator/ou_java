@@ -37,7 +37,7 @@ public class Voorstellingbeheer {
     }
 
     /**
-     * Vult voorstellingbeheer met een aantal voorstellingen.
+     * Initialiseert Voorstellingsbeheer.
      */
     public static void init() {
         Connectiebeheer.openDB();
@@ -51,7 +51,7 @@ public class Voorstellingbeheer {
      * @return lijst met data van voorstellingen
      */
     public static ArrayList<GregorianCalendar> geefVoorstellingsData() {
-        String sql = "SELECT datum FROM voorstelling";
+        String sql = "SELECT *  FROM voorstelling";
         PreparedStatement prep = null;
         ResultSet res = null;
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
@@ -85,12 +85,15 @@ public class Voorstellingbeheer {
         java.sql.Date sqlDatum = gToD(datum);
 
         try {
+
             prep = Connectiebeheer.con.prepareStatement(sqlVoorstelling);
-            prep.setDate(1, sqlDatum);
+            prep.setString(1, sqlDatum.toString());
             res = prep.executeQuery();
 
-            if (res.next()) {
+            if(res.next()) {
                 voorstelling = new Voorstelling(res.getString("naam"), datum);
+            } else {
+                //TODO: throw theater exception
             }
 
         } catch (SQLException e) {
@@ -99,7 +102,7 @@ public class Voorstellingbeheer {
 
         try {
             prep = Connectiebeheer.con.prepareStatement(sqlBezetting);
-            prep.setDate(1, sqlDatum);
+            prep.setString(1, sqlDatum.toString());
             res = prep.executeQuery();
 
             while (res.next()) {
@@ -116,6 +119,8 @@ public class Voorstellingbeheer {
             e.printStackTrace();
         }
 
+        System.out.println("Deze G heet: ");
+        System.out.println(voorstelling.getNaam());
 
         return voorstelling;
 
