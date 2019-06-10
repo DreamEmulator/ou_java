@@ -15,6 +15,22 @@ public class Connectiebeheer {
 
     static Connection con;
 
+    public static void main(String[] args) {
+
+        System.out.println("Database verbinding wordt geopend");
+        openDB();
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
+        System.out.println("Database verbinding wordt gesloten");
+        closeDB();
+    }
+
     /**
      * Maakt een connectie met de database en initialiseert
      * Klantbeheer en VoostellingBeheer.
