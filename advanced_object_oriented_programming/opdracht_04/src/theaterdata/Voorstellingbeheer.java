@@ -78,12 +78,11 @@ public class Voorstellingbeheer {
      */
     public static Voorstelling geefVoorstelling(GregorianCalendar datum) {
         PreparedStatement prep = null;
-        ResultSet resVoorstelling = null;
-        ResultSet resBezetting = null;
-        ResultSet resKlant = null;
+        ResultSet res = null;
         String sqlVoorstelling = "SELECT * FROM theater.voorstelling WHERE datum = ?";
-        String sqlBezetting = "SELECT * FROM theater.bezetting WHERE voorstelling = ?";
-        String sqlKlant = "SELECT * FROM theater.klant WHERE klantnummer = ?";
+        String sqlBezetting= "SELECT * FROM bezetting INNER JOIN klant on bezetting.klant = klant.klantnummer WHERE voorstelling = ?";
+
+
         java.sql.Date sqlDatum = gToD(datum);
 
         Voorstelling voorstelling = null;
@@ -99,10 +98,10 @@ public class Voorstellingbeheer {
 
             prep = Connectiebeheer.con.prepareStatement(sqlVoorstelling);
             prep.setString(1, sqlDatum.toString());
-            resVoorstelling = prep.executeQuery();
+            res = prep.executeQuery();
 
-            if(resVoorstelling.next()) {
-                voorstellingNaam = resVoorstelling.getString("naam");
+            if(res.next()) {
+                voorstellingNaam = res.getString("naam");
                 voorstelling = new Voorstelling(voorstellingNaam, datum);
             }
 
@@ -110,24 +109,20 @@ public class Voorstellingbeheer {
             e.printStackTrace();
         }
 
+
+
         try {
             prep = Connectiebeheer.con.prepareStatement(sqlBezetting);
             prep.setString(1, sqlDatum.toString());
-            resBezetting = prep.executeQuery();
+            res= prep.executeQuery();
 
-            while (resBezetting.next()) {
+            while (res.next()) {
 
-                stoel = resBezetting.getInt("stoelnummer");
-                rij = resBezetting.getInt("rijnummer");
-                klant = resBezetting.getInt("klant");
-
-                prep = Connectiebeheer.con.prepareStatement(sqlKlant);
-                prep.setInt(1, klant);
-                resKlant = prep.executeQuery();
-
-                resKlant.next();
-                klantNaam = resKlant.getString("naam");
-                klantTel = resKlant.getString("telefoon");
+                stoel = res.getInt("stoelnummer");
+                rij = res.getInt("rijnummer");
+                klant = res.getInt("klant");
+                klantNaam = res.getString("naam");
+                klantTel = res.getString("telefoon");
 
                 voorstelling.reserveer(rij,stoel);
                 voorstelling.plaatsKlant(rij,stoel, new Klant( klant,klantNaam, klantTel));
