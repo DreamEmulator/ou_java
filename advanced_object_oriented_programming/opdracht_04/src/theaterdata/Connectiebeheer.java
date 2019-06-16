@@ -15,7 +15,7 @@ import java.util.GregorianCalendar;
 public class Connectiebeheer {
 
     //TODO: Check met Jeffrey of het goed is om de connectie hier te bewaren
-    static Connection con;
+    private static Connection con;
 
     public static void main(String[] args) {
 
@@ -39,8 +39,6 @@ public class Connectiebeheer {
      *
      * @throws 'TheaterException' als de initialisatie mislukt.
      */
-
-
     public static void openDB() {
 
         try {
@@ -71,4 +69,7 @@ public class Connectiebeheer {
         }
     }
 
+    public static Connection getCon(){
+        return con;
+    }
 }

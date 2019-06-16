@@ -40,7 +40,6 @@ public class Voorstellingbeheer {
      * Initialiseert Voorstellingsbeheer.
      */
     public static void init() {
-        Connectiebeheer.openDB();
     }
 
 
@@ -57,7 +56,7 @@ public class Voorstellingbeheer {
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
 
         try {
-            prep = Connectiebeheer.con.prepareStatement(sql);
+            prep = Connectiebeheer.getCon().prepareStatement(sql);
             res = prep.executeQuery();
             while (res.next()){
                 data.add(dToG(res.getDate("datum")));
@@ -86,17 +85,18 @@ public class Voorstellingbeheer {
         java.sql.Date sqlDatum = gToD(datum);
 
         Voorstelling voorstelling = null;
-        String voorstellingNaam = null;
+        String voorstellingNaam;
 
         int stoel;
         int rij;
         int klant;
-        String klantNaam = null;
-        String klantTel = null;
+        String klantNaam;
+        String klantTel;
 
+
+// Get voorstelling
         try {
-
-            prep = Connectiebeheer.con.prepareStatement(sqlVoorstelling);
+            prep = Connectiebeheer.getCon().prepareStatement(sqlVoorstelling);
             prep.setString(1, sqlDatum.toString());
             res = prep.executeQuery();
 
@@ -109,10 +109,9 @@ public class Voorstellingbeheer {
             e.printStackTrace();
         }
 
-
-
+// Get bezetting
         try {
-            prep = Connectiebeheer.con.prepareStatement(sqlBezetting);
+            prep = Connectiebeheer.getCon().prepareStatement(sqlBezetting);
             prep.setString(1, sqlDatum.toString());
             res= prep.executeQuery();
 
