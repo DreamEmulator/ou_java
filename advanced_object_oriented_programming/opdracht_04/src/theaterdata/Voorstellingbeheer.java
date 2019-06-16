@@ -18,6 +18,8 @@ import theater.Voorstelling;
  */
 public class Voorstellingbeheer {
 
+    private static PreparedStatement prep = null;
+    private static ResultSet res = null;
 
     public static void main(String[] args) {
         init();
@@ -76,11 +78,8 @@ public class Voorstellingbeheer {
      * voorstelling er niet is.
      */
     public static Voorstelling geefVoorstelling(GregorianCalendar datum) {
-        PreparedStatement prep = null;
-        ResultSet res = null;
         String sqlVoorstelling = "SELECT * FROM theater.voorstelling WHERE datum = ?";
         String sqlBezetting= "SELECT * FROM bezetting INNER JOIN klant on bezetting.klant = klant.klantnummer WHERE voorstelling = ?";
-
 
         java.sql.Date sqlDatum = gToD(datum);
 
@@ -135,6 +134,24 @@ public class Voorstellingbeheer {
     }
 
     /**
+     * Plaatst nieuwe bezetting in de database
+     * @param datum van de voorstelling, het rijnummer en stoelnummer en het klantnummer
+     */
+
+    public static void updateBezetting(GregorianCalendar datum, int rij, int stoel, int kNr){
+        String sqlNewBezet = "INSERT INTO bezetting (voorstelling, rijnummer, stoelnummer, klant) VALUES (?,?,?,?)";
+        try {
+            prep = Connectiebeheer.getCon().prepareStatement(sqlNewBezet);
+            prep.setString(1, datum.toString());
+            prep.setInt(2, rij);
+            prep.setInt(3, stoel);
+            prep.setInt(4, kNr);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Helper method to convert gregorian to sql
      */
     public static java.sql.Date gToD(GregorianCalendar g) {
@@ -149,6 +166,5 @@ public class Voorstellingbeheer {
         datum.setTimeInMillis(d.getTime());
         return datum;
     }
-
 
 }
