@@ -9,6 +9,8 @@ import theater.Klant;
 import theater.Theater;
 import theater.Voorstelling;
 
+// TODO: Figure out how to go from the theaterGUI layer through the theater through the theaterdata with al the info to update the Bezetting in the DB
+
 // TODO: check dat SQL exceptions als zodanig gegooid kunnnen worden, of dat ze Theater exceptions moeten worden
 
 /**
@@ -21,27 +23,11 @@ public class Voorstellingbeheer {
     private static PreparedStatement prep = null;
     private static ResultSet res = null;
 
-    public static void main(String[] args) {
-        init();
-        System.out.println("Alle data worden uit de database ingelezen");
-        ArrayList<GregorianCalendar> data = geefVoorstellingsData();
-        for (GregorianCalendar datum : data) {
-            System.out.println(datum.getTime());
-        }
-        System.out.println("Alle data zijn succesvol ingelezen");
-
-        System.out.println("Geef voorstelling: ");
-        Voorstelling v = geefVoorstelling(data.get(0));
-
-        System.out.println(v.getNaam());
-        System.out.println(v.getPlaats(2,4));
-
-    }
-
     /**
      * Initialiseert Voorstellingsbeheer.
      */
     public static void init() {
+
     }
 
 
@@ -138,14 +124,17 @@ public class Voorstellingbeheer {
      * @param datum van de voorstelling, het rijnummer en stoelnummer en het klantnummer
      */
 
-    public static void updateBezetting(GregorianCalendar datum, int rij, int stoel, int kNr){
+    public static void updateBezetting(GregorianCalendar datum, int rij, int stoel, int kNr) {
         String sqlNewBezet = "INSERT INTO bezetting (voorstelling, rijnummer, stoelnummer, klant) VALUES (?,?,?,?)";
         try {
             prep = Connectiebeheer.getCon().prepareStatement(sqlNewBezet);
-            prep.setString(1, datum.toString());
+            prep.setString(1, gToD(datum).toString());
             prep.setInt(2, rij);
             prep.setInt(3, stoel);
             prep.setInt(4, kNr);
+            prep.executeUpdate();
+            System.out.println("SOUT");
+            System.out.println(rij + " " + stoel + " " + kNr);
         } catch (SQLException e) {
             e.printStackTrace();
         }

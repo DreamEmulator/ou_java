@@ -1,5 +1,7 @@
 package theater;
 
+import theaterdata.Voorstellingbeheer;
+
 import java.util.Observable;
 
 /**
@@ -93,6 +95,7 @@ public class Plaats extends Observable {
     if (status.equals(Status.GERESERVEERD)) {
       status = Status.BEZET;
       this.klant = klant;
+
       setChanged();
       notifyObservers();
       return true;

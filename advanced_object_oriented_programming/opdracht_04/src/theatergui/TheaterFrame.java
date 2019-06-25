@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 
 import theater.Theater;
 import theater.Voorstelling;
+import theaterdata.TheaterException;
 
 import static theaterdata.Connectiebeheer.closeDB;
 

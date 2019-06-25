@@ -66,6 +66,8 @@ public class Theater {
   public void plaatsKlant(String naam, String telefoon) {
     Klant klant = Klantbeheer.geefKlant(naam, telefoon);
     huidigeVoorstelling.plaatsKlant(klant);
+//    TODO: Debug log ->
+    huidigeVoorstelling.updateBezetting(klant);
   }
 
   /**
