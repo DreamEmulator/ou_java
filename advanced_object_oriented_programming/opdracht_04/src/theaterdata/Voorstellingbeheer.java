@@ -53,7 +53,7 @@ public class Voorstellingbeheer {
      *
      * @return lijst met data van voorstellingen
      */
-    public static ArrayList<GregorianCalendar> geefVoorstellingsData() {
+    public static ArrayList<GregorianCalendar> geefVoorstellingsData() throws TheaterException {
         ResultSet res = null;
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
 
@@ -63,7 +63,7 @@ public class Voorstellingbeheer {
                 data.add(dToG(res.getDate("datum")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Ophalen van Voorstellingen is mislukt");
         }
 
         return data;

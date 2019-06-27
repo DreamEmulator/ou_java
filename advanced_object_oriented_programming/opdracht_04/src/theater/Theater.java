@@ -41,7 +41,7 @@ public class Theater {
      *
      * @return lijst met data.
      */
-    public ArrayList<GregorianCalendar> geefVoorstellingsData() {
+    public ArrayList<GregorianCalendar> geefVoorstellingsData() throws TheaterException {
         return Voorstellingbeheer.geefVoorstellingsData();
     }
 

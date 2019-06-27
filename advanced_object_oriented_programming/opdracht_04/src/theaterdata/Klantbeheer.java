@@ -76,17 +76,16 @@ public class Klantbeheer {
      * @param telefoon telefoonnummer van te zoeken klant
      * @return de klant of null wanneer klant niet is gevonden
      */
-    private static Klant zoekKlant(String naam, String telefoon) {
+    private static Klant zoekKlant(String naam, String telefoon) throws TheaterException {
         ArrayList<Klant> klanten = new ArrayList<Klant>();
 
         try {
             res = prepZoekKlant.executeQuery();
             while (res.next()) {
                 klanten.add(new Klant(res.getInt("klantnummer"), res.getString("naam"), res.getString("telefoon")));
-//                System.out.println( res.getString("naam") + " gevonden");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Klant zoeken niet gelukt");
         }
 
         for (Klant k : klanten) {
