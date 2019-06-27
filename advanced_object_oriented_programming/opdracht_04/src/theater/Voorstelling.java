@@ -114,7 +114,6 @@ public class Voorstelling {
         System.out.println("Aantal spots bezet:" + getBezetting().size());
         for (Plaats p : getBezetting()) {
             Voorstellingbeheer.updateBezetting(getDatum(), p.getRijnummer(), p.getStoelnummer(), klant.getKlantnummer());
-//            System.out.println(" " + getDatum() + " " + p.getRijnummer() + " " + p.getStoelnummer() + " " + klant.getKlantnummer());
         }
     }
 

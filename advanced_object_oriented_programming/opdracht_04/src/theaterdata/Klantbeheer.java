@@ -13,35 +13,40 @@ import theater.Klant;
  */
 public class Klantbeheer {
 
-    private static PreparedStatement prep;
-    private static ResultSet res;
-    /**
-     * Initialiseert de klanten. Hier hoeft nu nog niets te gebeuren.
-     */
-    public static void init() {
+    private static PreparedStatement prepHoogsteKlantnummer;
+    private static PreparedStatement prepZoekKlant;
+    private static PreparedStatement prepNieuweKlant;
 
-// TODO: REMOVE        DEBUG
+    public static void init() throws TheaterException {
+        try {
+            String sqlHoogsteKlant = "SELECT MAX(klantnummer) FROM theater.klant";
+            String sqlKlant = "SELECT klantnummer,naam,telefoon FROM klant";
+            prepHoogsteKlantnummer = Connectiebeheer.getCon().prepareStatement(sqlHoogsteKlant);
+            prepZoekKlant = Connectiebeheer.getCon().prepareStatement(sqlKlant);
 
-        System.out.println("Hoogste klantnummer: " + getVolgendKlantNummer());
+            String sqlNewKlant = "INSERT INTO klant (klantnummer, naam, telefoon) VALUES (?,?,?)";
+            prepNieuweKlant = Connectiebeheer.getCon().prepareStatement(sqlNewKlant);
+        } catch (SQLException e) {
+            throw new TheaterException("Preparing klantbeheer statement mislukt");
+        }
     }
+    private static ResultSet res;
 
     /**
      * Genereert het volgende beschikbare klantnummer.
      *
      * @return nieuw klantnummer
      */
-    public static int getVolgendKlantNummer() {
+    public static int getVolgendKlantNummer() throws TheaterException {
         int hoogsteKlantnummer = 0;
-        String sqlKlant = "SELECT MAX(klantnummer) FROM theater.klant";
 
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sqlKlant);
-            res = prep.executeQuery();
+            res = prepHoogsteKlantnummer.executeQuery();
             res.next();
             hoogsteKlantnummer = res.getInt(1);
             hoogsteKlantnummer++;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Hoogste klantnummer ophalen mislukt");
         }
 
         return hoogsteKlantnummer;
@@ -56,7 +61,7 @@ public class Klantbeheer {
      * @param telefoon telefoonnummer van de klant
      * @return een klant me de ingevoerde naam en telefoon.
      */
-    public static Klant geefKlant(String naam, String telefoon) {
+    public static Klant geefKlant(String naam, String telefoon) throws TheaterException {
         Klant klant = zoekKlant(naam, telefoon);
         if (klant == null) {
             klant = nieuweKlant(naam, telefoon);
@@ -73,12 +78,9 @@ public class Klantbeheer {
      */
     private static Klant zoekKlant(String naam, String telefoon) {
         ArrayList<Klant> klanten = new ArrayList<Klant>();
-        String sqlKlant = "SELECT klantnummer,naam,telefoon FROM klant";
 
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sqlKlant);
-            res = prep.executeQuery();
-
+            res = prepZoekKlant.executeQuery();
             while (res.next()) {
                 klanten.add(new Klant(res.getInt("klantnummer"), res.getString("naam"), res.getString("telefoon")));
 //                System.out.println( res.getString("naam") + " gevonden");
@@ -101,23 +103,18 @@ public class Klantbeheer {
      * @param naam     naam van de nieuwe klant
      * @param telefoon telefoonnummer van de nieuwe klant
      */
-    private static Klant nieuweKlant(String naam, String telefoon) {
+    private static Klant nieuweKlant(String naam, String telefoon) throws TheaterException {
         int knr = getVolgendKlantNummer();
         Klant k = new Klant(knr, naam, telefoon);
-
-        String sqlNewKlant = "INSERT INTO klant (klantnummer, naam, telefoon) VALUES (?,?,?)";
-
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sqlNewKlant);
-            prep.setInt(1,knr);
-            prep.setString(2,naam);
-            prep.setString(3,telefoon);
-            int row = prep.executeUpdate();
+            prepNieuweKlant.setInt(1,knr);
+            prepNieuweKlant.setString(2,naam);
+            prepNieuweKlant.setString(3,telefoon);
+            int row = prepNieuweKlant.executeUpdate();
             System.out.println("Rows affected: " + row);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Nieuwe klant is niet aangemaakt");
         }
-
         return k;
     }
 

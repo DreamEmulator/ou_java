@@ -21,7 +21,7 @@ public class Theater {
      *
      * @param naam theaternaam
      */
-    public Theater(String naam) {
+    public Theater(String naam) throws TheaterException {
         this.naam = naam;
         Klantbeheer.init();
         Voorstellingbeheer.init();

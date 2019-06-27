@@ -29,7 +29,7 @@ public class Voorstellingbeheer {
     /**
      * Initialiseert Voorstellingsbeheer.
      */
-    public static void init() {
+    public static void init() throws TheaterException {
 
         String sqlNewBezet = "INSERT INTO bezetting (voorstelling, rijnummer, stoelnummer, klant) VALUES (?,?,?,?)";
         String sqlVoorstellingen = "SELECT *  FROM voorstelling";
@@ -42,7 +42,7 @@ public class Voorstellingbeheer {
             prepBezetting = Connectiebeheer.getCon().prepareStatement(sqlBezetting);
             prepGetVoorstelling = Connectiebeheer.getCon().prepareStatement(sqlVoorstelling);
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Voorstellingbeheer kon niet starten");
         }
     }
 

@@ -73,7 +73,7 @@ public class TheaterFrame extends JFrame {
     /**
      * This is the default constructor
      */
-    public TheaterFrame() {
+    public TheaterFrame() throws TheaterException {
         super();
         initialize();
         mijnInit();
@@ -82,7 +82,7 @@ public class TheaterFrame extends JFrame {
     /**
      * Vult de voorstellingsKeuze en selecteert de eerste voorstelling.
      */
-    private void mijnInit() {
+    private void mijnInit() throws TheaterException {
         theater = new Theater("Theater de Schouwburg");
         setTitle(theater.getNaam());
         ArrayList<GregorianCalendar> data = theater.geefVoorstellingsData();

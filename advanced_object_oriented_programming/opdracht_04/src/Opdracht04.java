@@ -10,12 +10,14 @@ import static theaterdata.Connectiebeheer.closeDB;
 public class Opdracht04 {
 
     public static void main(String[] args) {
+        TheaterFrame gui = null;
         try {
             Connectiebeheer.openDB();
+             gui = new TheaterFrame();
         } catch (TheaterException e) {
             e.printStackTrace();
         }
-        TheaterFrame gui = new TheaterFrame();
+
         gui.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 try {
