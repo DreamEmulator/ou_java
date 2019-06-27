@@ -50,7 +50,7 @@ public class Theater {
      *
      * @param datum datum van gevraagde voorstelling
      */
-    public void wisselVoorstelling(GregorianCalendar datum) {
+    public void wisselVoorstelling(GregorianCalendar datum) throws TheaterException {
         huidigeVoorstelling = Voorstellingbeheer.geefVoorstelling(datum);
     }
 

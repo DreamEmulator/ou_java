@@ -58,7 +58,6 @@ public class Voorstellingbeheer {
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
 
         try {
-
             res = prepVoorstellingen.executeQuery();
             while (res.next()) {
                 data.add(dToG(res.getDate("datum")));
@@ -77,7 +76,7 @@ public class Voorstellingbeheer {
      * @return een voorstelling op de gegeven datum of null wanneer die
      * voorstelling er niet is.
      */
-    public static Voorstelling geefVoorstelling(GregorianCalendar datum) {
+    public static Voorstelling geefVoorstelling(GregorianCalendar datum) throws TheaterException {
 
         java.sql.Date sqlDatum = gToD(datum);
 
@@ -101,7 +100,7 @@ public class Voorstellingbeheer {
                 voorstelling = new Voorstelling(voorstellingNaam, datum);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Voorstelling kon niet opgehaald worden");
         }
 
 // Get bezetting
@@ -123,7 +122,7 @@ public class Voorstellingbeheer {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Voorstelling kon niet opgehaald worden");
         }
 
         return voorstelling;

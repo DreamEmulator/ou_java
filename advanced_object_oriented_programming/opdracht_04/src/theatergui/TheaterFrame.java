@@ -107,7 +107,11 @@ public class TheaterFrame extends JFrame {
             } catch (ParseException exc) {
                 exc.printStackTrace();
             }
-            theater.wisselVoorstelling(datum);
+            try {
+                theater.wisselVoorstelling(datum);
+            } catch (TheaterException ex) {
+                foutLabel.setText(ex.getMessage());
+            }
             Voorstelling voorstelling = theater.getHuidigeVoorstelling();
             voorstellingsLabel.setText(voorstelling.getNaam());
             if (voorstellingsPanel != null) {
