@@ -20,7 +20,10 @@ import theater.Voorstelling;
  */
 public class Voorstellingbeheer {
 
-    private static PreparedStatement prep = null;
+    private static PreparedStatement prepGetVoorstelling = null;
+    private static PreparedStatement prepVoorstellingen = null;
+    private static PreparedStatement prepBezetting = null;
+    private static PreparedStatement prepUpdateBezetting = null;
     private static ResultSet res = null;
 
     /**
@@ -28,6 +31,19 @@ public class Voorstellingbeheer {
      */
     public static void init() {
 
+        String sqlNewBezet = "INSERT INTO bezetting (voorstelling, rijnummer, stoelnummer, klant) VALUES (?,?,?,?)";
+        String sqlVoorstellingen = "SELECT *  FROM voorstelling";
+        String sqlBezetting = "SELECT * FROM bezetting INNER JOIN klant on bezetting.klant = klant.klantnummer WHERE voorstelling = ?";
+        String sqlVoorstelling = "SELECT * FROM theater.voorstelling WHERE datum = ?";
+
+        try {
+            prepUpdateBezetting = Connectiebeheer.getCon().prepareStatement(sqlNewBezet);
+            prepVoorstellingen = Connectiebeheer.getCon().prepareStatement(sqlVoorstellingen);
+            prepBezetting = Connectiebeheer.getCon().prepareStatement(sqlBezetting);
+            prepGetVoorstelling = Connectiebeheer.getCon().prepareStatement(sqlVoorstelling);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -38,15 +54,13 @@ public class Voorstellingbeheer {
      * @return lijst met data van voorstellingen
      */
     public static ArrayList<GregorianCalendar> geefVoorstellingsData() {
-        String sql = "SELECT *  FROM voorstelling";
-        PreparedStatement prep = null;
         ResultSet res = null;
         ArrayList<GregorianCalendar> data = new ArrayList<GregorianCalendar>();
 
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sql);
-            res = prep.executeQuery();
-            while (res.next()){
+
+            res = prepVoorstellingen.executeQuery();
+            while (res.next()) {
                 data.add(dToG(res.getDate("datum")));
             }
         } catch (SQLException e) {
@@ -64,8 +78,6 @@ public class Voorstellingbeheer {
      * voorstelling er niet is.
      */
     public static Voorstelling geefVoorstelling(GregorianCalendar datum) {
-        String sqlVoorstelling = "SELECT * FROM theater.voorstelling WHERE datum = ?";
-        String sqlBezetting= "SELECT * FROM bezetting INNER JOIN klant on bezetting.klant = klant.klantnummer WHERE voorstelling = ?";
 
         java.sql.Date sqlDatum = gToD(datum);
 
@@ -81,24 +93,22 @@ public class Voorstellingbeheer {
 
 // Get voorstelling
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sqlVoorstelling);
-            prep.setString(1, sqlDatum.toString());
-            res = prep.executeQuery();
+            prepGetVoorstelling.setString(1, sqlDatum.toString());
+            res = prepGetVoorstelling.executeQuery();
 
-            if(res.next()) {
+            if (res.next()) {
                 voorstellingNaam = res.getString("naam");
                 voorstelling = new Voorstelling(voorstellingNaam, datum);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
 // Get bezetting
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sqlBezetting);
-            prep.setString(1, sqlDatum.toString());
-            res= prep.executeQuery();
+
+            prepBezetting.setString(1, sqlDatum.toString());
+            res = prepBezetting.executeQuery();
 
             while (res.next()) {
 
@@ -108,8 +118,8 @@ public class Voorstellingbeheer {
                 klantNaam = res.getString("naam");
                 klantTel = res.getString("telefoon");
 
-                voorstelling.reserveer(rij,stoel);
-                voorstelling.plaatsKlant(rij,stoel, new Klant( klant,klantNaam, klantTel));
+                voorstelling.reserveer(rij, stoel);
+                voorstelling.plaatsKlant(rij, stoel, new Klant(klant, klantNaam, klantTel));
             }
 
         } catch (SQLException e) {
@@ -121,18 +131,17 @@ public class Voorstellingbeheer {
 
     /**
      * Plaatst nieuwe bezetting in de database
+     *
      * @param datum van de voorstelling, het rijnummer en stoelnummer en het klantnummer
      */
 
     public static void updateBezetting(GregorianCalendar datum, int rij, int stoel, int kNr) {
-        String sqlNewBezet = "INSERT INTO bezetting (voorstelling, rijnummer, stoelnummer, klant) VALUES (?,?,?,?)";
         try {
-            prep = Connectiebeheer.getCon().prepareStatement(sqlNewBezet);
-            prep.setString(1, gToD(datum).toString());
-            prep.setInt(2, rij);
-            prep.setInt(3, stoel);
-            prep.setInt(4, kNr);
-            prep.executeUpdate();
+            prepUpdateBezetting.setString(1, gToD(datum).toString());
+            prepUpdateBezetting.setInt(2, rij);
+            prepUpdateBezetting.setInt(3, stoel);
+            prepUpdateBezetting.setInt(4, kNr);
+            prepUpdateBezetting.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
