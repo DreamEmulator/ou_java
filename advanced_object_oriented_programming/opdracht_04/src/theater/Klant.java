@@ -5,9 +5,9 @@ package theater;
  * @author Open Universiteit
  */
 public class Klant {
-  private int klantnummer;
-  private String naam;
-  private String telefoon;
+  private final int klantnummer;
+  private final String naam;
+  private final String telefoon;
   
   /**
    * Creeert klant.

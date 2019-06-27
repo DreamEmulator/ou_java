@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 import theater.Klant;
-import theater.Theater;
 import theater.Voorstelling;
 
 // TODO: Figure out how to go from the theaterGUI layer through the theater through the theaterdata with al the info to update the Bezetting in the DB
@@ -24,7 +23,6 @@ public class Voorstellingbeheer {
     private static PreparedStatement prepVoorstellingen = null;
     private static PreparedStatement prepBezetting = null;
     private static PreparedStatement prepUpdateBezetting = null;
-    private static ResultSet res = null;
 
     /**
      * Initialiseert Voorstellingsbeheer.
@@ -91,6 +89,7 @@ public class Voorstellingbeheer {
 
 
 // Get voorstelling
+        ResultSet res = null;
         try {
             prepGetVoorstelling.setString(1, sqlDatum.toString());
             res = prepGetVoorstelling.executeQuery();
@@ -149,14 +148,14 @@ public class Voorstellingbeheer {
     /**
      * Helper method to convert gregorian to sql
      */
-    public static java.sql.Date gToD(GregorianCalendar g) {
+    private static java.sql.Date gToD(GregorianCalendar g) {
         return new java.sql.Date(g.getTimeInMillis());
     }
 
     /**
      * Helper method to convert gregorian to sql
      */
-    public static GregorianCalendar dToG(java.sql.Date d) {
+    private static GregorianCalendar dToG(java.sql.Date d) {
         GregorianCalendar datum = new GregorianCalendar();
         datum.setTimeInMillis(d.getTime());
         return datum;

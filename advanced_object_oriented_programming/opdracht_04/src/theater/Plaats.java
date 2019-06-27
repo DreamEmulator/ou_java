@@ -1,7 +1,5 @@
 package theater;
 
-import theaterdata.Voorstellingbeheer;
-
 import java.util.Observable;
 
 /**
@@ -15,10 +13,10 @@ public class Plaats extends Observable {
 
   public enum Status {
     VRIJ, GERESERVEERD, BEZET
-  };
+  }
 
-  private int    rijnummer;
-  private int    stoelnummer;
+    private final int    rijnummer;
+  private final int    stoelnummer;
   private Klant  klant  = null;
   private Status status = Status.VRIJ;
 

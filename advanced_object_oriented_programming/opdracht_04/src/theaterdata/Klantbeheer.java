@@ -37,7 +37,7 @@ public class Klantbeheer {
      *
      * @return nieuw klantnummer
      */
-    public static int getVolgendKlantNummer() throws TheaterException {
+    private static int getVolgendKlantNummer() throws TheaterException {
         int hoogsteKlantnummer = 0;
 
         try {

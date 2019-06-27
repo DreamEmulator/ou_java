@@ -48,7 +48,7 @@ public class Voorstelling {
      *
      * @return datum van de voorstelling
      */
-    public GregorianCalendar getDatum() {
+    private GregorianCalendar getDatum() {
         return datum;
     }
 
@@ -121,7 +121,7 @@ public class Voorstelling {
      * Get reserveringen
      * Bepaal welke reserveringen nieuw zijn en geeft deze terug
      */
-    public ArrayList<Plaats> getBezetting() {
+    private ArrayList<Plaats> getBezetting() {
         ArrayList<Plaats> bezetting = new ArrayList<>();
         for (int i = 1; i < plaatsen.length; i++) {
             for (int j = 1; j < plaatsen[i].length; j++) {

@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ItemEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,8 +19,6 @@ import javax.swing.JTextField;
 import theater.Theater;
 import theater.Voorstelling;
 import theaterdata.TheaterException;
-
-import static theaterdata.Connectiebeheer.closeDB;
 
 /**
  * De klasse TheaterFrame is de grafische interface van het theater. Dit frame
