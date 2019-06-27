@@ -81,7 +81,7 @@ public class Klantbeheer {
 
             while (res.next()) {
                 klanten.add(new Klant(res.getInt("klantnummer"), res.getString("naam"), res.getString("telefoon")));
-                System.out.println( res.getString("naam") + " gevonden");
+//                System.out.println( res.getString("naam") + " gevonden");
             }
         } catch (SQLException e) {
             e.printStackTrace();

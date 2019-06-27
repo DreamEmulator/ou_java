@@ -88,7 +88,6 @@ public class TheaterFrame extends JFrame {
         ArrayList<GregorianCalendar> data = theater.geefVoorstellingsData();
 
         for (GregorianCalendar datum : data) {
-            System.out.println(datum.getTime());
             voorstellingsKeuze.addItem(fmt.format(datum.getTime()));
         }
         voorstellingsKeuze.setSelectedIndex(0);
@@ -110,7 +109,6 @@ public class TheaterFrame extends JFrame {
             }
             theater.wisselVoorstelling(datum);
             Voorstelling voorstelling = theater.getHuidigeVoorstelling();
-            System.out.println(voorstelling);
             voorstellingsLabel.setText(voorstelling.getNaam());
             if (voorstellingsPanel != null) {
                 getContentPane().remove(voorstellingsPanel);

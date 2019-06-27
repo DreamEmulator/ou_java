@@ -110,21 +110,22 @@ public class Voorstelling {
      * Update bezetting
      */
     public void updateBezetting(Klant klant) {
+        System.out.println("Aantal spots bezet:" + getBezetting().size());
         for (Plaats p : getBezetting()) {
             Voorstellingbeheer.updateBezetting(getDatum(), p.getRijnummer(), p.getStoelnummer(), klant.getKlantnummer());
+//            System.out.println(" " + getDatum() + " " + p.getRijnummer() + " " + p.getStoelnummer() + " " + klant.getKlantnummer());
         }
     }
 
     /**
      * Get reserveringen
-     * ?????????????????????
+     * Bepaal welke reserveringen nieuw zijn en geeft deze terug
      */
     public ArrayList<Plaats> getBezetting() {
-        ArrayList<Plaats> bezetting = new ArrayList<Plaats>();
+        ArrayList<Plaats> bezetting = new ArrayList<>();
         for (int i = 1; i < plaatsen.length; i++) {
             for (int j = 1; j < plaatsen[i].length; j++) {
-                System.out.println(plaatsen[i][j].getStatus());
-                if (Plaats.Status.BEZET == plaatsen[i][j].getStatus()) {
+                if (Plaats.Status.GERESERVEERD == plaatsen[i][j].getStatus()) {
                     bezetting.add(plaatsen[i][j]);
                 }
             }

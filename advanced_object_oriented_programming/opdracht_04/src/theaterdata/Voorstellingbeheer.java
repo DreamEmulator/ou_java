@@ -133,8 +133,6 @@ public class Voorstellingbeheer {
             prep.setInt(3, stoel);
             prep.setInt(4, kNr);
             prep.executeUpdate();
-            System.out.println("SOUT");
-            System.out.println(rij + " " + stoel + " " + kNr);
         } catch (SQLException e) {
             e.printStackTrace();
         }
