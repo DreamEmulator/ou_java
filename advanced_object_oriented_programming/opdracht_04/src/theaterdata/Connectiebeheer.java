@@ -16,41 +16,22 @@ public class Connectiebeheer {
 
     private static Connection con;
 
-    public static void main(String[] args) {
-
-        System.out.println("Database verbinding wordt geopend");
-        openDB();
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-
-        System.out.println("Database verbinding wordt gesloten");
-        closeDB();
-    }
-
     /**
      * Maakt een connectie met de database en initialiseert
      * Klantbeheer en VoostellingBeheer.
      *
      * @throws 'TheaterException' als de initialisatie mislukt.
      */
-    public static void openDB() {
+    public static void openDB() throws TheaterException {
 
         try {
             Class.forName(DBConst.DRIVERNAAM);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        try {
             con = DriverManager.getConnection(DBConst.URL, DBConst.GEBRUIKERSNAAM, DBConst.WACHTWOORD);
             System.out.println("Opening Connection");
+        } catch (ClassNotFoundException e) {
+            throw new TheaterException("Driver niet gevonden");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Verbinding maken mislukt");
         }
 
 
@@ -59,15 +40,19 @@ public class Connectiebeheer {
     /**
      * Sluit de connectie met de database
      */
-    public static void closeDB() {
+    public static void closeDB() throws TheaterException {
         try {
             con.close();
             System.out.println("Closing Connection");
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Verbinding verbreken mislukt");
         }
     }
 
+    /**
+     * Ontsluit de connectie
+     * @return de connectie
+     */
     public static Connection getCon(){
         return con;
     }
