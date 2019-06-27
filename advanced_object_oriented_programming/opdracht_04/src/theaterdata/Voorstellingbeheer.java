@@ -134,7 +134,7 @@ public class Voorstellingbeheer {
      * @param datum van de voorstelling, het rijnummer en stoelnummer en het klantnummer
      */
 
-    public static void updateBezetting(GregorianCalendar datum, int rij, int stoel, int kNr) {
+    public static void updateBezetting(GregorianCalendar datum, int rij, int stoel, int kNr) throws TheaterException {
         try {
             prepUpdateBezetting.setString(1, gToD(datum).toString());
             prepUpdateBezetting.setInt(2, rij);
@@ -142,7 +142,7 @@ public class Voorstellingbeheer {
             prepUpdateBezetting.setInt(4, kNr);
             prepUpdateBezetting.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new TheaterException("Het updaten van de database is mislukt");
         }
     }
 

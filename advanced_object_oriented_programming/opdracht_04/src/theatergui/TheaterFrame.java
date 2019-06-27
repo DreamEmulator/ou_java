@@ -132,7 +132,11 @@ public class TheaterFrame extends JFrame {
     private void plaatsKnopAction() {
         String naam = naamVeld.getText();
         String telefoon = telefoonVeld.getText();
-        theater.plaatsKlant(naam, telefoon);
+        try {
+            theater.plaatsKlant(naam, telefoon);
+        } catch (TheaterException e) {
+            foutLabel.setText(e.getMessage());
+        }
 
         // maak de velden leeg
         naamVeld.setText("");

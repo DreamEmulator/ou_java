@@ -1,5 +1,6 @@
 package theater;
 
+import theaterdata.TheaterException;
 import theaterdata.Voorstellingbeheer;
 
 import java.util.ArrayList;
@@ -109,7 +110,7 @@ public class Voorstelling {
     /**
      * Update bezetting
      */
-    public void updateBezetting(Klant klant) {
+    public void updateBezetting(Klant klant) throws TheaterException {
         System.out.println("Aantal spots bezet:" + getBezetting().size());
         for (Plaats p : getBezetting()) {
             Voorstellingbeheer.updateBezetting(getDatum(), p.getRijnummer(), p.getStoelnummer(), klant.getKlantnummer());
