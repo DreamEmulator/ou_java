@@ -8,10 +8,6 @@ import java.util.*;
 import theater.Klant;
 import theater.Voorstelling;
 
-// TODO: Figure out how to go from the theaterGUI layer through the theater through the theaterdata with al the info to update the Bezetting in the DB
-
-// TODO: check dat SQL exceptions als zodanig gegooid kunnnen worden, of dat ze Theater exceptions moeten worden
-
 /**
  * Klasse die met voorstellingen beheert. Op elke datum is er maar ��n
  * voorstelling. Deze klasse moet gewijzigd worden zodat ArrayList vervangen
@@ -98,12 +94,8 @@ public class Voorstellingbeheer {
                 voorstellingNaam = res.getString("naam");
                 voorstelling = new Voorstelling(voorstellingNaam, datum);
             }
-        } catch (SQLException e) {
-            throw new TheaterException("Voorstelling kon niet opgehaald worden");
-        }
 
-// Get bezetting
-        try {
+            // Get bezetting
 
             prepBezetting.setString(1, sqlDatum.toString());
             res = prepBezetting.executeQuery();
@@ -112,11 +104,12 @@ public class Voorstellingbeheer {
 
                 stoel = res.getInt("stoelnummer");
                 rij = res.getInt("rijnummer");
+                voorstelling.reserveer(rij, stoel);
+
                 klant = res.getInt("klant");
                 klantNaam = res.getString("naam");
                 klantTel = res.getString("telefoon");
 
-                voorstelling.reserveer(rij, stoel);
                 voorstelling.plaatsKlant(rij, stoel, new Klant(klant, klantNaam, klantTel));
             }
 

@@ -52,7 +52,7 @@ public class PlaatsPanel extends JPanel implements Observer {
     /**
      * Bepaalt de kleur van het panel op grond van de status van de plaats.
      */
-    public void toonStatus() {
+    public synchronized void toonStatus() {
         Plaats.Status status = plaats.getStatus();
         switch (status) {
             case VRIJ:

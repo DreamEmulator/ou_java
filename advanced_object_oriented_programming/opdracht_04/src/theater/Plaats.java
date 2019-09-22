@@ -15,10 +15,10 @@ public class Plaats extends Observable {
     VRIJ, GERESERVEERD, BEZET
   }
 
-    private final int    rijnummer;
-  private final int    stoelnummer;
+  private final int rijnummer;
+  private final int stoelnummer;
   private Klant  klant  = null;
-  private Status status = Status.VRIJ;
+  private Status status = null;
 
   /**
    * Creeert een stoel.
