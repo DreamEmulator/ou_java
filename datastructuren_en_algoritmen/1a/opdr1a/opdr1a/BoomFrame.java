@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 
 public class BoomFrame extends JFrame {
 
-  private BoomPanel boomPanel;
+  private opdr1a.BoomPanel boomPanel;
   
   private static final long serialVersionUID = 1L;
   private JPanel jContentPane = null;
