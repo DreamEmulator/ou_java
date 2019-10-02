@@ -95,8 +95,10 @@ public class BoomFrame extends JFrame {
       int stam = Integer.parseInt(stamVeld.getText());
       int hoek = Integer.parseInt(hoekVeld.getText());
       int diepte = Integer.parseInt(diepteVeld.getText());
-      if (diepte <= 0)
-        foutLabel.setText("FOUT: diepte moet groter dan 0 zijn");
+      if (diepte <= 0 || diepte > 25)
+        foutLabel.setText("FOUT: diepte moet tussen 1 en 25 liggen");
+      else if (stam <= 0 || stam > 100 )
+        foutLabel.setText("FOUT: stam moet tussen 1 en 100 liggen");
       else if (hoek <= 0 || hoek >= 360)
         foutLabel.setText("FOUT: hoek moet tussen 1 en 360 liggen");
       else {
@@ -109,7 +111,7 @@ public class BoomFrame extends JFrame {
       }
     }
     catch (NumberFormatException nfe) {
-      foutLabel.setText("FOUT: " + nfe + "");
+      foutLabel.setText("FOUT: Voer getallen in");
     }
   }
 
