@@ -38,6 +38,8 @@ class PostfixCalculator {
                             opr2 = stack.pop();
                             result = Operation.fromString(String.valueOf(c)).apply(opr1, opr2);
                             stack.push(result);
+                        } else {
+                            throw new PostfixException("Gebruik alleen geldige operators");
                         }
                 }
 
