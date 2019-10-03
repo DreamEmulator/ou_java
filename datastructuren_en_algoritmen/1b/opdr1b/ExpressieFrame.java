@@ -86,9 +86,9 @@ public class ExpressieFrame extends JFrame {
     private void berekenKnopAction() {
         PostfixCalculator calculator = new PostfixCalculator(expressieVeld.getText());
         try {
-            waardeVeld.setText(calculator.calculate());
-        } catch (PostfixException e) {
-            e.printStackTrace();
+            waardeVeld.setText("" + calculator.calculate());
+        } catch (Exception e) {
+            foutLabel.setText(e.getMessage());
         }
     }
 
