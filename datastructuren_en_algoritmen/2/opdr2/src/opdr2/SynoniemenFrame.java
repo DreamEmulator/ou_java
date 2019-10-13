@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 import java.awt.event.MouseEvent;
+import java.util.Comparator;
 import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
@@ -79,7 +80,7 @@ public class SynoniemenFrame extends JFrame {
    */
   private void woordListPressed(){
     String woord = woordList.getSelectedValue();
-    synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord));
+    synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord).toArray(new String[0]));
     synoniemenList.updateUI();
   }
 

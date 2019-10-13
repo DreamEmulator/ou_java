@@ -10,30 +10,42 @@ public class Thesaurus {
     }
 
     private SortedSet<String> woordenlijst = null;
-    private Map<String, String[]> synoniemenlijst = null;
+    private Map<String, Set<String>> synoniemenlijst = null;
 
 //    TODO: Pass in custom comparator
     public Thesaurus() {
         this.woordenlijst = new TreeSet<>();
-        this.synoniemenlijst = new TreeMap<>(new Comparator<String>() {
-            @Override
-            public int compare(String s1, String s2) {
-                return s2.compareTo(s1);
-            }
-        });
+        this.synoniemenlijst = new TreeMap<>();
     }
-
     public void voegToe(String woord, String[] synoniemen) {
         woordenlijst.add(woord);
-        synoniemenlijst.put(woord,synoniemen);
+        Set<String> synoniemenSet = new TreeSet<>(new compareLength().thenComparing(new compareAlphabet()));
+        synoniemenSet.addAll(Arrays.asList(synoniemen));
+        synoniemenlijst.put(woord,synoniemenSet);
     }
+
+    class compareAlphabet implements Comparator<String> {
+        public int compare(String str1, String str2)
+        {
+            return str1.compareTo(str2);
+        }
+    }
+
+    class compareLength implements Comparator<String> {
+        public int compare(String str1, String str2)
+        {
+            return str1.length() - str2.length();
+        }
+    }
+
+//    Comparator compare = Comparator.comparing());
+
 
     public String[] getWoordenlijst(){
         return woordenlijst.toArray(new String[0]);
     }
 
-    public String[] getSynoniemenLijst(String woord){
-        new TreeSet<>(Arrays.asList(synoniemenlijst.get(woord)));
+    public Set<String> getSynoniemenLijst(String woord){
         return synoniemenlijst.get(woord);
     }
 }
