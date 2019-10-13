@@ -9,21 +9,31 @@ public class Thesaurus {
         fr.setVisible(true);
     }
 
-    private SortedSet<String> woorden = null;
-    private Map<String, String[]> synoniemen = null;
+    private SortedSet<String> woordenlijst = null;
+    private Map<String, String[]> synoniemenlijst = null;
 
 //    TODO: Pass in custom comparator
     public Thesaurus() {
-        this.woorden = new TreeSet<>();
-        this.synoniemen = new TreeMap<>();
+        this.woordenlijst = new TreeSet<>();
+        this.synoniemenlijst = new TreeMap<>(new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return s2.compareTo(s1);
+            }
+        });
     }
 
     public void voegToe(String woord, String[] synoniemen) {
-        this.woorden.add(woord);
-        this.synoniemen.put(woord,synoniemen);
+        woordenlijst.add(woord);
+        synoniemenlijst.put(woord,synoniemen);
     }
 
     public String[] getWoordenlijst(){
-        return this.woorden.toArray(new String[0]);
+        return woordenlijst.toArray(new String[0]);
+    }
+
+    public String[] getSynoniemenLijst(String woord){
+        new TreeSet<>(Arrays.asList(synoniemenlijst.get(woord)));
+        return synoniemenlijst.get(woord);
     }
 }

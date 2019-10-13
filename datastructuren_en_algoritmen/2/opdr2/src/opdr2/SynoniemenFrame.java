@@ -21,20 +21,20 @@ public class SynoniemenFrame extends JFrame {
   private JScrollPane woordScrollPane = null;
   private JScrollPane synomiemenScrollPane = null;
   private JList<String> woordList = null;
-  private JList synoniemenList = null;
+  private JList<String> synoniemenList = null;
   private JTextField woordVeld = null;
   private JTextField synoniemenVeld = null;
   private JButton voegtoeKnop = null;
   private JLabel foutLabel = null;
 
-  private Thesaurus woordenlijst;
+  private Thesaurus thesaurus;
   /**
    * This is the default constructor
    */
-  public SynoniemenFrame(Thesaurus woordenlijst) {
+  public SynoniemenFrame(Thesaurus thesaurus) {
     super();
     initialize();
-    this.woordenlijst = woordenlijst;
+    this.thesaurus = thesaurus;
   }
 
   /**
@@ -69,12 +69,8 @@ public class SynoniemenFrame extends JFrame {
 
     // Voeg hier eigen code toe
     String[] synoniemen = alleSynoniemen.split("\\s+");
-    woordenlijst.voegToe(woord,synoniemen);
-    woordList.setListData(woordenlijst.getWoordenlijst());
-
-    for (int i = 0; i < synoniemen.length; i++){
-      System.out.println(synoniemen[i]);
-    }
+    thesaurus.voegToe(woord,synoniemen);
+    woordList.setListData(thesaurus.getWoordenlijst());
   }
   
   /**
@@ -82,7 +78,9 @@ public class SynoniemenFrame extends JFrame {
 
    */
   private void woordListPressed(){
-    System.out.println(woordList.getSelectedValue());
+    String woord = woordList.getSelectedValue();
+    synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord));
+    synoniemenList.updateUI();
   }
 
   /**
