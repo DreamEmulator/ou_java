@@ -1,0 +1,1 @@
+Abstract Datatype (ADT). Een ADT is een model van een datastructuur dat een specificatie bevat van het type gegevens dat wordt opgeslagen, de operaties die op die datastructuur mogelijk zijn en de types van de parameters die voor de operaties nodig zijn. In Java kunnen we interfaces gebruiken voor de specificatie van abstracte datatypen.
