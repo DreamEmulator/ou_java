@@ -1,20 +1,16 @@
 package opdr2;
 
-import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JList;
-import java.awt.Dimension;
+import java.awt.event.MouseEvent;
 import java.util.regex.Pattern;
 
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import opdr2.Woordenlijst;
 
 public class SynoniemenFrame extends JFrame {
 
@@ -31,11 +27,11 @@ public class SynoniemenFrame extends JFrame {
   private JButton voegtoeKnop = null;
   private JLabel foutLabel = null;
 
-  private Woordenlijst woordenlijst;
+  private Thesaurus woordenlijst;
   /**
    * This is the default constructor
    */
-  public SynoniemenFrame(Woordenlijst woordenlijst) {
+  public SynoniemenFrame(Thesaurus woordenlijst) {
     super();
     initialize();
     this.woordenlijst = woordenlijst;
@@ -72,8 +68,13 @@ public class SynoniemenFrame extends JFrame {
     }
 
     // Voeg hier eigen code toe
-    woordenlijst.voegToe(woord);
+    String[] synoniemen = alleSynoniemen.split("\\s+");
+    woordenlijst.voegToe(woord,synoniemen);
     woordList.setListData(woordenlijst.getWoordenlijst());
+
+    for (int i = 0; i < synoniemen.length; i++){
+      System.out.println(synoniemen[i]);
+    }
   }
   
   /**
@@ -81,7 +82,7 @@ public class SynoniemenFrame extends JFrame {
 
    */
   private void woordListPressed(){
- // Voeg hier eigen code toe
+    System.out.println(woordList.getSelectedValue());
   }
 
   /**

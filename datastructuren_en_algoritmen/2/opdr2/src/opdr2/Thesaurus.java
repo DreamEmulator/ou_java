@@ -1,26 +1,26 @@
 package opdr2;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
-public class Woordenlijst {
+public class Thesaurus {
 
     public static void main(String[] args) {
-        Woordenlijst woordenlijst = new Woordenlijst();
+        Thesaurus woordenlijst = new Thesaurus();
         SynoniemenFrame fr = new SynoniemenFrame(woordenlijst);
         fr.setVisible(true);
     }
 
     private SortedSet<String> woorden = null;
+    private Map<String, String[]> synoniemen = null;
 
 //    TODO: Pass in custom comparator
-    public Woordenlijst() {
+    public Thesaurus() {
         this.woorden = new TreeSet<>();
+        this.synoniemen = new TreeMap<>();
     }
 
-    public void voegToe(String woord) {
+    public void voegToe(String woord, String[] synoniemen) {
         this.woorden.add(woord);
+        this.synoniemen.put(woord,synoniemen);
     }
 
     public String[] getWoordenlijst(){
