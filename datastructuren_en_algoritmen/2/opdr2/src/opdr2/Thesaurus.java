@@ -12,12 +12,12 @@ public class Thesaurus {
     private SortedSet<String> woordenlijst = null;
     private Map<String, Set<String>> synoniemenlijst = null;
 
-//    TODO: Pass in custom comparator
-    public Thesaurus() {
+    private Thesaurus() {
         this.woordenlijst = new TreeSet<>();
         this.synoniemenlijst = new TreeMap<>();
     }
-    public void voegToe(String woord, String[] synoniemen) {
+
+    void voegToe(String woord, String[] synoniemen) {
         woordenlijst.add(woord);
         Set<String> synoniemenSet = new TreeSet<>(new compareLength().thenComparing(new compareAlphabet()));
         synoniemenSet.addAll(Arrays.asList(synoniemen));
@@ -38,14 +38,11 @@ public class Thesaurus {
         }
     }
 
-//    Comparator compare = Comparator.comparing());
-
-
-    public String[] getWoordenlijst(){
+    String[] getWoordenlijst(){
         return woordenlijst.toArray(new String[0]);
     }
 
-    public Set<String> getSynoniemenLijst(String woord){
+    Set<String> getSynoniemenLijst(String woord){
         return synoniemenlijst.get(woord);
     }
 }

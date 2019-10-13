@@ -72,6 +72,8 @@ public class SynoniemenFrame extends JFrame {
     String[] synoniemen = alleSynoniemen.split("\\s+");
     thesaurus.voegToe(woord,synoniemen);
     woordList.setListData(thesaurus.getWoordenlijst());
+    woordVeld.setText("");
+    synoniemenVeld.setText("");
   }
   
   /**
