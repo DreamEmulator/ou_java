@@ -1,10 +1,8 @@
 package opdr1b;
 
-import java.awt.*;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
-import java.util.EmptyStackException;
 import java.util.Stack;
 
 class PostfixCalculator {
@@ -38,7 +36,8 @@ class PostfixCalculator {
             }
 
         }
+        int result = stack.pop();
         if (!stack.isEmpty()) throw new PostfixException("Postfixexpressie ongeldig: teveel getallen");
-        return stack.pop();
+        return result;
     }
 }
