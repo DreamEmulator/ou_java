@@ -18,7 +18,7 @@ class PostfixCalculator {
     }
 
 //    Feedback
-//    - De expressie 12 geeft als resultaat 0. Dat moet echter 12 zijn.
+//    ✅De expressie 12 geeft als resultaat 0. Dat moet echter 12 zijn.
 
 //    ✅Als er een foutmelding is geweest, moet je die bij een volgende berekening wel weghalen. Dat gebeurt nu alleen als de volgende berekening geldig is.
 
@@ -33,7 +33,7 @@ class PostfixCalculator {
 //    ✅Je controleert niet of er teveel getallen zijn ingevoerd voor de berekening.
 
     int calculate() throws PostfixException, IOException {
-        int opr1, opr2, result = 0;
+        int opr1, opr2;
 
         while (tokenlezer.nextToken() != StreamTokenizer.TT_EOF) {
             switch (tokenlezer.ttype) {
@@ -49,11 +49,11 @@ class PostfixCalculator {
                     if (stack.isEmpty()) throw new PostfixException("Stack is leeg, onvoldoende getallen");
                     opr2 = stack.pop();
                     if (!stack.isEmpty()) throw new PostfixException("Stack is niet leeg, teveel getallen");
-                    result = Operation.fromString(String.valueOf(c)).apply(opr2, opr1);
+                    int result = Operation.fromString(String.valueOf(c)).apply(opr2, opr1);
                     stack.push(result);
             }
 
         }
-        return result;
+        return stack.peek();
     }
 }
