@@ -88,6 +88,7 @@ public class ExpressieFrame extends JFrame {
         PostfixCalculator calculator = new PostfixCalculator(expressieVeld.getText());
         try {
             foutLabel.setText("");
+            waardeVeld.setText("");
             waardeVeld.setText("" + calculator.calculate());
         } catch (PostfixException | IOException e) {
             foutLabel.setText(e.getMessage());
