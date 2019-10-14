@@ -2,6 +2,7 @@ package opdr1b;
 
 import javax.swing.SwingUtilities;
 import java.awt.Rectangle;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -86,8 +87,9 @@ public class ExpressieFrame extends JFrame {
     private void berekenKnopAction() {
         PostfixCalculator calculator = new PostfixCalculator(expressieVeld.getText());
         try {
+            foutLabel.setText("");
             waardeVeld.setText("" + calculator.calculate());
-        } catch (Exception e) {
+        } catch (PostfixException | IOException e) {
             foutLabel.setText(e.getMessage());
         }
     }
