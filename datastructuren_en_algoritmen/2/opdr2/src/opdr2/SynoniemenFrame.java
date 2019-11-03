@@ -15,215 +15,238 @@ import javax.swing.JButton;
 
 public class SynoniemenFrame extends JFrame {
 
-  private static final long serialVersionUID = 1L;
-  private JPanel jContentPane = null;
-  private JLabel woordLabel = null;
-  private JLabel synoniemenLabel = null;
-  private JScrollPane woordScrollPane = null;
-  private JScrollPane synomiemenScrollPane = null;
-  private JList<String> woordList = null;
-  private JList<String> synoniemenList = null;
-  private JTextField woordVeld = null;
-  private JTextField synoniemenVeld = null;
-  private JButton voegtoeKnop = null;
-  private JLabel foutLabel = null;
+    private static final long serialVersionUID = 1L;
+    private JPanel jContentPane = null;
+    private JLabel woordLabel = null;
+    private JLabel synoniemenLabel = null;
+    private JScrollPane woordScrollPane = null;
+    private JScrollPane synomiemenScrollPane = null;
+    private JList<String> woordList = null;
+    private JList<String> synoniemenList = null;
+    private JTextField woordVeld = null;
+    private JTextField synoniemenVeld = null;
+    private JButton voegtoeKnop = null;
+    private JLabel foutLabel = null;
 
-  private Thesaurus thesaurus;
-  /**
-   * This is the default constructor
-   */
-  public SynoniemenFrame(Thesaurus thesaurus) {
-    super();
-    initialize();
-    this.thesaurus = thesaurus;
-  }
+    private Thesaurus thesaurus;
 
-  /**
-   * This method initializes this
-   * 
-   * @return void
-   */
-  private void initialize() {
-    this.setSize(294, 329);
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setContentPane(getJContentPane());
-    this.setTitle("JFrame");
-  }
-  
-  /**
-   * Onvolledieg event handler voor toevoegen.
-   * Er wordt gecontroleerd of een woord uit letters bestaat, en een
-   * woordenlijst uit woorden gescheiden door spaties.
-   */
-  private void voegtoeKnopAction(){
-    foutLabel.setText("");
-    String woord = woordVeld.getText().trim();
-    if (!Pattern.matches("[a-zA-Z]+", woord)){
-      foutLabel.setText("Woord bestaat niet uit letters");
-      return;
-    }
-    String alleSynoniemen = synoniemenVeld.getText().trim() + ' ';
-    if (!Pattern.matches("([a-zA-Z]+ +)+", alleSynoniemen)){
-      foutLabel.setText("Synoniemenlijst bestaat niet uit woorden gescheiden door spaties");
-      return;
+    /**
+     * This is the default constructor
+     */
+    public SynoniemenFrame(Thesaurus thesaurus) {
+        super();
+        initialize();
+        this.thesaurus = thesaurus;
     }
 
-    // Voeg hier eigen code toe
-    String[] synoniemen = alleSynoniemen.split("\\s+");
-    thesaurus.voegToe(woord,synoniemen);
-    woordList.setListData(thesaurus.getWoordenlijst());
-    resetFrame();
-  }
-
-  /**
-   * Reset frame functie
-   */
-  private void resetFrame(){
-    woordVeld.setText("");
-    synoniemenVeld.setText("");
-  }
-
-  /**
-   * Lege event handler voor klikken in woordList
-   */
-  private void woordListPressed(){
-    if(woordList.getModel().getSize() > 0){
-      String woord = woordList.getSelectedValue();
-      synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord).toArray(new String[0]));
-      synoniemenList.updateUI();
+    /**
+     * This method initializes this
+     *
+     * @return void
+     */
+    private void initialize() {
+        this.setSize(294, 329);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setContentPane(getJContentPane());
+        this.setTitle("JFrame");
     }
-  }
 
-  /**
-   * This method initializes jContentPane
-   * 
-   * @return javax.swing.JPanel
-   */
-  private JPanel getJContentPane() {
-    if (jContentPane == null) {
-      foutLabel = new JLabel();
-      foutLabel.setBounds(new Rectangle(13, 252, 253, 25));
-      foutLabel.setText("");
-      synoniemenLabel = new JLabel();
-      synoniemenLabel.setBounds(new Rectangle(154, 8, 109, 20));
-      synoniemenLabel.setText("Synoniemen");
-      woordLabel = new JLabel();
-      woordLabel.setBounds(new Rectangle(14, 8, 109, 20));
-      woordLabel.setText("Woorden");
-      jContentPane = new JPanel();
-      jContentPane.setLayout(null);
-      jContentPane.add(woordLabel, null);
-      jContentPane.add(synoniemenLabel, null);
-      jContentPane.add(getWoordScrollPane(), null);
-      jContentPane.add(getSynomiemenScrollPane(), null);
-      jContentPane.add(getWoordVeld(), null);
-      jContentPane.add(getSynoniemenVeld(), null);
-      jContentPane.add(foutLabel, null);
-      jContentPane.add(getVoegtoeKnop(), null);
-    }
-    return jContentPane;
-  }
+    /**
+     * Onvolledieg event handler voor toevoegen.
+     * Er wordt gecontroleerd of een woord uit letters bestaat, en een
+     * woordenlijst uit woorden gescheiden door spaties.
+     */
+    private void voegtoeKnopAction() {
 
-  /**
-   * This method initializes woordScrollPane	
-   * 	
-   * @return javax.swing.JScrollPane	
-   */
-  private JScrollPane getWoordScrollPane() {
-    if (woordScrollPane == null) {
-      woordScrollPane = new JScrollPane();
-      woordScrollPane.setBounds(new Rectangle(12, 40, 109, 125));
-      woordScrollPane.setViewportView(getWoordList());
-    }
-    return woordScrollPane;
-  }
-
-  /**
-   * This method initializes synomiemenScrollPane	
-   * 	
-   * @return javax.swing.JScrollPane	
-   */
-  private JScrollPane getSynomiemenScrollPane() {
-    if (synomiemenScrollPane == null) {
-      synomiemenScrollPane = new JScrollPane();
-      synomiemenScrollPane.setBounds(new Rectangle(150, 40, 109, 125));
-      synomiemenScrollPane.setViewportView(getSynoniemenList());
-    }
-    return synomiemenScrollPane;
-  }
-
-  /**
-   * This method initializes woordList	
-   * 	
-   * @return javax.swing.JList	
-   */
-  private JList getWoordList() {
-    if (woordList == null) {
-      woordList = new JList();
-      woordList.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mousePressed(java.awt.event.MouseEvent e) {
-          woordListPressed();
+        // Voeg hier eigen code toe
+        try {
+            String woord = getWoord();
+            String[] synoniemen = getSynoniemen();
+            thesaurus.voegToe(woord, synoniemen);
+            woordList.setListData(thesaurus.getWoordenlijst());
+            resetFrame();
+        } catch (ThesaurusException e) {
+            foutLabel.setText(e.getMessage());
+            e.printStackTrace();
         }
-      });
     }
-    return woordList;
-  }
 
-  /**
-   * This method initializes synoniemenList	
-   * 	
-   * @return javax.swing.JList	
-   */
-  private JList getSynoniemenList() {
-    if (synoniemenList == null) {
-      synoniemenList = new JList();
-    }
-    return synoniemenList;
-  }
-
-  /**
-   * This method initializes woordVeld	
-   * 	
-   * @return javax.swing.JTextField	
-   */
-  private JTextField getWoordVeld() {
-    if (woordVeld == null) {
-      woordVeld = new JTextField();
-      woordVeld.setBounds(new Rectangle(14, 181, 109, 21));
-    }
-    return woordVeld;
-  }
-
-  /**
-   * This method initializes synoniemenVeld	
-   * 	
-   * @return javax.swing.JTextField	
-   */
-  private JTextField getSynoniemenVeld() {
-    if (synoniemenVeld == null) {
-      synoniemenVeld = new JTextField();
-      synoniemenVeld.setBounds(new Rectangle(154, 177, 109, 21));
-    }
-    return synoniemenVeld;
-  }
-
-  /**
-   * This method initializes voegtoeKnop	
-   * 	
-   * @return javax.swing.JButton	
-   */
-  private JButton getVoegtoeKnop() {
-    if (voegtoeKnop == null) {
-      voegtoeKnop = new JButton();
-      voegtoeKnop.setText("Toevoegen");
-      voegtoeKnop.setBounds(new Rectangle(82, 216, 96, 26));
-      voegtoeKnop.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent e) {
-          voegtoeKnopAction();
+    /**
+     * Parse het woord
+     */
+    private String getWoord() throws ThesaurusException {
+        String woord = woordVeld.getText().trim();
+        if (!Pattern.matches("[a-zA-Z]+", woord)) {
+            throw new ThesaurusException("Een woord mag alleen uit letters bestaan");
+        } else {
+            return woord;
         }
-      });
     }
-    return voegtoeKnop;
-  }
+
+    /**
+     * Parse alle synoniemen
+     */
+    private String[] getSynoniemen() throws ThesaurusException {
+        String alleSynoniemen = synoniemenVeld.getText().trim() + ' ';
+        if (!Pattern.matches("([a-zA-Z]+ +)+", alleSynoniemen)) {
+            throw new ThesaurusException("Let op: de ingevoerde synoniemenlijst moet bestaan uit woorden gescheiden door spaties!");
+        } else {
+            return alleSynoniemen.split("\\s+");
+        }
+    }
+
+    /**
+     * Reset frame functie
+     */
+    private void resetFrame() {
+        woordVeld.setText("");
+        synoniemenVeld.setText("");
+        foutLabel.setText("");
+        woordList.setSelectedIndex(-1);
+        synoniemenList.setSelectedIndex(-1);
+    }
+
+    /**
+     * Lege event handler voor klikken in woordList
+     */
+    private void woordListPressed() {
+        if (woordList.getModel().getSize() > 0) {
+            String woord = woordList.getSelectedValue();
+            synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord).toArray(new String[0]));
+            synoniemenList.updateUI();
+        }
+    }
+
+    /**
+     * This method initializes jContentPane
+     *
+     * @return javax.swing.JPanel
+     */
+    private JPanel getJContentPane() {
+        if (jContentPane == null) {
+            foutLabel = new JLabel();
+            foutLabel.setBounds(new Rectangle(13, 252, 253, 25));
+            foutLabel.setText("");
+            synoniemenLabel = new JLabel();
+            synoniemenLabel.setBounds(new Rectangle(154, 8, 109, 20));
+            synoniemenLabel.setText("Synoniemen");
+            woordLabel = new JLabel();
+            woordLabel.setBounds(new Rectangle(14, 8, 109, 20));
+            woordLabel.setText("Woorden");
+            jContentPane = new JPanel();
+            jContentPane.setLayout(null);
+            jContentPane.add(woordLabel, null);
+            jContentPane.add(synoniemenLabel, null);
+            jContentPane.add(getWoordScrollPane(), null);
+            jContentPane.add(getSynomiemenScrollPane(), null);
+            jContentPane.add(getWoordVeld(), null);
+            jContentPane.add(getSynoniemenVeld(), null);
+            jContentPane.add(foutLabel, null);
+            jContentPane.add(getVoegtoeKnop(), null);
+        }
+        return jContentPane;
+    }
+
+    /**
+     * This method initializes woordScrollPane
+     *
+     * @return javax.swing.JScrollPane
+     */
+    private JScrollPane getWoordScrollPane() {
+        if (woordScrollPane == null) {
+            woordScrollPane = new JScrollPane();
+            woordScrollPane.setBounds(new Rectangle(12, 40, 109, 125));
+            woordScrollPane.setViewportView(getWoordList());
+        }
+        return woordScrollPane;
+    }
+
+    /**
+     * This method initializes synomiemenScrollPane
+     *
+     * @return javax.swing.JScrollPane
+     */
+    private JScrollPane getSynomiemenScrollPane() {
+        if (synomiemenScrollPane == null) {
+            synomiemenScrollPane = new JScrollPane();
+            synomiemenScrollPane.setBounds(new Rectangle(150, 40, 109, 125));
+            synomiemenScrollPane.setViewportView(getSynoniemenList());
+        }
+        return synomiemenScrollPane;
+    }
+
+    /**
+     * This method initializes woordList
+     *
+     * @return javax.swing.JList
+     */
+    private JList getWoordList() {
+        if (woordList == null) {
+            woordList = new JList();
+            woordList.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mousePressed(java.awt.event.MouseEvent e) {
+                    woordListPressed();
+                }
+            });
+        }
+        return woordList;
+    }
+
+    /**
+     * This method initializes synoniemenList
+     *
+     * @return javax.swing.JList
+     */
+    private JList getSynoniemenList() {
+        if (synoniemenList == null) {
+            synoniemenList = new JList();
+        }
+        return synoniemenList;
+    }
+
+    /**
+     * This method initializes woordVeld
+     *
+     * @return javax.swing.JTextField
+     */
+    private JTextField getWoordVeld() {
+        if (woordVeld == null) {
+            woordVeld = new JTextField();
+            woordVeld.setBounds(new Rectangle(14, 181, 109, 21));
+        }
+        return woordVeld;
+    }
+
+    /**
+     * This method initializes synoniemenVeld
+     *
+     * @return javax.swing.JTextField
+     */
+    private JTextField getSynoniemenVeld() {
+        if (synoniemenVeld == null) {
+            synoniemenVeld = new JTextField();
+            synoniemenVeld.setBounds(new Rectangle(154, 177, 109, 21));
+        }
+        return synoniemenVeld;
+    }
+
+    /**
+     * This method initializes voegtoeKnop
+     *
+     * @return javax.swing.JButton
+     */
+    private JButton getVoegtoeKnop() {
+        if (voegtoeKnop == null) {
+            voegtoeKnop = new JButton();
+            voegtoeKnop.setText("Toevoegen");
+            voegtoeKnop.setBounds(new Rectangle(82, 216, 96, 26));
+            voegtoeKnop.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    voegtoeKnopAction();
+                }
+            });
+        }
+        return voegtoeKnop;
+    }
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"
