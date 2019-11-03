@@ -72,18 +72,26 @@ public class SynoniemenFrame extends JFrame {
     String[] synoniemen = alleSynoniemen.split("\\s+");
     thesaurus.voegToe(woord,synoniemen);
     woordList.setListData(thesaurus.getWoordenlijst());
+    resetFrame();
+  }
+
+  /**
+   * Reset frame functie
+   */
+  private void resetFrame(){
     woordVeld.setText("");
     synoniemenVeld.setText("");
   }
-  
+
   /**
    * Lege event handler voor klikken in woordList
-
    */
   private void woordListPressed(){
-    String woord = woordList.getSelectedValue();
-    synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord).toArray(new String[0]));
-    synoniemenList.updateUI();
+    if(woordList.getModel().getSize() > 0){
+      String woord = woordList.getSelectedValue();
+      synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord).toArray(new String[0]));
+      synoniemenList.updateUI();
+    }
   }
 
   /**

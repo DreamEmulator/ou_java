@@ -1,0 +1,9 @@
+// Todo:
+
+- Stop nullPointer on clicking empty list
+- Betere feedback on adding empty synonymslist
+- Deal with overwriting previously defined Word / Synonym pair
+- Clear synonyms pane after adding
+- Deselect word after adding
+- Wat te doen als woorden dubbel ingevoerd
+- Don't allow words to be added twice
