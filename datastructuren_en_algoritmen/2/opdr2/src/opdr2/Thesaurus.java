@@ -17,11 +17,18 @@ public class Thesaurus {
         this.synoniemenlijst = new TreeMap<>();
     }
 
-    void voegToe(String woord, String[] synoniemen) {
+    void voegToe(String woord, String[] synoniemen) throws ThesaurusException {
+        checkWoordUniek(woord);
         woordenlijst.add(woord);
         Set<String> synoniemenSet = new TreeSet<>(new compareLength().thenComparing(new compareAlphabet()));
         synoniemenSet.addAll(Arrays.asList(synoniemen));
         synoniemenlijst.put(woord,synoniemenSet);
+    }
+
+    void checkWoordUniek(String woord) throws ThesaurusException {
+        if (woordenlijst.contains(woord)){
+            throw new ThesaurusException("Let op: Woord bestaat al in de woordenlijst");
+        }
     }
 
     class compareAlphabet implements Comparator<String> {

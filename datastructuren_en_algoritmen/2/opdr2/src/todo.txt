@@ -1,11 +1,11 @@
 // Todo:
 
-- Stop nullPointer on clicking empty list
+* Stop nullPointer on clicking empty list
 - Betere feedback on adding empty synonymslist
 - Betere feedback on adding too many words
-- Deal with overwriting previously defined Word / Synonym pair
-- Clear synonyms pane after adding
-- Deselect word after adding
-- Wat te doen als woorden dubbel ingevoerd
-- Don't allow words to be added twice
+* Deal with overwriting previously defined Word / Synonym pair
+* Clear synonyms pane after adding
+* Deselect word after adding
+* Wat te doen als woorden dubbel ingevoerd
+* Don't allow words to be added twice
 - Make sure the Domain does not simply rely on the View to catch all input errors!
