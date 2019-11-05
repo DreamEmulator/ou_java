@@ -45,7 +45,7 @@ public class SynoniemenFrame extends JFrame {
      * @return void
      */
     private void initialize() {
-        this.setSize(294, 329);
+        this.setSize(460, 320);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(getJContentPane());
         this.setTitle("JFrame");
@@ -125,13 +125,13 @@ public class SynoniemenFrame extends JFrame {
     private JPanel getJContentPane() {
         if (jContentPane == null) {
             foutLabel = new JLabel();
-            foutLabel.setBounds(new Rectangle(13, 252, 253, 25));
+            foutLabel.setBounds(new Rectangle(20, 270, 590, 25));
             foutLabel.setText("");
             synoniemenLabel = new JLabel();
-            synoniemenLabel.setBounds(new Rectangle(154, 8, 109, 20));
+            synoniemenLabel.setBounds(new Rectangle(305, 10, 110, 20));
             synoniemenLabel.setText("Synoniemen");
             woordLabel = new JLabel();
-            woordLabel.setBounds(new Rectangle(14, 8, 109, 20));
+            woordLabel.setBounds(new Rectangle(95, 10, 110, 20));
             woordLabel.setText("Woorden");
             jContentPane = new JPanel();
             jContentPane.setLayout(null);
@@ -155,7 +155,7 @@ public class SynoniemenFrame extends JFrame {
     private JScrollPane getWoordScrollPane() {
         if (woordScrollPane == null) {
             woordScrollPane = new JScrollPane();
-            woordScrollPane.setBounds(new Rectangle(12, 40, 109, 125));
+            woordScrollPane.setBounds(new Rectangle(20, 40, 200, 125));
             woordScrollPane.setViewportView(getWoordList());
         }
         return woordScrollPane;
@@ -169,7 +169,7 @@ public class SynoniemenFrame extends JFrame {
     private JScrollPane getSynomiemenScrollPane() {
         if (synomiemenScrollPane == null) {
             synomiemenScrollPane = new JScrollPane();
-            synomiemenScrollPane.setBounds(new Rectangle(150, 40, 109, 125));
+            synomiemenScrollPane.setBounds(new Rectangle(240, 40, 200, 125));
             synomiemenScrollPane.setViewportView(getSynoniemenList());
         }
         return synomiemenScrollPane;
@@ -212,7 +212,7 @@ public class SynoniemenFrame extends JFrame {
     private JTextField getWoordVeld() {
         if (woordVeld == null) {
             woordVeld = new JTextField();
-            woordVeld.setBounds(new Rectangle(14, 181, 109, 21));
+            woordVeld.setBounds(new Rectangle(20, 200, 200, 20));
         }
         return woordVeld;
     }
@@ -225,7 +225,7 @@ public class SynoniemenFrame extends JFrame {
     private JTextField getSynoniemenVeld() {
         if (synoniemenVeld == null) {
             synoniemenVeld = new JTextField();
-            synoniemenVeld.setBounds(new Rectangle(154, 177, 109, 21));
+            synoniemenVeld.setBounds(new Rectangle(240, 200, 200, 20));
         }
         return synoniemenVeld;
     }
@@ -239,7 +239,7 @@ public class SynoniemenFrame extends JFrame {
         if (voegtoeKnop == null) {
             voegtoeKnop = new JButton();
             voegtoeKnop.setText("Toevoegen");
-            voegtoeKnop.setBounds(new Rectangle(82, 216, 96, 26));
+            voegtoeKnop.setBounds(new Rectangle(180, 240, 100, 25));
             voegtoeKnop.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent e) {
                     voegtoeKnopAction();
