@@ -11,10 +11,9 @@ public class Thesaurus {
     }
 
     /**
-     * De thesaurus wordt geïnstantieerd met met een TreeSet voor de woordenlijst, zodat deze uniek en alfabetisch zijn
-     * en een TreeMap met keys van het type String en Values van het type TreeSet. Deze tweede TreeSet wordt custom comparator meegegeven.
+     * De thesaurus wordt geïnstantieerd met met een TreeMap met daarin een TreeSet. De TreeMap sorteert automatich de keys (de woorden) op Alfabet
+     * De Synoniemen komen in de TreeSet en krijgen een custom comparator die twee comparators combineert: eerst lengte, dan alfabeet.
      */
-    private TreeSet<String> woordenlijst = new TreeSet<>();
     private TreeMap<String, TreeSet<String>> synoniemenlijst = new TreeMap<>();
 
     /**
@@ -29,8 +28,6 @@ public class Thesaurus {
     void voegToe(String woord, String[] synoniemen) throws ThesaurusException {
         woord = woord.toLowerCase().trim();
         checkWoordUniek(woord);
-        woordenlijst.add(woord);
-
         TreeSet<String> synoniemenSet = new TreeSet<>(new compareLength().thenComparing(new compareAlphabet()));
         for (int s = 0; s < synoniemen.length; s++) {
             synoniemen[s] = synoniemen[s].toLowerCase().trim();
@@ -45,7 +42,7 @@ public class Thesaurus {
      * @throws ThesaurusException
      */
     private void checkWoordUniek(String woord) throws ThesaurusException {
-        if (woordenlijst.contains(woord)) {
+        if (synoniemenlijst.containsKey(woord)) {
             throw new ThesaurusException("Let op: Woord bestaat al in de woordenlijst");
         }
     }
@@ -69,7 +66,7 @@ public class Thesaurus {
     }
 
     String[] getWoordenlijst() {
-        return woordenlijst.toArray(new String[0]);
+        return synoniemenlijst.keySet().toArray(new String[0]);
     }
 
     String[] getSynoniemenLijst(String woord) {
