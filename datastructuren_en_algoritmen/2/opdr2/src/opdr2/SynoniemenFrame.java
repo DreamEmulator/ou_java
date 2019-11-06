@@ -1,17 +1,11 @@
 package opdr2;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 import java.awt.Rectangle;
-import javax.swing.JScrollPane;
-import javax.swing.JList;
 import java.awt.event.MouseEvent;
 import java.util.Comparator;
+import java.util.Vector;
 import java.util.regex.Pattern;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class SynoniemenFrame extends JFrame {
 
@@ -103,7 +97,7 @@ public class SynoniemenFrame extends JFrame {
         synoniemenVeld.setText("");
         foutLabel.setText("");
         woordList.setSelectedIndex(-1);
-        synoniemenList.setSelectedIndex(-1);
+        synoniemenList.setListData(new Vector<>());
     }
 
     /**

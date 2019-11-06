@@ -9,8 +9,8 @@ public class Thesaurus {
         fr.setVisible(true);
     }
 
-    private SortedSet<String> woordenlijst = null;
-    private Map<String, Set<String>> synoniemenlijst = null;
+    private TreeSet<String> woordenlijst = null;
+    private TreeMap<String, TreeSet<String>> synoniemenlijst = null;
 
     private Thesaurus() {
         this.woordenlijst = new TreeSet<>();
@@ -18,10 +18,13 @@ public class Thesaurus {
     }
 
     void voegToe(String woord, String[] synoniemen) throws ThesaurusException {
+        woord = woord.toLowerCase().trim();
         checkWoordUniek(woord);
         woordenlijst.add(woord);
-        Set<String> synoniemenSet = new TreeSet<>(new compareLength().thenComparing(new compareAlphabet()));
+
+        TreeSet<String> synoniemenSet = new TreeSet<>(new compareLength().thenComparing(new compareAlphabet()));
         synoniemenSet.addAll(Arrays.asList(synoniemen));
+
         synoniemenlijst.put(woord,synoniemenSet);
     }
 
