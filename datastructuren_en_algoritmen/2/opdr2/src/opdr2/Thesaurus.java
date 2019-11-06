@@ -21,8 +21,8 @@ public class Thesaurus {
      * De functie maakt alle woorden en synoniemen lowercase zodat ze niet meerdere maleb voor kunnen komen.
      * De synoniemen set wordt aangemaakt aan de hand van de comparators die samen een nieuwe comparator vormen
      *
-     * @param woord
-     * @param synoniemen
+     * @param woord het woord die mede de key vormt voor de synoniemenset
+     * @param synoniemen een array van synoniemen
      * @throws ThesaurusException
      */
     void voegToe(String woord, String[] synoniemen) throws ThesaurusException {
@@ -41,7 +41,7 @@ public class Thesaurus {
     /**
      * Deze functie waarschuwd de gebruiker dat het woord niet toegevoegd zou worden omdat deze al bestaat in de lijst
      *
-     * @param woord
+     * @param woord het te checken woord in lowercase
      * @throws ThesaurusException
      */
     private void checkWoordUniek(String woord) throws ThesaurusException {

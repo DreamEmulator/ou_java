@@ -2,8 +2,6 @@ package opdr2;
 
 import javax.swing.*;
 import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.util.Comparator;
 import java.util.Vector;
 import java.util.regex.Pattern;
 
