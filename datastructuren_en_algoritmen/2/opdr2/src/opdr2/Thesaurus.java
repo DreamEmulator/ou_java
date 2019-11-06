@@ -10,14 +10,21 @@ public class Thesaurus {
         fr.setVisible(true);
     }
 
-    private TreeSet<String> woordenlijst = null;
-    private TreeMap<String, TreeSet<String>> synoniemenlijst = null;
+    /**
+     * De thesaurus wordt geïnstantieerd met met een TreeSet voor de woordenlijst, zodat deze uniek en alfabetisch zijn
+     * en een TreeMap met keys van het type String en Values van het type TreeSet. Deze tweede TreeSet wordt custom comparator meegegeven.
+     */
+    private TreeSet<String> woordenlijst = new TreeSet<>();
+    private TreeMap<String, TreeSet<String>> synoniemenlijst = new TreeMap<>();
 
-    private Thesaurus() {
-        this.woordenlijst = new TreeSet<>();
-        this.synoniemenlijst = new TreeMap<>();
-    }
-
+    /**
+     * De functie maakt alle woorden en synoniemen lowercase zodat ze niet meerdere maleb voor kunnen komen.
+     * De synoniemen set wordt aangemaakt aan de hand van de comparators die samen een nieuwe comparator vormen
+     *
+     * @param woord
+     * @param synoniemen
+     * @throws ThesaurusException
+     */
     void voegToe(String woord, String[] synoniemen) throws ThesaurusException {
         woord = woord.toLowerCase().trim();
         checkWoordUniek(woord);
@@ -31,19 +38,31 @@ public class Thesaurus {
         synoniemenlijst.put(woord, synoniemenSet);
     }
 
-    void checkWoordUniek(String woord) throws ThesaurusException {
+    /**
+     * Deze functie waarschuwd de gebruiker dat het woord niet toegevoegd zou worden omdat deze al bestaat in de lijst
+     *
+     * @param woord
+     * @throws ThesaurusException
+     */
+    private void checkWoordUniek(String woord) throws ThesaurusException {
         if (woordenlijst.contains(woord)) {
             throw new ThesaurusException("Let op: Woord bestaat al in de woordenlijst");
         }
     }
 
-    class compareAlphabet implements Comparator<String> {
+    /**
+     * Deze comparator vergelijkt de alfabetische volgorde
+     */
+    static class compareAlphabet implements Comparator<String> {
         public int compare(String str1, String str2) {
             return str1.compareTo(str2);
         }
     }
 
-    class compareLength implements Comparator<String> {
+    /**
+     * Deze comparator vergelijkt de lengte
+     */
+    static class compareLength implements Comparator<String> {
         public int compare(String str1, String str2) {
             return str1.length() - str2.length();
         }
