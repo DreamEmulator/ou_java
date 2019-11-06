@@ -18,7 +18,8 @@ public class Thesaurus {
     private TreeMap<String, TreeSet<String>> synoniemenlijst = new TreeMap<>();
 
     /**
-     * De functie maakt alle woorden en synoniemen lowercase zodat ze niet meerdere maleb voor kunnen komen.
+     * De functie maakt alle woorden en synoniemen lowercase zodat ze niet meerdere malen voor kunnen komen ongeacht case.
+     * Voor het woord is een duplicatie check als waarschuwing, maar voor de synoniemenlijst niet. Deze is immers een set en zal automatisch filteren.
      * De synoniemen set wordt aangemaakt aan de hand van de comparators die samen een nieuwe comparator vormen
      *
      * @param woord het woord die mede de key vormt voor de synoniemenset
@@ -40,7 +41,6 @@ public class Thesaurus {
 
     /**
      * Deze functie waarschuwd de gebruiker dat het woord niet toegevoegd zou worden omdat deze al bestaat in de lijst
-     *
      * @param woord het te checken woord in lowercase
      * @throws ThesaurusException
      */
