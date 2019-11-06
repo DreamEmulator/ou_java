@@ -107,7 +107,6 @@ public class SynoniemenFrame extends JFrame {
         if (woordList.getModel().getSize() > 0) {
             String woord = woordList.getSelectedValue();
             synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord));
-            synoniemenList.updateUI();
         }
     }
 
