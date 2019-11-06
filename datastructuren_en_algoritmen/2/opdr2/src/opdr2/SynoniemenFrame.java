@@ -106,7 +106,7 @@ public class SynoniemenFrame extends JFrame {
     private void woordListPressed() {
         if (woordList.getModel().getSize() > 0) {
             String woord = woordList.getSelectedValue();
-            synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord).toArray(new String[0]));
+            synoniemenList.setListData(thesaurus.getSynoniemenLijst(woord));
             synoniemenList.updateUI();
         }
     }
@@ -176,7 +176,7 @@ public class SynoniemenFrame extends JFrame {
      */
     private JList getWoordList() {
         if (woordList == null) {
-            woordList = new JList();
+            woordList = new JList<>();
             woordList.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mousePressed(java.awt.event.MouseEvent e) {
                     woordListPressed();
@@ -193,7 +193,7 @@ public class SynoniemenFrame extends JFrame {
      */
     private JList getSynoniemenList() {
         if (synoniemenList == null) {
-            synoniemenList = new JList();
+            synoniemenList = new JList<>();
         }
         return synoniemenList;
     }

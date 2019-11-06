@@ -72,7 +72,7 @@ public class Thesaurus {
         return woordenlijst.toArray(new String[0]);
     }
 
-    Set<String> getSynoniemenLijst(String woord) {
-        return synoniemenlijst.get(woord);
+    String[] getSynoniemenLijst(String woord) {
+        return synoniemenlijst.get(woord).toArray(new String[0]);
     }
 }
